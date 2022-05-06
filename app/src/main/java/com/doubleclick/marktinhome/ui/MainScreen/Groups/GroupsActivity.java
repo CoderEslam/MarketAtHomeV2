@@ -112,12 +112,6 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
                     post.setAdapter(groupsAdapter);
                     post.hideShimmer();
                 }
-
-
-                for (int i = 0; i <= 1000; i++) {
-                    Log.e("IIIIIIII", "" + i);
-                }
-
             }
         });
 

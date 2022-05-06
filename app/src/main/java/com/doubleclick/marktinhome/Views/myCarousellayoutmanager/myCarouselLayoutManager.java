@@ -1,4 +1,4 @@
-package com.doubleclick.marktinhome.Views.carousellayoutmanager;
+package com.doubleclick.marktinhome.Views.myCarousellayoutmanager;
 
 import android.graphics.PointF;
 import android.os.Handler;
@@ -22,7 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class CarouselLayoutManager extends RecyclerView.LayoutManager implements RecyclerView.SmoothScroller.ScrollVectorProvider {
+public class myCarouselLayoutManager extends RecyclerView.LayoutManager implements RecyclerView.SmoothScroller.ScrollVectorProvider {
 
     public static final int HORIZONTAL = OrientationHelper.HORIZONTAL;
     public static final int VERTICAL = OrientationHelper.VERTICAL;
@@ -56,7 +56,7 @@ public class CarouselLayoutManager extends RecyclerView.LayoutManager implements
      * @param orientation should be {@link #VERTICAL} or {@link #HORIZONTAL}
      */
     @SuppressWarnings("unused")
-    public CarouselLayoutManager(final int orientation) {
+    public myCarouselLayoutManager(final int orientation) {
         this(orientation, CIRCLE_LAYOUT);
     }
 
@@ -67,7 +67,7 @@ public class CarouselLayoutManager extends RecyclerView.LayoutManager implements
      * @param circleLayout true for enabling circleLayout
      */
     @SuppressWarnings("unused")
-    public CarouselLayoutManager(final int orientation, final boolean circleLayout) {
+    public myCarouselLayoutManager(final int orientation, final boolean circleLayout) {
         if (HORIZONTAL != orientation && VERTICAL != orientation) {
             throw new IllegalArgumentException("orientation should be HORIZONTAL or VERTICAL");
         }

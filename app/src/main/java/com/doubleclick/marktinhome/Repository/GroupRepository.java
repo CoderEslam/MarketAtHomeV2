@@ -7,6 +7,7 @@ import static com.doubleclick.marktinhome.Model.Constantes.USER;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.doubleclick.GroupInterface;
 import com.doubleclick.marktinhome.Model.Group;
@@ -14,7 +15,9 @@ import com.doubleclick.marktinhome.Model.GroupData;
 import com.doubleclick.marktinhome.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
 
@@ -24,8 +27,8 @@ import java.util.ArrayList;
 public class GroupRepository extends BaseRepository {
 
     private GroupInterface groupInterface;
-    private ArrayList<Group> myGroups = new ArrayList<>();
-    private ArrayList<Group> allGroups = new ArrayList<>();
+    //    private ArrayList<Group> myGroups = new ArrayList<>();
+//    private ArrayList<Group> allGroups = new ArrayList<>();
     private GroupData groupData = new GroupData();
 
     public GroupRepository(GroupInterface groupInterface) {
@@ -33,52 +36,87 @@ public class GroupRepository extends BaseRepository {
     }
 
     public void MyGroup() {
-        reference.child(GROUPS).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        reference.child(GROUPS).orderByChild("time").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
                     if (isNetworkConnected()) {
-                        if (task.getResult().exists()) {
-                            DataSnapshot dataSnapshot = task.getResult();
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                Group group = snapshot.getValue(Group.class);
-                                assert group != null;
-                                if (group.getCreatedBy().equals(myId)) {
-                                    myGroups.add(group);
-                                }
+                        if (snapshot.exists()) {
+                            Group group = snapshot.getValue(Group.class);
+                            assert group != null;
+                            if (group.getCreatedBy().equals(myId)) {
+//                                myGroups.add(group);
+                                groupInterface.myGroups(group);
                             }
-                            groupInterface.myGroups(myGroups);
                         }
                     }
                 } catch (Exception e) {
                     Log.e("Exception", e.getMessage());
                 }
             }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
 
     }
 
     public void AllGroup() {
-        reference.child(GROUPS).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        reference.child(GROUPS).orderByChild("time").addChildEventListener(new ChildEventListener() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
                     if (isNetworkConnected()) {
-                        if (task.getResult().exists()) {
-                            DataSnapshot dataSnapshot = task.getResult();
-                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                Group group = snapshot.getValue(Group.class);
-                                if (!group.getCreatedBy().equals(myId)) {
-                                    allGroups.add(group);
-                                }
-                            }
-                            groupInterface.allGroups(allGroups);
-                        }
+                        if (snapshot.exists()) {
+                            Group group = snapshot.getValue(Group.class);
+                            assert group != null;
+                            if (!group.getCreatedBy().equals(myId)) {
+//                                allGroups.add(group);
+                                groupInterface.allGroups(group);
 
+                            }
+                        }
                     }
                 } catch (Exception e) {
                     Log.e("Exception", e.getMessage());
                 }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

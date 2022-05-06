@@ -107,7 +107,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var status: TextView;
     private lateinit var apiService: APIService
     private var realm: Realm? = null
-
+    private var sharePost: String = "null".toString()
 
     private lateinit var storageReference: StorageReference
     var fileType: String? = null
@@ -122,6 +122,10 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            if (!it.isEmpty) {
+                sharePost = it.getString("sharePost").toString()
+                user = it.getSerializable("user") as User?
+            }
             if (it.isEmpty) {
                 val User by navArgs<ChatFragmentArgs>()
                 user = User.user;
@@ -171,7 +175,11 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
         Glide.with(requireContext()).load(user!!.image).into(profile_image)
         username.text = user!!.name;
         status.text = user!!.status;
-
+        if (sharePost != "null") {
+            et_text_message.setText(sharePost)
+            sendRecord.visibility = View.GONE
+            sendText.visibility = View.VISIBLE
+        }
 //        chatViewModel.myChat.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 ////            chats = it;
 //        })

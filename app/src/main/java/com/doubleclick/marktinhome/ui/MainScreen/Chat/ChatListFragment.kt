@@ -29,12 +29,15 @@ class ChatListFragment : BaseFragment(), UserInter {
     lateinit var allUser: ShimmerRecyclerView;
     lateinit var chatListViewModel: ChatListViewModel
     lateinit var chatUser: FloatingActionButton
+    private var sharePost: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-
+            if (!it.isEmpty) {
+                sharePost = it.getString("sharePost").toString()
+            }
         }
     }
 
@@ -66,11 +69,26 @@ class ChatListFragment : BaseFragment(), UserInter {
     override fun AllUser(user: ArrayList<User>?) {}
 
     override fun OnUserLisitner(user: User) {
-        findNavController().navigate(
-            ChatListFragmentDirections.actionChatListFragmentToChatFragment(
-                user
-            )
-        )
+
+        try {
+            if (sharePost != "") {
+                var chatFragment = ChatFragment();
+                val bundle = Bundle();
+                bundle.putString("sharePost", sharePost);
+                bundle.putSerializable("user", user);
+                chatFragment.arguments = bundle
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_fragment_Chat, chatFragment).commit()
+            } else {
+                findNavController().navigate(
+                    ChatListFragmentDirections.actionChatListFragmentToChatFragment(
+                        user
+                    )
+                )
+            }
+        } catch (e: Exception) {
+
+        }
     }
 
 }

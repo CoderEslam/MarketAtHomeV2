@@ -1,5 +1,6 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Groups;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -25,6 +26,8 @@ public class MyGroupsFragment extends Fragment {
 
     private ShimmerRecyclerView myGroupsRecycler;
     public GroupViewModel groupViewModel;
+    private ArrayList<Group> groups = new ArrayList<>();
+
     public MyGroupsFragment() {
         // Required empty public constructor
     }
@@ -52,12 +55,17 @@ public class MyGroupsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my_groups, container, false);
         myGroupsRecycler = view.findViewById(R.id.MyGroupsRecycler);
         groupViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
+        ItemGroupsAdapter itemGroupsAdapter = new ItemGroupsAdapter(groups);
+        myGroupsRecycler.setAdapter(itemGroupsAdapter);
         myGroupsRecycler.showShimmer();     // to start showing shimmer
-        groupViewModel.myGroups().observe(getViewLifecycleOwner(), new Observer<ArrayList<Group>>() {
+        groupViewModel.myGroups().observe(getViewLifecycleOwner(), new Observer<Group>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onChanged(ArrayList<Group> groups) {
-                if (groups.size()!=0){
-                    myGroupsRecycler.setAdapter(new ItemGroupsAdapter(groups));
+            public void onChanged(Group group) {
+                if (group != null) {
+                    groups.add(group);
+                    itemGroupsAdapter.notifyItemInserted(groups.size() - 1);
+                    itemGroupsAdapter.notifyDataSetChanged();
                     myGroupsRecycler.hideShimmer();
                 }
             }

@@ -9,14 +9,20 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.doubleclick.marktinhome.Model.Chat;
+import com.doubleclick.marktinhome.RealmDatabase.ChatRealm;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+
+import io.realm.Realm;
 
 /**
  * Created By Eslam Ghazy on 3/17/2022
@@ -25,9 +31,12 @@ public class ChatReopsitory extends BaseRepository {
 
     private ArrayList<Chat> myChats = new ArrayList<>();
     private Chats chats;
+    private Realm realm;
+
 
     public ChatReopsitory(Chats chats) {
         this.chats = chats;
+        realm = Realm.getDefaultInstance();
     }
 
     public void getChats(String userId) {
@@ -54,7 +63,8 @@ public class ChatReopsitory extends BaseRepository {
 //                }
 //            }
 //        });
-
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://marketinhome-99d25-default-rtdb.firebaseio.com/").getReference();
+        reference.keepSynced(true);
         reference.child(CHATS).child(myId).child(userId).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -69,7 +79,27 @@ public class ChatReopsitory extends BaseRepository {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Log.e("onChildChanged", snapshot.getValue(Chat.class).toString());
+                Chat chat = snapshot.getValue(Chat.class);
+                assert chat != null;
+                if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId) && chat.getStatusMessage().equals("Stored")) {
+                    realm.beginTransaction();
+                    ChatRealm chatRealm = new ChatRealm();
+                    chatRealm.setId(chat.getId());
+                    chatRealm.setSender(chat.getSender());
+                    chatRealm.setType(chat.getType());
+                    chatRealm.setMessage(chat.getMessage());
+                    chatRealm.setReceiver(chat.getReceiver());
+                    chatRealm.setDate(chat.getDate());
+                    chatRealm.setStatusMessage("Uploaded");
+                    realm.executeTransaction(new Realm.Transaction() {
+                        @Override
+                        public void execute(Realm realm) {
+                            realm.copyToRealm(chatRealm);
+                        }
+                    });
+                    realm.commitTransaction();
+                }
+
             }
 
             @Override

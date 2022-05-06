@@ -1,4 +1,4 @@
-package com.doubleclick.marktinhome.Views.carousellayoutmanager;
+package com.doubleclick.marktinhome.Views.myCarousellayoutmanager;
 
 import android.view.View;
 
@@ -10,7 +10,7 @@ public abstract class CarouselChildSelectionListener {
     @NonNull
     private final RecyclerView mRecyclerView;
     @NonNull
-    private final CarouselLayoutManager mCarouselLayoutManager;
+    private final myCarouselLayoutManager mMyCarouselLayoutManager;
 
     private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
         @Override
@@ -18,17 +18,17 @@ public abstract class CarouselChildSelectionListener {
             final RecyclerView.ViewHolder holder = mRecyclerView.getChildViewHolder(v);
             final int position = holder.getAdapterPosition();
 
-            if (position == mCarouselLayoutManager.getCenterItemPosition()) {
-                onCenterItemClicked(mRecyclerView, mCarouselLayoutManager, v);
+            if (position == mMyCarouselLayoutManager.getCenterItemPosition()) {
+                onCenterItemClicked(mRecyclerView, mMyCarouselLayoutManager, v);
             } else {
-                onBackItemClicked(mRecyclerView, mCarouselLayoutManager, v);
+                onBackItemClicked(mRecyclerView, mMyCarouselLayoutManager, v);
             }
         }
     };
 
-    protected CarouselChildSelectionListener(@NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager) {
+    protected CarouselChildSelectionListener(@NonNull final RecyclerView recyclerView, @NonNull final myCarouselLayoutManager myCarouselLayoutManager) {
         mRecyclerView = recyclerView;
-        mCarouselLayoutManager = carouselLayoutManager;
+        mMyCarouselLayoutManager = myCarouselLayoutManager;
 
         mRecyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
             @Override
@@ -43,7 +43,7 @@ public abstract class CarouselChildSelectionListener {
         });
     }
 
-    protected abstract void onCenterItemClicked(@NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager, @NonNull final View v);
+    protected abstract void onCenterItemClicked(@NonNull final RecyclerView recyclerView, @NonNull final myCarouselLayoutManager myCarouselLayoutManager, @NonNull final View v);
 
-    protected abstract void onBackItemClicked(@NonNull final RecyclerView recyclerView, @NonNull final CarouselLayoutManager carouselLayoutManager, @NonNull final View v);
+    protected abstract void onBackItemClicked(@NonNull final RecyclerView recyclerView, @NonNull final myCarouselLayoutManager myCarouselLayoutManager, @NonNull final View v);
 }

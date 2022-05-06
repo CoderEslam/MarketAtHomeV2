@@ -11,7 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
-import com.doubleclick.marktinhome.Views.PhotoView.PhotoView;
+import com.doubleclick.marktinhome.Views.carouselrecyclerviewReflaction.view.ReflectionImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -24,10 +24,10 @@ public final class LayoutImagesBinding implements ViewBinding {
   public final CardView cardView6;
 
   @NonNull
-  public final PhotoView image;
+  public final ReflectionImageView image;
 
   private LayoutImagesBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView6,
-      @NonNull PhotoView image) {
+      @NonNull ReflectionImageView image) {
     this.rootView = rootView;
     this.cardView6 = cardView6;
     this.image = image;
@@ -67,7 +67,7 @@ public final class LayoutImagesBinding implements ViewBinding {
       }
 
       id = R.id.image;
-      PhotoView image = ViewBindings.findChildViewById(rootView, id);
+      ReflectionImageView image = ViewBindings.findChildViewById(rootView, id);
       if (image == null) {
         break missingId;
       }

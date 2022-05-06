@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import androidx.viewpager.widget.ViewPager;
@@ -20,7 +20,7 @@ import java.lang.String;
 
 public final class FragmentGroupBinding implements ViewBinding {
   @NonNull
-  private final ConstraintLayout rootView;
+  private final CoordinatorLayout rootView;
 
   @NonNull
   public final FloatingActionButton addGroup;
@@ -34,7 +34,7 @@ public final class FragmentGroupBinding implements ViewBinding {
   @NonNull
   public final ViewPager viewpager;
 
-  private FragmentGroupBinding(@NonNull ConstraintLayout rootView,
+  private FragmentGroupBinding(@NonNull CoordinatorLayout rootView,
       @NonNull FloatingActionButton addGroup, @NonNull AppBarLayout appbar,
       @NonNull TabLayout tabLayout, @NonNull ViewPager viewpager) {
     this.rootView = rootView;
@@ -46,7 +46,7 @@ public final class FragmentGroupBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ConstraintLayout getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -95,7 +95,7 @@ public final class FragmentGroupBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentGroupBinding((ConstraintLayout) rootView, addGroup, appbar, tabLayout,
+      return new FragmentGroupBinding((CoordinatorLayout) rootView, addGroup, appbar, tabLayout,
           viewpager);
     }
     String missingId = rootView.getResources().getResourceName(id);

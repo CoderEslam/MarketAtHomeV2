@@ -131,4 +131,6 @@
     <string name="delete_for_everyone">delete for everyone</string>
     <string name="like">like</string>
     <string name="replay">replay</string>
+    <string name="apps">Apps</string>
+    <string name="chat">Chat</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.doubleclick.marktinhome.Adapters;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.doubleclick.marktinhome.R;
 import com.doubleclick.marktinhome.Views.PhotoView.PhotoView;
+import com.doubleclick.marktinhome.Views.carouselrecyclerviewReflaction.view.ReflectionImageView;
+import com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,10 +67,17 @@ public class ImagesGroupAdapter extends RecyclerView.Adapter<ImagesGroupAdapter.
             Glide.with(holder.itemView.getContext()).load(images.get(holder.getAdapterPosition())).into(holder.image);
         }
 
+        holder.image.setOnClickListener(v -> {
+            Intent intent =  new Intent(holder.itemView.getContext(), ViewActivity.class);
+            intent.putExtra("url",images.get(holder.getAdapterPosition()));
+            intent.putExtra("type","image");
+            holder.itemView.getContext().startActivity(intent);
+        });
+
     }
 
     public class ImagesGroupViewHolder extends RecyclerView.ViewHolder {
-        private PhotoView image;
+        private ReflectionImageView image;
 
         public ImagesGroupViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -1,4 +1,4 @@
-package com.doubleclick.marktinhome.Views.carousellayoutmanager;
+package com.doubleclick.marktinhome.Views.myCarousellayoutmanager;
 
 public class ItemTransformation {
 

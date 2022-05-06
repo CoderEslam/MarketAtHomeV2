@@ -15,6 +15,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class ChatListRepository extends BaseRepository {
     }
 
     public void ChatList() {
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://marketinhome-99d25-default-rtdb.firebaseio.com/").getReference();
+        reference.keepSynced(true);
         reference.child(CHAT_LIST).child(myId).orderByChild("time").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

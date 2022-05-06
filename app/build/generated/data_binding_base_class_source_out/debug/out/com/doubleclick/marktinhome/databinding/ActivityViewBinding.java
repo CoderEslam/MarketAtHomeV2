@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.PhotoView.PhotoView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -20,10 +21,15 @@ public final class ActivityViewBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final PhotoView image;
+
+  @NonNull
   public final VideoView video;
 
-  private ActivityViewBinding(@NonNull ConstraintLayout rootView, @NonNull VideoView video) {
+  private ActivityViewBinding(@NonNull ConstraintLayout rootView, @NonNull PhotoView image,
+      @NonNull VideoView video) {
     this.rootView = rootView;
+    this.image = image;
     this.video = video;
   }
 
@@ -54,13 +60,19 @@ public final class ActivityViewBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.image;
+      PhotoView image = ViewBindings.findChildViewById(rootView, id);
+      if (image == null) {
+        break missingId;
+      }
+
       id = R.id.video;
       VideoView video = ViewBindings.findChildViewById(rootView, id);
       if (video == null) {
         break missingId;
       }
 
-      return new ActivityViewBinding((ConstraintLayout) rootView, video);
+      return new ActivityViewBinding((ConstraintLayout) rootView, image, video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

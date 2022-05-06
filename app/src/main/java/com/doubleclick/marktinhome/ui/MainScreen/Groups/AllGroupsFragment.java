@@ -1,5 +1,6 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Groups;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,7 @@ public class AllGroupsFragment extends Fragment {
 
     private ShimmerRecyclerView allGroupsRecycler;
     private GroupViewModel groupViewModel;
+    private ArrayList<Group> groups = new ArrayList<>();
 
     public AllGroupsFragment() {
         // Required empty public constructor
@@ -51,20 +53,24 @@ public class AllGroupsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_all_groups, container, false);
         allGroupsRecycler = view.findViewById(R.id.AllGroupsRecycler);
         allGroupsRecycler.showShimmer();     // to start showing shimmer
         groupViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
-        groupViewModel.AllGroups().observe(getViewLifecycleOwner(), new Observer<ArrayList<Group>>() {
+        ItemGroupsAdapter itemGroupsAdapter = new ItemGroupsAdapter(groups);
+        allGroupsRecycler.setAdapter(itemGroupsAdapter);
+        groupViewModel.AllGroups().observe(getViewLifecycleOwner(), new Observer<Group>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onChanged(ArrayList<Group> groups) {
-                if (groups.size()!=0){
-                    allGroupsRecycler.setAdapter(new ItemGroupsAdapter(groups));
+            public void onChanged(Group group) {
+                if (group != null) {
+                    groups.add(group);
+                    itemGroupsAdapter.notifyItemInserted(groups.size() - 1);
+                    itemGroupsAdapter.notifyDataSetChanged();
                     allGroupsRecycler.hideShimmer();
-                }else {
+                } else {
 
                 }
             }

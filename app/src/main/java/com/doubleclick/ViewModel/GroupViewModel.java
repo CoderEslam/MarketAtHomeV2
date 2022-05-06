@@ -19,9 +19,9 @@ public class GroupViewModel extends ViewModel implements GroupInterface {
 
 
     GroupRepository repository = new GroupRepository(this);
-    MutableLiveData<ArrayList<Group>> mutableLiveDataMyGrups = new MutableLiveData<>();
+    MutableLiveData<Group> mutableLiveDataMyGrups = new MutableLiveData<>();
 
-    MutableLiveData<ArrayList<Group>> mutableLiveDataAllGroups = new MutableLiveData<>();
+    MutableLiveData<Group> mutableLiveDataAllGroups = new MutableLiveData<>();
     MutableLiveData<GroupData> mutableLiveGroupData = new MutableLiveData<>();
 
     public GroupViewModel() {
@@ -34,11 +34,11 @@ public class GroupViewModel extends ViewModel implements GroupInterface {
     }
 
 
-    public LiveData<ArrayList<Group>> myGroups() {
+    public LiveData<Group> myGroups() {
         return mutableLiveDataMyGrups;
     }
 
-    public LiveData<ArrayList<Group>> AllGroups() {
+    public LiveData<Group> AllGroups() {
         return mutableLiveDataAllGroups;
     }
 
@@ -46,18 +46,28 @@ public class GroupViewModel extends ViewModel implements GroupInterface {
         return mutableLiveGroupData;
     }
 
-    @Override
-    public void myGroups(@NonNull ArrayList<Group> groups) {
-        mutableLiveDataMyGrups.setValue(groups);
-    }
-
-    @Override
-    public void allGroups(@NonNull ArrayList<Group> groups) {
-        mutableLiveDataAllGroups.setValue(groups);
-    }
+//    @Override
+//    public void myGroups(@NonNull ArrayList<Group> groups) {
+//    }
+//
+//    @Override
+//    public void allGroups(@NonNull ArrayList<Group> groups) {
+//    }
 
     @Override
     public void groupData(@NonNull GroupData group) {
         mutableLiveGroupData.setValue(group);
+    }
+
+    @Override
+    public void myGroups(@NonNull Group groups) {
+        mutableLiveDataMyGrups.setValue(groups);
+
+    }
+
+    @Override
+    public void allGroups(@NonNull Group groups) {
+        mutableLiveDataAllGroups.setValue(groups);
+
     }
 }

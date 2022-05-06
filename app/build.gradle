@@ -127,4 +127,7 @@ dependencies {
 
     implementation 'com.nex3z:toggle-button-group:1.2.3'
 
+
+//    implementation 'com.github.sparrow007:carouselrecyclerview:1.2.4'
+
 }

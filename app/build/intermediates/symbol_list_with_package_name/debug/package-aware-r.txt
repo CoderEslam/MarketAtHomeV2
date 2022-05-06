@@ -1037,6 +1037,9 @@ attr reactiveGuide_applyToAllConstraintSets
 attr reactiveGuide_applyToConstraintSet
 attr reactiveGuide_valueId
 attr recyclerViewStyle
+attr reflect_gap
+attr reflect_reflectionLayoutStyle
+attr reflect_relativeDepth
 attr region_heightLessThan
 attr region_heightMoreThan
 attr region_widthLessThan
@@ -3044,6 +3047,7 @@ drawable group_cover
 drawable groupjpg
 drawable groupsxml
 drawable history
+drawable hobes
 drawable ic_action
 drawable ic_aperture
 drawable ic_arrow_back_24
@@ -3217,6 +3221,7 @@ id AddProduct
 id AddTradmark
 id AllGroupsRecycler
 id AnothercustommerPhone
+id Apps
 id BOTTOM
 id BOTTOM_CENTER
 id BOTTOM_END
@@ -3231,6 +3236,7 @@ id BaseQuickAdapter_viewholder_support
 id CENTER
 id CTRL
 id CartName
+id Chat
 id ChildRecycler
 id Comments
 id ConstraintLayoutimage_name
@@ -4690,6 +4696,7 @@ menu menu_chat
 menu menu_groups
 menu option_group
 menu option_tradmark
+menu share_option
 mipmap checkbox_checked
 mipmap checkbox_normal
 mipmap default_image
@@ -4775,6 +4782,7 @@ string another_customer_phone
 string another_number_phone
 string app_name
 string appbar_scrolling_view_behavior
+string apps
 string best_product_sales
 string bottom_sheet_behavior
 string bottomsheet_action_expand_halfway
@@ -4784,6 +4792,7 @@ string change_image
 string character_counter_content_description
 string character_counter_overflowed_content_description
 string character_counter_pattern
+string chat
 string chat_us
 string chip_text
 string clear_text_end_icon_content_description
@@ -6258,6 +6267,8 @@ styleable RecordButton mic_icon
 styleable RecordView counter_time_color slide_to_cancel_arrow slide_to_cancel_arrow_color slide_to_cancel_bounds slide_to_cancel_margin_right slide_to_cancel_text
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
 styleable RecyclerView android_orientation android_clipToPadding android_descendantFocusability fastScrollEnabled fastScrollHorizontalThumbDrawable fastScrollHorizontalTrackDrawable fastScrollVerticalThumbDrawable fastScrollVerticalTrackDrawable layoutManager reverseLayout spanCount stackFromEnd
+styleable ReflectionViewContainer reflect_gap reflect_relativeDepth
+styleable ReflectionViewContainer_Layout reflect_gap reflect_relativeDepth
 styleable SNavigationDrawer HamMenuIconSize HamMenuIconTintColor HamMenuItemSemiTransparentColor appbarColor appbarTitleTextColor appbarTitleTextSize navigationDrawerBackgroundColor primaryMenuItemTextColor primaryMenuItemTextSize secondaryMenuItemTextColor secondaryMenuItemTextSize
 styleable ScrimInsetsFrameLayout insetForeground
 styleable ScrollingViewBehavior_Layout behavior_overlapTop

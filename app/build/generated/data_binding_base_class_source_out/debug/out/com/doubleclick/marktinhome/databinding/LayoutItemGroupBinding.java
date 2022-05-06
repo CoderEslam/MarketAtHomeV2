@@ -11,10 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.carouselrecyclerviewReflaction.CarouselRecyclerview;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -37,7 +37,7 @@ public final class LayoutItemGroupBinding implements ViewBinding {
   public final CircleImageView imagePublisher;
 
   @NonNull
-  public final RecyclerView images;
+  public final CarouselRecyclerview images;
 
   @NonNull
   public final LinearLayout likeButton;
@@ -72,10 +72,10 @@ public final class LayoutItemGroupBinding implements ViewBinding {
   private LayoutItemGroupBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ConstraintLayoutimageName, @NonNull CardView cardView7,
       @NonNull LinearLayout comment, @NonNull CircleImageView imagePublisher,
-      @NonNull RecyclerView images, @NonNull LinearLayout likeButton, @NonNull ImageView likeImg,
-      @NonNull TextView likeText, @NonNull TextView loadmore, @NonNull ConstraintLayout meme,
-      @NonNull TextView namePublisher, @NonNull ImageView option, @NonNull ImageView playVideo,
-      @NonNull LinearLayout share, @NonNull ImageView video) {
+      @NonNull CarouselRecyclerview images, @NonNull LinearLayout likeButton,
+      @NonNull ImageView likeImg, @NonNull TextView likeText, @NonNull TextView loadmore,
+      @NonNull ConstraintLayout meme, @NonNull TextView namePublisher, @NonNull ImageView option,
+      @NonNull ImageView playVideo, @NonNull LinearLayout share, @NonNull ImageView video) {
     this.rootView = rootView;
     this.ConstraintLayoutimageName = ConstraintLayoutimageName;
     this.cardView7 = cardView7;
@@ -146,7 +146,7 @@ public final class LayoutItemGroupBinding implements ViewBinding {
       }
 
       id = R.id.images;
-      RecyclerView images = ViewBindings.findChildViewById(rootView, id);
+      CarouselRecyclerview images = ViewBindings.findChildViewById(rootView, id);
       if (images == null) {
         break missingId;
       }

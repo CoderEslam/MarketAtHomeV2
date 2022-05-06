@@ -12,6 +12,7 @@ class ChatActivity : AppCompatActivity() {
 
 
     private lateinit var user: User
+    private  var sharePost: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,20 @@ class ChatActivity : AppCompatActivity() {
             }
         } catch (e: Exception) {
             Log.e("userException", e.message.toString())
+        }
+
+        try {
+            sharePost = intent.getStringExtra("sharePost").toString()
+            if (sharePost != "") {
+                var chatListFragment = ChatListFragment();
+                val bundle = Bundle();
+                bundle.putString("sharePost", sharePost);
+                chatListFragment.arguments = bundle
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_fragment_Chat, chatListFragment).commit()
+            }
+        } catch (e: Exception) {
+
         }
 
     }

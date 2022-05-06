@@ -1,20 +1,15 @@
 package com.doubleclick.marktinhome.Adapters;
 
-import static com.doubleclick.marktinhome.Model.Constantes.COMMENTS_GROUP;
 import static com.doubleclick.marktinhome.Model.Constantes.LIKES;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
@@ -24,9 +19,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.doubleclick.marktinhome.Model.PostData;
 import com.doubleclick.marktinhome.R;
-import com.doubleclick.marktinhome.Views.carousellayoutmanager.CarouselLayoutManager;
-import com.doubleclick.marktinhome.Views.carousellayoutmanager.CarouselZoomPostLayoutListener;
-import com.doubleclick.marktinhome.Views.carousellayoutmanager.CenterScrollListener;
+import com.doubleclick.marktinhome.Views.carouselrecyclerviewReflaction.CarouselRecyclerview;
+import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.myCarouselLayoutManager;
+import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.CarouselZoomPostLayoutListener;
+import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.CenterScrollListener;
 import com.doubleclick.marktinhome.ui.MainScreen.Chat.ChatActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Groups.Comments.CommentGroupActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewActivity;
@@ -37,9 +33,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -165,7 +161,32 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
         holder.playVideo.setOnClickListener(v -> {
             Intent intent = new Intent(holder.itemView.getContext(), ViewActivity.class);
             intent.putExtra("url", postsData.get(holder.getAdapterPosition()).getPostsGroup().getMeme());
+            intent.putExtra("type", "video");
             holder.itemView.getContext().startActivity(intent);
+        });
+
+        holder.share.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(holder.itemView.getContext(), v);
+            popupMenu.getMenuInflater().inflate(R.menu.share_option, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    int id = item.getItemId();
+                    if (id == R.id.Apps) {
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_SEND);
+                        intent.putExtra(Intent.EXTRA_TEXT, "https://www.market.doublethink.com/" + postsData.get(holder.getAdapterPosition()).getPostsGroup().getGroupId() + "/" + postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
+                        Intent shareIntent = Intent.createChooser(intent, null);
+                        holder.itemView.getContext().startActivity(shareIntent);
+                    }if (id == R.id.Chat) {
+                        Intent intent = new Intent(holder.itemView.getContext(),ChatActivity.class);
+                        intent.putExtra("sharePost", "https://www.market.doublethink.com/" + postsData.get(holder.getAdapterPosition()).getPostsGroup().getGroupId() + "/" + postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
+                        holder.itemView.getContext().startActivity(intent);
+                    }
+                    return true;
+                }
+            });
+            popupMenu.show();
         });
 
         if (0 == position) {
@@ -184,7 +205,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
 
 
     public class GroupViewHolder extends RecyclerView.ViewHolder {
-        private RecyclerView images;
+        private CarouselRecyclerview images;
         private ConstraintLayout ConstraintLayoutimage_name;
         private ImageView option, like_img, playVideo;
         private TextView namePublisher, like_text, loadmore;
@@ -195,6 +216,10 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
             images = itemView.findViewById(R.id.images);
+            images.getCarouselLayoutManager();
+            images.set3DItem(true);
+            images.setInfinite(true);
+            images.setAlpha(true);
             ConstraintLayoutimage_name = itemView.findViewById(R.id.ConstraintLayoutimage_name);
             option = itemView.findViewById(R.id.option);
             likeButton = itemView.findViewById(R.id.likeButton);
@@ -207,11 +232,11 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
             loadmore = itemView.findViewById(R.id.loadmore);
             video = itemView.findViewById(R.id.video);
             playVideo = itemView.findViewById(R.id.playVideo);
-            CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL);
-            images.setLayoutManager(layoutManager);
-            images.setHasFixedSize(true);
-            images.addOnScrollListener(new CenterScrollListener());
-            layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
+//            myCarouselLayoutManager layoutManager = new myCarouselLayoutManager(myCarouselLayoutManager.HORIZONTAL);
+//            images.setLayoutManager(layoutManager);
+//            images.setHasFixedSize(true);
+//            images.addOnScrollListener(new CenterScrollListener());
+//            layoutManager.setPostLayoutListener(new CarouselZoomPostLayoutListener());
 
         }
 

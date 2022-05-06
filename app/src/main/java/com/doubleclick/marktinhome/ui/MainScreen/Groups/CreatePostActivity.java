@@ -1,10 +1,7 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Groups;
 
-import static com.doubleclick.marktinhome.Model.Constantes.CHILDREN;
 import static com.doubleclick.marktinhome.Model.Constantes.GROUPS;
-import static com.doubleclick.marktinhome.Model.Constantes.PARENTS;
 import static com.doubleclick.marktinhome.Model.Constantes.POSTS;
-import static com.doubleclick.marktinhome.Model.Constantes.USER;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +16,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -29,17 +25,13 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
-import com.doubleclick.ViewModel.PostsViewModel;
 import com.doubleclick.ViewModel.UserViewModel;
 import com.doubleclick.marktinhome.Adapters.ImagesGroupAdapter;
-import com.doubleclick.marktinhome.Model.PostsGroup;
-import com.doubleclick.marktinhome.Model.Product;
 import com.doubleclick.marktinhome.Model.User;
 import com.doubleclick.marktinhome.R;
-import com.doubleclick.marktinhome.Views.carousellayoutmanager.CarouselLayoutManager;
-import com.doubleclick.marktinhome.Views.carousellayoutmanager.CarouselZoomPostLayoutListener;
-import com.doubleclick.marktinhome.Views.carousellayoutmanager.CenterScrollListener;
-import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
+import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.myCarouselLayoutManager;
+import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.CarouselZoomPostLayoutListener;
+import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.CenterScrollListener;
 import com.doubleclick.marktinhome.Views.socialtextview.widget.SocialEditText;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -107,7 +99,7 @@ public class CreatePostActivity extends AppCompatActivity {
             }
         });
 
-        CarouselLayoutManager layoutManager = new CarouselLayoutManager(CarouselLayoutManager.HORIZONTAL);
+        myCarouselLayoutManager layoutManager = new myCarouselLayoutManager(myCarouselLayoutManager.HORIZONTAL);
         imageRecycler.setLayoutManager(layoutManager);
         imageRecycler.setHasFixedSize(true);
         imageRecycler.addOnScrollListener(new CenterScrollListener());

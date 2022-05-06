@@ -9,9 +9,12 @@ import com.doubleclick.marktinhome.ui.MainScreen.Groups.AllGroupsFragment
  */
 interface GroupInterface {
 
-    fun myGroups(groups: ArrayList<Group>)
-    fun allGroups(groups: ArrayList<Group>)
+//    fun myGroups(groups: ArrayList<Group>)
+//    fun allGroups(groups: ArrayList<Group>)
     fun groupData(groups: GroupData)
+
+    fun myGroups(groups: Group)
+    fun allGroups(groups: Group)
 
 
 }

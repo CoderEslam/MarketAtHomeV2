@@ -12,32 +12,32 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\layout_product.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_chat.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_chat.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\view_color_palette.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\view_color_palette.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_editor_menu.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_editor_menu.xml"
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_chat.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_chat.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_main.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_main.xml"
     },
     {
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_editor_menu.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_editor_menu.xml"
+    },
+    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_rich.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_rich.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_maps.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_maps.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\menu_row_item.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\menu_row_item.xml"
+    },
+    {
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_maps.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_maps.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\h_top_recyclerview.xml",
@@ -56,12 +56,12 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_advertisement.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_create_post.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_create_post.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\play_voice_left.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\play_voice_left.xml"
+    },
+    {
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_create_post.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_create_post.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_my_groups.xml",
@@ -88,20 +88,20 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\product_ratings_layout.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\comments_group_layout_shimmer.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\comments_group_layout_shimmer.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_video_left.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\item_video_left.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_order_selller.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_order_selller.xml"
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\comments_group_layout_shimmer.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\comments_group_layout_shimmer.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_edit_table.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_edit_table.xml"
+    },
+    {
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_order_selller.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_order_selller.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_address.xml",
@@ -112,20 +112,20 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\layout_chat.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_product_with_view_pager.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\layout_product_with_view_pager.xml"
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_view_more.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_view_more.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_font_setting.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_font_setting.xml"
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_product_with_view_pager.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\layout_product_with_view_pager.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_recent_order.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_recent_order.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_view_more.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_view_more.xml"
+        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_font_setting.xml",
+        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_font_setting.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\item_contact_left.xml",
@@ -224,10 +224,6 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_statistics.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_recent_order.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_recent_order.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\orders.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\orders.xml"
     },
@@ -284,10 +280,6 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\layout_item_group_shimmer.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_product.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_product.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_small_product.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\layout_small_product.xml"
     },
@@ -298,10 +290,6 @@
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\slids_ad_banner.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\slids_ad_banner.xml"
-    },
-    {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_filter_parent.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_filter_parent.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_filter_parent.xml",
@@ -392,10 +380,6 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\layout_product_shimmer.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_comments.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_comments.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_group.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_group.xml"
     },
@@ -476,10 +460,6 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\botton_navigation.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_trademark.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_trademark.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\child_layout.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\child_layout.xml"
     },
@@ -512,20 +492,12 @@
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_chat.xml"
     },
     {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_viewmore.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_viewmore.xml"
-    },
-    {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\nav_header_main.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\nav_header_main.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\activity_create_group.xml",
         "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\activity_create_group.xml"
-    },
-    {
-        "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\fragment_join_us.xml",
-        "source": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\src\\main\\res\\layout\\fragment_join_us.xml"
     },
     {
         "merged": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\stripped.dir\\layout\\layout_images.xml",
