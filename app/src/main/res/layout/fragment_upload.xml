@@ -4,56 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.MainScreen.Frgments.Add.UploadFragment">
+    android:background="@color/white"
+    tools:context=".ui.MainScreen.Frgments.Add.UploadProduct.UploadFragment">
 
-
-    <androidx.core.widget.NestedScrollView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/Upload"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/padding20"
+        app:cardBackgroundColor="@color/offwhite"
+        app:cardCornerRadius="@dimen/padding20">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/productImages"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/images" />
-
-            <Button
-                android:id="@+id/selectImages"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="select image"
-                android:textAllCaps="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productImages" />
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/productName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/product_name"
-                app:layout_constraintTop_toBottomOf="@+id/selectImages" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <EditText
                 android:id="@+id/productPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:hint="@string/product_price"
                 android:inputType="number"
                 app:layout_constraintEnd_toStartOf="@+id/productLastPrice"
@@ -66,6 +49,8 @@
                 android:id="@+id/productLastPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/product_last_price"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,77 +58,75 @@
                 app:layout_constraintStart_toEndOf="@+id/productPrice"
                 app:layout_constraintTop_toBottomOf="@+id/productName" />
 
-            <EditText
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/description"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productPrice" />
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/trademark"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:hint="@string/trademark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/description" />
+                app:layout_constraintTop_toBottomOf="@+id/productPrice" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/keywords"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/trademark">
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:id="@+id/keywords"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/trademark">-->
 
-                <Button
-                    android:id="@+id/addKeywords"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Keywords"
-                    android:textAllCaps="false"
-                    android:textSize="8sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <!--                <Button-->
+            <!--                    android:id="@+id/addKeywords"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:text="Keywords"-->
+            <!--                    android:textAllCaps="false"-->
+            <!--                    android:textSize="8sp"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent" />-->
 
-                <androidx.core.widget.NestedScrollView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/addKeywords"
-                    app:layout_constraintTop_toTopOf="parent">
+            <!--                <androidx.core.widget.NestedScrollView-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:orientation="horizontal"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toEndOf="@+id/addKeywords"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent">-->
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/keys"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintBottom_toBottomOf="@+id/addKeywords"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/addKeywords"
-                        app:layout_constraintTop_toTopOf="@+id/addKeywords"
-                        tools:listitem="@layout/keyword_layout" />
+            <!--                    <androidx.recyclerview.widget.RecyclerView-->
+            <!--                        android:id="@+id/keys"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:orientation="horizontal"-->
+            <!--                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+            <!--                        app:layout_constraintBottom_toBottomOf="@+id/addKeywords"-->
+            <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                        app:layout_constraintStart_toEndOf="@+id/addKeywords"-->
+            <!--                        app:layout_constraintTop_toTopOf="@+id/addKeywords"-->
+            <!--                        tools:listitem="@layout/keyword_layout" />-->
 
-                </androidx.core.widget.NestedScrollView>
+            <!--                </androidx.core.widget.NestedScrollView>-->
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 
             <RatingBar
                 android:id="@+id/ratingSeller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/keywords" />
+                app:layout_constraintTop_toBottomOf="@+id/trademark" />
 
 
             <HorizontalScrollView
@@ -157,7 +140,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/ratingSeller">
 
                 <LinearLayout
-                    android:id="@+id/addToggleButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="end"
@@ -172,8 +154,9 @@
                         android:src="@drawable/add_circle" />
 
                     <RadioGroup
+                        android:id="@+id/addToggleButton"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:orientation="horizontal">
 
 
@@ -211,7 +194,7 @@
                     <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
                         android:id="@+id/groupColor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="match_parent">
 
 
                     </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
@@ -220,25 +203,32 @@
 
             </HorizontalScrollView>
 
-            <FrameLayout
-                android:id="@+id/RichTable"
-                android:layout_width="match_parent"
-                android:layout_height="650dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />
+            <!--            <FrameLayout-->
+            <!--                android:id="@+id/RichTable"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="650dp"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView2" />-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
 
-    <Button
-        android:id="@+id/Upload"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/uplaod"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <Button
+            android:id="@+id/Upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/ripple_effect"
+            android:text="@string/next"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

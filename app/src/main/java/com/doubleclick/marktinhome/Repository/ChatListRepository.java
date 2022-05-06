@@ -36,8 +36,6 @@ public class ChatListRepository extends BaseRepository {
     }
 
     public void ChatList() {
-        DatabaseReference reference = FirebaseDatabase.getInstance("https://marketinhome-99d25-default-rtdb.firebaseio.com/").getReference();
-        reference.keepSynced(true);
         reference.child(CHAT_LIST).child(myId).orderByChild("time").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

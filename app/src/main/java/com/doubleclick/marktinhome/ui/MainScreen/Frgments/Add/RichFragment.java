@@ -80,7 +80,7 @@ public class RichFragment extends BaseFragment {
     private String htmlContent = "<p>" + "type here....." + "</p>";
     private RichEditorAction mRichEditorAction;
     private RichEditorCallback mRichEditorCallback;
-    private ShareHTML shareHTML;
+//    private ShareHTML shareHTML;
     private EditorMenuFragment mEditorMenuFragment;
 
     private List<ActionType> mActionTypeList =
@@ -325,9 +325,9 @@ public class RichFragment extends BaseFragment {
         }
     }
 
-    public interface ShareHTML {
-        void input(String html);
-    }
+//    public interface ShareHTML {
+//        void input(String html);
+//    }
 
     private RichEditorCallback.OnGetHtmlListener onGetHtmlListener = html -> {
         if (TextUtils.isEmpty(html)) {
@@ -335,7 +335,7 @@ public class RichFragment extends BaseFragment {
             return;
         }
         HTMLText = html;
-        shareHTML.input(html);
+//        shareHTML.input(html);
 //        Log.e("RichFragment=336", html);
     };
 
@@ -343,21 +343,21 @@ public class RichFragment extends BaseFragment {
         mRichEditorAction.refreshHtml(mRichEditorCallback, onGetHtmlListener);
     }
 
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof ShareHTML) {
-            shareHTML = (ShareHTML) context;
-        } else {
-            throw new RuntimeException(context.toString() + "must implement shareHTML");
-        }
-    }
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//        if (context instanceof ShareHTML) {
+//            shareHTML = (ShareHTML) context;
+//        } else {
+//            throw new RuntimeException(context.toString() + "must implement shareHTML");
+//        }
+//    }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        shareHTML = null;
-    }
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        shareHTML = null;
+//    }
 
     void onClickUndo() {
         mRichEditorAction.undo();

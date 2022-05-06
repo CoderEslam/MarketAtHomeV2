@@ -4,7 +4,41 @@
             "outputFile": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-uk\\values-uk.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\373f18154ae5515853f621f7a0855b6e\\transformed\\material-1.5.0\\res\\values-uk\\values-uk.xml",
+                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\c2c69c019774e803772c52bdb943ee91\\transformed\\navigation-ui-2.4.1\\res\\values-uk\\values-uk.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,163",
+                        "endColumns": "107,119",
+                        "endOffsets": "158,278"
+                    },
+                    "to": {
+                        "startLines": "107,108",
+                        "startColumns": "4,4",
+                        "startOffsets": "9643,9751",
+                        "endColumns": "107,119",
+                        "endOffsets": "9746,9866"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\234126f986c0113fc726846ae22cead0\\transformed\\core-1.9.0-alpha03\\res\\values-uk\\values-uk.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "111",
+                        "startColumns": "4",
+                        "startOffsets": "10035",
+                        "endColumns": "100",
+                        "endOffsets": "10131"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\5b0c0dc0192c5aa28a7a2f8d9b6b5481\\transformed\\material-1.5.0\\res\\values-uk\\values-uk.xml",
                     "from": {
                         "startLines": "2,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -23,7 +57,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\0ca5a5a97098ed5fc734e43731ad9e73\\transformed\\jetified-play-services-base-18.0.1\\res\\values-uk\\values.xml",
+                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\b4991f2233299524f4097b3abd52ffca\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-uk\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "141",
+                        "endOffsets": "336"
+                    },
+                    "to": {
+                        "startLines": "47",
+                        "startColumns": "4",
+                        "startOffsets": "4497",
+                        "endColumns": "145",
+                        "endOffsets": "4638"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\c39324052c9061a504d3e7bd1c158eb3\\transformed\\jetified-play-services-base-18.0.1\\res\\values-uk\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -40,41 +91,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\f37046d9bce6eca0a8e6f83da3399fa3\\transformed\\core-1.9.0-alpha03\\res\\values-uk\\values-uk.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "111",
-                        "startColumns": "4",
-                        "startOffsets": "10035",
-                        "endColumns": "100",
-                        "endOffsets": "10131"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\bd3f53b35b258cfd444e85babd75eb89\\transformed\\jetified-firebase-messaging-23.0.0\\res\\values-uk\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "207",
-                        "endColumns": "68",
-                        "endOffsets": "275"
-                    },
-                    "to": {
-                        "startLines": "59",
-                        "startColumns": "4",
-                        "startOffsets": "5870",
-                        "endColumns": "72",
-                        "endOffsets": "5938"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\208fb426913b8815f9415bbf54507c82\\transformed\\appcompat-1.4.1\\res\\values-uk\\values-uk.xml",
+                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\b8be919961c09948d570b965ce3efbf7\\transformed\\appcompat-1.4.1\\res\\values-uk\\values-uk.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -91,37 +108,20 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\f4963c5730d361312412b1152298841b\\transformed\\navigation-ui-2.4.1\\res\\values-uk\\values-uk.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,163",
-                        "endColumns": "107,119",
-                        "endOffsets": "158,278"
-                    },
-                    "to": {
-                        "startLines": "107,108",
-                        "startColumns": "4,4",
-                        "startOffsets": "9643,9751",
-                        "endColumns": "107,119",
-                        "endOffsets": "9746,9866"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\fdf1035bfbaf026a2c8925544a49a79f\\transformed\\jetified-play-services-basement-18.0.0\\res\\values-uk\\values.xml",
+                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\232eff63d5c8df58992ea2c05444144c\\transformed\\jetified-firebase-messaging-23.0.0\\res\\values-uk\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "141",
-                        "endOffsets": "336"
+                        "startOffsets": "207",
+                        "endColumns": "68",
+                        "endOffsets": "275"
                     },
                     "to": {
-                        "startLines": "47",
+                        "startLines": "59",
                         "startColumns": "4",
-                        "startOffsets": "4497",
-                        "endColumns": "145",
-                        "endOffsets": "4638"
+                        "startOffsets": "5870",
+                        "endColumns": "72",
+                        "endOffsets": "5938"
                     }
                 }
             ]

@@ -14,7 +14,7 @@ import kotlinx.android.parcel.Parcelize;
  * Created By Eslam Ghazy on 3/1/2022
  */
 @Parcelize
-public class Product implements  Comparable, Parcelable {
+public class Product implements Comparable, Parcelable {
 
     private String productId;
     private double price;
@@ -29,10 +29,11 @@ public class Product implements  Comparable, Parcelable {
     private String parentCategoryId;
     private String childCategoryId;
     private int TotalRating;
-    private int discount;
+    private double discount;
     private String keywords;
     private String Images;
     private String Toggals;
+    private float ratingSeller;
 
     public Product(double price, String productName, String images, String toggals) {
         this.price = price;
@@ -78,7 +79,7 @@ public class Product implements  Comparable, Parcelable {
         }
     };
 
-    public Product(String productId, double price, String description, long date, String adminId, String productName, double lastPrice, String tradeMark, String parentCategoryName, String childCategoryName, String parentCategoryId, String childCategoryId, int totalRating, int discount, String keywords, String images, String toggals, float ratingSeller) {
+    public Product(String productId, double price, String description, long date, String adminId, String productName, double lastPrice, String tradeMark, String parentCategoryName, String childCategoryName, String parentCategoryId, String childCategoryId, int totalRating, double discount, String keywords, String images, String toggals, float ratingSeller) {
         this.productId = productId;
         this.price = price;
         this.description = description;
@@ -116,7 +117,6 @@ public class Product implements  Comparable, Parcelable {
         this.ratingSeller = ratingSeller;
     }
 
-    private float ratingSeller;
 
     public String getImages() {
         return Images;
@@ -247,13 +247,6 @@ public class Product implements  Comparable, Parcelable {
         TotalRating = totalRating;
     }
 
-    public int getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(int discount) {
-        this.discount = discount;
-    }
 
     public String getKeywords() {
         return keywords;
@@ -305,10 +298,18 @@ public class Product implements  Comparable, Parcelable {
         dest.writeString(parentCategoryId);
         dest.writeString(childCategoryId);
         dest.writeInt(TotalRating);
-        dest.writeInt(discount);
+        dest.writeDouble(discount);
         dest.writeString(keywords);
         dest.writeString(Images);
         dest.writeString(Toggals);
         dest.writeFloat(ratingSeller);
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
     }
 }

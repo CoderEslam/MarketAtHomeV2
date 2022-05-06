@@ -4,18 +4,18 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.doubleclick.marktinhome.R
 import com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.RichFragment
-import com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.UploadFragment
+import com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.UploadProduct.UploadFragment
 
-class AddActivity : AppCompatActivity(), RichFragment.ShareHTML {
+class AddActivity : AppCompatActivity(){
 
-    var uploadFragment = UploadFragment();
+//    var uploadFragment = UploadFragment();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //this activity to cary fragments
         setContentView(R.layout.activity_add)
     }
 
-    override fun input(html: String) {
-        uploadFragment.ShowHTML(html);
-    }
+//    override fun input(html: String) {
+//        uploadFragment.ShowHTML(html);
+//    }
 }

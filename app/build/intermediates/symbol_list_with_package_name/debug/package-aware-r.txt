@@ -3276,7 +3276,6 @@ id RIGHT
 id ROUND
 id RecyclerReplay
 id RichFragment
-id RichTable
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -3375,13 +3374,13 @@ id action_stepTwoFragment_to_stepOneFragment
 id action_stepTwoFragment_to_stepThreeFragment
 id action_text
 id action_uploadFragment_to_childFragment
+id action_uploadFragment_to_uploadStep2Fragment
 id actions
 id activity_chooser_view_content
 id add
 id addChild
 id addGroup
 id addImages
-id addKeywords
 id addParent
 id addToggalsLinearLayout
 id addToggalsScrollView
@@ -3812,7 +3811,6 @@ id justifyLeft
 id justifyRight
 id keys
 id keyword
-id keywords
 id labeled
 id last
 id lastPrice
@@ -4309,6 +4307,7 @@ id unordered
 id up
 id upload
 id uploadFragment
+id uploadStep2Fragment
 id url
 id useLogo
 id userName
@@ -4542,6 +4541,7 @@ layout fragment_step_1
 layout fragment_step_2
 layout fragment_step_3
 layout fragment_upload
+layout fragment_upload_step2
 layout h_top_recyclerview
 layout h_treademark_recyclerview
 layout images
@@ -5006,6 +5006,7 @@ string name_button
 string nav_app_bar_navigate_up_description
 string nav_app_bar_open_drawer_description
 string new_user
+string next
 string off
 string offline
 string ok

@@ -125,7 +125,8 @@
             android:exported="false" />
         <activity
             android:name=".ui.Add.AddActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:hardwareAccelerated="false"/>
         <activity
             android:name=".ui.Trademark.FilterTradmarkActivity"
             android:exported="false" />

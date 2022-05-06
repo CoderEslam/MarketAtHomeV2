@@ -61,7 +61,7 @@
     </fragment>
     <fragment
         android:id="@+id/uploadFragment"
-        android:name="com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.UploadFragment"
+        android:name="com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.UploadProduct.UploadFragment"
         android:label="fragment_upload"
         tools:layout="@layout/fragment_upload">
         <argument
@@ -79,6 +79,9 @@
             app:exitAnim="@anim/lefttoright"
             app:popEnterAnim="@anim/righttoleft"
             app:popExitAnim="@anim/lefttoright" />
+        <action
+            android:id="@+id/action_uploadFragment_to_uploadStep2Fragment"
+            app:destination="@id/uploadStep2Fragment" />
     </fragment>
     <fragment
         android:id="@+id/editFragment"
@@ -104,6 +107,17 @@
             android:name="order"
             app:argType="string"
             app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/uploadStep2Fragment"
+        android:name="com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.UploadProduct.UploadStep2Fragment"
+        android:label="fragment_upload_step2"
+        tools:layout="@layout/fragment_upload_step2">
+
+        <argument
+            android:name="product"
+            app:argType="com.doubleclick.marktinhome.Model.Product"
+            app:nullable="false" />
     </fragment>
 
 
