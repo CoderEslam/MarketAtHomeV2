@@ -16,6 +16,7 @@ import com.doubleclick.ViewModel.GroupViewModel;
 import com.doubleclick.marktinhome.Adapters.ItemGroupsAdapter;
 import com.doubleclick.marktinhome.Model.Group;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.Animatoo;
 import com.todkars.shimmer.ShimmerRecyclerView;
 
 import java.util.ArrayList;
@@ -75,7 +76,6 @@ public class AllGroupsFragment extends Fragment {
                 }
             }
         });
-
 
         return view;
     }

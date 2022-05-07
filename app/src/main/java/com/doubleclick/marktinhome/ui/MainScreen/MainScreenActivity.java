@@ -13,11 +13,13 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -31,9 +33,12 @@ import com.doubleclick.marktinhome.Model.User;
 import com.doubleclick.marktinhome.R;
 import com.doubleclick.marktinhome.Views.SmoothButtom.SmoothBottomBar;
 import com.doubleclick.marktinhome.ui.Filter.FilterActivity;
+import com.doubleclick.marktinhome.ui.MainScreen.Frgments.HomeFragment;
 import com.doubleclick.marktinhome.ui.MainScreen.Parents.ParentActivity;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
+
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -49,9 +54,8 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
     private UserViewModel userViewModel;
     private CircleImageView myImage;
     private View main_fragment;
-//    private RecentSearchViewModel recentSearchViewModel;
+    //    private RecentSearchViewModel recentSearchViewModel;
     private String ProductId;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +81,7 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
             }
         });
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("");
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_Cart, R.id.menu_group, R.id.homeFragment, R.id.menu_profile).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         setupSmoothBottomMenu();

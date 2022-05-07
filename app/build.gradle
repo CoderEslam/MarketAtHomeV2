@@ -130,4 +130,5 @@ dependencies {
 
 //    implementation 'com.github.sparrow007:carouselrecyclerview:1.2.4'
 
+//    implementation 'com.github.mohammadatif:Animatoo:master'
 }

@@ -1,7 +1,9 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -26,12 +28,16 @@ import com.doubleclick.marktinhome.Model.ParentCategory
 import com.doubleclick.marktinhome.Model.Product
 import com.doubleclick.marktinhome.Model.Trademark
 import com.doubleclick.marktinhome.R
+import com.doubleclick.marktinhome.Views.Animatoo
 import com.doubleclick.marktinhome.ui.MainScreen.FilterParent.FilterParentActivity
+import com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity
 import com.doubleclick.marktinhome.ui.Trademark.FilterTradmarkActivity
 import com.doubleclick.marktinhome.ui.ProductActivity.productActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewMore {
@@ -44,6 +50,7 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     lateinit var advertisementViewModel: AdvertisementViewModel
     lateinit var trademarkViewModel: TradmarkViewModel
     lateinit var animationView: LottieAnimationView
+    private lateinit var timer: Timer;
 
     //    lateinit var recentSearchViewModel: RecentSearchViewModel
     private var idProduct: String = ""
@@ -65,40 +72,39 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         MainRecyceler = view.findViewById(R.id.MainRecyceler)
         animationView = view.findViewById(R.id.animationView);
         homeModels = ArrayList()
-        productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
-        advertisementViewModel = ViewModelProvider(this)[AdvertisementViewModel::class.java];
-        trademarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
+//        productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+//        advertisementViewModel = ViewModelProvider(this)[AdvertisementViewModel::class.java];
+//        trademarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
 //        recentSearchViewModel = ViewModelProvider(this)[RecentSearchViewModel::class.java]
-        productViewModel.parent.observe(viewLifecycleOwner, Observer {
-            if (it.size != 0) {
-                homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
-            }
-        });
-        advertisementViewModel.allAdv.observe(viewLifecycleOwner, Observer {
-            homeModels.add(1, HomeModel(it, HomeModel.Advertisement))
-        });
-        productViewModel.product.observe(
-            viewLifecycleOwner,
-            Observer { products: ArrayList<Product?>? ->
-                if (products!!.size != 0) {
-                    homeModels.add(HomeModel(products, HomeModel.Products, this))
-                    homeAdapter = HomeAdapter(homeModels);
-                    MainRecyceler.adapter = homeAdapter
-                    animationView.visibility = View.GONE
-                } else {
-                    animationView.visibility = View.VISIBLE
-                }
+//        productViewModel.parent.observe(viewLifecycleOwner, Observer {
+//            if (it.size != 0) {
+//                homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
+//            }
+//        });
+//        advertisementViewModel.allAdv.observe(viewLifecycleOwner, Observer {
+//            homeModels.add(1, HomeModel(it, HomeModel.Advertisement))
+//        });
+//        productViewModel.product.observe(
+//            viewLifecycleOwner,
+//            Observer { products: ArrayList<Product?>? ->
+//                if (products!!.size != 0) {
+//                    homeModels.add(HomeModel(products, HomeModel.Products, this))
+//                    homeAdapter = HomeAdapter(homeModels);
+//                    MainRecyceler.adapter = homeAdapter
+//                    animationView.visibility = View.GONE
+//                } else {
+//                    animationView.visibility = View.VISIBLE
+//                }
+//
+//            });
+////        productViewModel.topDealsLiveData.observe(viewLifecycleOwner, Observer {
+//            homeModels.add(HomeModel(it, HomeModel.TopDeal, this, this));
+//        })
 
-            });
-        productViewModel.topDealsLiveData.observe(viewLifecycleOwner, Observer {
-            homeModels.add(HomeModel(it, HomeModel.TopDeal, this, this));
-        })
 
-
-
-        trademarkViewModel.allMark.observe(viewLifecycleOwner, Observer {
-            homeModels.add(HomeModel(it, HomeModel.Trademarks, this))
-        });
+//        trademarkViewModel.allMark.observe(viewLifecycleOwner, Observer {
+//            homeModels.add(HomeModel(it, HomeModel.Trademarks, this))
+//        });
 
 
 //        recentSearchViewModel.lastSearchListLiveDataOneTime.observe(viewLifecycleOwner, Observer {
@@ -115,7 +121,6 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
                             if (isNetworkConnected()) {
                                 if (snapshot.exists()) {
                                     var product: Product? = snapshot.getValue(Product::class.java)
-                                    Log.e("ggggggggggggg", product.toString())
                                     val intent =
                                         Intent(requireContext(), productActivity::class.java);
                                     intent.putExtra("product", product);
@@ -137,7 +142,8 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
 
         }
 
-
+        loadHomePage();
+        ReloadData();
         return view;
     }
 
@@ -180,5 +186,77 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     override fun getViewMore(product: Product) {
 
     }
+
+    private fun loadHomePage() {
+        val productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        val advertisementViewModel = ViewModelProvider(this)[AdvertisementViewModel::class.java];
+        val trademarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
+        productViewModel.parent.observe(viewLifecycleOwner, Observer {
+            if (it.size != 0) {
+                homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
+                homeAdapter = HomeAdapter(homeModels);
+                MainRecyceler.adapter = homeAdapter
+                animationView.visibility = View.GONE
+                timer.cancel()
+            } else {
+                animationView.visibility = View.VISIBLE
+            }
+        });
+        advertisementViewModel.allAdv.observe(viewLifecycleOwner, Observer {
+            homeModels.add(1, HomeModel(it, HomeModel.Advertisement))
+            timer.cancel()
+
+        });
+        productViewModel.product.observe(
+            viewLifecycleOwner,
+            Observer { products: ArrayList<Product?>? ->
+                if (products!!.size != 0) {
+                    homeModels.add(HomeModel(products, HomeModel.Products, this))
+                    timer.cancel()
+                }
+            });
+        productViewModel.topDealsLiveData.observe(viewLifecycleOwner, Observer {
+            if (it.size != 0) {
+                homeModels.add(HomeModel(it, HomeModel.TopDeal, this, this));
+                timer.cancel()
+            }
+        })
+        trademarkViewModel.allMark.observe(viewLifecycleOwner, Observer {
+            if (it.size != 0) {
+                homeModels.add(HomeModel(it, HomeModel.Trademarks, this))
+                timer.cancel()
+            }
+        });
+        // to get last Recent Search
+//        recentSearchViewModel.lastSearchListLiveDataOneTime.observe(viewLifecycleOwner, Observer {
+//            if (it.size != 0) {
+//                homeModels.add(HomeModel(HomeModel.RecentSearch, it, this, this, 0))
+//            }
+//        })
+
+    }
+
+    private fun ReloadData() {
+        timer = Timer();
+        val handler = Handler()
+        val runnable = Runnable {
+            try {
+                loadHomePage();
+                val intent = requireActivity().intent
+                requireActivity().finish()
+                startActivity(intent)
+                Animatoo.animateSwipeLeft(requireContext());
+            } catch (e: Exception) {
+                Log.e("ExceptionHomeFrg", e.message.toString());
+            }
+        }
+        timer.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(runnable)
+            }
+        }, 2000, 2000)
+    }
+
+
 }
 
