@@ -3,12 +3,14 @@ package com.doubleclick.marktinhome.ui.ProductActivity
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatToggleButton
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -62,6 +64,7 @@ class productActivity : AppCompatActivity() {
     private lateinit var speedView: AwesomeSpeedometer
 
 
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,23 +140,23 @@ class productActivity : AppCompatActivity() {
             for (i in it) {
                 if (0.0 < i.rate.toFloat() && i.rate.toFloat() <= 1.0) {
                     r1 += 1
-                    list.add(SliceValue(r1, Color.RED))
+                    list.add(SliceValue(r1, resources.getColor(R.color.red)))
                 }
                 if (1.0 < i.rate.toFloat() && i.rate.toFloat() <= 2.0) {
                     r2 += 1
-                    list.add(SliceValue(r2, Color.RED))
+                    list.add(SliceValue(r2, resources.getColor(R.color.orange)))
                 }
                 if (2.0 < i.rate.toFloat() && i.rate.toFloat() <= 3.0) {
                     r3 += 1
-                    list.add(SliceValue(r3, Color.YELLOW))
+                    list.add(SliceValue(r3, resources.getColor(R.color.yellow)))
                 }
                 if (3.0 < i.rate.toFloat() && i.rate.toFloat() <= 4.0) {
                     r4 += 1
-                    list.add(SliceValue(r4, Color.YELLOW))
+                    list.add(SliceValue(r4, resources.getColor(R.color.yellowgreen)))
                 }
                 if (4.0 < i.rate.toFloat() && i.rate.toFloat() <= 5.0) {
                     r5 += 1
-                    list.add(SliceValue(r5, Color.GREEN))
+                    list.add(SliceValue(r5, resources.getColor(R.color.green)))
                 }
             }
             val data = PieChartData(list);

@@ -274,6 +274,7 @@
                             android:id="@+id/plus"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:background="@drawable/circle_ripple_effect"
                             android:src="@drawable/add_circle"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -296,6 +297,7 @@
                             android:id="@+id/mins"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
+                            android:background="@drawable/circle_ripple_effect"
                             android:src="@drawable/mins_circle"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@+id/quantity"
@@ -367,7 +369,6 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView6">
 
                             <TextView
-                                android:visibility="gone"
                                 android:id="@+id/ratingSeller"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -375,7 +376,8 @@
                                 android:layout_marginRight="5dp"
                                 android:text="4.5"
                                 android:textColor="@color/black"
-                                android:textSize="20sp" />
+                                android:textSize="20sp"
+                                android:visibility="gone" />
 
                             <com.github.anastr.speedviewlib.AwesomeSpeedometer
                                 android:id="@+id/speedView"
@@ -388,24 +390,24 @@
                                 app:sv_backgroundCircleColor="@color/black"
                                 app:sv_indicator="NeedleIndicator"
                                 app:sv_maxSpeed="5"
+                                app:sv_minSpeed="0"
+                                app:sv_speedTextColor="@color/blueDark"
+                                app:sv_speedTextFormat="FLOAT"
                                 app:sv_speedTextPosition="CENTER"
                                 app:sv_speedTextSize="18sp"
-                                app:sv_unit="rating"
-                                app:sv_minSpeed="0"
-                                app:sv_speedTextFormat="FLOAT"
                                 app:sv_speedometerMode="NORMAL"
-                                app:sv_speedTextColor="@color/blueDark"
+                                app:sv_unit="rating"
                                 app:sv_unitUnderSpeedText="true"
                                 app:sv_withTremble="false" />
 
                             <ImageView
-                                android:visibility="gone"
                                 android:id="@+id/imageView3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
                                 android:layout_marginRight="5dp"
-                                android:src="@drawable/ic_stars_black_cercil24dp" />
+                                android:src="@drawable/ic_stars_black_cercil24dp"
+                                android:visibility="gone" />
                         </LinearLayout>
 
                         <TextView
@@ -827,7 +829,7 @@
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
                                         android:layout_gravity="center"
-                                        android:src="@color/yellow" />
+                                        android:src="@color/yellowgreen" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -871,7 +873,7 @@
                                         android:layout_width="20dp"
                                         android:layout_height="20dp"
                                         android:layout_gravity="center"
-                                        android:src="@color/red" />
+                                        android:src="@color/orange" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
@@ -918,9 +920,10 @@
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginBottom="16dp"
-                            android:drawableEnd="@drawable/_arrow_right"
+                            android:padding="5dp"
                             android:text="@string/comments"
-                            android:textColor="@color/black"
+                            android:textColor="@color/blue"
+                            app:drawableEndCompat="@drawable/_arrow_right"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/constraintLayout11" />

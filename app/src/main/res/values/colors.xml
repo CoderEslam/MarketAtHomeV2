@@ -23,8 +23,10 @@
     <color name="btnRegister">#3F51B5</color>
     <color name="textColor">#1E88E5</color>
     <color name="yellow">#EEFF00</color>
+    <color name="yellowgreen">#87FA00</color>
     <color name="red">#FF0000</color>
-    <color name="green">#37FF00</color>
+    <color name="orange">#FFA500</color>
+    <color name="green">#00ED01</color>
     <color name="offwhite">#F5F5F5</color>
     <color name="textPrimary">#2F3640</color>
     <color name="gray_100">#FAFAFA</color>

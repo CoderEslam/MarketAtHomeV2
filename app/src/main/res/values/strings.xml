@@ -70,7 +70,7 @@
     <string name="connect_us">connect us</string>
     <string name="comment">Lorem Ipsum is simply dummy text of the printing and typesetting industry</string>
     <string name="put_you_rate">put you rate ....</string>
-    <string name="comments">Comments</string>
+    <string name="comments"><u>Comments</u></string>
     <string name="total_sales">Total Sales</string>
     <string name="_1000">1000$</string>
     <string name="statistices">Statistices</string>

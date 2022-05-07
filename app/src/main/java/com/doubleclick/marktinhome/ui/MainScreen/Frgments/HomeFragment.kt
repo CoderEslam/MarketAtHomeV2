@@ -44,11 +44,8 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
 
 
     lateinit var MainRecyceler: RecyclerView
-    private lateinit var productViewModel: ProductViewModel
     private lateinit var homeModels: ArrayList<HomeModel>
     lateinit var homeAdapter: HomeAdapter
-    lateinit var advertisementViewModel: AdvertisementViewModel
-    lateinit var trademarkViewModel: TradmarkViewModel
     lateinit var animationView: LottieAnimationView
     private lateinit var timer: Timer;
 

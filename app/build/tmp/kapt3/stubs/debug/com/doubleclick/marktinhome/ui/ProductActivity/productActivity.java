@@ -131,6 +131,7 @@ public final class productActivity extends androidx.appcompat.app.AppCompatActiv
     }
     
     @android.annotation.SuppressLint(value = {"SetTextI18n"})
+    @androidx.annotation.RequiresApi(value = android.os.Build.VERSION_CODES.M)
     @java.lang.Override()
     protected void onCreate(@org.jetbrains.annotations.Nullable()
     android.os.Bundle savedInstanceState) {

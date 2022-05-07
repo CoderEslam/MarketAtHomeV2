@@ -2146,6 +2146,7 @@ color notification_action_color_filter
 color notification_icon_bg_color
 color notification_material_background_media_default_color
 color offwhite
+color orange
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -2193,6 +2194,7 @@ color transparent
 color transparent_black_percent_60
 color white
 color yellow
+color yellowgreen
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -2964,6 +2966,7 @@ drawable cio_ic_paypal_monogram
 drawable cio_ic_visa
 drawable cio_paypal_logo
 drawable circle
+drawable circle_ripple_effect
 drawable common_full_open_on_phone
 drawable common_google_signin_btn_icon_dark
 drawable common_google_signin_btn_icon_dark_focused
@@ -4094,6 +4097,7 @@ id recordView
 id rectangle
 id rectangles
 id recycler
+id refresh
 id relativeLayout
 id replay
 id restart

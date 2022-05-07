@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import androidx.viewpager.widget.ViewPager;
@@ -20,7 +20,7 @@ import java.lang.String;
 
 public final class FragmentGroupBinding implements ViewBinding {
   @NonNull
-  private final CoordinatorLayout rootView;
+  private final SwipeRefreshLayout rootView;
 
   @NonNull
   public final FloatingActionButton addGroup;
@@ -29,24 +29,29 @@ public final class FragmentGroupBinding implements ViewBinding {
   public final AppBarLayout appbar;
 
   @NonNull
+  public final SwipeRefreshLayout refresh;
+
+  @NonNull
   public final TabLayout tabLayout;
 
   @NonNull
   public final ViewPager viewpager;
 
-  private FragmentGroupBinding(@NonNull CoordinatorLayout rootView,
+  private FragmentGroupBinding(@NonNull SwipeRefreshLayout rootView,
       @NonNull FloatingActionButton addGroup, @NonNull AppBarLayout appbar,
-      @NonNull TabLayout tabLayout, @NonNull ViewPager viewpager) {
+      @NonNull SwipeRefreshLayout refresh, @NonNull TabLayout tabLayout,
+      @NonNull ViewPager viewpager) {
     this.rootView = rootView;
     this.addGroup = addGroup;
     this.appbar = appbar;
+    this.refresh = refresh;
     this.tabLayout = tabLayout;
     this.viewpager = viewpager;
   }
 
   @Override
   @NonNull
-  public CoordinatorLayout getRoot() {
+  public SwipeRefreshLayout getRoot() {
     return rootView;
   }
 
@@ -83,6 +88,8 @@ public final class FragmentGroupBinding implements ViewBinding {
         break missingId;
       }
 
+      SwipeRefreshLayout refresh = (SwipeRefreshLayout) rootView;
+
       id = R.id.tab_layout;
       TabLayout tabLayout = ViewBindings.findChildViewById(rootView, id);
       if (tabLayout == null) {
@@ -95,8 +102,8 @@ public final class FragmentGroupBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentGroupBinding((CoordinatorLayout) rootView, addGroup, appbar, tabLayout,
-          viewpager);
+      return new FragmentGroupBinding((SwipeRefreshLayout) rootView, addGroup, appbar, refresh,
+          tabLayout, viewpager);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
