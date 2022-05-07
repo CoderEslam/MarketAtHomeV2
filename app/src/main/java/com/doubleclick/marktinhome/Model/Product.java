@@ -35,16 +35,6 @@ public class Product implements Comparable, Parcelable {
     private String Toggals;
     private float ratingSeller;
 
-    public Product(double price, String productName, String images, String toggals) {
-        this.price = price;
-        this.description = description;
-        this.productName = productName;
-        this.lastPrice = lastPrice;
-        this.tradeMark = tradeMark;
-        Images = images;
-        Toggals = toggals;
-    }
-
 
     protected Product(Parcel in) {
         productId = in.readString();
@@ -100,35 +90,10 @@ public class Product implements Comparable, Parcelable {
         this.ratingSeller = ratingSeller;
     }
 
-    public String getToggals() {
-        return Toggals;
-    }
-
-    public void setToggals(String toggals) {
-        Toggals = toggals;
-    }
-
-
-    public float getRatingSeller() {
-        return ratingSeller;
-    }
-
-    public void setRatingSeller(float ratingSeller) {
-        this.ratingSeller = ratingSeller;
-    }
-
-
-    public String getImages() {
-        return Images;
-    }
 
     public String getOnlyImage() {
         List<String> image = Arrays.asList(getImages().replace("[", "").replace("]", "").replace(" ", "").trim().split(","));
         return image.get(0);
-    }
-
-    public void setImages(String images) {
-        Images = images;
     }
 
 
@@ -140,6 +105,57 @@ public class Product implements Comparable, Parcelable {
     public int compareTo(Object o) {
         int rate = ((Product) o).getTotalRating();
         return (this.TotalRating - rate);
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(productId);
+        dest.writeDouble(price);
+        dest.writeString(description);
+        dest.writeLong(date);
+        dest.writeString(adminId);
+        dest.writeString(productName);
+        dest.writeDouble(lastPrice);
+        dest.writeString(tradeMark);
+        dest.writeString(parentCategoryName);
+        dest.writeString(childCategoryName);
+        dest.writeString(parentCategoryId);
+        dest.writeString(childCategoryId);
+        dest.writeInt(TotalRating);
+        dest.writeDouble(discount);
+        dest.writeString(keywords);
+        dest.writeString(Images);
+        dest.writeString(Toggals);
+        dest.writeFloat(ratingSeller);
+    }
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId='" + productId + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", adminId='" + adminId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", lastPrice=" + lastPrice +
+                ", tradeMark='" + tradeMark + '\'' +
+                ", parentCategoryName='" + parentCategoryName + '\'' +
+                ", childCategoryName='" + childCategoryName + '\'' +
+                ", parentCategoryId='" + parentCategoryId + '\'' +
+                ", childCategoryId='" + childCategoryId + '\'' +
+                ", TotalRating=" + TotalRating +
+                ", discount=" + discount +
+                ", keywords='" + keywords + '\'' +
+                ", Images='" + Images + '\'' +
+                ", Toggals='" + Toggals + '\'' +
+                ", ratingSeller=" + ratingSeller +
+                '}';
     }
 
     public String getProductId() {
@@ -238,7 +254,6 @@ public class Product implements Comparable, Parcelable {
         this.childCategoryId = childCategoryId;
     }
 
-
     public int getTotalRating() {
         return TotalRating;
     }
@@ -247,6 +262,13 @@ public class Product implements Comparable, Parcelable {
         TotalRating = totalRating;
     }
 
+    public double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(double discount) {
+        this.discount = discount;
+    }
 
     public String getKeywords() {
         return keywords;
@@ -256,60 +278,27 @@ public class Product implements Comparable, Parcelable {
         this.keywords = keywords;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId='" + productId + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", date=" + date +
-                ", adminId='" + adminId + '\'' +
-                ", productName='" + productName + '\'' +
-                ", lastPrice=" + lastPrice +
-                ", tradeMark='" + tradeMark + '\'' +
-                ", parentCategoryName='" + parentCategoryName + '\'' +
-                ", childCategoryName='" + childCategoryName + '\'' +
-                ", parentCategoryId='" + parentCategoryId + '\'' +
-                ", childCategoryId='" + childCategoryId + '\'' +
-                ", Images='" + Images + '\'' +
-                ", TotalRating=" + TotalRating +
-                ", discount=" + discount +
-                ", keywords='" + keywords + '\'' +
-                '}';
+    public String getImages() {
+        return Images;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void setImages(String images) {
+        Images = images;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(productId);
-        dest.writeDouble(price);
-        dest.writeString(description);
-        dest.writeLong(date);
-        dest.writeString(adminId);
-        dest.writeString(productName);
-        dest.writeDouble(lastPrice);
-        dest.writeString(tradeMark);
-        dest.writeString(parentCategoryName);
-        dest.writeString(childCategoryName);
-        dest.writeString(parentCategoryId);
-        dest.writeString(childCategoryId);
-        dest.writeInt(TotalRating);
-        dest.writeDouble(discount);
-        dest.writeString(keywords);
-        dest.writeString(Images);
-        dest.writeString(Toggals);
-        dest.writeFloat(ratingSeller);
+    public String getToggals() {
+        return Toggals;
     }
 
-    public double getDiscount() {
-        return discount;
+    public void setToggals(String toggals) {
+        Toggals = toggals;
     }
 
-    public void setDiscount(double discount) {
-        this.discount = discount;
+    public float getRatingSeller() {
+        return ratingSeller;
+    }
+
+    public void setRatingSeller(float ratingSeller) {
+        this.ratingSeller = ratingSeller;
     }
 }

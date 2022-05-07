@@ -98,7 +98,7 @@ public class ProductRepository extends BaseRepository {
 //
 //            }
 //        });
-        reference.child(PRODUCT)/*.orderByChild("TotalRating")*/.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        reference.child(PRODUCT).limitToLast(100)/*.orderByChild("TotalRating")*/.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 try {

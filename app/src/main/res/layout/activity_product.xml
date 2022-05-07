@@ -251,11 +251,6 @@
                                 android:layout_height="match_parent"
                                 android:orientation="vertical">
 
-                                <TextView
-                                    android:id="@+id/description"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content" />
-
                                 <WebView
                                     android:id="@+id/webView"
                                     android:layout_width="match_parent"
@@ -328,13 +323,13 @@
                             android:layout_height="50dp"
                             android:orientation="horizontal">
 
-                            <RadioGroup
-                                android:id="@+id/radioGroup"
+                            <com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+                                android:id="@+id/toggleGroup"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal">
 
-                            </RadioGroup>
+                            </com.nex3z.togglebuttongroup.SingleSelectToggleGroup>
                         </LinearLayout>
 
                     </HorizontalScrollView>
@@ -372,6 +367,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView6">
 
                             <TextView
+                                android:visibility="gone"
                                 android:id="@+id/ratingSeller"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -381,8 +377,29 @@
                                 android:textColor="@color/black"
                                 android:textSize="20sp" />
 
-                            <ImageView
+                            <com.github.anastr.speedviewlib.AwesomeSpeedometer
+                                android:id="@+id/speedView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="@+id/textView17"
+                                app:layout_constraintTop_toBottomOf="@+id/textView17"
+                                app:sv_backgroundCircleColor="@color/black"
+                                app:sv_indicator="NeedleIndicator"
+                                app:sv_maxSpeed="5"
+                                app:sv_speedTextPosition="CENTER"
+                                app:sv_speedTextSize="18sp"
+                                app:sv_unit="rating"
+                                app:sv_minSpeed="0"
+                                app:sv_speedTextFormat="FLOAT"
+                                app:sv_speedometerMode="NORMAL"
+                                app:sv_speedTextColor="@color/blueDark"
+                                app:sv_unitUnderSpeedText="true"
+                                app:sv_withTremble="false" />
 
+                            <ImageView
+                                android:visibility="gone"
                                 android:id="@+id/imageView3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

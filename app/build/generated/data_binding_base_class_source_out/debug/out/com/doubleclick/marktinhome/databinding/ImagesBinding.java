@@ -20,10 +20,15 @@ public final class ImagesBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ImageView delete;
+
+  @NonNull
   public final ImageView image;
 
-  private ImagesBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView image) {
+  private ImagesBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView delete,
+      @NonNull ImageView image) {
     this.rootView = rootView;
+    this.delete = delete;
     this.image = image;
   }
 
@@ -54,13 +59,19 @@ public final class ImagesBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.delete;
+      ImageView delete = ViewBindings.findChildViewById(rootView, id);
+      if (delete == null) {
+        break missingId;
+      }
+
       id = R.id.image;
       ImageView image = ViewBindings.findChildViewById(rootView, id);
       if (image == null) {
         break missingId;
       }
 
-      return new ImagesBinding((ConstraintLayout) rootView, image);
+      return new ImagesBinding((ConstraintLayout) rootView, delete, image);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

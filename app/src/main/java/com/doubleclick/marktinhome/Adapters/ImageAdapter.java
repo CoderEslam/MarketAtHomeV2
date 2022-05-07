@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageViewHolder> {
 
-    ArrayList<String> uris = new ArrayList<>();
+    ArrayList<String> uris ;
     deleteImage deleteImage;
 
     public ImageAdapter(ArrayList<String> uris) {

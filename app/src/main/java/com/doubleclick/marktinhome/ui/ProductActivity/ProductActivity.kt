@@ -1,5 +1,6 @@
 package com.doubleclick.marktinhome.ui.ProductActivity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +23,12 @@ import com.doubleclick.marktinhome.R
 import com.doubleclick.marktinhome.Repository.BaseRepository.myId
 import com.doubleclick.marktinhome.Repository.BaseRepository.reference
 import com.doubleclick.marktinhome.ui.MainScreen.Comments.CommentsActivity
+import com.github.anastr.speedviewlib.AwesomeSpeedometer
+import com.github.anastr.speedviewlib.SpeedView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.nex3z.togglebuttongroup.SingleSelectToggleGroup
+import com.nex3z.togglebuttongroup.button.CircularToggle
+import com.paypal.android.sdk.v
 import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
 import lecho.lib.hellocharts.view.PieChartView
@@ -37,7 +43,6 @@ class productActivity : AppCompatActivity() {
     private lateinit var trarmark: TextView
     private lateinit var price: TextView
     private lateinit var lastPrice: TextView
-    private lateinit var description: TextView
     private lateinit var TotalRating: TextView;
     private lateinit var yourRate: RatingBar;
     private lateinit var rateViewModel: RateViewModel;
@@ -52,10 +57,12 @@ class productActivity : AppCompatActivity() {
     private var ToggleItem: String? = ""
     lateinit var comments: TextView;
     lateinit var product: Product
-    lateinit var radioGroup: RadioGroup
+    lateinit var toggleGroup: SingleSelectToggleGroup
     lateinit var webView: WebView
+    private lateinit var speedView: AwesomeSpeedometer
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
@@ -67,63 +74,60 @@ class productActivity : AppCompatActivity() {
         price = findViewById(R.id.price)
         webView = findViewById(R.id.webView);
         lastPrice = findViewById(R.id.lastPrice)
-        description = findViewById(R.id.description)
         TotalRating = findViewById(R.id.TotalRating)
         yourRate = findViewById(R.id.yourRate);
         comments = findViewById(R.id.comments);
+        speedView = findViewById(R.id.speedView);
         addToggalsLinearLayout = findViewById(R.id.addToggalsLinearLayout);
         plus = findViewById(R.id.plus)
         quantity = findViewById(R.id.quantity)
         mins = findViewById(R.id.mins)
         share = findViewById(R.id.share);
-        radioGroup = findViewById(R.id.radioGroup)
+        toggleGroup = findViewById(R.id.toggleGroup)
         ratingSeller = findViewById(R.id.ratingSeller)
         pieChartView = findViewById(R.id.pieChartView);
         product = intent.getParcelableExtra("product")!!
-        productName.text = product!!.productName
-        trarmark.text = product!!.tradeMark
-        price.text = product!!.price.toString()
-        lastPrice.text = product!!.lastPrice.toString()
-        if (product.description.contains("</")) {
-            description.visibility = View.GONE
-            webView.loadDataWithBaseURL(
-                null,
-                product.description,
-                "text/html",
-                "utf-8",
-                null
-            );
-        } else {
-            description.text = product.description
-            webView.visibility = View.GONE
-        }
-        var spliter =
-            product!!.toggals.toString().replace("[", "").replace("]", "").replace(" ", "")
-                .split(",")
-        for (i in 0 until spliter.size) {
-            var togal = RadioButton(this)
-            togal.text = spliter[i]
-            togal.setOnClickListener {
+        Log.e("productproducts", product.toString());
+        productName.text = product.productName
+        trarmark.text = product.tradeMark
+        price.text = product.price.toString()
+        lastPrice.text = product.lastPrice.toString()
+        webView.loadDataWithBaseURL(
+            null,
+            product.description,
+            "text/html",
+            "utf-8",
+            null
+        );
+
+        val spliter =
+            product.toggals.toString().replace("[", "").replace("]", "").replace(" ", "").split(",")
+        for (i in spliter.indices) {
+            val circularToggle = CircularToggle(this)
+            circularToggle.text = spliter[i]
+            circularToggle.setOnClickListener {
                 ToggleItem = spliter[i]
+
             }
-            radioGroup.addView(togal)
+            toggleGroup.addView(circularToggle)
         }
-        ratingSeller.text = product!!.ratingSeller.toInt().toString()
-        setBannerSliderViewPager(product!!.images)
-        rateViewModel.getMyRate(myId, product!!.productId)
-        rateViewModel.myRateing.observe(this, Observer {
+        ratingSeller.text = product.ratingSeller.toInt().toString()
+        speedView.speedTo(product.ratingSeller.toFloat());
+        setBannerSliderViewPager(product.images)
+        rateViewModel.getMyRate(myId, product.productId)
+        rateViewModel.myRateing.observe(this) {
             if (it != null) {
                 yourRate.rating = it.rate.toFloat();
             }
-        })
+        }
 
-        rateViewModel.getAllRate(product!!.productId)
+        rateViewModel.getAllRate(product.productId)
 
-        rateViewModel.allRateing.observe(this, Observer {
+        rateViewModel.allRateing.observe(this) {
             TotalRating.text = it.size.toString() + " ratings"
             val map: HashMap<String, Any> = HashMap();
             map["TotalRating"] = (it.size);
-            reference.child(Constantes.PRODUCT).child(product!!.productId).updateChildren(map);
+            reference.child(Constantes.PRODUCT).child(product.productId).updateChildren(map);
             var r1 = 0f;
             var r2 = 0f;
             var r3 = 0f;
@@ -155,22 +159,25 @@ class productActivity : AppCompatActivity() {
             val data = PieChartData(list);
             data.setHasCenterCircle(true)
             data.setHasLabels(true)
+            data.centerText1 = "Rating"
+            data.centerText1FontSize = 18
+            data.centerText1Color = Color.BLUE
             pieChartView.pieChartData = data;
-        })
+        }
 
-        fab.setOnClickListener { v: View? ->
+        fab.setOnClickListener {
             if (qNumber != 0 && !ToggleItem.equals("")) {
-                val id = myId + ":" + product!!.productId
+                val id = myId + ":" + product.productId
                 val map: HashMap<String, Any> = HashMap();
-                map["ProductId"] = product!!.productId;
+                map["ProductId"] = product.productId;
                 map["BuyerId"] = myId;
-                map["SellerId"] = product!!.adminId;
-                map["TotalPrice"] = (qNumber.toDouble() * product!!.price.toDouble()).toLong();
+                map["SellerId"] = product.adminId;
+                map["TotalPrice"] = (qNumber.toDouble() * product.price.toDouble()).toLong();
                 map["Quantity"] = qNumber.toLong();
-                map["price"] = product!!.price.toLong();
-                map["images"] = product!!.images;
-                map["productName"] = product!!.productName;
-                map["lastPrice"] = product!!.lastPrice
+                map["price"] = product.price.toLong();
+                map["images"] = product.images;
+                map["productName"] = product.productName;
+                map["lastPrice"] = product.lastPrice
                 map["id"] = id;
                 map["ToggleItem"] = ToggleItem!!
                 reference.child(Constantes.CART).child(id).setValue(map);
@@ -182,12 +189,12 @@ class productActivity : AppCompatActivity() {
         }
 
         yourRate.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
-            var id = myId + ":" + product!!.productId
+            val id = myId + ":" + product.productId
             if (rating > 0f) {
-                var map: HashMap<String, Any> = HashMap();
+                val map: HashMap<String, Any> = HashMap();
                 map["id"] = id
                 map["rate"] = rating.toString()
-                map["productId"] = product!!.productId
+                map["productId"] = product.productId
                 map["myId"] = myId
                 reference.child(Constantes.RATE).child(id).updateChildren(map);
             }
@@ -203,9 +210,7 @@ class productActivity : AppCompatActivity() {
         }
 
         mins.setOnClickListener {
-
             if (quantity.text.toString() == "0") {
-                qNumber = 1;
                 quantity.text = qNumber.toString()
                 ShowToast("you can't order less than one!");
                 return@setOnClickListener
@@ -221,7 +226,7 @@ class productActivity : AppCompatActivity() {
         }
 
         comments.setOnClickListener {
-            var intent = Intent(this, CommentsActivity::class.java)
+            val intent = Intent(this, CommentsActivity::class.java)
             intent.putExtra("idproduct", product.productId)
             startActivity(intent)
         }
@@ -242,7 +247,7 @@ class productActivity : AppCompatActivity() {
             action = Intent.ACTION_SEND
             putExtra(
                 Intent.EXTRA_TEXT,
-                "https://www.market.doublethink.com/" + product!!.productId
+                "https://www.market.doublethink.com/" + product.productId
             )
             type = "text/plain"
         }

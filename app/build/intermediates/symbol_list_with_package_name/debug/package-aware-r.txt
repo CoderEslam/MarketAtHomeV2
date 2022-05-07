@@ -4054,7 +4054,6 @@ id quantity
 id quantityOrder
 id radial
 id radio
-id radioGroup
 id rate_now_container
 id ratingBar
 id ratingSeller
@@ -4111,7 +4110,6 @@ id search_users
 id search_voice_btn
 id selectCover
 id selectImage
-id selectImages
 id select_dialog_listview
 id selected
 id selection_type
@@ -4260,6 +4258,7 @@ id titleTV
 id titleTV1
 id title_template
 id toggle
+id toggleGroup
 id toolbar
 id toolbar_Collapsinglayout
 id top

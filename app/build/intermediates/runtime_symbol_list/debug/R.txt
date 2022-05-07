@@ -4053,7 +4053,6 @@ int id quantity 0x7f0a0342
 int id quantityOrder 0x7f0a0343
 int id radial 0x7f0a0344
 int id radio 0x7f0a0345
-int id radioGroup 0x7f0a0346
 int id rate_now_container 0x7f0a0347
 int id ratingBar 0x7f0a0348
 int id ratingSeller 0x7f0a0349
@@ -4110,7 +4109,6 @@ int id search_users 0x7f0a037b
 int id search_voice_btn 0x7f0a037c
 int id selectCover 0x7f0a037d
 int id selectImage 0x7f0a037e
-int id selectImages 0x7f0a037f
 int id select_dialog_listview 0x7f0a0380
 int id selected 0x7f0a0381
 int id selection_type 0x7f0a0382
@@ -4259,6 +4257,7 @@ int id titleTV 0x7f0a0410
 int id titleTV1 0x7f0a0411
 int id title_template 0x7f0a0412
 int id toggle 0x7f0a0413
+int id toggleGroup 0x7f0a0469
 int id toolbar 0x7f0a0414
 int id toolbar_Collapsinglayout 0x7f0a0415
 int id top 0x7f0a0416
