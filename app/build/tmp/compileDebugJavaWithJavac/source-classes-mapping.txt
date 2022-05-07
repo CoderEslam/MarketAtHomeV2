@@ -534,8 +534,10 @@ com/doubleclick/marktinhome/databinding/BottomSheetEditorBinding.java
  com.doubleclick.marktinhome.databinding.BottomSheetEditorBinding
 com/doubleclick/marktinhome/databinding/CommentsLayoutBinding.java
  com.doubleclick.marktinhome.databinding.CommentsLayoutBinding
-com/doubleclick/ViewHolder/TopDealsViewHolder.java
- com.doubleclick.ViewHolder.TopDealsViewHolder
+com/doubleclick/marktinhome/Adapters/KeywordAdapter.java
+ com.doubleclick.marktinhome.Adapters.KeywordAdapter
+ com.doubleclick.marktinhome.Adapters.KeywordAdapter$KeyViewHolder
+ com.doubleclick.marktinhome.Adapters.KeywordAdapter$OnDelete
 com/doubleclick/ViewHolder/ProductViewHolder.java
  com.doubleclick.ViewHolder.ProductViewHolder
 com/doubleclick/marktinhome/databinding/ItemContactRightBinding.java
@@ -903,10 +905,14 @@ com/doubleclick/ViewHolder/BannerSliderViewholder.java
  com.doubleclick.ViewHolder.BannerSliderViewholder$4
 com/doubleclick/marktinhome/databinding/ItemVideoRightBinding.java
  com.doubleclick.marktinhome.databinding.ItemVideoRightBinding
-com/doubleclick/marktinhome/ui/MainScreen/MainScreenActivity.java
- com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity
- com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$1
- com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$2
+com/doubleclick/RichEditor/sample/RichEditorActivity.java
+ com.doubleclick.RichEditor.sample.RichEditorActivity
+ com.doubleclick.RichEditor.sample.RichEditorActivity$1
+ com.doubleclick.RichEditor.sample.RichEditorActivity$2
+ com.doubleclick.RichEditor.sample.RichEditorActivity$3
+ com.doubleclick.RichEditor.sample.RichEditorActivity$CustomWebChromeClient
+ com.doubleclick.RichEditor.sample.RichEditorActivity$MOnActionPerformListener
+ com.doubleclick.RichEditor.sample.RichEditorActivity$MRichEditorCallback
 com/doubleclick/marktinhome/BaseFragment.java
  com.doubleclick.marktinhome.BaseFragment
  com.doubleclick.marktinhome.BaseFragment$1
@@ -1072,9 +1078,8 @@ com/doubleclick/ViewHolder/VideoViewHolder.java
  com.doubleclick.ViewHolder.VideoViewHolder
  com.doubleclick.ViewHolder.VideoViewHolder$1
  com.doubleclick.ViewHolder.VideoViewHolder$2
-com/doubleclick/marktinhome/ui/MainScreen/Frgments/menu_storeFragment.java
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_storeFragment
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_storeFragment$1
+com/doubleclick/marktinhome/databinding/ActivityAddBinding.java
+ com.doubleclick.marktinhome.databinding.ActivityAddBinding
 com/doubleclick/marktinhome/ui/MainScreen/Frgments/Add/ChildFragmentDirections.java
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.ChildFragmentDirections
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.ChildFragmentDirections$1
@@ -1105,17 +1110,12 @@ com/doubleclick/marktinhome/Adapters/ParentAdapter.java
  com.doubleclick.marktinhome.Adapters.ParentAdapter
  com.doubleclick.marktinhome.Adapters.ParentAdapter$1
  com.doubleclick.marktinhome.Adapters.ParentAdapter$ParentViewHolder
-com/doubleclick/marktinhome/Adapters/KeywordAdapter.java
- com.doubleclick.marktinhome.Adapters.KeywordAdapter
- com.doubleclick.marktinhome.Adapters.KeywordAdapter$KeyViewHolder
- com.doubleclick.marktinhome.Adapters.KeywordAdapter$OnDelete
-com/doubleclick/RichEditor/sample/RichEditorActivity.java
- com.doubleclick.RichEditor.sample.RichEditorActivity
- com.doubleclick.RichEditor.sample.RichEditorActivity$1
- com.doubleclick.RichEditor.sample.RichEditorActivity$2
- com.doubleclick.RichEditor.sample.RichEditorActivity$3
- com.doubleclick.RichEditor.sample.RichEditorActivity$CustomWebChromeClient
- com.doubleclick.RichEditor.sample.RichEditorActivity$MOnActionPerformListener
- com.doubleclick.RichEditor.sample.RichEditorActivity$MRichEditorCallback
-com/doubleclick/marktinhome/databinding/ActivityAddBinding.java
- com.doubleclick.marktinhome.databinding.ActivityAddBinding
+com/doubleclick/marktinhome/ui/MainScreen/Frgments/menu_storeFragment.java
+ com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_storeFragment
+ com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_storeFragment$1
+com/doubleclick/marktinhome/ui/MainScreen/MainScreenActivity.java
+ com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity
+ com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$1
+ com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$2
+com/doubleclick/ViewHolder/TopDealsViewHolder.java
+ com.doubleclick.ViewHolder.TopDealsViewHolder

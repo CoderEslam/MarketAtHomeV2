@@ -153,6 +153,26 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     override fun onItemLong(parentCategory: ParentCategory?) {}
 
     override fun onItemProduct(product: Product?) {
+//        val producttt = Product(
+//            product!!.productId,
+//            product!!.price,
+//            product!!.description,
+//            product!!.date,
+//            product!!.adminId,
+//            product!!.productName,
+//            product!!.lastPrice,
+//            product!!.tradeMark,
+//            product!!.parentCategoryName,
+//            product!!.childCategoryName,
+//            product!!.parentCategoryId,
+//            product!!.childCategoryId,
+//            product!!.totalRating,
+//            product!!.discount,
+//            product!!.keywords,
+//            product!!.images,
+//            product!!.toggals,
+//            product!!.ratingSeller
+//        );
         val intent = Intent(requireContext(), productActivity::class.java);
         intent.putExtra("product", product);
         startActivity(intent)
