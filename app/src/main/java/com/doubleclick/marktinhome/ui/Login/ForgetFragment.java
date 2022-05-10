@@ -59,7 +59,7 @@ public class ForgetFragment extends BaseFragment {
 
     private void ResetEmail(String email) {
         if (email.equals("")){
-            ShowToast(getContext(),"Email is empty");
+            ShowToast("Email is empty");
         }else {
             mAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override

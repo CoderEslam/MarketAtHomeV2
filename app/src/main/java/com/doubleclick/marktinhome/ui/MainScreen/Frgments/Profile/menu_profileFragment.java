@@ -160,9 +160,9 @@ public class menu_profileFragment extends BaseFragment {
                 map.put(type, edit.getText().toString());
                 reference.child(USER).child(myId).updateChildren(map);
                 edit.setText("");
-                ShowToast(getContext(), "Done");
+                ShowToast("Done");
             } else {
-                ShowToast(getContext(), "you can't set empty text");
+                ShowToast("you can't set empty text");
             }
         });
         builder.setView(view);

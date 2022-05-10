@@ -92,8 +92,8 @@ public class BaseFragment extends Fragment {
         transaction.commit();
     }
 
-    public void ShowToast(Context context, String msg) {
-        Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+    public void ShowToast(String msg) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show();
     }
 
     public void openImage(String name, String location, String PushIdParents) {

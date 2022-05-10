@@ -1,8 +1,11 @@
 package com.doubleclick.marktinhome.Model;
 
+import androidx.room.Entity;
+
 /**
  * Created By Eslam Ghazy on 3/17/2022
  */
+@Entity
 public class Chat {
 
     private String message;
@@ -12,6 +15,7 @@ public class Chat {
     private long date;
     private String id;
     private String StatusMessage;
+    private boolean seen;
 
     public Chat() {
     }
@@ -82,5 +86,13 @@ public class Chat {
 
     public void setStatusMessage(String statusMessage) {
         StatusMessage = statusMessage;
+    }
+
+    public boolean isSeen() {
+        return seen;
+    }
+
+    public void setSeen(boolean seen) {
+        this.seen = seen;
     }
 }

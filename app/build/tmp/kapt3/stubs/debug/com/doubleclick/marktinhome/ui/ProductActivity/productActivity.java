@@ -130,7 +130,7 @@ public final class productActivity extends androidx.appcompat.app.AppCompatActiv
     android.webkit.WebView p0) {
     }
     
-    @android.annotation.SuppressLint(value = {"SetTextI18n"})
+    @android.annotation.SuppressLint(value = {"SetTextI18n", "ResourceType"})
     @androidx.annotation.RequiresApi(value = android.os.Build.VERSION_CODES.M)
     @java.lang.Override()
     protected void onCreate(@org.jetbrains.annotations.Nullable()

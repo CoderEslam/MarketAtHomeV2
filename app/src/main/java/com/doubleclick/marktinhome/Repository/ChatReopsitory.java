@@ -1,6 +1,5 @@
 package com.doubleclick.marktinhome.Repository;
 
-import static com.doubleclick.marktinhome.BaseApplication.isNetworkConnected;
 import static com.doubleclick.marktinhome.Model.Constantes.CHATS;
 
 import android.util.Log;
@@ -9,17 +8,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.doubleclick.marktinhome.Model.Chat;
-import com.doubleclick.marktinhome.RealmDatabase.ChatRealm;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import io.realm.Realm;

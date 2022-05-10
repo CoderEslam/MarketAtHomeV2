@@ -4,18 +4,28 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.doubleclick.ViewModel.GroupViewModel;
+import com.doubleclick.marktinhome.Adapters.ItemGroupsAdapter;
 import com.doubleclick.marktinhome.Adapters.ViewPagerGroupAdapter;
+import com.doubleclick.marktinhome.Model.Group;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.Animatoo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.todkars.shimmer.ShimmerRecyclerView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,9 +35,9 @@ import com.google.android.material.tabs.TabLayout;
 public class GroupFragment extends Fragment {
 
     private FloatingActionButton addGroup;
-    private ViewPager pager;
-    private TabLayout tab_layout;
-    private SwipeRefreshLayout refresh;
+    private EditText search;
+    private GroupViewModel groupViewModel;
+    private ShimmerRecyclerView allGroupsRecycler;
 
     public GroupFragment() {
         // Required empty public constructor
@@ -53,25 +63,21 @@ public class GroupFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_group, container, false);
         addGroup = view.findViewById(R.id.addGroup);
-        tab_layout = view.findViewById(R.id.tab_layout);
-        refresh = view.findViewById(R.id.refresh);
-        pager = view.findViewById(R.id.viewpager);
-        tab_layout.setupWithViewPager(pager);
-        refresh();
-        refresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        search = view.findViewById(R.id.search);
+        allGroupsRecycler = view.findViewById(R.id.allGroupsRecycler);
+
+        groupViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
+        groupViewModel.AllGroups().observe(getViewLifecycleOwner(), new Observer<ArrayList<Group>>() {
             @Override
-            public void onRefresh() {
-                refresh();
+            public void onChanged(ArrayList<Group> groups) {
+                ItemGroupsAdapter itemGroupsAdapter = new ItemGroupsAdapter(groups);
+                allGroupsRecycler.setAdapter(itemGroupsAdapter);
             }
         });
-
-        return view;
-    }
-
-    private void refresh() {
-        pager.setAdapter(new ViewPagerGroupAdapter(requireActivity().getSupportFragmentManager()));
         addGroup.setOnClickListener(v -> {
             startActivity(new Intent(getContext(), CreateGroupActivity.class));
         });
+        return view;
     }
+
 }

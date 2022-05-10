@@ -1,6 +1,7 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.NonNull
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +19,7 @@ import com.doubleclick.OnProduct
 import com.doubleclick.Tradmarkinterface
 import com.doubleclick.ViewModel.AdvertisementViewModel
 import com.doubleclick.ViewModel.ProductViewModel
+import com.doubleclick.ViewModel.RecentSearchViewModel
 import com.doubleclick.ViewModel.TradmarkViewModel
 import com.doubleclick.ViewMore
 import com.doubleclick.marktinhome.Adapters.HomeAdapter
@@ -48,8 +51,6 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     lateinit var homeAdapter: HomeAdapter
     lateinit var animationView: LottieAnimationView
     private lateinit var timer: Timer;
-
-    //    lateinit var recentSearchViewModel: RecentSearchViewModel
     private var idProduct: String = ""
 
 
@@ -69,46 +70,7 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         MainRecyceler = view.findViewById(R.id.MainRecyceler)
         animationView = view.findViewById(R.id.animationView);
         homeModels = ArrayList()
-//        productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
-//        advertisementViewModel = ViewModelProvider(this)[AdvertisementViewModel::class.java];
-//        trademarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
-//        recentSearchViewModel = ViewModelProvider(this)[RecentSearchViewModel::class.java]
-//        productViewModel.parent.observe(viewLifecycleOwner, Observer {
-//            if (it.size != 0) {
-//                homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
-//            }
-//        });
-//        advertisementViewModel.allAdv.observe(viewLifecycleOwner, Observer {
-//            homeModels.add(1, HomeModel(it, HomeModel.Advertisement))
-//        });
-//        productViewModel.product.observe(
-//            viewLifecycleOwner,
-//            Observer { products: ArrayList<Product?>? ->
-//                if (products!!.size != 0) {
-//                    homeModels.add(HomeModel(products, HomeModel.Products, this))
-//                    homeAdapter = HomeAdapter(homeModels);
-//                    MainRecyceler.adapter = homeAdapter
-//                    animationView.visibility = View.GONE
-//                } else {
-//                    animationView.visibility = View.VISIBLE
-//                }
-//
-//            });
-////        productViewModel.topDealsLiveData.observe(viewLifecycleOwner, Observer {
-//            homeModels.add(HomeModel(it, HomeModel.TopDeal, this, this));
-//        })
 
-
-//        trademarkViewModel.allMark.observe(viewLifecycleOwner, Observer {
-//            homeModels.add(HomeModel(it, HomeModel.Trademarks, this))
-//        });
-
-
-//        recentSearchViewModel.lastSearchListLiveDataOneTime.observe(viewLifecycleOwner, Observer {
-//            if (it.size != 0) {
-//                homeModels.add(HomeModel(HomeModel.RecentSearch, it, this, this, 0))
-//            }
-//        })
 
         if (idProduct != "") {
             reference.child(PRODUCT).child(idProduct)
@@ -124,7 +86,7 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
                                     startActivity(intent)
                                 }
                             } else {
-                                ShowToast(context, "No Internet Connection")
+                                ShowToast("No Internet Connection")
                             }
                         } catch (e: Exception) {
 
@@ -138,7 +100,6 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
                 })
 
         }
-
         loadHomePage();
         ReloadData();
         return view;
@@ -153,26 +114,6 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     override fun onItemLong(parentCategory: ParentCategory?) {}
 
     override fun onItemProduct(product: Product?) {
-//        val producttt = Product(
-//            product!!.productId,
-//            product!!.price,
-//            product!!.description,
-//            product!!.date,
-//            product!!.adminId,
-//            product!!.productName,
-//            product!!.lastPrice,
-//            product!!.tradeMark,
-//            product!!.parentCategoryName,
-//            product!!.childCategoryName,
-//            product!!.parentCategoryId,
-//            product!!.childCategoryId,
-//            product!!.totalRating,
-//            product!!.discount,
-//            product!!.keywords,
-//            product!!.images,
-//            product!!.toggals,
-//            product!!.ratingSeller
-//        );
         val intent = Intent(requireContext(), productActivity::class.java);
         intent.putExtra("product", product);
         startActivity(intent)
@@ -205,9 +146,13 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     }
 
     private fun loadHomePage() {
+        Loadproduct()
+        Loadtrademark()
+        Loadadvertisement()
+    }
+
+    private fun Loadproduct() {
         val productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
-        val advertisementViewModel = ViewModelProvider(this)[AdvertisementViewModel::class.java];
-        val trademarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
         productViewModel.parent.observe(viewLifecycleOwner, Observer {
             if (it.size != 0) {
                 homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
@@ -219,11 +164,12 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
                 animationView.visibility = View.VISIBLE
             }
         });
-        advertisementViewModel.allAdv.observe(viewLifecycleOwner, Observer {
-            homeModels.add(1, HomeModel(it, HomeModel.Advertisement))
-            timer.cancel()
-
-        });
+        productViewModel.topDealsLiveData.observe(viewLifecycleOwner, Observer {
+            if (it.size != 0) {
+                homeModels.add(HomeModel(it, HomeModel.TopDeal, this, this));
+                timer.cancel()
+            }
+        })
         productViewModel.product.observe(
             viewLifecycleOwner,
             Observer { products: ArrayList<Product?>? ->
@@ -232,25 +178,35 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
                     timer.cancel()
                 }
             });
-        productViewModel.topDealsLiveData.observe(viewLifecycleOwner, Observer {
-            if (it.size != 0) {
-                homeModels.add(HomeModel(it, HomeModel.TopDeal, this, this));
-                timer.cancel()
-            }
-        })
+    }
+
+    private fun Loadtrademark() {
+        val trademarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
         trademarkViewModel.allMark.observe(viewLifecycleOwner, Observer {
             if (it.size != 0) {
                 homeModels.add(HomeModel(it, HomeModel.Trademarks, this))
                 timer.cancel()
             }
         });
-        // to get last Recent Search
-//        recentSearchViewModel.lastSearchListLiveDataOneTime.observe(viewLifecycleOwner, Observer {
-//            if (it.size != 0) {
-//                homeModels.add(HomeModel(HomeModel.RecentSearch, it, this, this, 0))
-//            }
-//        })
+    }
 
+    private fun Loadadvertisement() {
+        val advertisementViewModel = ViewModelProvider(this)[AdvertisementViewModel::class.java];
+        advertisementViewModel.allAdv.observe(viewLifecycleOwner, Observer {
+            homeModels.add(1, HomeModel(it, HomeModel.Advertisement))
+            timer.cancel()
+
+        });
+    }
+
+    private fun LoadrecentSearch() {
+        val recentSearchViewModel = ViewModelProvider(this)[RecentSearchViewModel::class.java]
+//        to get last Recent Search
+        recentSearchViewModel.lastSearchListLiveDataOneTime.observe(viewLifecycleOwner, Observer {
+            if (it.size != 0) {
+                homeModels.add(HomeModel(HomeModel.RecentSearch, it, this, this, 0))
+            }
+        })
     }
 
     private fun ReloadData() {
@@ -273,7 +229,6 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
             }
         }, 2000, 2000)
     }
-
 
 }
 

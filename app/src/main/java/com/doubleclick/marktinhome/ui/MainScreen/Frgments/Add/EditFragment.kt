@@ -159,7 +159,7 @@ class EditFragment : BaseFragment() {
                 reference.child(CHILDREN).child(data.id.toString()).updateChildren(map)
                     .addOnCompleteListener(OnCompleteListener {
                         if (it.isSuccessful) {
-                            ShowToast(context, "Done")
+                            ShowToast("Done")
                             progressBar.visibility = View.GONE
                         }
                     })
@@ -185,7 +185,7 @@ class EditFragment : BaseFragment() {
                         reference.child(CHILDREN).child(data.id.toString()).updateChildren(map)
                             .addOnCompleteListener(OnCompleteListener {
                                 if (it.isSuccessful) {
-                                    ShowToast(context, "Done")
+                                    ShowToast("Done")
                                     progressBar.visibility = View.GONE
                                 }
                             })
@@ -201,7 +201,7 @@ class EditFragment : BaseFragment() {
                 reference.child(PARENTS).child(data.id.toString()).updateChildren(map)
                     .addOnCompleteListener(OnCompleteListener {
                         if (it.isSuccessful) {
-                            ShowToast(context, "Done")
+                            ShowToast("Done")
                             progressBar.visibility = View.GONE
                         }
                     })
@@ -213,7 +213,7 @@ class EditFragment : BaseFragment() {
                 reference.child(PARENTS).child(data.id.toString()).updateChildren(map)
                     .addOnCompleteListener(OnCompleteListener {
                         if (it.isSuccessful) {
-                            ShowToast(context, "Done")
+                            ShowToast( "Done")
                             progressBar.visibility = View.GONE
                         }
                     })
@@ -246,7 +246,7 @@ class EditFragment : BaseFragment() {
                             reference.child(PARENTS).child(data.id.toString()).updateChildren(map)
                                 .addOnCompleteListener(OnCompleteListener {
                                     if (it.isSuccessful) {
-                                        ShowToast(context, "Done")
+                                        ShowToast( "Done")
                                     }
                                 })
                         }
@@ -279,7 +279,7 @@ class EditFragment : BaseFragment() {
                     reference.child(PARENTS).child(pushId).updateChildren(map)
                         .addOnCompleteListener(OnCompleteListener {
                             if (it.isSuccessful) {
-                                ShowToast(context, "Done")
+                                ShowToast( "Done")
                                 progressBar.visibility = View.GONE
                             }
                         })
@@ -308,7 +308,7 @@ class EditFragment : BaseFragment() {
                     reference.child(CHILDREN).child(pushId).updateChildren(map)
                         .addOnCompleteListener(OnCompleteListener {
                             if (it.isSuccessful) {
-                                ShowToast(context, "Done")
+                                ShowToast( "Done")
                                 progressBar.visibility = View.GONE
                             }
                         })

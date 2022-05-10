@@ -47,8 +47,6 @@ import com.doubleclick.marktinhome.Model.Constantes.CHATS
 import com.doubleclick.marktinhome.Model.Constantes.USER
 import com.doubleclick.marktinhome.Notifications.Client
 import com.doubleclick.marktinhome.R
-import com.doubleclick.marktinhome.RealmDatabase.ChatRealm
-import com.doubleclick.marktinhome.RealmDatabase.RealmBaseAdapter
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -66,6 +64,7 @@ import com.google.firebase.storage.UploadTask
 import com.vanniktech.emoji.EmojiPopup
 import de.hdodenhof.circleimageview.CircleImageView
 import io.realm.Realm
+import io.realm.RealmBaseAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -106,7 +105,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var username: TextView;
     private lateinit var status: TextView;
     private lateinit var apiService: APIService
-    private var realm: Realm? = null
     private var sharePost: String = "null".toString()
 
     private lateinit var storageReference: StorageReference
@@ -141,9 +139,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
-        realm = Realm.getDefaultInstance();
-        var realmBase = RealmBaseAdapter(realm!!.where(ChatRealm::class.java).findAll());
-        Log.e("Allllllllll", realm!!.where(ChatRealm::class.java).findAll().asJSON().toString());
         sendText = view.findViewById(R.id.sendText);
         et_text_message = view.findViewById(R.id.et_text_message);
         continer_attacht = view.findViewById(R.id.continer_attacht);
@@ -360,17 +355,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
         et_text_message.setText("")
         makeChatList();
         sendNotifiaction(text);
-        realm!!.beginTransaction()
-        val chatRealm =
-            realm!!.createObject(ChatRealm::class.java, SecureRandom().nextInt(1000000000))
-        chatRealm.id = id;
-        chatRealm.sender = myId;
-        chatRealm.type = type;
-        chatRealm.message = text;
-        chatRealm.receiver = user!!.id;
-        chatRealm.date = time;
-        chatRealm.statusMessage = "Uploaded";
-        realm!!.commitTransaction()
+
 
 
     }

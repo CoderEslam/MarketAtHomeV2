@@ -21,11 +21,11 @@ public class GroupViewModel extends ViewModel implements GroupInterface {
     GroupRepository repository = new GroupRepository(this);
     MutableLiveData<Group> mutableLiveDataMyGrups = new MutableLiveData<>();
 
-    MutableLiveData<Group> mutableLiveDataAllGroups = new MutableLiveData<>();
+    MutableLiveData<ArrayList<Group>> mutableLiveDataAllGroups = new MutableLiveData<>();
     MutableLiveData<GroupData> mutableLiveGroupData = new MutableLiveData<>();
 
     public GroupViewModel() {
-        repository.MyGroup();
+//        repository.MyGroup();
         repository.AllGroup();
     }
 
@@ -38,7 +38,7 @@ public class GroupViewModel extends ViewModel implements GroupInterface {
         return mutableLiveDataMyGrups;
     }
 
-    public LiveData<Group> AllGroups() {
+    public LiveData<ArrayList<Group>> AllGroups() {
         return mutableLiveDataAllGroups;
     }
 
@@ -67,7 +67,11 @@ public class GroupViewModel extends ViewModel implements GroupInterface {
 
     @Override
     public void allGroups(@NonNull Group groups) {
-        mutableLiveDataAllGroups.setValue(groups);
 
+    }
+
+    @Override
+    public void allGroups(@NonNull ArrayList<Group> groups) {
+        mutableLiveDataAllGroups.setValue(groups);
     }
 }

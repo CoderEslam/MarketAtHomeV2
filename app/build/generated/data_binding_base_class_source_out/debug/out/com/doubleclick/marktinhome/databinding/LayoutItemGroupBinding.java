@@ -28,6 +28,9 @@ public final class LayoutItemGroupBinding implements ViewBinding {
   public final ConstraintLayout ConstraintLayoutimageName;
 
   @NonNull
+  public final CardView cardView;
+
+  @NonNull
   public final CardView cardView7;
 
   @NonNull
@@ -70,14 +73,16 @@ public final class LayoutItemGroupBinding implements ViewBinding {
   public final ImageView video;
 
   private LayoutItemGroupBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout ConstraintLayoutimageName, @NonNull CardView cardView7,
-      @NonNull LinearLayout comment, @NonNull CircleImageView imagePublisher,
-      @NonNull CarouselRecyclerview images, @NonNull LinearLayout likeButton,
-      @NonNull ImageView likeImg, @NonNull TextView likeText, @NonNull TextView loadmore,
-      @NonNull ConstraintLayout meme, @NonNull TextView namePublisher, @NonNull ImageView option,
-      @NonNull ImageView playVideo, @NonNull LinearLayout share, @NonNull ImageView video) {
+      @NonNull ConstraintLayout ConstraintLayoutimageName, @NonNull CardView cardView,
+      @NonNull CardView cardView7, @NonNull LinearLayout comment,
+      @NonNull CircleImageView imagePublisher, @NonNull CarouselRecyclerview images,
+      @NonNull LinearLayout likeButton, @NonNull ImageView likeImg, @NonNull TextView likeText,
+      @NonNull TextView loadmore, @NonNull ConstraintLayout meme, @NonNull TextView namePublisher,
+      @NonNull ImageView option, @NonNull ImageView playVideo, @NonNull LinearLayout share,
+      @NonNull ImageView video) {
     this.rootView = rootView;
     this.ConstraintLayoutimageName = ConstraintLayoutimageName;
+    this.cardView = cardView;
     this.cardView7 = cardView7;
     this.comment = comment;
     this.imagePublisher = imagePublisher;
@@ -124,6 +129,12 @@ public final class LayoutItemGroupBinding implements ViewBinding {
       id = R.id.ConstraintLayoutimage_name;
       ConstraintLayout ConstraintLayoutimageName = ViewBindings.findChildViewById(rootView, id);
       if (ConstraintLayoutimageName == null) {
+        break missingId;
+      }
+
+      id = R.id.cardView;
+      CardView cardView = ViewBindings.findChildViewById(rootView, id);
+      if (cardView == null) {
         break missingId;
       }
 
@@ -212,8 +223,8 @@ public final class LayoutItemGroupBinding implements ViewBinding {
       }
 
       return new LayoutItemGroupBinding((ConstraintLayout) rootView, ConstraintLayoutimageName,
-          cardView7, comment, imagePublisher, images, likeButton, likeImg, likeText, loadmore, meme,
-          namePublisher, option, playVideo, share, video);
+          cardView, cardView7, comment, imagePublisher, images, likeButton, likeImg, likeText,
+          loadmore, meme, namePublisher, option, playVideo, share, video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

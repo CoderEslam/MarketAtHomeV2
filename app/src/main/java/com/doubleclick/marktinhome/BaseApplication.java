@@ -7,13 +7,11 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.Build;
-import android.webkit.PermissionRequest;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationManagerCompat;
 import androidx.multidex.MultiDex;
 
-import com.doubleclick.marktinhome.RealmDatabase.MyRealmMigration;
 import com.google.firebase.database.FirebaseDatabase;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -26,7 +24,6 @@ import java.util.List;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import io.realm.exceptions.RealmMigrationNeededException;
 
 /**
  * Created By Eslam Ghazy on 3/1/2022
@@ -47,7 +44,6 @@ public class BaseApplication extends Application {
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .allowQueriesOnUiThread(true)
                 .allowWritesOnUiThread(true)
-                .migration(new MyRealmMigration())
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(config);

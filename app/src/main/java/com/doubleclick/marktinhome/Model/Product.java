@@ -3,6 +3,8 @@ package com.doubleclick.marktinhome.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -36,39 +38,6 @@ public class Product implements Comparable, Parcelable {
     private float ratingSeller;
 
 
-    protected Product(Parcel in) {
-        productId = in.readString();
-        price = in.readDouble();
-        description = in.readString();
-        date = in.readLong();
-        adminId = in.readString();
-        productName = in.readString();
-        lastPrice = in.readDouble();
-        tradeMark = in.readString();
-        parentCategoryName = in.readString();
-        childCategoryName = in.readString();
-        parentCategoryId = in.readString();
-        childCategoryId = in.readString();
-        TotalRating = in.readInt();
-        discount = in.readInt();
-        keywords = in.readString();
-        Images = in.readString();
-        Toggals = in.readString();
-        ratingSeller = in.readFloat();
-    }
-
-    public static final Creator<Product> CREATOR = new Creator<Product>() {
-        @Override
-        public Product createFromParcel(Parcel in) {
-            return new Product(in);
-        }
-
-        @Override
-        public Product[] newArray(int size) {
-            return new Product[size];
-        }
-    };
-
     public Product(String productId, double price, String description, long date, String adminId, String productName, double lastPrice, String tradeMark, String parentCategoryName, String childCategoryName, String parentCategoryId, String childCategoryId, int totalRating, double discount, String keywords, String images, String toggals, float ratingSeller) {
         this.productId = productId;
         this.price = price;
@@ -91,6 +60,39 @@ public class Product implements Comparable, Parcelable {
     }
 
 
+    protected Product(Parcel in) {
+        productId = in.readString();
+        price = in.readDouble();
+        description = in.readString();
+        date = in.readLong();
+        adminId = in.readString();
+        productName = in.readString();
+        lastPrice = in.readDouble();
+        tradeMark = in.readString();
+        parentCategoryName = in.readString();
+        childCategoryName = in.readString();
+        parentCategoryId = in.readString();
+        childCategoryId = in.readString();
+        TotalRating = in.readInt();
+        discount = in.readDouble();
+        keywords = in.readString();
+        Images = in.readString();
+        Toggals = in.readString();
+        ratingSeller = in.readFloat();
+    }
+
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
+        @Override
+        public Product createFromParcel(Parcel in) {
+            return new Product(in);
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+            return new Product[size];
+        }
+    };
+
     public String getOnlyImage() {
         List<String> image = Arrays.asList(getImages().replace("[", "").replace("]", "").replace(" ", "").trim().split(","));
         return image.get(0);
@@ -108,32 +110,7 @@ public class Product implements Comparable, Parcelable {
     }
 
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(productId);
-        dest.writeDouble(price);
-        dest.writeString(description);
-        dest.writeLong(date);
-        dest.writeString(adminId);
-        dest.writeString(productName);
-        dest.writeDouble(lastPrice);
-        dest.writeString(tradeMark);
-        dest.writeString(parentCategoryName);
-        dest.writeString(childCategoryName);
-        dest.writeString(parentCategoryId);
-        dest.writeString(childCategoryId);
-        dest.writeInt(TotalRating);
-        dest.writeDouble(discount);
-        dest.writeString(keywords);
-        dest.writeString(Images);
-        dest.writeString(Toggals);
-        dest.writeFloat(ratingSeller);
-    }
+    @NonNull
     @Override
     public String toString() {
         return "Product{" +
@@ -300,5 +277,32 @@ public class Product implements Comparable, Parcelable {
 
     public void setRatingSeller(float ratingSeller) {
         this.ratingSeller = ratingSeller;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(productId);
+        dest.writeDouble(price);
+        dest.writeString(description);
+        dest.writeLong(date);
+        dest.writeString(adminId);
+        dest.writeString(productName);
+        dest.writeDouble(lastPrice);
+        dest.writeString(tradeMark);
+        dest.writeString(parentCategoryName);
+        dest.writeString(childCategoryName);
+        dest.writeString(parentCategoryId);
+        dest.writeString(childCategoryId);
+        dest.writeInt(TotalRating);
+        dest.writeDouble(discount);
+        dest.writeString(keywords);
+        dest.writeString(Images);
+        dest.writeString(Toggals);
+        dest.writeFloat(ratingSeller);
     }
 }

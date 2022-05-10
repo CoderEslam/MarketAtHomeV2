@@ -65,7 +65,7 @@ class productActivity : AppCompatActivity() {
 
 
     @RequiresApi(Build.VERSION_CODES.M)
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product)
@@ -108,11 +108,15 @@ class productActivity : AppCompatActivity() {
         for (i in spliter.indices) {
             val circularToggle = CircularToggle(this)
             circularToggle.text = spliter[i]
+            if (i == 0) {
+                circularToggle.id = 1234567890; /* to chek at first element in toggle*/
+                ToggleItem = spliter[i];
+            }
             circularToggle.setOnClickListener {
                 ToggleItem = spliter[i]
-
             }
             toggleGroup.addView(circularToggle)
+            toggleGroup.check(1234567890)
         }
         ratingSeller.text = product.ratingSeller.toInt().toString()
         speedView.speedTo(product.ratingSeller.toFloat());

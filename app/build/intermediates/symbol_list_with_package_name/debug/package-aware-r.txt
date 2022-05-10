@@ -3391,7 +3391,6 @@ id action_homeFragment_to_menu_Cart
 id action_image
 id action_menu_Cart_to_addressFragment
 id action_menu_Cart_to_menu_profile
-id action_menu_Cart_to_orderSelllerFragment
 id action_menu_divider
 id action_menu_presenter
 id action_menu_profile_to_groupFragment
@@ -3431,6 +3430,7 @@ id alertTitle
 id align
 id aligned
 id all
+id allGroupsRecycler
 id allStates
 id allUser
 id allUsersFragment
@@ -3447,7 +3447,6 @@ id anticipate
 id appBarRL
 id appBarTitleTV
 id app_bar
-id appbar
 id arc
 id arro_imageview
 id arrow
@@ -4032,7 +4031,6 @@ id option
 id options
 id order
 id orderImage
-id orderSelllerFragment
 id ordered
 id outdent
 id outline
@@ -4097,7 +4095,6 @@ id recordView
 id rectangle
 id rectangles
 id recycler
-id refresh
 id relativeLayout
 id replay
 id restart
@@ -4212,7 +4209,6 @@ id subscript
 id superscript
 id supportScrollUp
 id tabMode
-id tab_layout
 id tab_layout_parent
 id table
 id tag_accessibility_actions
@@ -4560,7 +4556,6 @@ layout fragment_menu_profile
 layout fragment_menu_store
 layout fragment_month
 layout fragment_my_groups
-layout fragment_order_selller
 layout fragment_pager
 layout fragment_parent
 layout fragment_register

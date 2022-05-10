@@ -62,20 +62,20 @@ public class AllGroupsFragment extends Fragment {
         groupViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
         ItemGroupsAdapter itemGroupsAdapter = new ItemGroupsAdapter(groups);
         allGroupsRecycler.setAdapter(itemGroupsAdapter);
-        groupViewModel.AllGroups().observe(getViewLifecycleOwner(), new Observer<Group>() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onChanged(Group group) {
-                if (group != null) {
-                    groups.add(group);
-                    itemGroupsAdapter.notifyItemInserted(groups.size() - 1);
-                    itemGroupsAdapter.notifyDataSetChanged();
-                    allGroupsRecycler.hideShimmer();
-                } else {
-
-                }
-            }
-        });
+//        groupViewModel.AllGroups().observe(getViewLifecycleOwner(), new Observer<Group>() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public void onChanged(Group group) {
+//                if (group != null) {
+//                    groups.add(group);
+//                    itemGroupsAdapter.notifyItemInserted(groups.size() - 1);
+//                    itemGroupsAdapter.notifyDataSetChanged();
+//                    allGroupsRecycler.hideShimmer();
+//                } else {
+//
+//                }
+//            }
+//        });
 
         return view;
     }

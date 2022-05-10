@@ -1,6 +1,8 @@
 package com.doubleclick.marktinhome.ui.MainScreen;
 
 
+import static com.doubleclick.marktinhome.BaseApplication.ShowToast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.SearchView;
@@ -16,12 +18,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.doubleclick.ViewModel.ProductViewModel;
@@ -31,6 +36,7 @@ import com.doubleclick.marktinhome.Model.ChildCategory;
 import com.doubleclick.marktinhome.Model.ClassificationPC;
 import com.doubleclick.marktinhome.Model.User;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.SmoothButtom.OnItemSelectedListener;
 import com.doubleclick.marktinhome.Views.SmoothButtom.SmoothBottomBar;
 import com.doubleclick.marktinhome.ui.Filter.FilterActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Frgments.HomeFragment;

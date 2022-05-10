@@ -1,5 +1,6 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import com.doubleclick.marktinhome.BaseFragment
 import com.doubleclick.marktinhome.Model.Cart
 import com.doubleclick.marktinhome.Model.Constantes.CART
 import com.doubleclick.marktinhome.R
+import com.doubleclick.marktinhome.Seller.SellerActivity
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import de.hdodenhof.circleimageview.CircleImageView
@@ -40,8 +42,8 @@ class CartFragment : BaseFragment(), OnCartLisnter {
     private lateinit var cartAdapter: CartAdapter
     private lateinit var Continue: TextView
     private lateinit var totalPrice: TextView
-    private var Total = 0.0
-    lateinit var MyOrder: TextView
+    private var total = 0.0
+    lateinit var myOrder: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,32 +62,35 @@ class CartFragment : BaseFragment(), OnCartLisnter {
         cartRecycler = view.findViewById(R.id.cartRecycler)
         Continue = view.findViewById(R.id.Continue)
         totalPrice = view.findViewById(R.id.totalPrice)
-        MyOrder = view.findViewById(R.id.MyOrder);
+        myOrder = view.findViewById(R.id.MyOrder);
 
-        cartViewModel.CartLiveData().observe(viewLifecycleOwner) { carts: ArrayList<Cart> ->
-            if (carts.size != 0) {
-                Total = 0.0
-                cartAdapter = CartAdapter(carts, this)
+        cartViewModel.CartLiveData().observe(viewLifecycleOwner) {
+            if (it.size != 0) {
+                total = 0.0
+                cartAdapter = CartAdapter(it, this)
                 cartRecycler.adapter = cartAdapter
-                for (i in carts.indices) {
-                    Total += carts[i].price.toDouble() * carts[i].quantity.toDouble()
-                    totalPrice.text = Total.toString()
+                for (i in it.indices) {
+                    total += it[i].price.toDouble() * it[i].quantity.toDouble()
+                    totalPrice.text = myOrder.toString()
                 }
+                Continue.setOnClickListener {
+                    try {
+                        findNavController().navigate(CartFragmentDirections.actionMenuCartToAddressFragment())
+                    } catch (e: Exception) {
+
+                    }
+
+                }
+            } else {
+                ShowToast("you don't have orders")
             }
         }
-        Continue.setOnClickListener { v ->
-            try {
-                findNavController().navigate(CartFragmentDirections.actionMenuCartToAddressFragment())
-            } catch (e: Exception) {
-
-            }
-
-        }
 
 
 
-        MyOrder.setOnClickListener {
-            findNavController().navigate(CartFragmentDirections.actionMenuCartToOrderSelllerFragment())
+
+        myOrder.setOnClickListener {
+            startActivity(Intent(context, SellerActivity::class.java))
         }
 
         return view
@@ -94,25 +99,25 @@ class CartFragment : BaseFragment(), OnCartLisnter {
 
     override fun onPause() {
         super.onPause()
-        Total = 0.0
+        total = 0.0
     }
 
     override fun OnAddItemOrder(cart: Cart?) {
         var quantity: Int = cart!!.quantity.toInt()
         quantity++;
-        var map: HashMap<String, Any> = HashMap();
-        map.put("Quantity", quantity)
-        map.put("TotalPrice", (cart.price.toInt() * quantity).toLong())
-        reference.child(CART).child(cart!!.buyerId + ":" + cart.productId).updateChildren(map)
+        val map: HashMap<String, Any> = HashMap();
+        map["Quantity"] = quantity
+        map["TotalPrice"] = (cart.price.toInt() * quantity).toLong()
+        reference.child(CART).child(cart.buyerId + ":" + cart.productId).updateChildren(map)
     }
 
     override fun OnMinsItemOrder(cart: Cart?) {
         var quantity: Int = cart!!.quantity.toInt()
         quantity--;
-        var map: HashMap<String, Any> = HashMap();
-        map.put("Quantity", quantity)
-        map.put("TotalPrice", (cart.price.toInt() * quantity).toLong())
-        reference.child(CART).child(cart!!.buyerId + ":" + cart.productId).updateChildren(map)
+        val map: HashMap<String, Any> = HashMap();
+        map["Quantity"] = quantity
+        map["TotalPrice"] = (cart.price.toInt() * quantity).toLong()
+        reference.child(CART).child(cart.buyerId + ":" + cart.productId).updateChildren(map)
     }
 
     override fun OnDeleteItemOrder(cart: Cart?) {

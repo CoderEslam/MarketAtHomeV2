@@ -28,14 +28,14 @@ public class GroupRepository extends BaseRepository {
 
     private GroupInterface groupInterface;
     //    private ArrayList<Group> myGroups = new ArrayList<>();
-//    private ArrayList<Group> allGroups = new ArrayList<>();
+    private ArrayList<Group> allGroups = new ArrayList<>();
     private GroupData groupData = new GroupData();
 
     public GroupRepository(GroupInterface groupInterface) {
         this.groupInterface = groupInterface;
     }
 
-    public void MyGroup() {
+   /* public void MyGroup() {
         reference.child(GROUPS).orderByChild("time").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -76,47 +76,27 @@ public class GroupRepository extends BaseRepository {
             }
         });
 
-    }
+    }*/
 
     public void AllGroup() {
-        reference.child(GROUPS).orderByChild("time").addChildEventListener(new ChildEventListener() {
+        reference.child(GROUPS).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
                 try {
                     if (isNetworkConnected()) {
-                        if (snapshot.exists()) {
-                            Group group = snapshot.getValue(Group.class);
-                            assert group != null;
-                            if (!group.getCreatedBy().equals(myId)) {
-//                                allGroups.add(group);
-                                groupInterface.allGroups(group);
-
+                        if (task.getResult().exists()) {
+                            for (DataSnapshot dataSnapshot : task.getResult().getChildren()) {
+                                Group group = dataSnapshot.getValue(Group.class);
+                                assert group != null;
+                                allGroups.add(group);
                             }
+                            groupInterface.allGroups(allGroups);
+
                         }
                     }
                 } catch (Exception e) {
                     Log.e("Exception", e.getMessage());
                 }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }

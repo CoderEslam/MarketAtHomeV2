@@ -133,15 +133,15 @@ public class RegisterFragment extends BaseFragment {
                                 user.put("token", task.getResult());
                                 reference.child(USER).child(myId).setValue(user);
                                 loadingAnimView.setVisibility(View.GONE);
-                                Intent intent = new Intent(getContext(),MainScreenActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                Intent intent = new Intent(getContext(), MainScreenActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 requireActivity().finish();
                                 startActivity(intent);
 
                             }
                         });
                     } else {
-                        ShowToast(getContext(), "you don't have internet connection");
+                        ShowToast( "you don't have internet connection");
                     }
                 }
             });
@@ -151,15 +151,15 @@ public class RegisterFragment extends BaseFragment {
 
     private boolean isAllInserted() {
         if (edt_user_name.getText().toString().equals("")) {
-            ShowToast(getContext(), "insert name");
+            ShowToast("insert name");
             return false;
         }
         if (password.getText().toString().equals("")) {
-            ShowToast(getContext(), "insert password");
+            ShowToast("insert password");
             return false;
         }
         if (email.getText().toString().equals("")) {
-            ShowToast(getContext(), "insert email");
+            ShowToast("insert email");
             return false;
         }
         return true;

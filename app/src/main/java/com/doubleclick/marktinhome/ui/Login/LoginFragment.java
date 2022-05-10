@@ -88,7 +88,7 @@ public class LoginFragment extends BaseFragment {
                     startActivity(intent);
                     loadingAnimView.setVisibility(View.GONE);
                 } else {
-                    ShowToast(getContext(), Objects.requireNonNull(task.getException()).getMessage());
+                    ShowToast( Objects.requireNonNull(task.getException()).getMessage());
                 }
             }
         });
@@ -97,11 +97,11 @@ public class LoginFragment extends BaseFragment {
 
     private boolean isAllInserted() {
         if (password.getText().toString().equals("")) {
-            ShowToast(getContext(), "insert password");
+            ShowToast( "insert password");
             return false;
         }
         if (email.getText().toString().equals("")) {
-            ShowToast(getContext(), "insert email");
+            ShowToast( "insert email");
             return false;
         }
         return true;

@@ -4,54 +4,44 @@ package com.doubleclick.marktinhome.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import androidx.viewpager.widget.ViewPager;
 import com.doubleclick.marktinhome.R;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
+import com.todkars.shimmer.ShimmerRecyclerView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class FragmentGroupBinding implements ViewBinding {
   @NonNull
-  private final SwipeRefreshLayout rootView;
+  private final ConstraintLayout rootView;
 
   @NonNull
   public final FloatingActionButton addGroup;
 
   @NonNull
-  public final AppBarLayout appbar;
+  public final ShimmerRecyclerView allGroupsRecycler;
 
   @NonNull
-  public final SwipeRefreshLayout refresh;
+  public final EditText search;
 
-  @NonNull
-  public final TabLayout tabLayout;
-
-  @NonNull
-  public final ViewPager viewpager;
-
-  private FragmentGroupBinding(@NonNull SwipeRefreshLayout rootView,
-      @NonNull FloatingActionButton addGroup, @NonNull AppBarLayout appbar,
-      @NonNull SwipeRefreshLayout refresh, @NonNull TabLayout tabLayout,
-      @NonNull ViewPager viewpager) {
+  private FragmentGroupBinding(@NonNull ConstraintLayout rootView,
+      @NonNull FloatingActionButton addGroup, @NonNull ShimmerRecyclerView allGroupsRecycler,
+      @NonNull EditText search) {
     this.rootView = rootView;
     this.addGroup = addGroup;
-    this.appbar = appbar;
-    this.refresh = refresh;
-    this.tabLayout = tabLayout;
-    this.viewpager = viewpager;
+    this.allGroupsRecycler = allGroupsRecycler;
+    this.search = search;
   }
 
   @Override
   @NonNull
-  public SwipeRefreshLayout getRoot() {
+  public ConstraintLayout getRoot() {
     return rootView;
   }
 
@@ -82,28 +72,20 @@ public final class FragmentGroupBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.appbar;
-      AppBarLayout appbar = ViewBindings.findChildViewById(rootView, id);
-      if (appbar == null) {
+      id = R.id.allGroupsRecycler;
+      ShimmerRecyclerView allGroupsRecycler = ViewBindings.findChildViewById(rootView, id);
+      if (allGroupsRecycler == null) {
         break missingId;
       }
 
-      SwipeRefreshLayout refresh = (SwipeRefreshLayout) rootView;
-
-      id = R.id.tab_layout;
-      TabLayout tabLayout = ViewBindings.findChildViewById(rootView, id);
-      if (tabLayout == null) {
+      id = R.id.search;
+      EditText search = ViewBindings.findChildViewById(rootView, id);
+      if (search == null) {
         break missingId;
       }
 
-      id = R.id.viewpager;
-      ViewPager viewpager = ViewBindings.findChildViewById(rootView, id);
-      if (viewpager == null) {
-        break missingId;
-      }
-
-      return new FragmentGroupBinding((SwipeRefreshLayout) rootView, addGroup, appbar, refresh,
-          tabLayout, viewpager);
+      return new FragmentGroupBinding((ConstraintLayout) rootView, addGroup, allGroupsRecycler,
+          search);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

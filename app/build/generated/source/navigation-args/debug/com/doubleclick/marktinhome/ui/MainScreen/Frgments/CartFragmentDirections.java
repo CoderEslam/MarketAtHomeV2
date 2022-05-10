@@ -18,9 +18,4 @@ public class CartFragmentDirections {
   public static NavDirections actionMenuCartToAddressFragment() {
     return new ActionOnlyNavDirections(R.id.action_menu_Cart_to_addressFragment);
   }
-
-  @NonNull
-  public static NavDirections actionMenuCartToOrderSelllerFragment() {
-    return new ActionOnlyNavDirections(R.id.action_menu_Cart_to_orderSelllerFragment);
-  }
 }

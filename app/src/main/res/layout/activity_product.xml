@@ -97,6 +97,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginBottom="10dp"
+                app:cardCornerRadius="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -379,6 +381,9 @@
                                 android:textSize="20sp"
                                 android:visibility="gone" />
 
+                            <!-- https://github.com/anastr/SpeedView -->
+                            <!-- https://github.com/sathishmscict/SpeedView-->
+                            <!-- https://github.com/Afra55/Android-Speedometer-->
                             <com.github.anastr.speedviewlib.AwesomeSpeedometer
                                 android:id="@+id/speedView"
                                 android:layout_width="wrap_content"
@@ -395,7 +400,7 @@
                                 app:sv_speedTextFormat="FLOAT"
                                 app:sv_speedTextPosition="CENTER"
                                 app:sv_speedTextSize="18sp"
-                                app:sv_speedometerMode="NORMAL"
+                                app:sv_speedometerMode="TOP"
                                 app:sv_unit="rating"
                                 app:sv_unitUnderSpeedText="true"
                                 app:sv_withTremble="false" />
