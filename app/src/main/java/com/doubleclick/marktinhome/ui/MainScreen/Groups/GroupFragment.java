@@ -6,23 +6,17 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.doubleclick.ViewModel.GroupViewModel;
 import com.doubleclick.marktinhome.Adapters.ItemGroupsAdapter;
-import com.doubleclick.marktinhome.Adapters.ViewPagerGroupAdapter;
 import com.doubleclick.marktinhome.Model.Group;
 import com.doubleclick.marktinhome.R;
-import com.doubleclick.marktinhome.Views.Animatoo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
 import com.todkars.shimmer.ShimmerRecyclerView;
 
 import java.util.ArrayList;

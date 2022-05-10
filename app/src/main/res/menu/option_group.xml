@@ -10,9 +10,5 @@
         android:id="@+id/editOption"
         android:title="@string/edit"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/saveOption"
-        android:title="@string/save"
-        app:showAsAction="never" />
 
 </menu>

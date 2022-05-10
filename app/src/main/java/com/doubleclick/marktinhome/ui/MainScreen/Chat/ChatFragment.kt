@@ -4,6 +4,7 @@ import android.Manifest
 import android.animation.Animator
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.DownloadManager
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.ContextWrapper
@@ -14,6 +15,7 @@ import android.graphics.Color
 import android.location.LocationManager
 import android.media.MediaRecorder
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.ContactsContract
@@ -29,6 +31,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -39,9 +42,12 @@ import com.devlomi.record_view.OnRecordListener
 import com.devlomi.record_view.RecordButton
 import com.devlomi.record_view.RecordView
 import com.doubleclick.Api.APIService
+import com.doubleclick.OnMessageClick
+import com.doubleclick.OnOptionMessage
 import com.doubleclick.ViewModel.ChatViewModel
 import com.doubleclick.marktinhome.Adapters.BaseMessageAdapter
 import com.doubleclick.marktinhome.BaseFragment
+import com.doubleclick.marktinhome.Database.ChatViewModelDatabase
 import com.doubleclick.marktinhome.Model.*
 import com.doubleclick.marktinhome.Model.Constantes.CHATS
 import com.doubleclick.marktinhome.Model.Constantes.USER
@@ -63,19 +69,15 @@ import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
 import com.vanniktech.emoji.EmojiPopup
 import de.hdodenhof.circleimageview.CircleImageView
-import io.realm.Realm
-import io.realm.RealmBaseAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.io.IOException
-import java.security.SecureRandom
 import java.util.*
 
 
-class ChatFragment : BaseFragment(), OnMapReadyCallback {
-
+class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptionMessage {
 
     private lateinit var sendText: ImageView
     private lateinit var et_text_message: EditText
@@ -106,6 +108,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var status: TextView;
     private lateinit var apiService: APIService
     private var sharePost: String = "null".toString()
+    private lateinit var chatViewModelDatabase: ChatViewModelDatabase
 
     private lateinit var storageReference: StorageReference
     var fileType: String? = null
@@ -148,7 +151,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
         client = LocationServices.getFusedLocationProviderClient(requireContext())
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
+        chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
         chatRecycler = view.findViewById(R.id.chatRecycler);
         chatRecycler.setHasFixedSize(true);
         sendRecord = view.findViewById(R.id.sendRecord);
@@ -181,14 +184,14 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
         sendText.setOnClickListener {
             sentMessage(et_text_message.text.toString().trim(), "text")
         }
-        chatViewModel.newInsertChat().observe(viewLifecycleOwner, androidx.lifecycle.Observer {
+        chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
             chats.add(it)
-            chatAdapter = BaseMessageAdapter(chats, myId);
+            chatAdapter = BaseMessageAdapter(chats, this, this);
             chatRecycler.adapter = chatAdapter
             chatAdapter.notifyItemInserted((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
             chatRecycler.scrollToPosition((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
             chatRecycler.smoothScrollToPosition((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
-        });
+        };
 
 
         val emojiPopup =
@@ -355,7 +358,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
         et_text_message.setText("")
         makeChatList();
         sendNotifiaction(text);
-
 
 
     }
@@ -662,5 +664,64 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback {
 
                 override fun onFailure(call: Call<MyResponse>, t: Throwable) {}
             })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.M)
+    override fun onMessageClickListner(chat: Chat, pos: Int) {
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                download(chat)
+            }
+            chatAdapter.notifyItemChanged(pos)
+
+        } catch (e: Exception) {
+
+        }
+
+
+    }
+
+
+    override fun deleteForMe(chat: Chat, pos: Int) {
+        chatViewModelDatabase.delete(chat)
+        chatAdapter.notifyItemRemoved(pos)
+
+    }
+
+    override fun deleteForAll(chat: Chat, pos: Int) {
+        chatViewModelDatabase.delete(chat)
+        chatAdapter.notifyItemRemoved(pos)
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Throws(java.lang.Exception::class)
+    fun download(chat: Chat) {
+        try {
+            val request = DownloadManager.Request(Uri.parse(chat.message))
+            request.setDestinationInExternalPublicDir(
+                Environment.DIRECTORY_DOWNLOADS,
+                "video" + chat.id
+            )
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED) // to notify when download is complete
+            request.allowScanningByMediaScanner() // if you want to be available from media players
+            val manager =
+                requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            val u = manager.getUriForDownloadedFile(manager.enqueue(request))
+            val chat = Chat(
+                u.toString(),
+                chat.type,
+                chat.sender,
+                chat.receiver,
+                chat.date,
+                chat.id,
+                chat.statusMessage,
+                chat.isSeen
+            )
+            chatViewModelDatabase.update(chat)
+        } catch (e: IllegalStateException) {
+            Log.e("Exeption Voice", e.message!!)
+        } catch (e: NullPointerException) {
+            Log.e("Exeption Voice", e.message!!)
+        }
     }
 }

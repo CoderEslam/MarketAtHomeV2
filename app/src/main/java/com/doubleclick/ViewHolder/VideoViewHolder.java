@@ -21,6 +21,8 @@ import androidx.appcompat.widget.PopupMenu;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.doubleclick.OnMessageClick;
+import com.doubleclick.OnOptionMessage;
 import com.doubleclick.ViewModel.ChatViewModel;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
@@ -34,13 +36,20 @@ public class VideoViewHolder extends BaseViewHolder {
     private VideoView video;
     private ConstraintLayout ContinerViedo;
     private ImageView options;
+    private OnMessageClick onMessageClick;
+    private OnOptionMessage onOptionMessage;
+    private ImageView download;
+    private ImageView done;
 
-    public VideoViewHolder(@NonNull View itemView) {
+    public VideoViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, OnOptionMessage onOptionMessage) {
         super(itemView);
+        this.onMessageClick = onMessageClick;
+        this.onOptionMessage = onOptionMessage;
         video = itemView.findViewById(R.id.video);
         ContinerViedo = itemView.findViewById(R.id.ContinerViedo);
         options = itemView.findViewById(R.id.options);
-
+        download = itemView.findViewById(R.id.download);
+        done = itemView.findViewById(R.id.done);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -71,41 +80,23 @@ public class VideoViewHolder extends BaseViewHolder {
                 public boolean onMenuItemClick(MenuItem item) {
                     int id = item.getItemId();
                     if (R.id.deleteforeveryone == id) {
-                        Toast.makeText(itemView.getContext(),"deleteforeveryone",Toast.LENGTH_LONG).show();
+                        onOptionMessage.deleteForAll(chat, position);
+                        Toast.makeText(itemView.getContext(), "deleteforeveryone", Toast.LENGTH_LONG).show();
                     }
                     if (R.id.deleteForme == id) {
-                        Toast.makeText(itemView.getContext(),"deleteForme",Toast.LENGTH_LONG).show();
+                        onOptionMessage.deleteForMe(chat, position);
+                        Toast.makeText(itemView.getContext(), "deleteForme", Toast.LENGTH_LONG).show();
                     }
-                    if (R.id.download == id) {
-                        try {
-                            download(chat);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-
                     return true;
                 }
             });
             popupMenu.show();
+        });
 
-
+        download.setOnClickListener(v -> {
+            onMessageClick.onMessageClickListner(chat, getAdapterPosition());
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void download(Chat chat) throws Exception {
-        try {
-            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(chat.getMessage()));
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "video" + chat.getId());
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); // to notify when download is complete
-            request.allowScanningByMediaScanner();// if you want to be available from media players
-            DownloadManager manager = (DownloadManager) itemView.getContext().getSystemService(DOWNLOAD_SERVICE);
-            Uri u = manager.getUriForDownloadedFile(manager.enqueue(request));
-            video.setVideoURI(u);
-        } catch (IllegalStateException | NullPointerException e) {
-            Log.e("Exeption Voice", e.getMessage());
-        }
 
-    }
 }

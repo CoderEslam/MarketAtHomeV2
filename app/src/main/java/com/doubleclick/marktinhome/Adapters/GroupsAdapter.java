@@ -23,6 +23,7 @@ import com.doubleclick.marktinhome.Views.carouselrecyclerviewReflaction.Carousel
 import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.myCarouselLayoutManager;
 import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.CarouselZoomPostLayoutListener;
 import com.doubleclick.marktinhome.Views.myCarousellayoutmanager.CenterScrollListener;
+import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 import com.doubleclick.marktinhome.ui.MainScreen.Chat.ChatActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Groups.Comments.CommentGroupActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewActivity;
@@ -87,13 +88,10 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
                 public boolean onMenuItemClick(MenuItem item) {
                     int id = item.getItemId();
                     if (id == R.id.deleteOption) {
-                        optionPost.delete(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
+                        optionPost.delete(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId(),holder.getAdapterPosition());
                     }
                     if (id == R.id.editOption) {
-                        optionPost.edit(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
-                    }
-                    if (id == R.id.saveOption) {
-                        optionPost.save(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
+                        optionPost.edit(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId(),holder.getAdapterPosition());
                     }
                     return true;
                 }
@@ -143,6 +141,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
             }
         });
         holder.setLike(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
+        holder.caption.setText(postsData.get(holder.getAdapterPosition()).getPostsGroup().getText());
 
         holder.comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -178,8 +177,9 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
                         intent.putExtra(Intent.EXTRA_TEXT, "https://www.market.doublethink.com/" + postsData.get(holder.getAdapterPosition()).getPostsGroup().getGroupId() + "/" + postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
                         Intent shareIntent = Intent.createChooser(intent, null);
                         holder.itemView.getContext().startActivity(shareIntent);
-                    }if (id == R.id.Chat) {
-                        Intent intent = new Intent(holder.itemView.getContext(),ChatActivity.class);
+                    }
+                    if (id == R.id.Chat) {
+                        Intent intent = new Intent(holder.itemView.getContext(), ChatActivity.class);
                         intent.putExtra("sharePost", "https://www.market.doublethink.com/" + postsData.get(holder.getAdapterPosition()).getPostsGroup().getGroupId() + "/" + postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
                         holder.itemView.getContext().startActivity(intent);
                     }
@@ -212,6 +212,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
         private LinearLayout likeButton, comment, share;
         private CircleImageView imagePublisher;
         private ImageView video;
+        private SocialTextView caption;
 
         public GroupViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -227,6 +228,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
             namePublisher = itemView.findViewById(R.id.namePublisher);
             imagePublisher = itemView.findViewById(R.id.imagePublisher);
             share = itemView.findViewById(R.id.share);
+            caption = itemView.findViewById(R.id.caption);
             like_img = itemView.findViewById(R.id.like_img);
             like_text = itemView.findViewById(R.id.like_text);
             loadmore = itemView.findViewById(R.id.loadmore);
@@ -274,12 +276,9 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
     }
 
     public interface OptionPost {
-        void delete(String id);
+        void delete(String id, int pos);
 
-        void edit(String id);
-
-        void save(String id);
-
+        void edit(String id, int pos);
     }
 
 }

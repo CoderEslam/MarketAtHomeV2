@@ -51,7 +51,6 @@ public class CommentGroupActivity extends AppCompatActivity {
         commentsGroupViewModel = new ViewModelProvider(this).get(CommentsGroupViewModel.class);
         postId = getIntent().getStringExtra("postId"/* post id*/);
         groupId = getIntent().getStringExtra("groupId" /* group id*/);
-
         commentsGroupViewModel.GetComments(groupId, postId);
         commentsGroupViewModel.getCommentsLiveData().observe(this, new Observer<ArrayList<CommentsGroupData>>() {
             @Override

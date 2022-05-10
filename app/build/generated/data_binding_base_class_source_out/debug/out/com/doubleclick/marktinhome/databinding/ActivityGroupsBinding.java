@@ -31,9 +31,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final ImageView back;
 
   @NonNull
-  public final SocialTextView bio;
-
-  @NonNull
   public final ConstraintLayout constraintLayout;
 
   @NonNull
@@ -47,6 +44,9 @@ public final class ActivityGroupsBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout details;
+
+  @NonNull
+  public final SocialTextView discription;
 
   @NonNull
   public final FloatingActionButton editCover;
@@ -91,6 +91,9 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final LinearLayout numbers;
 
   @NonNull
+  public final ImageView option;
+
+  @NonNull
   public final ShimmerRecyclerView post;
 
   @NonNull
@@ -109,26 +112,26 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final TextView username;
 
   private ActivityGroupsBinding(@NonNull RelativeLayout rootView, @NonNull ImageView back,
-      @NonNull SocialTextView bio, @NonNull ConstraintLayout constraintLayout,
-      @NonNull ImageView cover, @NonNull ConstraintLayout coverLayout,
-      @NonNull LinearLayout createPost, @NonNull LinearLayout details,
+      @NonNull ConstraintLayout constraintLayout, @NonNull ImageView cover,
+      @NonNull ConstraintLayout coverLayout, @NonNull LinearLayout createPost,
+      @NonNull LinearLayout details, @NonNull SocialTextView discription,
       @NonNull FloatingActionButton editCover, @NonNull ImageView editName,
       @NonNull FloatingActionButton editProfile, @NonNull TextView history,
       @NonNull CircleImageView imageGroup, @NonNull LinearLayout linearLayout3,
       @NonNull SocialTextView link, @NonNull LinearLayout linkLayout,
       @NonNull LinearLayout locationLayout, @NonNull LinearLayout main, @NonNull TextView members,
       @NonNull TextView name, @NonNull TextView nothing, @NonNull LinearLayout numbers,
-      @NonNull ShimmerRecyclerView post, @NonNull TextView postsNum,
+      @NonNull ImageView option, @NonNull ShimmerRecyclerView post, @NonNull TextView postsNum,
       @NonNull LinearProgressIndicator progressBar, @NonNull RelativeLayout scroll,
       @NonNull CircleImageView selectImage, @NonNull TextView username) {
     this.rootView = rootView;
     this.back = back;
-    this.bio = bio;
     this.constraintLayout = constraintLayout;
     this.cover = cover;
     this.coverLayout = coverLayout;
     this.createPost = createPost;
     this.details = details;
+    this.discription = discription;
     this.editCover = editCover;
     this.editName = editName;
     this.editProfile = editProfile;
@@ -143,6 +146,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
     this.name = name;
     this.nothing = nothing;
     this.numbers = numbers;
+    this.option = option;
     this.post = post;
     this.postsNum = postsNum;
     this.progressBar = progressBar;
@@ -184,12 +188,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.bio;
-      SocialTextView bio = ViewBindings.findChildViewById(rootView, id);
-      if (bio == null) {
-        break missingId;
-      }
-
       id = R.id.constraintLayout;
       ConstraintLayout constraintLayout = ViewBindings.findChildViewById(rootView, id);
       if (constraintLayout == null) {
@@ -217,6 +215,12 @@ public final class ActivityGroupsBinding implements ViewBinding {
       id = R.id.details;
       LinearLayout details = ViewBindings.findChildViewById(rootView, id);
       if (details == null) {
+        break missingId;
+      }
+
+      id = R.id.discription;
+      SocialTextView discription = ViewBindings.findChildViewById(rootView, id);
+      if (discription == null) {
         break missingId;
       }
 
@@ -304,6 +308,12 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.option;
+      ImageView option = ViewBindings.findChildViewById(rootView, id);
+      if (option == null) {
+        break missingId;
+      }
+
       id = R.id.post;
       ShimmerRecyclerView post = ViewBindings.findChildViewById(rootView, id);
       if (post == null) {
@@ -336,10 +346,10 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityGroupsBinding((RelativeLayout) rootView, back, bio, constraintLayout,
-          cover, coverLayout, createPost, details, editCover, editName, editProfile, history,
+      return new ActivityGroupsBinding((RelativeLayout) rootView, back, constraintLayout, cover,
+          coverLayout, createPost, details, discription, editCover, editName, editProfile, history,
           imageGroup, linearLayout3, link, linkLayout, locationLayout, main, members, name, nothing,
-          numbers, post, postsNum, progressBar, scroll, selectImage, username);
+          numbers, option, post, postsNum, progressBar, scroll, selectImage, username);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

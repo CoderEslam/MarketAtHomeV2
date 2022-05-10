@@ -15,6 +15,7 @@ import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
 import com.doubleclick.marktinhome.Views.carouselrecyclerviewReflaction.CarouselRecyclerview;
+import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -26,6 +27,12 @@ public final class LayoutItemGroupBinding implements ViewBinding {
 
   @NonNull
   public final ConstraintLayout ConstraintLayoutimageName;
+
+  @NonNull
+  public final ConstraintLayout Continercaption;
+
+  @NonNull
+  public final SocialTextView caption;
 
   @NonNull
   public final CardView cardView;
@@ -73,8 +80,9 @@ public final class LayoutItemGroupBinding implements ViewBinding {
   public final ImageView video;
 
   private LayoutItemGroupBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout ConstraintLayoutimageName, @NonNull CardView cardView,
-      @NonNull CardView cardView7, @NonNull LinearLayout comment,
+      @NonNull ConstraintLayout ConstraintLayoutimageName,
+      @NonNull ConstraintLayout Continercaption, @NonNull SocialTextView caption,
+      @NonNull CardView cardView, @NonNull CardView cardView7, @NonNull LinearLayout comment,
       @NonNull CircleImageView imagePublisher, @NonNull CarouselRecyclerview images,
       @NonNull LinearLayout likeButton, @NonNull ImageView likeImg, @NonNull TextView likeText,
       @NonNull TextView loadmore, @NonNull ConstraintLayout meme, @NonNull TextView namePublisher,
@@ -82,6 +90,8 @@ public final class LayoutItemGroupBinding implements ViewBinding {
       @NonNull ImageView video) {
     this.rootView = rootView;
     this.ConstraintLayoutimageName = ConstraintLayoutimageName;
+    this.Continercaption = Continercaption;
+    this.caption = caption;
     this.cardView = cardView;
     this.cardView7 = cardView7;
     this.comment = comment;
@@ -129,6 +139,18 @@ public final class LayoutItemGroupBinding implements ViewBinding {
       id = R.id.ConstraintLayoutimage_name;
       ConstraintLayout ConstraintLayoutimageName = ViewBindings.findChildViewById(rootView, id);
       if (ConstraintLayoutimageName == null) {
+        break missingId;
+      }
+
+      id = R.id.Continercaption;
+      ConstraintLayout Continercaption = ViewBindings.findChildViewById(rootView, id);
+      if (Continercaption == null) {
+        break missingId;
+      }
+
+      id = R.id.caption;
+      SocialTextView caption = ViewBindings.findChildViewById(rootView, id);
+      if (caption == null) {
         break missingId;
       }
 
@@ -223,8 +245,9 @@ public final class LayoutItemGroupBinding implements ViewBinding {
       }
 
       return new LayoutItemGroupBinding((ConstraintLayout) rootView, ConstraintLayoutimageName,
-          cardView, cardView7, comment, imagePublisher, images, likeButton, likeImg, likeText,
-          loadmore, meme, namePublisher, option, playVideo, share, video);
+          Continercaption, caption, cardView, cardView7, comment, imagePublisher, images,
+          likeButton, likeImg, likeText, loadmore, meme, namePublisher, option, playVideo, share,
+          video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

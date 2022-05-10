@@ -85,10 +85,51 @@
 
                             <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="200dp"
+                                android:layout_height="wrap_content"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:id="@+id/Continercaption"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent">
+
+                                    <com.doubleclick.marktinhome.Views.socialtextview.SocialTextView
+                                        android:id="@+id/caption"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="8dp"
+                                        android:textSize="13sp"
+                                        app:emailColor="#1877F2"
+                                        app:hashtagColor="#1877F2"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/option"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:linkModes="email|hashtag|mention|phone|url"
+                                        app:mentionColor="#1877F2"
+                                        app:phoneColor="#1877F2"
+                                        app:urlColor="#1877F2"
+                                        tools:text="@string/empty_text_chat_list" />
+
+                                    <ImageView
+                                        android:id="@+id/option"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginEnd="8dp"
+                                        android:elevation="10dp"
+                                        android:src="@drawable/threedot"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
                                 <com.doubleclick.marktinhome.Views.carouselrecyclerviewReflaction.CarouselRecyclerview
                                     android:id="@+id/images"
@@ -98,7 +139,7 @@
                                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/Continercaption"
                                     tools:listitem="@layout/layout_images" />
 
                                 <ImageView
@@ -242,18 +283,6 @@
 
             </androidx.cardview.widget.CardView>
 
-            <ImageView
-                android:id="@+id/option"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:elevation="10dp"
-                android:src="@drawable/threedot"
-                app:layout_constraintBottom_toBottomOf="@+id/cardView7"
-                app:layout_constraintEnd_toEndOf="@+id/cardView7"
-                app:layout_constraintTop_toTopOf="@+id/cardView7"
-                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/loadmore"

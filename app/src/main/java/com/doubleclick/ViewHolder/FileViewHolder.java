@@ -8,6 +8,8 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.doubleclick.OnMessageClick;
+import com.doubleclick.OnOptionMessage;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -17,9 +19,13 @@ import com.doubleclick.marktinhome.R;
  */
 public class FileViewHolder extends BaseViewHolder {
     public LottieAnimationView lottieAnimationView;
+    public OnMessageClick onMessageClick;
+    private OnOptionMessage onOptionMessage;
 
-    public FileViewHolder(View itemView) {
+    public FileViewHolder(View itemView, OnMessageClick onMessageClick, OnOptionMessage onOptionMessage) {
         super(itemView);
+        this.onMessageClick = onMessageClick;
+        this.onOptionMessage = onOptionMessage;
         lottieAnimationView = itemView.findViewById(R.id.file);
     }
 
@@ -39,7 +45,10 @@ public class FileViewHolder extends BaseViewHolder {
                     i.setPackage(null);
                     itemView.getContext().startActivity(i);
                 }
+                onMessageClick.onMessageClickListner(chat,getAdapterPosition());
+
             }
         });
+
     }
 }

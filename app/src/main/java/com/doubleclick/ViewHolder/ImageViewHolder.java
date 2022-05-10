@@ -22,6 +22,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.doubleclick.OnMessageClick;
+import com.doubleclick.OnOptionMessage;
 import com.doubleclick.Servies.Servies;
 import com.doubleclick.ViewModel.ChatViewModel;
 import com.doubleclick.marktinhome.Model.Chat;
@@ -36,9 +38,13 @@ public class ImageViewHolder extends BaseViewHolder {
     public PhotoView imageView;
     public ImageView optins;
     private ConstraintLayout ContinnerImage;
+    public OnMessageClick onMessageClick;
+    private OnOptionMessage onOptionMessage;
 
-    public ImageViewHolder(@NonNull View itemView) {
+    public ImageViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, OnOptionMessage onOptionMessage) {
         super(itemView);
+        this.onMessageClick = onMessageClick;
+        this.onOptionMessage = onOptionMessage;
         imageView = itemView.findViewById(R.id.image);
         optins = itemView.findViewById(R.id.optins);
         ContinnerImage = itemView.findViewById(R.id.ContinnerImage);
@@ -74,10 +80,12 @@ public class ImageViewHolder extends BaseViewHolder {
                     }
                 });
                 popupMenu.show();
-
             }
         });
 
+        itemView.setOnClickListener(v -> {
+            onMessageClick.onMessageClickListner(chat, getAdapterPosition());
+        });
         ContinnerImage.setOnClickListener(v -> {
 //            Intent intent = new Intent(itemView.getContext(), ViewActivity.class);
 //            intent.putExtra("chat", chat);

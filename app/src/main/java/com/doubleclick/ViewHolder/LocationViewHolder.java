@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.doubleclick.OnOptionMessage;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -18,8 +19,10 @@ import com.doubleclick.marktinhome.R;
  */
 public class LocationViewHolder extends BaseViewHolder {
     private LottieAnimationView location_lotte;
-    public LocationViewHolder(@NonNull View itemView) {
+    public OnOptionMessage onOptionMessage;
+    public LocationViewHolder(@NonNull View itemView, OnOptionMessage onOptionMessage) {
         super(itemView);
+        this.onOptionMessage = onOptionMessage;
         location_lotte = itemView.findViewById(R.id.location_lotte);
     }
 

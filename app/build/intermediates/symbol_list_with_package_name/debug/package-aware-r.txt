@@ -2916,6 +2916,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable add
 drawable add_circle
+drawable arrow_back
 drawable arrow_down
 drawable arrow_up
 drawable asl_pathmorph_drawer
@@ -2937,6 +2938,7 @@ drawable bg_image
 drawable bg_label_checked
 drawable bg_label_unchecked
 drawable bg_product_activity
+drawable bg_ripple
 drawable bg_text_chat
 drawable bg_white
 drawable btn_checkbox_checked_mtrl
@@ -2993,6 +2995,8 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable done
+drawable done_all
 drawable dot
 drawable dot_white
 drawable download
@@ -3084,7 +3088,6 @@ drawable hobes
 drawable ic_action
 drawable ic_aperture
 drawable ic_arrow_back_24
-drawable ic_back
 drawable ic_baseline_insert_emoticon_24
 drawable ic_bubble_big_colorpickerview_skydoves
 drawable ic_bubble_small_colorpickerview_skydoves
@@ -3238,6 +3241,7 @@ drawable test_level_drawable
 drawable text_message_left
 drawable text_message_right
 drawable textsms
+drawable three_dot_horiz
 drawable threedot
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -3252,7 +3256,6 @@ id ALT
 id AddAdv
 id AddProduct
 id AddTradmark
-id AllGroupsRecycler
 id AnothercustommerPhone
 id Apps
 id BOTTOM
@@ -3275,6 +3278,7 @@ id Comments
 id ConstraintLayoutimage_name
 id ContinerViedo
 id ContinerVoice
+id Continercaption
 id ContinnerImage
 id Continue
 id CustomerLocation
@@ -3291,7 +3295,6 @@ id LineIndicator
 id LinkFragment
 id META
 id MainRecyceler
-id MyGroupsRecycler
 id MyOrder
 id MyTrademark
 id NORMAL
@@ -3471,7 +3474,6 @@ id basket_img
 id beginOnFirstDraw
 id beginning
 id bestChoice
-id bio
 id blockCode
 id blockQuote
 id blocking
@@ -3510,6 +3512,7 @@ id camera
 id cancel
 id cancel_action
 id cancel_button
+id caption
 id cardView
 id cardView11
 id cardView2
@@ -3638,7 +3641,9 @@ id disableHome
 id disableIntraAutoTransition
 id disablePostScroll
 id disableScroll
+id discription
 id disjoint
+id done
 id download
 id downloadVoice
 id dragAnticlockwise
@@ -4115,7 +4120,6 @@ id rr
 id rtl
 id rv_container
 id satellite
-id saveOption
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -4470,6 +4474,7 @@ layout activity_create_group
 layout activity_create_post
 layout activity_dash_board
 layout activity_edit_advertisement
+layout activity_edit_post
 layout activity_edit_tradmark
 layout activity_filter
 layout activity_filter_parent
@@ -4531,7 +4536,6 @@ layout emoji_view_category
 layout empty_view
 layout flag_bubble_colorpickerview_skydoves
 layout fragment_address
-layout fragment_all_groups
 layout fragment_all_users
 layout fragment_cart
 layout fragment_chat
@@ -4555,7 +4559,6 @@ layout fragment_menu_list
 layout fragment_menu_profile
 layout fragment_menu_store
 layout fragment_month
-layout fragment_my_groups
 layout fragment_pager
 layout fragment_parent
 layout fragment_register

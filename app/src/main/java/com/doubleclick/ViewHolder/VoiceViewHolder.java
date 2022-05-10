@@ -23,6 +23,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.doubleclick.OnMessageClick;
+import com.doubleclick.OnOptionMessage;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -40,14 +42,20 @@ public class VoiceViewHolder extends BaseViewHolder {
     private ImageView downloadVoice;
     private boolean isPlay = false;
     private ProgressBar progress;
+    private OnMessageClick onMessageClick;
+    private OnOptionMessage onOptionMessage;
+    private ImageView done;
 
 
-    public VoiceViewHolder(@NonNull View itemView) {
+    public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, OnOptionMessage onOptionMessage) {
         super(itemView);
+        this.onMessageClick = onMessageClick;
+        this.onOptionMessage = onOptionMessage;
         voice = itemView.findViewById(R.id.video);
         downloadVoice = itemView.findViewById(R.id.downloadVoice);
         ContinerVoice = itemView.findViewById(R.id.ContinerVoice);
         progress = itemView.findViewById(R.id.progress);
+        done = itemView.findViewById(R.id.done);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -106,6 +114,9 @@ public class VoiceViewHolder extends BaseViewHolder {
 //        } else {
 //            Toast.makeText(itemView.getContext(), "you don't have an internet connection", Toast.LENGTH_LONG).show();
 //        }
+        itemView.setOnClickListener(v -> {
+            onMessageClick.onMessageClickListner(chat, getAdapterPosition());
+        });
 
     }
 

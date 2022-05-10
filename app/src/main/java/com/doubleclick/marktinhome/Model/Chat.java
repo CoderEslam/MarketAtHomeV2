@@ -20,6 +20,17 @@ public class Chat {
     public Chat() {
     }
 
+    public Chat(String message, String type, String sender, String receiver, long date, String id, String statusMessage, boolean seen) {
+        this.message = message;
+        this.type = type;
+        this.sender = sender;
+        this.receiver = receiver;
+        this.date = date;
+        this.id = id;
+        StatusMessage = statusMessage;
+        this.seen = seen;
+    }
+
     public String getType() {
         return type;
     }

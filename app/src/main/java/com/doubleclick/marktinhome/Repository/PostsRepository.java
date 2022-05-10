@@ -32,7 +32,7 @@ public class PostsRepository extends BaseRepository {
     }
 
     public void AllPosts(String groupId, int num) {
-        Task<DataSnapshot> d = reference.child(GROUPS).child(groupId).child(POSTS).limitToLast(num).get().addOnCompleteListener(task -> {
+        Task<DataSnapshot> d = reference.child(GROUPS).child(groupId).child(POSTS).limitToLast(1000).get().addOnCompleteListener(task -> {
             DataSnapshot dataSnapshot = task.getResult();
             postData.clear();
             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {

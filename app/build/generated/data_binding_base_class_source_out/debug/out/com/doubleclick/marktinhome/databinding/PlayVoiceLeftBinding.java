@@ -30,6 +30,9 @@ public final class PlayVoiceLeftBinding implements ViewBinding {
   public final CardView cardView6;
 
   @NonNull
+  public final ImageView done;
+
+  @NonNull
   public final ImageView downloadVoice;
 
   @NonNull
@@ -42,12 +45,13 @@ public final class PlayVoiceLeftBinding implements ViewBinding {
   public final VideoView video;
 
   private PlayVoiceLeftBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout ContinerVoice, @NonNull CardView cardView6,
+      @NonNull ConstraintLayout ContinerVoice, @NonNull CardView cardView6, @NonNull ImageView done,
       @NonNull ImageView downloadVoice, @NonNull LottieAnimationView file,
       @NonNull ProgressBar progress, @NonNull VideoView video) {
     this.rootView = rootView;
     this.ContinerVoice = ContinerVoice;
     this.cardView6 = cardView6;
+    this.done = done;
     this.downloadVoice = downloadVoice;
     this.file = file;
     this.progress = progress;
@@ -89,6 +93,12 @@ public final class PlayVoiceLeftBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.done;
+      ImageView done = ViewBindings.findChildViewById(rootView, id);
+      if (done == null) {
+        break missingId;
+      }
+
       id = R.id.downloadVoice;
       ImageView downloadVoice = ViewBindings.findChildViewById(rootView, id);
       if (downloadVoice == null) {
@@ -113,7 +123,7 @@ public final class PlayVoiceLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      return new PlayVoiceLeftBinding((ConstraintLayout) rootView, ContinerVoice, cardView6,
+      return new PlayVoiceLeftBinding((ConstraintLayout) rootView, ContinerVoice, cardView6, done,
           downloadVoice, file, progress, video);
     }
     String missingId = rootView.getResources().getResourceName(id);

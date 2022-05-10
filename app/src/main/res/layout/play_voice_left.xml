@@ -8,8 +8,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_marginEnd="100dp"
+        android:background="@drawable/bg_ripple"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,12 +18,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ProgressBar
-            android:visibility="gone"
             android:id="@+id/progress"
             style="?android:attr/progressBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:elevation="10dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/cardView6"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,13 +31,12 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView6"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
+            android:layout_height="0dp"
             android:outlineAmbientShadowColor="@color/black"
             android:outlineSpotShadowColor="@color/black"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/done"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -45,7 +45,7 @@
             <VideoView
                 android:id="@+id/video"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -60,8 +60,8 @@
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/file"
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:elevation="6dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -87,73 +87,20 @@
 
         </androidx.cardview.widget.CardView>
 
-
-        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-
-        <!--            android:layout_width="300dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_gravity="right"-->
-        <!--            android:layout_margin="5dp"-->
-        <!--            android:background="@drawable/background_left"-->
-        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintHorizontal_bias="0.0"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toTopOf="parent">-->
-
-
-        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--                android:id="@+id/constraintLayout3"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toTopOf="parent">-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/play"-->
-        <!--                    android:layout_width="50dp"-->
-        <!--                    android:layout_height="50dp"-->
-        <!--                    android:src="@drawable/play"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/pause"-->
-        <!--                    android:layout_width="50dp"-->
-        <!--                    android:layout_height="50dp"-->
-        <!--                    android:src="@drawable/pause"-->
-        <!--                    android:visibility="gone"-->
-        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--                    app:layout_constraintStart_toStartOf="parent"-->
-        <!--                    app:layout_constraintTop_toTopOf="parent" />-->
-        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <ImageView
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:elevation="10dp"
+            android:src="@drawable/done"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
-        <!--            <androidx.appcompat.widget.AppCompatSeekBar-->
-        <!--                android:id="@+id/appCompatSeekBar"-->
-        <!--                android:layout_width="0dp"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                app:layout_constraintBottom_toBottomOf="@+id/constraintLayout3"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintStart_toEndOf="@+id/constraintLayout3"-->
-        <!--                app:layout_constraintTop_toTopOf="@+id/constraintLayout3" />-->
-
-        <!--            <TextView-->
-        <!--                android:id="@+id/time"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_marginTop="8dp"-->
-        <!--                android:layout_marginEnd="8dp"-->
-        <!--                android:text="00:00"-->
-        <!--                android:textColor="@color/black"-->
-        <!--                android:textSize="18sp"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintTop_toBottomOf="@+id/appCompatSeekBar" />-->
-
-
-        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,7 +53,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
     private LinearProgressIndicator progressIndicator;
     private TextView name, postsNum, username, history, nothing;
     private FloatingActionButton editCover, editProfile;
-    private SocialTextView bio, link;
+    private SocialTextView discription, link;
     private LinearLayout create_post;
     private ShimmerRecyclerView post;
     private GroupViewModel groupViewModel;
@@ -79,7 +79,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         reference = FirebaseDatabase.getInstance().getReference();
         // todo show when there is nothing to show
         nothing = findViewById(R.id.nothing);
-        bio = findViewById(R.id.bio);
+        discription = findViewById(R.id.discription);
         link = findViewById(R.id.link);
         post = findViewById(R.id.post);
         create_post = findViewById(R.id.create_post);
@@ -99,6 +99,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
                 @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd/MM/yyyy HH:mm aa");
                 history.setText(String.format("Created By %s at %s ", groupData.getUser().getName(), simpleDateFormat.format(groupData.getGroup().getTime())));
                 link.setText(groupData.getGroup().getLink());
+                discription.setText(groupData.getGroup().getDetails());
             }
         });
         post.showShimmer();
@@ -156,20 +157,17 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
     }
 
     @Override
-    public void delete(String id) {
-        reference.child(GROUPS).child(id/* group id */).child(POSTS).child(id);
-        Toast.makeText(GroupsActivity.this, "" + id, Toast.LENGTH_SHORT).show();
+    public void delete(String idPost, int pos) {
+        reference.child(GROUPS).child(id/* group id */).child(POSTS).child(idPost).removeValue();
+        groupsAdapter.notifyItemRemoved(pos);
     }
 
     @Override
-    public void edit(String id) {
-        Toast.makeText(GroupsActivity.this, "" + id, Toast.LENGTH_SHORT).show();
-
+    public void edit(String idPost, int pos) {
+        Intent intent = new Intent(this, EditPostActivity.class);
+        intent.putExtra("idGroup", id);
+        intent.putExtra("idPost", idPost);
+        startActivity(intent);
     }
 
-    @Override
-    public void save(String id) {
-        Toast.makeText(GroupsActivity.this, "" + id, Toast.LENGTH_SHORT).show();
-
-    }
 }

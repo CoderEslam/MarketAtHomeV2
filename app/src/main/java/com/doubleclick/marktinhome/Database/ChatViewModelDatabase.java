@@ -14,13 +14,13 @@ import java.util.List;
 /**
  * Created By Eslam Ghazy on 12/11/2021
  */
-public class ChatViewModel extends ViewModel {
+public class ChatViewModelDatabase extends ViewModel {
 
     private ChatReopsitory mRepositry;
     private Application context;
     private LiveData<List<Chat>> mAllChats;
 
-    public ChatViewModel() {
+    public ChatViewModelDatabase() {
         mRepositry = new ChatReopsitory();
     }
 

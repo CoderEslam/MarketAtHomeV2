@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MarktInHome">
         <activity
+            android:name=".ui.MainScreen.Groups.EditPostActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.MainScreen.FilterParent.FilterParentActivity"
             android:exported="false" />
         <activity
@@ -126,7 +129,7 @@
         <activity
             android:name=".ui.Add.AddActivity"
             android:exported="false"
-            android:hardwareAccelerated="false"/>
+            android:hardwareAccelerated="false" />
         <activity
             android:name=".ui.Trademark.FilterTradmarkActivity"
             android:exported="false" />
