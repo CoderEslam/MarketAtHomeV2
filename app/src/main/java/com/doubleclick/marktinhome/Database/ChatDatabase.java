@@ -20,9 +20,9 @@ public abstract class ChatDatabase extends RoomDatabase {
     public abstract ChatDao EntitiesDAO();
 
     //Singlton
-    public static synchronized ChatDatabase getInstance(Context context) {
+    public static synchronized ChatDatabase getInstance(Application application) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context,
+            instance = Room.databaseBuilder(application.getApplicationContext(),
                     ChatDatabase.class, "Chat-database")
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()

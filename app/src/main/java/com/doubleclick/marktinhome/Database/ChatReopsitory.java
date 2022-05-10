@@ -20,9 +20,9 @@ public class ChatReopsitory {
     private LiveData<List<Chat>> getAllChat;
     private Context mContext;
 
-    public ChatReopsitory() {
-        this.mContext = BaseApplication.context;
-        ChatDatabase db = ChatDatabase.getInstance(mContext);
+    public ChatReopsitory(Application application) {
+        this.mContext = application;
+        ChatDatabase db = ChatDatabase.getInstance(application);
         chatDao = db.EntitiesDAO();
 //        getAllChat = chatDao.getAllChat();
 

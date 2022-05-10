@@ -14,14 +14,15 @@ import java.util.List;
 /**
  * Created By Eslam Ghazy on 12/11/2021
  */
-public class ChatViewModelDatabase extends ViewModel {
+public class ChatViewModelDatabase extends AndroidViewModel {
 
     private ChatReopsitory mRepositry;
     private Application context;
     private LiveData<List<Chat>> mAllChats;
 
-    public ChatViewModelDatabase() {
-        mRepositry = new ChatReopsitory();
+    public ChatViewModelDatabase(@NonNull Application application) {
+        super(application);
+        mRepositry = new ChatReopsitory(application);
     }
 
     public void getAllData(String myID, String FriendID) {

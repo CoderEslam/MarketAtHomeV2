@@ -1,6 +1,7 @@
 package com.doubleclick.marktinhome.Model;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 /**
  * Created By Eslam Ghazy on 3/17/2022
@@ -8,6 +9,8 @@ import androidx.room.Entity;
 @Entity
 public class Chat {
 
+    @PrimaryKey(autoGenerate = true)
+    private int primaryKey;
     private String message;
     private String type;
     private String sender;
@@ -105,5 +108,13 @@ public class Chat {
 
     public void setSeen(boolean seen) {
         this.seen = seen;
+    }
+
+    public int getPrimaryKey() {
+        return primaryKey;
+    }
+
+    public void setPrimaryKey(int primaryKey) {
+        this.primaryKey = primaryKey;
     }
 }

@@ -684,12 +684,15 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
 
     override fun deleteForMe(chat: Chat, pos: Int) {
         chatViewModelDatabase.delete(chat)
+        reference.child(CHATS).child(myId).child(chat.receiver).child(chat.id).removeValue()
         chatAdapter.notifyItemRemoved(pos)
 
     }
 
     override fun deleteForAll(chat: Chat, pos: Int) {
         chatViewModelDatabase.delete(chat)
+        reference.child(CHATS).child(myId).child(chat.receiver).child(chat.id).removeValue()
+        reference.child(CHATS).child(chat.receiver).child(myId).child(chat.id).removeValue()
         chatAdapter.notifyItemRemoved(pos)
     }
 
