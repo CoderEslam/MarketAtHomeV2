@@ -14,14 +14,12 @@ import java.util.List;
 /**
  * Created By Eslam Ghazy on 12/11/2021
  */
-public class ChatReopsitory {
+public class ChatDatabaseReopsitory {
 
     private ChatDao chatDao;
     private LiveData<List<Chat>> getAllChat;
-    private Context mContext;
 
-    public ChatReopsitory(Application application) {
-        this.mContext = application;
+    public ChatDatabaseReopsitory(Application application) {
         ChatDatabase db = ChatDatabase.getInstance(application);
         chatDao = db.EntitiesDAO();
 //        getAllChat = chatDao.getAllChat();

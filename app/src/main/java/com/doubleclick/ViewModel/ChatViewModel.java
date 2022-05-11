@@ -21,15 +21,16 @@ public class ChatViewModel extends ViewModel implements ChatReopsitory.Chats {
 
     public ChatViewModel() {
     }
-    public void ChatById(String userId){
-        chatReopsitory.getChats(userId);
+
+    public void ChatById(String userId, ChatReopsitory.StatusChat statusChat) {
+        chatReopsitory.getChats(userId,statusChat);
     }
 
     public LiveData<ArrayList<Chat>> getMyChat() {
         return mutableLiveData;
     }
 
-    public LiveData<Chat> newInsertChat(){
+    public LiveData<Chat> newInsertChat() {
         return newInsertChat;
     }
 

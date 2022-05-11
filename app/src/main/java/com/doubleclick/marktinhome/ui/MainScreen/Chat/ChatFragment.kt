@@ -53,6 +53,7 @@ import com.doubleclick.marktinhome.Model.Constantes.CHATS
 import com.doubleclick.marktinhome.Model.Constantes.USER
 import com.doubleclick.marktinhome.Notifications.Client
 import com.doubleclick.marktinhome.R
+import com.doubleclick.marktinhome.Repository.ChatReopsitory
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
@@ -63,10 +64,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import com.google.firebase.storage.StorageTask
-import com.google.firebase.storage.UploadTask
+import com.google.firebase.storage.*
 import com.vanniktech.emoji.EmojiPopup
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
@@ -77,7 +75,8 @@ import java.io.IOException
 import java.util.*
 
 
-class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptionMessage {
+class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptionMessage,
+    ChatReopsitory.StatusChat {
 
     private lateinit var sendText: ImageView
     private lateinit var et_text_message: EditText
@@ -108,7 +107,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
     private lateinit var status: TextView;
     private lateinit var apiService: APIService
     private var sharePost: String = "null".toString()
-    private lateinit var chatViewModelDatabase: ChatViewModelDatabase
+//    private lateinit var chatViewModelDatabase: ChatViewModelDatabase
 
     private lateinit var storageReference: StorageReference
     var fileType: String? = null
@@ -151,7 +150,16 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
         client = LocationServices.getFusedLocationProviderClient(requireContext())
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
+//        chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
+//        chatViewModelDatabase.getAllData(myId, user!!.id);
+//        chatViewModelDatabase.getLasRowMassage(user!!.id, myId).observe(viewLifecycleOwner) {
+//            if (it != null) {
+//                Log.e("LastRow", it.toString())
+//            }
+//        }
+//        chatViewModelDatabase.allChats.observe(viewLifecycleOwner) {
+//            Log.e("allChats", it.toString())
+//        }
         chatRecycler = view.findViewById(R.id.chatRecycler);
         chatRecycler.setHasFixedSize(true);
         sendRecord = view.findViewById(R.id.sendRecord);
@@ -169,7 +177,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
         username = view.findViewById(R.id.username)
         status = view.findViewById(R.id.status)
         chatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]
-        chatViewModel.ChatById(user!!.id)
+        chatViewModel.ChatById(user!!.id, this)
         Glide.with(requireContext()).load(user!!.image).into(profile_image)
         username.text = user!!.name;
         status.text = user!!.status;
@@ -178,6 +186,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
             sendRecord.visibility = View.GONE
             sendText.visibility = View.VISIBLE
         }
+
 //        chatViewModel.myChat.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
 ////            chats = it;
 //        })
@@ -191,6 +200,15 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
             chatAdapter.notifyItemInserted((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
             chatRecycler.scrollToPosition((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
             chatRecycler.smoothScrollToPosition((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
+            // TODO update status massage to been seen
+            val map: HashMap<String, Any> = HashMap();
+            map["StatusMessage"] = "beenSeen" // "Stored" , "beenSeen" , "Uploaded"
+            if (it.receiver.equals(myId)) {
+                reference.child(CHATS).child(myId).child(user!!.id).child(it.id)
+                    .updateChildren(map);
+                reference.child(CHATS).child(user!!.id).child(myId).child(it.id)
+                    .updateChildren(map);
+            }
         };
 
 
@@ -353,6 +371,8 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
         map["date"] = time
         map["id"] = id
         map["StatusMessage"] = "Uploaded"
+        val chat = Chat(text, type, myId, user!!.id, time, id, "Uploaded", false);
+//        chatViewModelDatabase.insert(chat);
 //        reference.child(CHATS).child(id).updateChildren(map)
         upload(id, map);
         et_text_message.setText("")
@@ -472,6 +492,9 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
 
 
     fun sendRecodingMessage(audioPath: String?) {
+        val progressDialog = ProgressDialog(context)
+        progressDialog.setMessage("Uploading")
+        progressDialog.show()
         if (audioPath != null) {
             val storageReference = FirebaseStorage.getInstance()
                 .getReference("/Media/Recording/" + myId + ":" + user!!.id.toString() + System.currentTimeMillis())
@@ -494,13 +517,28 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
                             map["id"] = id
                             map["date"] = time
                             map["StatusMessage"] = "Uploaded" // "Stored" , "beenSeen"
+                            val chat =
+                                Chat(url, "voice", myId, user!!.id, time, id, "Uploaded", false);
+//                            chatViewModelDatabase.insert(chat);
 //                            reference.child(CHATS).child(id).setValue(map)
                             upload(id, map);
+                            progressDialog.dismiss()
                             makeChatList()
                             sendNotifiaction("audio")
+                        } else {
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show()
+                            progressDialog.dismiss()
                         }
                     }
+                }.addOnProgressListener {
+                    val p: Double =
+                        100.0 * it.bytesTransferred / it.totalByteCount
+                    progressDialog.setMessage("${p.toInt()} % Uploading...")
+                }.addOnFailureListener {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
                 }
+
         }
     }
 
@@ -603,24 +641,81 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
             val fileReference = storageReference.child(
                 System.currentTimeMillis().toString() + "." + getFileExtension(uri)
             )
-            uploadTask = fileReference.putFile(uri)
-            uploadTask.continueWithTask(Continuation { task ->
+            uploadTask = fileReference.putFile(uri).addOnSuccessListener {
+                val url = it.storage.downloadUrl
+                url.addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        val url = it.result.toString()
+                        val map = HashMap<String, Any>()
+                        val id = reference.push().key.toString()
+                        val time = Date().time;
+                        map["sender"] = myId
+                        map["receiver"] = user!!.id
+                        map["message"] = url
+                        map["type"] = fileType.toString()
+                        map["id"] = id
+                        map["date"] = time
+                        map["StatusMessage"] = "Uploaded" // "Stored" , "beenSeen"
+                        val chat =
+                            Chat(
+                                url,
+                                fileType.toString(),
+                                myId,
+                                user!!.id,
+                                time,
+                                id,
+                                "Uploaded",
+                                false
+                            );
+//                        chatViewModelDatabase.insert(chat);
+//                    reference.child(CHATS).child(id).setValue(hashMap)
+                        upload(id, map);
+                        progressDialog.dismiss()
+                        makeChatList()
+                        sendNotifiaction(fileType.toString())
+                    } else {
+                        Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show()
+                        progressDialog.dismiss()
+                    }
+                }
+            }.addOnProgressListener {
+                val p: Double =
+                    100.0 * it.bytesTransferred / it.totalByteCount
+                progressDialog.setMessage("${p.toInt()} % Uploading...")
+            }.addOnFailureListener {
+                Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                progressDialog.dismiss()
+            }
+/*            uploadTask.continueWithTask(Continuation { task ->
                 if (!task.isSuccessful) {
                     throw task.exception!!
                 }
                 fileReference.downloadUrl
-            }).addOnCompleteListener(OnCompleteListener<Uri> { task ->
+            }).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     val url = task.result.toString()
                     val map = HashMap<String, Any>()
                     val id = reference.push().key.toString()
+                    val time = Date().time;
                     map["sender"] = myId
                     map["receiver"] = user!!.id
                     map["message"] = url
                     map["type"] = fileType.toString()
                     map["id"] = id
-                    map["date"] = Date().time
+                    map["date"] = time
                     map["StatusMessage"] = "Uploaded" // "Stored" , "beenSeen"
+                    val chat =
+                        Chat(
+                            url,
+                            fileType.toString(),
+                            myId,
+                            user!!.id,
+                            time,
+                            id,
+                            "Uploaded",
+                            false
+                        );
+                    chatViewModelDatabase.insert(chat);
 //                    reference.child(CHATS).child(id).setValue(hashMap)
                     upload(id, map);
                     progressDialog.dismiss()
@@ -630,10 +725,10 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
                     Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show()
                     progressDialog.dismiss()
                 }
-            }).addOnFailureListener { e ->
+            }.addOnFailureListener { e ->
                 Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
                 progressDialog.dismiss()
-            }
+            }*/
         } else {
             Toast.makeText(context, "No image selected", Toast.LENGTH_SHORT).show()
         }
@@ -667,13 +762,12 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("NotifyDataSetChanged")
     override fun onMessageClickListner(chat: Chat, pos: Int) {
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                download(chat)
+                download(chat, pos)
             }
-            chatAdapter.notifyItemChanged(pos)
-
         } catch (e: Exception) {
 
         }
@@ -681,24 +775,36 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
 
     }
 
-
+    @SuppressLint("NotifyDataSetChanged")
     override fun deleteForMe(chat: Chat, pos: Int) {
-        chatViewModelDatabase.delete(chat)
-        reference.child(CHATS).child(myId).child(chat.receiver).child(chat.id).removeValue()
+//        chatViewModelDatabase.delete(chat)
+        chats.removeAt(pos)
+        reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).removeValue()
         chatAdapter.notifyItemRemoved(pos)
+        chatAdapter.notifyDataSetChanged()
+
 
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun deleteForAll(chat: Chat, pos: Int) {
-        chatViewModelDatabase.delete(chat)
-        reference.child(CHATS).child(myId).child(chat.receiver).child(chat.id).removeValue()
-        reference.child(CHATS).child(chat.receiver).child(myId).child(chat.id).removeValue()
-        chatAdapter.notifyItemRemoved(pos)
+//        chatViewModelDatabase.delete(chat)
+        chats.removeAt(pos)
+        reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).removeValue()
+            .addOnCompleteListener {
+                reference.child(CHATS).child(user!!.id).child(myId).child(chat.id).removeValue()
+                    .addOnCompleteListener {
+                        chatAdapter.notifyItemRemoved(pos)
+                        chatAdapter.notifyDataSetChanged()
+                    }
+            }
+
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Throws(java.lang.Exception::class)
-    fun download(chat: Chat) {
+    fun download(chat: Chat, pos: Int) {
         try {
             val request = DownloadManager.Request(Uri.parse(chat.message))
             request.setDestinationInExternalPublicDir(
@@ -710,6 +816,8 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
             val manager =
                 requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             val u = manager.getUriForDownloadedFile(manager.enqueue(request))
+            chatAdapter.notifyItemChanged(pos)
+            chatAdapter.notifyDataSetChanged()
             val chat = Chat(
                 u.toString(),
                 chat.type,
@@ -720,11 +828,17 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
                 chat.statusMessage,
                 chat.isSeen
             )
-            chatViewModelDatabase.update(chat)
+            chats[pos] = chat
+//            chatViewModelDatabase.update(chat)
         } catch (e: IllegalStateException) {
             Log.e("Exeption Voice", e.message!!)
         } catch (e: NullPointerException) {
             Log.e("Exeption Voice", e.message!!)
         }
     }
+
+    override fun BeenSeen(chat: Chat?) {
+//        chatViewModelDatabase.insert(chat!!)
+    }
+
 }

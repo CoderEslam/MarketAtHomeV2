@@ -30,13 +30,13 @@ public final class PlayVoiceRightBinding implements ViewBinding {
   public final CardView cardView5;
 
   @NonNull
-  public final ImageView done;
-
-  @NonNull
   public final ImageView downloadVoice;
 
   @NonNull
   public final LottieAnimationView file;
+
+  @NonNull
+  public final ImageView playVoice;
 
   @NonNull
   public final ProgressBar progress;
@@ -45,15 +45,15 @@ public final class PlayVoiceRightBinding implements ViewBinding {
   public final VideoView video;
 
   private PlayVoiceRightBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout ContinerVoice, @NonNull CardView cardView5, @NonNull ImageView done,
+      @NonNull ConstraintLayout ContinerVoice, @NonNull CardView cardView5,
       @NonNull ImageView downloadVoice, @NonNull LottieAnimationView file,
-      @NonNull ProgressBar progress, @NonNull VideoView video) {
+      @NonNull ImageView playVoice, @NonNull ProgressBar progress, @NonNull VideoView video) {
     this.rootView = rootView;
     this.ContinerVoice = ContinerVoice;
     this.cardView5 = cardView5;
-    this.done = done;
     this.downloadVoice = downloadVoice;
     this.file = file;
+    this.playVoice = playVoice;
     this.progress = progress;
     this.video = video;
   }
@@ -93,12 +93,6 @@ public final class PlayVoiceRightBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.done;
-      ImageView done = ViewBindings.findChildViewById(rootView, id);
-      if (done == null) {
-        break missingId;
-      }
-
       id = R.id.downloadVoice;
       ImageView downloadVoice = ViewBindings.findChildViewById(rootView, id);
       if (downloadVoice == null) {
@@ -108,6 +102,12 @@ public final class PlayVoiceRightBinding implements ViewBinding {
       id = R.id.file;
       LottieAnimationView file = ViewBindings.findChildViewById(rootView, id);
       if (file == null) {
+        break missingId;
+      }
+
+      id = R.id.playVoice;
+      ImageView playVoice = ViewBindings.findChildViewById(rootView, id);
+      if (playVoice == null) {
         break missingId;
       }
 
@@ -123,8 +123,8 @@ public final class PlayVoiceRightBinding implements ViewBinding {
         break missingId;
       }
 
-      return new PlayVoiceRightBinding((ConstraintLayout) rootView, ContinerVoice, cardView5, done,
-          downloadVoice, file, progress, video);
+      return new PlayVoiceRightBinding((ConstraintLayout) rootView, ContinerVoice, cardView5,
+          downloadVoice, file, playVoice, progress, video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

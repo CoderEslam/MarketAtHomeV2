@@ -3643,7 +3643,6 @@ id disablePostScroll
 id disableScroll
 id discription
 id disjoint
-id done
 id download
 id downloadVoice
 id dragAnticlockwise
@@ -4061,6 +4060,7 @@ id phone
 id pieChartView
 id pin
 id playVideo
+id playVoice
 id plus
 id popuplayout
 id position

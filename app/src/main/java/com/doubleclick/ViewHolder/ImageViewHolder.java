@@ -63,10 +63,10 @@ public class ImageViewHolder extends BaseViewHolder {
                     public boolean onMenuItemClick(MenuItem item) {
                         int id = item.getItemId();
                         if (R.id.deleteforeveryone == id) {
-                            Toast.makeText(itemView.getContext(), "deleteforeveryone", Toast.LENGTH_LONG).show();
+                            onOptionMessage.deleteForAll(chat, position);
                         }
                         if (R.id.deleteForme == id) {
-                            Toast.makeText(itemView.getContext(), "deleteForme", Toast.LENGTH_LONG).show();
+                            onOptionMessage.deleteForMe(chat, position);
                         }
                         if (R.id.download == id) {
                             try {

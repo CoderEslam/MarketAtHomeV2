@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -39,12 +40,11 @@ public class VoiceViewHolder extends BaseViewHolder {
 
     private VideoView voice;
     private ConstraintLayout ContinerVoice;
-    private ImageView downloadVoice;
+    private ImageView downloadVoice, playVoice;
     private boolean isPlay = false;
     private ProgressBar progress;
     private OnMessageClick onMessageClick;
     private OnOptionMessage onOptionMessage;
-    private ImageView done;
 
 
     public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, OnOptionMessage onOptionMessage) {
@@ -55,13 +55,13 @@ public class VoiceViewHolder extends BaseViewHolder {
         downloadVoice = itemView.findViewById(R.id.downloadVoice);
         ContinerVoice = itemView.findViewById(R.id.ContinerVoice);
         progress = itemView.findViewById(R.id.progress);
-        done = itemView.findViewById(R.id.done);
+        playVoice = itemView.findViewById(R.id.playVoice);
+
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void Play(Chat chat, int position) {
-        //        if (Servies.isNetworkConnected(itemView.getContext())) {
         if (!chat.getMessage().equals("")) {
             progress.setVisibility(View.GONE);
             downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));
@@ -69,20 +69,22 @@ public class VoiceViewHolder extends BaseViewHolder {
             voice.stopPlayback();
             voice.pause();
         }
-        voice.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));
-            }
-        });
-        MediaController ctlr = new MediaController(itemView.getContext());
-        ctlr.setMediaPlayer(voice);
-        ctlr.findFocus();
-        ctlr.show(0);
-        ctlr.setAnchorView(voice);
-        ctlr.setEnabled(true);
-        voice.setMediaController(ctlr);
+//        else {
+//            downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.download));
+//        }
+        voice.setOnCompletionListener(mp -> downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play)));
+        MediaController mediaController = new MediaController(itemView.getContext());
+        mediaController.setMediaPlayer(voice);
+        mediaController.findFocus();
+        mediaController.show(0);
+        mediaController.setAnchorView(voice);
+        mediaController.setEnabled(true);
+        voice.setMediaController(mediaController);
         voice.requestFocus();
+//        downloadVoice.setOnClickListener(v -> {
+//            onMessageClick.onMessageClickListner(chat, getAdapterPosition());
+//        });
+
         downloadVoice.setOnClickListener(v -> {
             if (!chat.getMessage().equals("")) {
                 if (isPlay) {
@@ -96,60 +98,8 @@ public class VoiceViewHolder extends BaseViewHolder {
                     voice.start();
                     isPlay = true;
                 }
-            } else {
-                try {
-                    progress.setVisibility(View.VISIBLE);
-                    download(chat);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
             }
         });
-        ContinerVoice.setOnLongClickListener(v -> {
-//            Intent intent = new Intent(itemView.getContext(), ViewActivity.class);
-//            intent.putExtra("video", chat.getMessage());
-//            itemView.getContext().startActivity(intent);
-            return true;
-        });
-//        } else {
-//            Toast.makeText(itemView.getContext(), "you don't have an internet connection", Toast.LENGTH_LONG).show();
-//        }
-        itemView.setOnClickListener(v -> {
-            onMessageClick.onMessageClickListner(chat, getAdapterPosition());
-        });
-
     }
-
-    @SuppressLint("NotifyDataSetChanged")
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    public void download(Chat chat) throws Exception {
-        try {
-            downloadVoice.setEnabled(false);
-            DownloadManager.Request request = new DownloadManager.Request(Uri.parse(chat.getMessage()));
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "voice" + chat.getId());
-            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED); // to notify when download is complete
-            request.allowScanningByMediaScanner();// if you want to be available from media players
-            DownloadManager manager = (DownloadManager) itemView.getContext().getSystemService(DOWNLOAD_SERVICE);
-            Uri uri = manager.getUriForDownloadedFile(manager.enqueue(request));
-            if (!uri.toString().equals("")) {
-                progress.setVisibility(View.GONE);
-            }
-            Log.e("ImageURI", uri.toString());
-            voice.setVideoURI(uri);
-        } catch (IllegalStateException | NullPointerException e) {
-            Log.e("ExceptionVoice", e.getMessage());
-        }
-    }
-
-    private String getFilePath() {
-        ContextWrapper contextWrapper = new ContextWrapper(itemView.getContext());
-        File file = contextWrapper.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
-        File f = new File(file, "ChatApp/Recording/voice" + new Date().getTime());
-        if (!f.exists()) {
-            f.mkdirs();
-        }
-        return f.getPath();
-    }
-
 
 }

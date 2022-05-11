@@ -1,26 +1,34 @@
 package com.doubleclick.marktinhome.Model;
 
+import android.net.Uri;
+
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.io.Serializable;
 
 /**
  * Created By Eslam Ghazy on 3/17/2022
  */
 @Entity
-public class Chat {
+public class Chat implements Serializable {
 
-    @PrimaryKey(autoGenerate = true)
-    private int primaryKey;
+
+    @PrimaryKey()
+    @NonNull
+    private String id;
     private String message;
     private String type;
     private String sender;
     private String receiver;
     private long date;
-    private String id;
     private String StatusMessage;
     private boolean seen;
+    private String uri;
 
     public Chat() {
+        id = "vgldelafgjrelghrwl";
     }
 
     public Chat(String message, String type, String sender, String receiver, long date, String id, String statusMessage, boolean seen) {
@@ -110,11 +118,11 @@ public class Chat {
         this.seen = seen;
     }
 
-    public int getPrimaryKey() {
-        return primaryKey;
+    public String getUri() {
+        return uri;
     }
 
-    public void setPrimaryKey(int primaryKey) {
-        this.primaryKey = primaryKey;
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 }

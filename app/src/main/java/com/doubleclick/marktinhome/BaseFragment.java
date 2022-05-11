@@ -81,6 +81,7 @@ public class BaseFragment extends Fragment {
         if (currentUser != null) {
             apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
             myId = mAuth.getCurrentUser().getUid().toString();
+            reference.keepSynced(true);
         }
     }
 

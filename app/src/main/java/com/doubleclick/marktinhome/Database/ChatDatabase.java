@@ -1,7 +1,6 @@
 package com.doubleclick.marktinhome.Database;
 
 import android.app.Application;
-import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
@@ -26,7 +25,6 @@ public abstract class ChatDatabase extends RoomDatabase {
                     ChatDatabase.class, "Chat-database")
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
-//                     .addCallback(roomCallBack)
                     .build();
         }
         return instance;

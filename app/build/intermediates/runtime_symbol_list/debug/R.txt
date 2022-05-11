@@ -3642,7 +3642,6 @@ int id disablePostScroll 0x7f0a0183
 int id disableScroll 0x7f0a0184
 int id discription 0x7f0a0185
 int id disjoint 0x7f0a0186
-int id done 0x7f0a0464
 int id download 0x7f0a0187
 int id downloadVoice 0x7f0a0188
 int id dragAnticlockwise 0x7f0a0189
@@ -4060,6 +4059,7 @@ int id phone 0x7f0a0324
 int id pieChartView 0x7f0a0325
 int id pin 0x7f0a0326
 int id playVideo 0x7f0a0327
+int id playVoice 0x7f0a0465
 int id plus 0x7f0a0328
 int id popuplayout 0x7f0a0329
 int id position 0x7f0a032a

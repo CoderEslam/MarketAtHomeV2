@@ -39,7 +39,6 @@ public class VideoViewHolder extends BaseViewHolder {
     private OnMessageClick onMessageClick;
     private OnOptionMessage onOptionMessage;
     private ImageView download;
-    private ImageView done;
 
     public VideoViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, OnOptionMessage onOptionMessage) {
         super(itemView);
@@ -49,7 +48,6 @@ public class VideoViewHolder extends BaseViewHolder {
         ContinerViedo = itemView.findViewById(R.id.ContinerViedo);
         options = itemView.findViewById(R.id.options);
         download = itemView.findViewById(R.id.download);
-        done = itemView.findViewById(R.id.done);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

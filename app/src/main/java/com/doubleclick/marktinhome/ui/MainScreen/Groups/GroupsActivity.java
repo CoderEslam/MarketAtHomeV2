@@ -60,6 +60,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
     private PostsViewModel postsViewModel;
     private GroupsAdapter groupsAdapter;
     private DatabaseReference reference;
+    private ArrayList<PostData> postDataArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,9 +108,10 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
             @Override
             public void onChanged(ArrayList<PostData> postData) {
                 if (postData.size() != 0) {
+                    postDataArrayList = postData;
                     progressIndicator.setVisibility(View.GONE);
-                    postsNum.setText(String.valueOf(postData.size()));
-                    groupsAdapter = new GroupsAdapter(postData, GroupsActivity.this, GroupsActivity.this);
+                    postsNum.setText(String.valueOf(postDataArrayList.size()));
+                    groupsAdapter = new GroupsAdapter(postDataArrayList, GroupsActivity.this, GroupsActivity.this);
                     post.setAdapter(groupsAdapter);
                     post.hideShimmer();
                 }
@@ -156,10 +158,14 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         postsViewModel.loadPosts(id /*  Group Id */, num);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void delete(String idPost, int pos) {
         reference.child(GROUPS).child(id/* group id */).child(POSTS).child(idPost).removeValue();
         groupsAdapter.notifyItemRemoved(pos);
+        groupsAdapter.notifyDataSetChanged();
+        postDataArrayList.remove(pos);
+
     }
 
     @Override

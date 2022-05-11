@@ -79,19 +79,22 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
         }
 
         private void Messageunread(String id) {
-            reference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString()).child(id).addValueEventListener(new ValueEventListener() {
+            reference.child(id).child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     int i = 0;
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Chat chat = snapshot.getValue(Chat.class);
                         assert chat != null;
-                        if (chat.getType().equals("text")) {
+                        if (chat.getStatusMessage().equals("Uploaded")) {
                             i++;
                             countMessage.setText(String.format("%d", i));
+                        } else {
+                            countMessage.setVisibility(View.GONE);
                         }
                     }
                 }
+
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
 

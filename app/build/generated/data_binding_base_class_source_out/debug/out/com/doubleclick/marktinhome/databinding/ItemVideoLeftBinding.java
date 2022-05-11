@@ -28,9 +28,6 @@ public final class ItemVideoLeftBinding implements ViewBinding {
   public final CardView cardView;
 
   @NonNull
-  public final ImageView done;
-
-  @NonNull
   public final ImageView download;
 
   @NonNull
@@ -40,12 +37,11 @@ public final class ItemVideoLeftBinding implements ViewBinding {
   public final VideoView video;
 
   private ItemVideoLeftBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ConstraintLayout ContinerViedo, @NonNull CardView cardView, @NonNull ImageView done,
+      @NonNull ConstraintLayout ContinerViedo, @NonNull CardView cardView,
       @NonNull ImageView download, @NonNull ImageView options, @NonNull VideoView video) {
     this.rootView = rootView;
     this.ContinerViedo = ContinerViedo;
     this.cardView = cardView;
-    this.done = done;
     this.download = download;
     this.options = options;
     this.video = video;
@@ -86,12 +82,6 @@ public final class ItemVideoLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.done;
-      ImageView done = ViewBindings.findChildViewById(rootView, id);
-      if (done == null) {
-        break missingId;
-      }
-
       id = R.id.download;
       ImageView download = ViewBindings.findChildViewById(rootView, id);
       if (download == null) {
@@ -110,7 +100,7 @@ public final class ItemVideoLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemVideoLeftBinding((ConstraintLayout) rootView, ContinerViedo, cardView, done,
+      return new ItemVideoLeftBinding((ConstraintLayout) rootView, ContinerViedo, cardView,
           download, options, video);
     }
     String missingId = rootView.getResources().getResourceName(id);

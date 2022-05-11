@@ -5,7 +5,6 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.doubleclick.marktinhome.Model.Chat;
 
@@ -16,13 +15,13 @@ import java.util.List;
  */
 public class ChatViewModelDatabase extends AndroidViewModel {
 
-    private ChatReopsitory mRepositry;
+    private ChatDatabaseReopsitory mRepositry;
     private Application context;
     private LiveData<List<Chat>> mAllChats;
 
     public ChatViewModelDatabase(@NonNull Application application) {
         super(application);
-        mRepositry = new ChatReopsitory(application);
+        mRepositry = new ChatDatabaseReopsitory(application);
     }
 
     public void getAllData(String myID, String FriendID) {
@@ -44,7 +43,6 @@ public class ChatViewModelDatabase extends AndroidViewModel {
         mRepositry.delete(chat);
 
     }
-
 
 
     public void deleteAll() {

@@ -23,15 +23,14 @@ public class ChatReopsitory extends BaseRepository {
 
     private ArrayList<Chat> myChats = new ArrayList<>();
     private Chats chats;
-    private Realm realm;
+    private StatusChat statusChat;
 
 
     public ChatReopsitory(Chats chats) {
         this.chats = chats;
-        realm = Realm.getDefaultInstance();
     }
 
-    public void getChats(String userId) {
+    public void getChats(String userId, StatusChat statusChat) {
 //        reference.child(CHATS).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //            @Override
 //            public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -62,33 +61,17 @@ public class ChatReopsitory extends BaseRepository {
                 Log.e("onChildAdded", snapshot.getValue(Chat.class).toString());
                 assert chat != null;
                 Log.e("newInsert", chat.toString());
-//                if ((chat.getReceiver().equals(myId) && chat.getSender().equals(userId)) || (chat.getSender().equals(myId) && chat.getReceiver().equals(userId))) {
                 chats.newInsertChat(chat);
-//                }
+
             }
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                Chat chat = snapshot.getValue(Chat.class);
-//                assert chat != null;
-//                if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId) && chat.getStatusMessage().equals("Stored")) {
-//                    realm.beginTransaction();
-//                    ChatRealm chatRealm = new ChatRealm();
-//                    chatRealm.setId(chat.getId());
-//                    chatRealm.setSender(chat.getSender());
-//                    chatRealm.setType(chat.getType());
-//                    chatRealm.setMessage(chat.getMessage());
-//                    chatRealm.setReceiver(chat.getReceiver());
-//                    chatRealm.setDate(chat.getDate());
-//                    chatRealm.setStatusMessage("Uploaded");
-//                    realm.executeTransaction(new Realm.Transaction() {
-//                        @Override
-//                        public void execute(Realm realm) {
-//                            realm.copyToRealm(chatRealm);
-//                        }
-//                    });
-//                    realm.commitTransaction();
-//                }
+                Chat chat = snapshot.getValue(Chat.class);
+                assert chat != null;
+                if (chat.getStatusMessage().equals("beenSeen") && chat.getReceiver().equals(myId)) {
+                    statusChat.BeenSeen(chat);
+                }
 
             }
 
@@ -116,5 +99,8 @@ public class ChatReopsitory extends BaseRepository {
         void newInsertChat(Chat chat);
     }
 
+    public interface StatusChat {
+        void BeenSeen(Chat chat);
+    }
 
 }

@@ -18,7 +18,7 @@ import com.doubleclick.marktinhome.R;
  */
 public class MessageTextViewHolder extends BaseViewHolder {
 
-    public TextView textMessage ,textTime;
+    public TextView textMessage, textTime;
     private OnOptionMessage onOptionMessage;
 //    public ImageView profile_image;
 //    public TextView txt_seen;
@@ -40,7 +40,14 @@ public class MessageTextViewHolder extends BaseViewHolder {
 
     }
 
-    public void SetTextMessage(Chat chat, int postion){
+    public void SetTextMessage(Chat chat, int postion) {
         textMessage.setText(chat.getMessage());
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onOptionMessage.deleteForAll(chat, postion);
+                return false;
+            }
+        });
     }
 }

@@ -37,14 +37,14 @@ MERGED from [com.google.firebase:firebase-messaging:23.0.0] C:\Users\eslam\.grad
 MERGED from [androidx.navigation:navigation-fragment:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\e6fc2a4c83b497e1571f1fc315a25702\transformed\navigation-fragment-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\eslam\.gradle\caches\transforms-3\7a093842a72c1ce87fd5c45f2cd9f7dc\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:17:1-44:12
 MERGED from [com.google.android.gms:play-services-location:19.0.1] C:\Users\eslam\.gradle\caches\transforms-3\7032dff4e86b49f49a0cf95018b2699d\transformed\jetified-play-services-location-19.0.1\AndroidManifest.xml:2:1-9:12
-MERGED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:17:1-31:12
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ab75a403b6b5f5595602a6f9293d3df8\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.room:room-runtime:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\53b2384027ccce5f51cb3246a3174b8a\transformed\room-runtime-2.0.0-alpha1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.fragment:fragment-ktx:1.4.1] C:\Users\eslam\.gradle\caches\transforms-3\6dfc41a1a5b5db7c84f25c74b6c467df\transformed\jetified-fragment-ktx-1.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-runtime:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\45d4127e4aa4d89c70948ed2115de25d\transformed\navigation-runtime-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\cd271c2b6fef66fe17afb5998939e803\transformed\navigation-common-ktx-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-common:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\c0407b842162dab4912737442c28a764\transformed\navigation-common-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity-ktx:1.2.3] C:\Users\eslam\.gradle\caches\transforms-3\a433aba4679f4fafc2d184d9ca8e8c9f\transformed\jetified-activity-ktx-1.2.3\AndroidManifest.xml:17:1-24:12
 MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\eslam\.gradle\caches\transforms-3\f587d56444afe42e764d9fe0ba8b1525\transformed\jetified-glide-4.8.0\AndroidManifest.xml:2:1-12:12
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ab75a403b6b5f5595602a6f9293d3df8\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\526886ee162d9a86dbad606ef441c7ba\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\eslam\.gradle\caches\transforms-3\a0770bb14729d1d0251624180217a7e4\transformed\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0-beta04] C:\Users\eslam\.gradle\caches\transforms-3\3a15cd55502ff063863acee497b77c04\transformed\jetified-firebase-appcheck-interop-16.0.0-beta04\AndroidManifest.xml:15:1-26:12
@@ -111,8 +111,8 @@ MERGED from [com.google.firebase:firebase-components:17.0.0] C:\Users\eslam\.gra
 MERGED from [com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\7e561fe859a37699b4ed505431eedd56\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:15:1-38:12
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\a496e76c97afedfbbd3f649d214a4aee\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:15:1-41:12
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\2db11ea4dbc433a5a2e37a504fea2976\transformed\jetified-transport-api-3.0.0\AndroidManifest.xml:15:1-22:12
-MERGED from [androidx.sqlite:sqlite-framework:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\5249f9758e1eb55717011ef549ec46a0\transformed\sqlite-framework-2.2.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.sqlite:sqlite:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ac13ddd09c49097f407a8d88edce80fa\transformed\sqlite-2.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.sqlite:sqlite-framework:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\06d47f58a5170a6fd301a2ba67b814e7\transformed\sqlite-framework-2.0.0-alpha1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.sqlite:sqlite:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\2a5cd666ac5b4e90b8389d0288d2886d\transformed\sqlite-2.0.0-alpha1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\d7854dfe312fd240349bfcd5e7ea1c7d\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\eslam\.gradle\caches\transforms-3\27e78587960817a9ab3d81dd9194663d\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.1.0] C:\Users\eslam\.gradle\caches\transforms-3\7c85730addac2418fd75c593149d4110\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
@@ -275,12 +275,10 @@ MERGED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\eslam\.g
 MERGED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\eslam\.gradle\caches\transforms-3\7a093842a72c1ce87fd5c45f2cd9f7dc\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:36:5-42:19
 MERGED from [com.google.android.gms:play-services-location:19.0.1] C:\Users\eslam\.gradle\caches\transforms-3\7032dff4e86b49f49a0cf95018b2699d\transformed\jetified-play-services-location-19.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:19.0.1] C:\Users\eslam\.gradle\caches\transforms-3\7032dff4e86b49f49a0cf95018b2699d\transformed\jetified-play-services-location-19.0.1\AndroidManifest.xml:7:5-20
-MERGED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:24:5-29:19
-MERGED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:24:5-29:19
-MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\eslam\.gradle\caches\transforms-3\f587d56444afe42e764d9fe0ba8b1525\transformed\jetified-glide-4.8.0\AndroidManifest.xml:10:5-20
-MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\eslam\.gradle\caches\transforms-3\f587d56444afe42e764d9fe0ba8b1525\transformed\jetified-glide-4.8.0\AndroidManifest.xml:10:5-20
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ab75a403b6b5f5595602a6f9293d3df8\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ab75a403b6b5f5595602a6f9293d3df8\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:24:5-25:19
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\eslam\.gradle\caches\transforms-3\f587d56444afe42e764d9fe0ba8b1525\transformed\jetified-glide-4.8.0\AndroidManifest.xml:10:5-20
+MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\eslam\.gradle\caches\transforms-3\f587d56444afe42e764d9fe0ba8b1525\transformed\jetified-glide-4.8.0\AndroidManifest.xml:10:5-20
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\eslam\.gradle\caches\transforms-3\a0770bb14729d1d0251624180217a7e4\transformed\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\eslam\.gradle\caches\transforms-3\a0770bb14729d1d0251624180217a7e4\transformed\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.firebase:firebase-appcheck-interop:16.0.0-beta04] C:\Users\eslam\.gradle\caches\transforms-3\3a15cd55502ff063863acee497b77c04\transformed\jetified-firebase-appcheck-interop-16.0.0-beta04\AndroidManifest.xml:24:5-20
@@ -643,8 +641,10 @@ MERGED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\eslam\.g
 MERGED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\eslam\.gradle\caches\transforms-3\7a093842a72c1ce87fd5c45f2cd9f7dc\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-location:19.0.1] C:\Users\eslam\.gradle\caches\transforms-3\7032dff4e86b49f49a0cf95018b2699d\transformed\jetified-play-services-location-19.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:19.0.1] C:\Users\eslam\.gradle\caches\transforms-3\7032dff4e86b49f49a0cf95018b2699d\transformed\jetified-play-services-location-19.0.1\AndroidManifest.xml:5:5-44
-MERGED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ab75a403b6b5f5595602a6f9293d3df8\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ab75a403b6b5f5595602a6f9293d3df8\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.room:room-runtime:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\53b2384027ccce5f51cb3246a3174b8a\transformed\room-runtime-2.0.0-alpha1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.room:room-runtime:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\53b2384027ccce5f51cb3246a3174b8a\transformed\room-runtime-2.0.0-alpha1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment-ktx:1.4.1] C:\Users\eslam\.gradle\caches\transforms-3\6dfc41a1a5b5db7c84f25c74b6c467df\transformed\jetified-fragment-ktx-1.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment-ktx:1.4.1] C:\Users\eslam\.gradle\caches\transforms-3\6dfc41a1a5b5db7c84f25c74b6c467df\transformed\jetified-fragment-ktx-1.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-runtime:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\45d4127e4aa4d89c70948ed2115de25d\transformed\navigation-runtime-2.4.1\AndroidManifest.xml:20:5-22:41
@@ -657,8 +657,6 @@ MERGED from [androidx.activity:activity-ktx:1.2.3] C:\Users\eslam\.gradle\caches
 MERGED from [androidx.activity:activity-ktx:1.2.3] C:\Users\eslam\.gradle\caches\transforms-3\a433aba4679f4fafc2d184d9ca8e8c9f\transformed\jetified-activity-ktx-1.2.3\AndroidManifest.xml:20:5-22:41
 MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\eslam\.gradle\caches\transforms-3\f587d56444afe42e764d9fe0ba8b1525\transformed\jetified-glide-4.8.0\AndroidManifest.xml:6:5-8:41
 MERGED from [com.github.bumptech.glide:glide:4.8.0] C:\Users\eslam\.gradle\caches\transforms-3\f587d56444afe42e764d9fe0ba8b1525\transformed\jetified-glide-4.8.0\AndroidManifest.xml:6:5-8:41
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ab75a403b6b5f5595602a6f9293d3df8\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-extensions:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ab75a403b6b5f5595602a6f9293d3df8\transformed\lifecycle-extensions-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\526886ee162d9a86dbad606ef441c7ba\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\526886ee162d9a86dbad606ef441c7ba\transformed\jetified-viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-safetynet:17.0.0] C:\Users\eslam\.gradle\caches\transforms-3\a0770bb14729d1d0251624180217a7e4\transformed\jetified-play-services-safetynet-17.0.0\AndroidManifest.xml:20:5-44
@@ -791,10 +789,10 @@ MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\
 MERGED from [com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\a496e76c97afedfbbd3f649d214a4aee\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\2db11ea4dbc433a5a2e37a504fea2976\transformed\jetified-transport-api-3.0.0\AndroidManifest.xml:18:5-20:41
 MERGED from [com.google.android.datatransport:transport-api:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\2db11ea4dbc433a5a2e37a504fea2976\transformed\jetified-transport-api-3.0.0\AndroidManifest.xml:18:5-20:41
-MERGED from [androidx.sqlite:sqlite-framework:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\5249f9758e1eb55717011ef549ec46a0\transformed\sqlite-framework-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.sqlite:sqlite-framework:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\5249f9758e1eb55717011ef549ec46a0\transformed\sqlite-framework-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.sqlite:sqlite:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ac13ddd09c49097f407a8d88edce80fa\transformed\sqlite-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.sqlite:sqlite:2.2.0] C:\Users\eslam\.gradle\caches\transforms-3\ac13ddd09c49097f407a8d88edce80fa\transformed\sqlite-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.sqlite:sqlite-framework:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\06d47f58a5170a6fd301a2ba67b814e7\transformed\sqlite-framework-2.0.0-alpha1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite-framework:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\06d47f58a5170a6fd301a2ba67b814e7\transformed\sqlite-framework-2.0.0-alpha1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\2a5cd666ac5b4e90b8389d0288d2886d\transformed\sqlite-2.0.0-alpha1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.sqlite:sqlite:2.0.0-alpha1] C:\Users\eslam\.gradle\caches\transforms-3\2a5cd666ac5b4e90b8389d0288d2886d\transformed\sqlite-2.0.0-alpha1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\d7854dfe312fd240349bfcd5e7ea1c7d\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\d7854dfe312fd240349bfcd5e7ea1c7d\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\eslam\.gradle\caches\transforms-3\27e78587960817a9ab3d81dd9194663d\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -1135,14 +1133,6 @@ ADDED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\eslam\.gr
 		ADDED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\eslam\.gradle\caches\transforms-3\7a093842a72c1ce87fd5c45f2cd9f7dc\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:41:13-37
 	android:name
 		ADDED from [com.google.android.gms:play-services-maps:18.0.2] C:\Users\eslam\.gradle\caches\transforms-3\7a093842a72c1ce87fd5c45f2cd9f7dc\transformed\jetified-play-services-maps-18.0.2\AndroidManifest.xml:40:13-50
-service#androidx.room.MultiInstanceInvalidationService
-ADDED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:25:9-28:40
-	android:exported
-		ADDED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:28:13-37
-	android:directBootAware
-		ADDED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:27:13-43
-	android:name
-		ADDED from [androidx.room:room-runtime:2.4.2] C:\Users\eslam\.gradle\caches\transforms-3\c5d765394a102d2746226406a6ce2235\transformed\room-runtime-2.4.2\AndroidManifest.xml:26:13-74
 activity#com.google.android.gms.common.api.GoogleApiActivity
 ADDED from [com.google.android.gms:play-services-base:18.0.1] C:\Users\eslam\.gradle\caches\transforms-3\c39324052c9061a504d3e7bd1c158eb3\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
 	android:exported
