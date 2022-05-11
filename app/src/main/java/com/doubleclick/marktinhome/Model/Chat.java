@@ -90,17 +90,6 @@ public class Chat implements Serializable {
         this.message = message;
     }
 
-    @Override
-    public String toString() {
-        return "Chat{" +
-                "message='" + message + '\'' +
-                ", type='" + type + '\'' +
-                ", sender='" + sender + '\'' +
-                ", receiver='" + receiver + '\'' +
-                ", date=" + date +
-                ", id='" + id + '\'' +
-                '}';
-    }
 
     public String getStatusMessage() {
         return StatusMessage;
@@ -124,5 +113,20 @@ public class Chat implements Serializable {
 
     public void setUri(String uri) {
         this.uri = uri;
+    }
+
+    @Override
+    public String toString() {
+        return "Chat{" +
+                "id='" + id + '\'' +
+                ", message='" + message + '\'' +
+                ", type='" + type + '\'' +
+                ", sender='" + sender + '\'' +
+                ", receiver='" + receiver + '\'' +
+                ", date=" + date +
+                ", StatusMessage='" + StatusMessage + '\'' +
+                ", seen=" + seen +
+                ", uri='" + uri + '\'' +
+                '}';
     }
 }

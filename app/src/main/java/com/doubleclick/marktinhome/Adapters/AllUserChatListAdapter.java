@@ -3,6 +3,8 @@ package com.doubleclick.marktinhome.Adapters;
 import static com.doubleclick.marktinhome.Model.Constantes.CHATS;
 import static com.doubleclick.marktinhome.Model.Constantes.LIKES;
 
+import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +81,8 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
         }
 
         private void Messageunread(String id) {
-            reference.child(id).child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString()).addValueEventListener(new ValueEventListener() {
+            reference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString()).child(id).addValueEventListener(new ValueEventListener() {
+                @SuppressLint({"DefaultLocale", "UseCompatLoadingForDrawables"})
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     int i = 0;
@@ -89,8 +92,7 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
                         if (chat.getStatusMessage().equals("Uploaded")) {
                             i++;
                             countMessage.setText(String.format("%d", i));
-                        } else {
-                            countMessage.setVisibility(View.GONE);
+                            countMessage.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.bg_green));
                         }
                     }
                 }
