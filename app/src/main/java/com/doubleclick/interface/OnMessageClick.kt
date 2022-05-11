@@ -7,6 +7,10 @@ import com.doubleclick.marktinhome.Model.Chat
  */
 interface OnMessageClick {
 
-    fun onMessageClickListner(chat: Chat, pos: Int);
+    fun download(chat: Chat, pos: Int);
+
+    fun deleteForMe(chat: Chat, pos: Int)
+
+    fun deleteForAll(chat: Chat, pos: Int)
 
 }

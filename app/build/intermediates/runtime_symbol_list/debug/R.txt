@@ -2834,6 +2834,7 @@ int dimen tooltip_y_offset_touch 0x7f07027c
 int drawable _arrow_right 0x7f08000b
 int drawable _dot_ 0x7f08000c
 int drawable _dot_white 0x7f08000d
+int drawable _download_ 0x7f0801ab
 int drawable abc_ab_share_pack_mtrl_alpha 0x7f08000e
 int drawable abc_action_bar_item_background_material 0x7f08000f
 int drawable abc_btn_borderless_material 0x7f080010
@@ -3623,6 +3624,7 @@ int id default_activity_button 0x7f0a0170
 int id delete 0x7f0a0171
 int id deleteForme 0x7f0a0172
 int id deleteOption 0x7f0a0173
+int id delete_all 0x7f0a0466
 int id deleteforeveryone 0x7f0a0174
 int id deltaRelative 0x7f0a0175
 int id dependency_ordering 0x7f0a0176
@@ -4721,6 +4723,7 @@ int layout view_color_palette 0x7f0d011a
 int layout view_label_button 0x7f0d011b
 int layout view_marker_button 0x7f0d011c
 int layout widget_navigation_drawer 0x7f0d011d
+int menu delete_all_chat 0x7f0e0006
 int menu menu_bottom 0x7f0e0000
 int menu menu_chat 0x7f0e0001
 int menu menu_groups 0x7f0e0002
@@ -4862,6 +4865,7 @@ int string custommer_address 0x7f13005b
 int string default_web_client_id 0x7f13005c
 int string define_emoji 0x7f13005d
 int string delete 0x7f13005e
+int string delete_all 0x7f130149
 int string delete_for_everyone 0x7f13005f
 int string delete_for_me 0x7f130060
 int string description 0x7f130061

@@ -42,8 +42,8 @@
             android:layout_height="50dp"
             android:background="@drawable/bg_white"
             android:elevation="10dp"
-            android:src="@drawable/download"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/_download_"
+            app:layout_constraintBottom_toBottomOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -74,7 +74,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.cardview.widget.CardView>
-
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

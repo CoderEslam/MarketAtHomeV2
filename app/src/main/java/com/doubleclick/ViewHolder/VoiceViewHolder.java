@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.doubleclick.OnMessageClick;
-import com.doubleclick.OnOptionMessage;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -39,21 +38,17 @@ import java.util.Objects;
 public class VoiceViewHolder extends BaseViewHolder {
 
     private VideoView voice;
-    private ConstraintLayout ContinerVoice;
     private ImageView downloadVoice, playVoice;
     private boolean isPlay = false;
     private ProgressBar progress;
     private OnMessageClick onMessageClick;
-    private OnOptionMessage onOptionMessage;
 
 
-    public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, OnOptionMessage onOptionMessage) {
+    public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick) {
         super(itemView);
         this.onMessageClick = onMessageClick;
-        this.onOptionMessage = onOptionMessage;
         voice = itemView.findViewById(R.id.video);
         downloadVoice = itemView.findViewById(R.id.downloadVoice);
-        ContinerVoice = itemView.findViewById(R.id.ContinerVoice);
         progress = itemView.findViewById(R.id.progress);
         playVoice = itemView.findViewById(R.id.playVoice);
 
@@ -64,7 +59,7 @@ public class VoiceViewHolder extends BaseViewHolder {
     public void Play(Chat chat, int position) {
         if (!chat.getMessage().equals("")) {
             progress.setVisibility(View.GONE);
-            downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));
+            playVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));
             voice.setVideoURI(Uri.parse(chat.getMessage())); //the string of the URL mentioned above
             voice.stopPlayback();
             voice.pause();
@@ -72,7 +67,7 @@ public class VoiceViewHolder extends BaseViewHolder {
 //        else {
 //            downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.download));
 //        }
-        voice.setOnCompletionListener(mp -> downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play)));
+        voice.setOnCompletionListener(mp -> playVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play)));
         MediaController mediaController = new MediaController(itemView.getContext());
         mediaController.setMediaPlayer(voice);
         mediaController.findFocus();
@@ -81,11 +76,11 @@ public class VoiceViewHolder extends BaseViewHolder {
         mediaController.setEnabled(true);
         voice.setMediaController(mediaController);
         voice.requestFocus();
-//        downloadVoice.setOnClickListener(v -> {
-//            onMessageClick.onMessageClickListner(chat, getAdapterPosition());
-//        });
-
         downloadVoice.setOnClickListener(v -> {
+            onMessageClick.download(chat, getAdapterPosition());
+        });
+
+        playVoice.setOnClickListener(v -> {
             if (!chat.getMessage().equals("")) {
                 if (isPlay) {
                     downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));

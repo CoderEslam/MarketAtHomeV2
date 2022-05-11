@@ -59,16 +59,16 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:visibility="gone"
                     android:id="@+id/downloadVoice"
                     android:layout_width="49dp"
                     android:layout_height="51dp"
                     android:layout_gravity="center"
                     android:background="@drawable/bg_text_chat"
                     android:elevation="6dp"
-                    android:src="@drawable/download" />
+                    android:src="@drawable/_download_" />
 
                 <ImageView
-                    android:visibility="gone"
                     android:id="@+id/playVoice"
                     android:layout_width="50dp"
                     android:layout_height="50dp"

@@ -4,12 +4,12 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.doubleclick.OnMessageClick;
-import com.doubleclick.OnOptionMessage;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -18,20 +18,20 @@ import com.doubleclick.marktinhome.R;
  * Created By Eslam Ghazy on 2/7/2022
  */
 public class FileViewHolder extends BaseViewHolder {
-    public LottieAnimationView lottieAnimationView;
-    public OnMessageClick onMessageClick;
-    private OnOptionMessage onOptionMessage;
+    private LottieAnimationView lottieAnimationView;
+    private OnMessageClick onMessageClick;
+    private ImageView download;
 
-    public FileViewHolder(View itemView, OnMessageClick onMessageClick, OnOptionMessage onOptionMessage) {
+    public FileViewHolder(View itemView, OnMessageClick onMessageClick) {
         super(itemView);
         this.onMessageClick = onMessageClick;
-        this.onOptionMessage = onOptionMessage;
         lottieAnimationView = itemView.findViewById(R.id.file);
+        download = itemView.findViewById(R.id.download);
     }
 
 
     public void downloadFile(Chat chat, int pos) {
-        itemView.setOnClickListener(new View.OnClickListener() {
+        download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(chat.getMessage()));
@@ -45,10 +45,8 @@ public class FileViewHolder extends BaseViewHolder {
                     i.setPackage(null);
                     itemView.getContext().startActivity(i);
                 }
-                onMessageClick.onMessageClickListner(chat,getAdapterPosition());
-
+                onMessageClick.download(chat, getAdapterPosition());
             }
         });
-
     }
 }

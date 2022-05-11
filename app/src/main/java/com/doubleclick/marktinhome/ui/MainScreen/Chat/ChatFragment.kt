@@ -22,16 +22,15 @@ import android.provider.ContactsContract
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewAnimationUtils
-import android.view.ViewGroup
+import android.view.*
 import android.webkit.MimeTypeMap
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -43,7 +42,6 @@ import com.devlomi.record_view.RecordButton
 import com.devlomi.record_view.RecordView
 import com.doubleclick.Api.APIService
 import com.doubleclick.OnMessageClick
-import com.doubleclick.OnOptionMessage
 import com.doubleclick.ViewModel.ChatViewModel
 import com.doubleclick.marktinhome.Adapters.BaseMessageAdapter
 import com.doubleclick.marktinhome.BaseFragment
@@ -61,10 +59,12 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.tasks.Continuation
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
-import com.google.firebase.storage.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.StorageTask
+import com.google.firebase.storage.UploadTask
+import com.paypal.android.sdk.u
 import com.vanniktech.emoji.EmojiPopup
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
@@ -75,8 +75,7 @@ import java.io.IOException
 import java.util.*
 
 
-class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptionMessage,
-    ChatReopsitory.StatusChat {
+class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReopsitory.StatusChat {
 
     private lateinit var sendText: ImageView
     private lateinit var et_text_message: EditText
@@ -106,8 +105,9 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
     private lateinit var username: TextView;
     private lateinit var status: TextView;
     private lateinit var apiService: APIService
+    private lateinit var toolbar: Toolbar
     private var sharePost: String = "null".toString()
-//    private lateinit var chatViewModelDatabase: ChatViewModelDatabase
+    private lateinit var chatViewModelDatabase: ChatViewModelDatabase
 
     private lateinit var storageReference: StorageReference
     var fileType: String? = null
@@ -144,22 +144,25 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
         sendText = view.findViewById(R.id.sendText);
         et_text_message = view.findViewById(R.id.et_text_message);
         continer_attacht = view.findViewById(R.id.continer_attacht);
+        toolbar = view.findViewById(R.id.toolbar)
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+        setHasOptionsMenu(true);
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService::class.java)
         supportMapFragment =
             requireActivity().supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         client = LocationServices.getFusedLocationProviderClient(requireContext())
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-//        chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
-//        chatViewModelDatabase.getAllData(myId, user!!.id);
-//        chatViewModelDatabase.getLasRowMassage(user!!.id, myId).observe(viewLifecycleOwner) {
-//            if (it != null) {
-//                Log.e("LastRow", it.toString())
-//            }
-//        }
-//        chatViewModelDatabase.allChats.observe(viewLifecycleOwner) {
-//            Log.e("allChats", it.toString())
-//        }
+        chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
+        chatViewModelDatabase.getAllData(myId, user!!.id);
+        chatViewModelDatabase.getLasRowMassage(user!!.id, myId).observe(viewLifecycleOwner) {
+            if (it != null) {
+                Log.e("LastRow", it.toString())
+            }
+        }
+        chatViewModelDatabase.allChats.observe(viewLifecycleOwner) {
+            Log.e("allChats", it.toString())
+        }
         chatRecycler = view.findViewById(R.id.chatRecycler);
         chatRecycler.setHasFixedSize(true);
         sendRecord = view.findViewById(R.id.sendRecord);
@@ -195,7 +198,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
             chats.add(it)
-            chatAdapter = BaseMessageAdapter(chats, this, this);
+            chatAdapter = BaseMessageAdapter(chats, this);
             chatRecycler.adapter = chatAdapter
             chatAdapter.notifyItemInserted((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
             chatRecycler.scrollToPosition((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
@@ -371,8 +374,8 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
         map["date"] = time
         map["id"] = id
         map["StatusMessage"] = "Uploaded"
-        val chat = Chat(text, type, myId, user!!.id, time, id, "Uploaded", false);
-//        chatViewModelDatabase.insert(chat);
+        val chat = Chat(text, "", type, myId, user!!.id, time, id, "Uploaded", false);
+        chatViewModelDatabase.insert(chat);
 //        reference.child(CHATS).child(id).updateChildren(map)
         upload(id, map);
         et_text_message.setText("")
@@ -517,9 +520,18 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
                             map["id"] = id
                             map["date"] = time
                             map["StatusMessage"] = "Uploaded" // "Stored" , "beenSeen"
-                            val chat =
-                                Chat(url, "voice", myId, user!!.id, time, id, "Uploaded", false);
-//                            chatViewModelDatabase.insert(chat);
+                            val chat = Chat(
+                                url,
+                                audioPath,
+                                "voice",
+                                myId,
+                                user!!.id,
+                                time,
+                                id,
+                                "Uploaded",
+                                false
+                            );
+                            chatViewModelDatabase.insert(chat);
 //                            reference.child(CHATS).child(id).setValue(map)
                             upload(id, map);
                             progressDialog.dismiss()
@@ -659,6 +671,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
                         val chat =
                             Chat(
                                 url,
+                                uri.toString(),
                                 fileType.toString(),
                                 myId,
                                 user!!.id,
@@ -667,7 +680,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
                                 "Uploaded",
                                 false
                             );
-//                        chatViewModelDatabase.insert(chat);
+                        chatViewModelDatabase.insert(chat);
 //                    reference.child(CHATS).child(id).setValue(hashMap)
                         upload(id, map);
                         progressDialog.dismiss()
@@ -761,23 +774,10 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
             })
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    @SuppressLint("NotifyDataSetChanged")
-    override fun onMessageClickListner(chat: Chat, pos: Int) {
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                download(chat, pos)
-            }
-        } catch (e: Exception) {
-
-        }
-
-
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun deleteForMe(chat: Chat, pos: Int) {
-//        chatViewModelDatabase.delete(chat)
+        chatViewModelDatabase.delete(chat)
         chats.removeAt(pos)
         reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).removeValue()
         chatAdapter.notifyItemRemoved(pos)
@@ -788,7 +788,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
 
     @SuppressLint("NotifyDataSetChanged")
     override fun deleteForAll(chat: Chat, pos: Int) {
-//        chatViewModelDatabase.delete(chat)
+        chatViewModelDatabase.delete(chat)
         chats.removeAt(pos)
         reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).removeValue()
             .addOnCompleteListener {
@@ -804,7 +804,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
     @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Throws(java.lang.Exception::class)
-    fun download(chat: Chat, pos: Int) {
+    override fun download(chat: Chat, pos: Int) {
         try {
             val request = DownloadManager.Request(Uri.parse(chat.message))
             request.setDestinationInExternalPublicDir(
@@ -815,11 +815,11 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
             request.allowScanningByMediaScanner() // if you want to be available from media players
             val manager =
                 requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-            val u = manager.getUriForDownloadedFile(manager.enqueue(request))
-            chatAdapter.notifyItemChanged(pos)
-            chatAdapter.notifyDataSetChanged()
+            val uri = manager.getUriForDownloadedFile(manager.enqueue(request))
+            Toast.makeText(context, uri.toString(), Toast.LENGTH_LONG).show()
             val chat = Chat(
-                u.toString(),
+                chat.message,
+                uri.toString(),
                 chat.type,
                 chat.sender,
                 chat.receiver,
@@ -829,16 +829,35 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, OnOptio
                 chat.isSeen
             )
             chats[pos] = chat
-//            chatViewModelDatabase.update(chat)
+            chatAdapter.notifyItemChanged(pos)
+            chatAdapter.notifyDataSetChanged()
+            // TODO Update Message
+            chatViewModelDatabase.update(chat)
         } catch (e: IllegalStateException) {
-            Log.e("Exeption Voice", e.message!!)
+            Log.e("Exception", e.message!!)
         } catch (e: NullPointerException) {
-            Log.e("Exeption Voice", e.message!!)
+            Log.e("Exception", e.message!!)
+        } catch (e: Exception) {
+            Log.e("Exception", e.message!!)
         }
     }
 
     override fun BeenSeen(chat: Chat?) {
-//        chatViewModelDatabase.insert(chat!!)
+        chatViewModelDatabase.insert(chat!!)
+    }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.delete_all) {
+            chatViewModelDatabase.deleteAll();
+            Toast.makeText(context, "Deleted", Toast.LENGTH_LONG).show()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.delete_all_chat, menu)
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 }

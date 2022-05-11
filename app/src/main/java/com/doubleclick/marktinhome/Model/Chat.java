@@ -31,8 +31,9 @@ public class Chat implements Serializable {
         id = "vgldelafgjrelghrwl";
     }
 
-    public Chat(String message, String type, String sender, String receiver, long date, String id, String statusMessage, boolean seen) {
+    public Chat(String message, String uri, String type, String sender, String receiver, long date, String id, String statusMessage, boolean seen) {
         this.message = message;
+        this.uri = uri;
         this.type = type;
         this.sender = sender;
         this.receiver = receiver;

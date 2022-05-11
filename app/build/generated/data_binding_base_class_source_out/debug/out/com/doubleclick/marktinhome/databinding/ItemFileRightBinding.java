@@ -4,6 +4,7 @@ package com.doubleclick.marktinhome.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -20,11 +21,15 @@ public final class ItemFileRightBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ImageView download;
+
+  @NonNull
   public final LottieAnimationView file;
 
-  private ItemFileRightBinding(@NonNull ConstraintLayout rootView,
+  private ItemFileRightBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView download,
       @NonNull LottieAnimationView file) {
     this.rootView = rootView;
+    this.download = download;
     this.file = file;
   }
 
@@ -55,13 +60,19 @@ public final class ItemFileRightBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.download;
+      ImageView download = ViewBindings.findChildViewById(rootView, id);
+      if (download == null) {
+        break missingId;
+      }
+
       id = R.id.file;
       LottieAnimationView file = ViewBindings.findChildViewById(rootView, id);
       if (file == null) {
         break missingId;
       }
 
-      return new ItemFileRightBinding((ConstraintLayout) rootView, file);
+      return new ItemFileRightBinding((ConstraintLayout) rootView, download, file);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -2835,6 +2835,7 @@ dimen tooltip_y_offset_touch
 drawable _arrow_right
 drawable _dot_
 drawable _dot_white
+drawable _download_
 drawable abc_ab_share_pack_mtrl_alpha
 drawable abc_action_bar_item_background_material
 drawable abc_btn_borderless_material
@@ -3624,6 +3625,7 @@ id default_activity_button
 id delete
 id deleteForme
 id deleteOption
+id delete_all
 id deleteforeveryone
 id deltaRelative
 id dependency_ordering
@@ -4722,6 +4724,7 @@ layout view_color_palette
 layout view_label_button
 layout view_marker_button
 layout widget_navigation_drawer
+menu delete_all_chat
 menu menu_bottom
 menu menu_chat
 menu menu_groups
@@ -4863,6 +4866,7 @@ string custommer_address
 string default_web_client_id
 string define_emoji
 string delete
+string delete_all
 string delete_for_everyone
 string delete_for_me
 string description

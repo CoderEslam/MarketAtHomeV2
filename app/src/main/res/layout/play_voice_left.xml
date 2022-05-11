@@ -80,7 +80,8 @@
                     android:layout_gravity="center"
                     android:background="@drawable/bg_text_chat"
                     android:elevation="6dp"
-                    android:src="@drawable/download" />
+                    android:src="@drawable/_download_"
+                    android:visibility="gone" />
 
                 <ImageView
                     android:id="@+id/playVoice"
@@ -89,8 +90,7 @@
                     android:layout_gravity="center"
                     android:background="@drawable/bg_text_chat"
                     android:elevation="6dp"
-                    android:src="@drawable/play"
-                    android:visibility="gone" />
+                    android:src="@drawable/play" />
 
             </LinearLayout>
 

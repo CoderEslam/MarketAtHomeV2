@@ -3,6 +3,7 @@ package com.doubleclick.marktinhome.Database;
 import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
@@ -22,8 +23,6 @@ public class ChatDatabaseReopsitory {
     public ChatDatabaseReopsitory(Application application) {
         ChatDatabase db = ChatDatabase.getInstance(application);
         chatDao = db.EntitiesDAO();
-//        getAllChat = chatDao.getAllChat();
-
     }
 
     public void Load(String myID, String FriendID) {
@@ -84,7 +83,12 @@ public class ChatDatabaseReopsitory {
 
         @Override
         protected Void doInBackground(Chat... chats) {
-            EntitiesDAO.insert(chats[0]);
+            try {
+                EntitiesDAO.insert(chats[0]);
+            } catch (Exception e) {
+                Log.e("ExceptionInsert", e.getMessage());
+            }
+
             return null;
         }
     }
@@ -99,7 +103,11 @@ public class ChatDatabaseReopsitory {
 
         @Override
         protected Void doInBackground(Chat... chats) {
-            EntitiesDAO.delete(chats[0]);
+            try {
+                EntitiesDAO.delete(chats[0]);
+            } catch (Exception e) {
+                Log.e("ExceptionDelete", e.getMessage());
+            }
             return null;
         }
     }
@@ -114,7 +122,11 @@ public class ChatDatabaseReopsitory {
 
         @Override
         protected Void doInBackground(Chat... chats) {
-            EntitiesDAO.update(chats[0]);
+            try {
+                EntitiesDAO.update(chats[0]);
+            } catch (Exception e) {
+                Log.e("ExceptionUpdate", e.getMessage());
+            }
             return null;
         }
     }
@@ -129,8 +141,12 @@ public class ChatDatabaseReopsitory {
 
         @Override
         protected Void doInBackground(Void... voids) {
+            try {
+                chatDao.deleteAllData();
+            } catch (Exception e) {
+                Log.e("ExceptionDeleteAll", e.getMessage());
+            }
 
-            chatDao.deleteAllData();
 
             return null;
         }

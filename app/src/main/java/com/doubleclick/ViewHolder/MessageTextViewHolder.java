@@ -6,9 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.doubleclick.OnOptionMessage;
+import com.doubleclick.OnMessageClick;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -19,14 +18,14 @@ import com.doubleclick.marktinhome.R;
 public class MessageTextViewHolder extends BaseViewHolder {
 
     public TextView textMessage, textTime;
-    private OnOptionMessage onOptionMessage;
+    private OnMessageClick onMessageClick;
 //    public ImageView profile_image;
 //    public TextView txt_seen;
 //    public ImageView image_message;
 
-    public MessageTextViewHolder(View itemView, OnOptionMessage onOptionMessage) {
+    public MessageTextViewHolder(View itemView, OnMessageClick onMessageClick) {
         super(itemView);
-        this.onOptionMessage = onOptionMessage;
+        this.onMessageClick = onMessageClick;
         textMessage = itemView.findViewById(R.id.textMessage);
         textTime = itemView.findViewById(R.id.textTime);
         itemView.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +44,7 @@ public class MessageTextViewHolder extends BaseViewHolder {
         itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                onOptionMessage.deleteForAll(chat, postion);
+                onMessageClick.deleteForAll(chat, postion);
                 return false;
             }
         });

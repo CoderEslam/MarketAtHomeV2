@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.doubleclick.OnOptionMessage;
+import com.doubleclick.OnMessageClick;
 import com.doubleclick.marktinhome.R;
 
 /**
@@ -19,10 +19,10 @@ public class ContactViewHolder extends BaseViewHolder {
 
     private TextView nameContact, numberContact;
     private String massege;
-    private OnOptionMessage onOptionMessage;
-    public ContactViewHolder(@NonNull View itemView, OnOptionMessage onOptionMessage) {
+    private OnMessageClick onMessageClick;
+    public ContactViewHolder(@NonNull View itemView,OnMessageClick onMessageClick) {
         super(itemView);
-        this.onOptionMessage = onOptionMessage;
+        this.onMessageClick = onMessageClick;
         nameContact = itemView.findViewById(R.id.nameContact);
         numberContact = itemView.findViewById(R.id.numberContact);
 
