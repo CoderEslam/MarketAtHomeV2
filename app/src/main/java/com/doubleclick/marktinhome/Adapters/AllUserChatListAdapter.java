@@ -38,6 +38,7 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
     private ArrayList<User> userArrayList;
     private UserInter onUser;
     private DatabaseReference reference;
+    private String myId;
 
     public AllUserChatListAdapter(ArrayList<User> userArrayList, UserInter onUser) {
         this.userArrayList = userArrayList;
@@ -48,6 +49,7 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
     @Override
     public AllUserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         reference = FirebaseDatabase.getInstance().getReference().child(CHATS);
+        myId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString();
         return new AllUserViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.user_chat_layout, parent, false));
     }
 
@@ -81,7 +83,7 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
         }
 
         private void Messageunread(String id) {
-            reference.child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString()).child(id).addValueEventListener(new ValueEventListener() {
+            reference.child(myId).child(id).addValueEventListener(new ValueEventListener() {
                 @SuppressLint({"DefaultLocale", "UseCompatLoadingForDrawables"})
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -89,7 +91,7 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Chat chat = snapshot.getValue(Chat.class);
                         assert chat != null;
-                        if (chat.getStatusMessage().equals("Uploaded")) {
+                        if (chat.getStatusMessage().equals("Uploaded") && !chat.getSender().equals(myId)) {
                             i++;
                             countMessage.setText(String.format("%d", i));
                             countMessage.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.bg_green));

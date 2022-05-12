@@ -1073,23 +1073,27 @@ com/doubleclick/ViewHolder/MessageTextViewHolder.java
  com.doubleclick.ViewHolder.MessageTextViewHolder
  com.doubleclick.ViewHolder.MessageTextViewHolder$1
  com.doubleclick.ViewHolder.MessageTextViewHolder$2
-com/doubleclick/marktinhome/Adapters/AllUserChatListAdapter.java
- com.doubleclick.marktinhome.Adapters.AllUserChatListAdapter
- com.doubleclick.marktinhome.Adapters.AllUserChatListAdapter$AllUserViewHolder
- com.doubleclick.marktinhome.Adapters.AllUserChatListAdapter$AllUserViewHolder$1
+com/doubleclick/marktinhome/Database/ChatDatabaseReopsitory.java
+ com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory
+ com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory$DeleteAllAsyncTask
+ com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory$DeleteAsyncTask
+ com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory$InsertAsyncTask
+ com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory$UpdatetAsyncTask
 com/doubleclick/marktinhome/Model/Chat.java
  com.doubleclick.marktinhome.Model.Chat
 com/doubleclick/marktinhome/Adapters/ChatAdapter.java
  com.doubleclick.marktinhome.Adapters.ChatAdapter
-com/doubleclick/ViewHolder/VoiceViewHolder.java
- com.doubleclick.ViewHolder.VoiceViewHolder
+com/doubleclick/marktinhome/Adapters/AllUserChatListAdapter.java
+ com.doubleclick.marktinhome.Adapters.AllUserChatListAdapter
+ com.doubleclick.marktinhome.Adapters.AllUserChatListAdapter$AllUserViewHolder
+ com.doubleclick.marktinhome.Adapters.AllUserChatListAdapter$AllUserViewHolder$1
 com/doubleclick/marktinhome/Repository/ChatReopsitory.java
  com.doubleclick.marktinhome.Repository.ChatReopsitory
  com.doubleclick.marktinhome.Repository.ChatReopsitory$1
  com.doubleclick.marktinhome.Repository.ChatReopsitory$Chats
  com.doubleclick.marktinhome.Repository.ChatReopsitory$StatusChat
-com/doubleclick/marktinhome/Adapters/BaseMessageAdapter.java
- com.doubleclick.marktinhome.Adapters.BaseMessageAdapter
+com/doubleclick/marktinhome/Database/ChatViewModelDatabase.java
+ com.doubleclick.marktinhome.Database.ChatViewModelDatabase
 com/doubleclick/ViewHolder/VideoViewHolder.java
  com.doubleclick.ViewHolder.VideoViewHolder
  com.doubleclick.ViewHolder.VideoViewHolder$1
@@ -1117,13 +1121,9 @@ com/doubleclick/marktinhome/Adapters/GroupsAdapter.java
  com.doubleclick.marktinhome.Adapters.GroupsAdapter$GroupViewHolder$1
  com.doubleclick.marktinhome.Adapters.GroupsAdapter$Loadmore
  com.doubleclick.marktinhome.Adapters.GroupsAdapter$OptionPost
-com/doubleclick/marktinhome/Database/ChatViewModelDatabase.java
- com.doubleclick.marktinhome.Database.ChatViewModelDatabase
 com/doubleclick/marktinhome/ui/MainScreen/Frgments/Profile/menu_profileFragment.java
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Profile.menu_profileFragment
-com/doubleclick/marktinhome/Database/ChatDatabaseReopsitory.java
- com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory
- com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory$DeleteAllAsyncTask
- com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory$DeleteAsyncTask
- com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory$InsertAsyncTask
- com.doubleclick.marktinhome.Database.ChatDatabaseReopsitory$UpdatetAsyncTask
+com/doubleclick/marktinhome/Adapters/BaseMessageAdapter.java
+ com.doubleclick.marktinhome.Adapters.BaseMessageAdapter
+com/doubleclick/ViewHolder/VoiceViewHolder.java
+ com.doubleclick.ViewHolder.VoiceViewHolder

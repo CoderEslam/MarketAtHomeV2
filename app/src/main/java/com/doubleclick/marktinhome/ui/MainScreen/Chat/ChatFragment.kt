@@ -198,7 +198,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
             chats.add(it)
-            chatAdapter = BaseMessageAdapter(chats, this);
+            chatAdapter = BaseMessageAdapter(chats, this,myId);
             chatRecycler.adapter = chatAdapter
             chatAdapter.notifyItemInserted((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
             chatRecycler.scrollToPosition((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)

@@ -42,11 +42,12 @@ public class VoiceViewHolder extends BaseViewHolder {
     private boolean isPlay = false;
     private ProgressBar progress;
     private OnMessageClick onMessageClick;
+    private String myId;
 
-
-    public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick) {
+    public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
         this.onMessageClick = onMessageClick;
+        this.myId = myId;
         voice = itemView.findViewById(R.id.video);
         downloadVoice = itemView.findViewById(R.id.downloadVoice);
         progress = itemView.findViewById(R.id.progress);
@@ -64,6 +65,7 @@ public class VoiceViewHolder extends BaseViewHolder {
             voice.stopPlayback();
             voice.pause();
         }
+
 //        else {
 //            downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.download));
 //        }
@@ -94,6 +96,10 @@ public class VoiceViewHolder extends BaseViewHolder {
                     isPlay = true;
                 }
             }
+
+            /*if (!chat.getUri().equals("") && chat.getSender().equals(myId)){
+
+            }*/
         });
     }
 
