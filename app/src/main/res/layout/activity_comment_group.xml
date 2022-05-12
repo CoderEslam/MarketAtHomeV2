@@ -65,8 +65,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/comments_group_layout"
-            app:shimmer_recycler_layout="@layout/comments_group_layout_shimmer"/>
+            app:shimmer_recycler_layout="@layout/comments_group_layout_shimmer"
+            app:stackFromEnd="true"
+            tools:listitem="@layout/comments_group_layout" />
 
     </androidx.core.widget.NestedScrollView>
 

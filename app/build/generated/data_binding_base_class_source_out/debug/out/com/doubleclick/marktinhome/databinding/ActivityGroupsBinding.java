@@ -10,12 +10,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
 import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.todkars.shimmer.ShimmerRecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -25,7 +27,10 @@ import java.lang.String;
 
 public final class ActivityGroupsBinding implements ViewBinding {
   @NonNull
-  private final RelativeLayout rootView;
+  private final CoordinatorLayout rootView;
+
+  @NonNull
+  public final AppBarLayout appbar;
 
   @NonNull
   public final ImageView back;
@@ -37,9 +42,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final ImageView cover;
 
   @NonNull
-  public final ConstraintLayout coverLayout;
-
-  @NonNull
   public final LinearLayout createPost;
 
   @NonNull
@@ -47,15 +49,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
 
   @NonNull
   public final SocialTextView discription;
-
-  @NonNull
-  public final FloatingActionButton editCover;
-
-  @NonNull
-  public final ImageView editName;
-
-  @NonNull
-  public final FloatingActionButton editProfile;
 
   @NonNull
   public final TextView history;
@@ -91,9 +84,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final LinearLayout numbers;
 
   @NonNull
-  public final ImageView option;
-
-  @NonNull
   public final ShimmerRecyclerView post;
 
   @NonNull
@@ -109,32 +99,30 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final CircleImageView selectImage;
 
   @NonNull
+  public final Toolbar toolbar;
+
+  @NonNull
   public final TextView username;
 
-  private ActivityGroupsBinding(@NonNull RelativeLayout rootView, @NonNull ImageView back,
-      @NonNull ConstraintLayout constraintLayout, @NonNull ImageView cover,
-      @NonNull ConstraintLayout coverLayout, @NonNull LinearLayout createPost,
-      @NonNull LinearLayout details, @NonNull SocialTextView discription,
-      @NonNull FloatingActionButton editCover, @NonNull ImageView editName,
-      @NonNull FloatingActionButton editProfile, @NonNull TextView history,
+  private ActivityGroupsBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appbar,
+      @NonNull ImageView back, @NonNull ConstraintLayout constraintLayout, @NonNull ImageView cover,
+      @NonNull LinearLayout createPost, @NonNull LinearLayout details,
+      @NonNull SocialTextView discription, @NonNull TextView history,
       @NonNull CircleImageView imageGroup, @NonNull LinearLayout linearLayout3,
       @NonNull SocialTextView link, @NonNull LinearLayout linkLayout,
       @NonNull LinearLayout locationLayout, @NonNull LinearLayout main, @NonNull TextView members,
       @NonNull TextView name, @NonNull TextView nothing, @NonNull LinearLayout numbers,
-      @NonNull ImageView option, @NonNull ShimmerRecyclerView post, @NonNull TextView postsNum,
+      @NonNull ShimmerRecyclerView post, @NonNull TextView postsNum,
       @NonNull LinearProgressIndicator progressBar, @NonNull RelativeLayout scroll,
-      @NonNull CircleImageView selectImage, @NonNull TextView username) {
+      @NonNull CircleImageView selectImage, @NonNull Toolbar toolbar, @NonNull TextView username) {
     this.rootView = rootView;
+    this.appbar = appbar;
     this.back = back;
     this.constraintLayout = constraintLayout;
     this.cover = cover;
-    this.coverLayout = coverLayout;
     this.createPost = createPost;
     this.details = details;
     this.discription = discription;
-    this.editCover = editCover;
-    this.editName = editName;
-    this.editProfile = editProfile;
     this.history = history;
     this.imageGroup = imageGroup;
     this.linearLayout3 = linearLayout3;
@@ -146,18 +134,18 @@ public final class ActivityGroupsBinding implements ViewBinding {
     this.name = name;
     this.nothing = nothing;
     this.numbers = numbers;
-    this.option = option;
     this.post = post;
     this.postsNum = postsNum;
     this.progressBar = progressBar;
     this.scroll = scroll;
     this.selectImage = selectImage;
+    this.toolbar = toolbar;
     this.username = username;
   }
 
   @Override
   @NonNull
-  public RelativeLayout getRoot() {
+  public CoordinatorLayout getRoot() {
     return rootView;
   }
 
@@ -182,6 +170,12 @@ public final class ActivityGroupsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.appbar;
+      AppBarLayout appbar = ViewBindings.findChildViewById(rootView, id);
+      if (appbar == null) {
+        break missingId;
+      }
+
       id = R.id.back;
       ImageView back = ViewBindings.findChildViewById(rootView, id);
       if (back == null) {
@@ -200,12 +194,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.cover_layout;
-      ConstraintLayout coverLayout = ViewBindings.findChildViewById(rootView, id);
-      if (coverLayout == null) {
-        break missingId;
-      }
-
       id = R.id.create_post;
       LinearLayout createPost = ViewBindings.findChildViewById(rootView, id);
       if (createPost == null) {
@@ -221,24 +209,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
       id = R.id.discription;
       SocialTextView discription = ViewBindings.findChildViewById(rootView, id);
       if (discription == null) {
-        break missingId;
-      }
-
-      id = R.id.editCover;
-      FloatingActionButton editCover = ViewBindings.findChildViewById(rootView, id);
-      if (editCover == null) {
-        break missingId;
-      }
-
-      id = R.id.editName;
-      ImageView editName = ViewBindings.findChildViewById(rootView, id);
-      if (editName == null) {
-        break missingId;
-      }
-
-      id = R.id.editProfile;
-      FloatingActionButton editProfile = ViewBindings.findChildViewById(rootView, id);
-      if (editProfile == null) {
         break missingId;
       }
 
@@ -308,12 +278,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.option;
-      ImageView option = ViewBindings.findChildViewById(rootView, id);
-      if (option == null) {
-        break missingId;
-      }
-
       id = R.id.post;
       ShimmerRecyclerView post = ViewBindings.findChildViewById(rootView, id);
       if (post == null) {
@@ -332,11 +296,21 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      RelativeLayout scroll = (RelativeLayout) rootView;
+      id = R.id.scroll;
+      RelativeLayout scroll = ViewBindings.findChildViewById(rootView, id);
+      if (scroll == null) {
+        break missingId;
+      }
 
       id = R.id.selectImage;
       CircleImageView selectImage = ViewBindings.findChildViewById(rootView, id);
       if (selectImage == null) {
+        break missingId;
+      }
+
+      id = R.id.toolbar;
+      Toolbar toolbar = ViewBindings.findChildViewById(rootView, id);
+      if (toolbar == null) {
         break missingId;
       }
 
@@ -346,10 +320,10 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityGroupsBinding((RelativeLayout) rootView, back, constraintLayout, cover,
-          coverLayout, createPost, details, discription, editCover, editName, editProfile, history,
-          imageGroup, linearLayout3, link, linkLayout, locationLayout, main, members, name, nothing,
-          numbers, option, post, postsNum, progressBar, scroll, selectImage, username);
+      return new ActivityGroupsBinding((CoordinatorLayout) rootView, appbar, back, constraintLayout,
+          cover, createPost, details, discription, history, imageGroup, linearLayout3, link,
+          linkLayout, locationLayout, main, members, name, nothing, numbers, post, postsNum,
+          progressBar, scroll, selectImage, toolbar, username);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

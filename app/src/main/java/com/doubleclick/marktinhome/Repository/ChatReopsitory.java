@@ -69,15 +69,18 @@ public class ChatReopsitory extends BaseRepository {
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Chat chat = snapshot.getValue(Chat.class);
                 assert chat != null;
-                if (chat.getStatusMessage().equals("beenSeen") && chat.getReceiver().equals(myId)) {
-                    statusChat.BeenSeen(chat);
+                if (chat.getStatusMessage().equals("beenSeen") && chat.getReceiver().equals(myId) && chat.isSeen()) {
+                    statusChat.BeenSeenForFriend(chat);
+                }
+                if (chat.getStatusMessage().equals("beenSeen") && chat.getSender().equals(myId) && chat.isSeen()) {
+                    statusChat.BeenSeenForMe(chat);
                 }
 
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
+                statusChat.deleteForAll(snapshot.getValue(Chat.class));
             }
 
             @Override
@@ -100,7 +103,12 @@ public class ChatReopsitory extends BaseRepository {
     }
 
     public interface StatusChat {
-        void BeenSeen(Chat chat);
+        void BeenSeenForFriend(Chat chat);
+
+        void BeenSeenForMe(Chat chat);
+
+        void deleteForAll(Chat chat);
+
     }
 
 }

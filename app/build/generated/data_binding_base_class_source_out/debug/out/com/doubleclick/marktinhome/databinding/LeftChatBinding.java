@@ -4,6 +4,7 @@ package com.doubleclick.marktinhome.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,14 +21,18 @@ public final class LeftChatBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ImageView seen;
+
+  @NonNull
   public final TextView textMessage;
 
   @NonNull
   public final TextView textTime;
 
-  private LeftChatBinding(@NonNull ConstraintLayout rootView, @NonNull TextView textMessage,
-      @NonNull TextView textTime) {
+  private LeftChatBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView seen,
+      @NonNull TextView textMessage, @NonNull TextView textTime) {
     this.rootView = rootView;
+    this.seen = seen;
     this.textMessage = textMessage;
     this.textTime = textTime;
   }
@@ -59,6 +64,12 @@ public final class LeftChatBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.seen;
+      ImageView seen = ViewBindings.findChildViewById(rootView, id);
+      if (seen == null) {
+        break missingId;
+      }
+
       id = R.id.textMessage;
       TextView textMessage = ViewBindings.findChildViewById(rootView, id);
       if (textMessage == null) {
@@ -71,7 +82,7 @@ public final class LeftChatBinding implements ViewBinding {
         break missingId;
       }
 
-      return new LeftChatBinding((ConstraintLayout) rootView, textMessage, textTime);
+      return new LeftChatBinding((ConstraintLayout) rootView, seen, textMessage, textTime);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -3420,7 +3420,6 @@ id addImages
 id addParent
 id addToggalsLinearLayout
 id addToggalsScrollView
-id addToggleButton
 id addToggleButtonColor
 id addVideo
 id addView
@@ -3430,6 +3429,7 @@ id address
 id addressFragment
 id adjust_height
 id adjust_width
+id admins
 id alertTitle
 id align
 id aligned
@@ -3451,6 +3451,7 @@ id anticipate
 id appBarRL
 id appBarTitleTV
 id app_bar
+id appbar
 id arc
 id arro_imageview
 id arrow
@@ -3603,7 +3604,6 @@ id countMessage
 id counter_tv
 id counterclockwise
 id cover
-id cover_layout
 id cpv_font_text_color
 id cpv_highlight_color
 id create_post
@@ -3728,6 +3728,7 @@ id graph
 id graph_wrap
 id gridview
 id groupColor
+id groupSize
 id group_divider
 id group_nav
 id grouping
@@ -3749,8 +3750,6 @@ id home
 id homeAsUp
 id homeFragment
 id honorRequest
-id horizontalScrollView
-id horizontalScrollView2
 id horizontal_only
 id hsv_action_bar
 id hybrid
@@ -3782,7 +3781,6 @@ id imageView30
 id imageView32
 id imageView4
 id imageView5
-id imageView51
 id imageView55
 id imageView555
 id imageView556
@@ -3840,7 +3838,6 @@ id iv_folder_check
 id iv_get_html
 id iv_selected
 id iv_thumb
-id joinUs
 id jumpToEnd
 id jumpToStart
 id justifyCenter
@@ -4102,8 +4099,10 @@ id recordView
 id rectangle
 id rectangles
 id recycler
+id refresh
 id relativeLayout
 id replay
+id requsts
 id restart
 id reverse
 id reverseSawtooth
@@ -4145,6 +4144,7 @@ id search_plate
 id search_src_text
 id search_users
 id search_voice_btn
+id seen
 id selectCover
 id selectImage
 id select_dialog_listview
@@ -4264,6 +4264,8 @@ id textView14
 id textView15
 id textView16
 id textView17
+id textView18
+id textView19
 id textView2
 id textView3
 id textView4
@@ -4727,6 +4729,7 @@ layout widget_navigation_drawer
 menu delete_all_chat
 menu menu_bottom
 menu menu_chat
+menu menu_group
 menu menu_groups
 menu option_group
 menu option_tradmark
@@ -4805,10 +4808,13 @@ string abc_toolbar_collapse_description
 string action_settings
 string add
 string add_advertisement
+string add_colors
 string add_group
 string add_products
+string add_sizes
 string add_tradmark
 string address
+string admins
 string all_cartegories
 string all_images
 string androidx_startup
@@ -4873,7 +4879,9 @@ string description
 string download
 string easy_to_hundel
 string edit
+string edit_cover
 string edit_hyperlink
+string edit_name
 string edit_on_order
 string edit_on_product
 string edit_profile
@@ -4993,6 +5001,7 @@ string material_timepicker_minute
 string material_timepicker_pm
 string material_timepicker_select_time
 string material_timepicker_text_input_mode_description
+string members
 string menu_Cart
 string menu_groups
 string menu_profile
@@ -5070,6 +5079,7 @@ string put_you_rate
 string quantity
 string recent_search
 string replay
+string requsts
 string rows
 string save
 string search

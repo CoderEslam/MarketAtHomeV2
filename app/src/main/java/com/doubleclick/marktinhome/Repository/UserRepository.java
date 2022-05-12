@@ -36,7 +36,7 @@ public class UserRepository extends BaseRepository {
     }
 
     public void getUser() {
-        reference.child(USER).child(myId).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(USER).child(myId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 try {
@@ -55,6 +55,32 @@ public class UserRepository extends BaseRepository {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    public void getInfoUserById(String id) {
+        reference.child(USER).child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    if (isNetworkConnected()) {
+                        if (snapshot.exists()) {
+                            User user = snapshot.getValue(User.class);
+                            userInter.ItemUserInfoById(user);
+                        }
+                    } else {
+                        ShowToast("No Internet Connection");
+                    }
+                } catch (Exception e) {
+                    Log.e("Exception", e.getMessage());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }

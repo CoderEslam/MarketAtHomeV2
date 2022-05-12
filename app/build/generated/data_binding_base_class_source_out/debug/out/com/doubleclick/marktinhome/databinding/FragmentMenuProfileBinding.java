@@ -77,9 +77,6 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
   public final ImageView imageView32;
 
   @NonNull
-  public final ImageView imageView51;
-
-  @NonNull
   public final ImageView imageView55;
 
   @NonNull
@@ -96,9 +93,6 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
 
   @NonNull
   public final ImageView imageView566;
-
-  @NonNull
-  public final ConstraintLayout joinUs;
 
   @NonNull
   public final ConstraintLayout logout;
@@ -130,10 +124,9 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
       @NonNull ImageView editPhone, @NonNull ImageView editname, @NonNull TextView email,
       @NonNull FloatingActionButton fab, @NonNull ImageView imageView12,
       @NonNull ImageView imageView3, @NonNull ImageView imageView30, @NonNull ImageView imageView32,
-      @NonNull ImageView imageView51, @NonNull ImageView imageView55,
-      @NonNull ImageView imageView555, @NonNull ImageView imageView556,
-      @NonNull ImageView imageView56, @NonNull ImageView imageView564,
-      @NonNull ImageView imageView566, @NonNull ConstraintLayout joinUs,
+      @NonNull ImageView imageView55, @NonNull ImageView imageView555,
+      @NonNull ImageView imageView556, @NonNull ImageView imageView56,
+      @NonNull ImageView imageView564, @NonNull ImageView imageView566,
       @NonNull ConstraintLayout logout, @NonNull CircleImageView person, @NonNull TextView phone,
       @NonNull ConstraintLayout recentOrder, @NonNull ConstraintLayout statistices,
       @NonNull TextView textView3, @NonNull TextView username) {
@@ -156,14 +149,12 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
     this.imageView3 = imageView3;
     this.imageView30 = imageView30;
     this.imageView32 = imageView32;
-    this.imageView51 = imageView51;
     this.imageView55 = imageView55;
     this.imageView555 = imageView555;
     this.imageView556 = imageView556;
     this.imageView56 = imageView56;
     this.imageView564 = imageView564;
     this.imageView566 = imageView566;
-    this.joinUs = joinUs;
     this.logout = logout;
     this.person = person;
     this.phone = phone;
@@ -308,12 +299,6 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.imageView51;
-      ImageView imageView51 = ViewBindings.findChildViewById(rootView, id);
-      if (imageView51 == null) {
-        break missingId;
-      }
-
       id = R.id.imageView55;
       ImageView imageView55 = ViewBindings.findChildViewById(rootView, id);
       if (imageView55 == null) {
@@ -347,12 +332,6 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
       id = R.id.imageView566;
       ImageView imageView566 = ViewBindings.findChildViewById(rootView, id);
       if (imageView566 == null) {
-        break missingId;
-      }
-
-      id = R.id.joinUs;
-      ConstraintLayout joinUs = ViewBindings.findChildViewById(rootView, id);
-      if (joinUs == null) {
         break missingId;
       }
 
@@ -401,9 +380,9 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
       return new FragmentMenuProfileBinding((ConstraintLayout) rootView, AddAdv, AddProduct,
           AddTradmark, address, chat, constraintLayout3, constraintLayout4, constraintLayout5,
           constraintLayout6, editAddress, editPhone, editname, email, fab, imageView12, imageView3,
-          imageView30, imageView32, imageView51, imageView55, imageView555, imageView556,
-          imageView56, imageView564, imageView566, joinUs, logout, person, phone, recentOrder,
-          statistices, textView3, username);
+          imageView30, imageView32, imageView55, imageView555, imageView556, imageView56,
+          imageView564, imageView566, logout, person, phone, recentOrder, statistices, textView3,
+          username);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

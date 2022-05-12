@@ -13,6 +13,7 @@ import androidx.annotation.NonNull
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.airbnb.lottie.LottieAnimationView
 import com.doubleclick.OnItem
 import com.doubleclick.OnProduct
@@ -50,8 +51,9 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     private lateinit var homeModels: ArrayList<HomeModel>
     lateinit var homeAdapter: HomeAdapter
     lateinit var animationView: LottieAnimationView
-    private lateinit var timer: Timer;
+    private var timer: Timer = Timer();
     private var idProduct: String = ""
+    private lateinit var refresh: SwipeRefreshLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,9 +71,8 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         MainRecyceler = view.findViewById(R.id.MainRecyceler)
         animationView = view.findViewById(R.id.animationView);
+        refresh = view.findViewById(R.id.refresh);
         homeModels = ArrayList()
-
-
         if (idProduct != "") {
             reference.child(PRODUCT).child(idProduct)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -96,12 +97,21 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
                     override fun onCancelled(error: DatabaseError) {
 
                     }
-
                 })
-
+        }
+        refresh.setColorScheme(
+            R.color.blue,
+            R.color.ripplecoloreffect,
+            R.color.green,
+            R.color.orange
+        )
+        refresh.setOnRefreshListener {
+            homeModels.clear()
+            loadHomePage()
+            refresh.isRefreshing = false;
         }
         loadHomePage();
-        ReloadData();
+//        ReloadData();
         return view;
     }
 
@@ -210,14 +220,10 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     }
 
     private fun ReloadData() {
-        timer = Timer();
         val handler = Handler()
         val runnable = Runnable {
             try {
                 loadHomePage();
-                val intent = requireActivity().intent
-                requireActivity().finish()
-                startActivity(intent)
                 Animatoo.animateSwipeLeft(requireContext());
             } catch (e: Exception) {
                 Log.e("ExceptionHomeFrg", e.message.toString());

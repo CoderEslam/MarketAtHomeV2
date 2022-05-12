@@ -60,7 +60,7 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
     private lateinit var ratingSeller: RatingBar
     private var ToggleButton: ArrayList<String> = ArrayList()
     var rate: Float = 0f
-    lateinit var addToggleButton: RadioGroup
+    lateinit var groupSize: SingleSelectToggleGroup
     lateinit var addView: ImageView
     private lateinit var builder: AlertDialog.Builder
     private var colorToggle: Int = 0
@@ -122,7 +122,7 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         Upload = view.findViewById(R.id.Upload);
 //        keywords = view.findViewById(R.id.keywords);
         ratingSeller = view.findViewById(R.id.ratingSeller);
-        addToggleButton = view.findViewById(R.id.addToggleButton);
+        groupSize = view.findViewById(R.id.groupSize);
         addView = view.findViewById(R.id.addView);
         tradmarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
         tradmarkViewModel.namesMark.observe(viewLifecycleOwner, Observer {
@@ -188,22 +188,21 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
 
         addView.setOnClickListener {
             builder = AlertDialog.Builder(requireContext())
-            var radio = RadioButton(requireContext())
+            var radio = CircularToggle(requireContext())
             val view = LayoutInflater.from(context).inflate(R.layout.add_toggal, null, false)
-            val cardView: CardView = view.findViewById(R.id.cardView);
             val editorder: TextInputEditText = view.findViewById(R.id.editname)
             val color_seek_bar: ColorSeekBar = view.findViewById(R.id.color_seek_bar);
             color_seek_bar.visibility = View.INVISIBLE
             builder.setTitle("Add Options")
-            builder.setPositiveButton("ok", DialogInterface.OnClickListener { dialog, which ->
+            builder.setPositiveButton("ok") { dialog, which ->
                 radio.setText("" + editorder.text.toString().trim())
                 ToggleButton.add(editorder.text.toString().trim());
-                addToggleButton.addView(radio)
+                groupSize.addView(radio)
                 dialog.dismiss()
-            })
-            builder.setNegativeButton("cancel", DialogInterface.OnClickListener { dialog, which ->
+            }
+            builder.setNegativeButton("cancel") { dialog, which ->
                 dialog.dismiss()
-            })
+            }
             builder.setView(view)
             builder.show()
         }

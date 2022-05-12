@@ -14,23 +14,23 @@ import java.util.ArrayList;
  */
 public class CommentsGroupViewModel extends ViewModel implements CommentsGroupRepositotry.CommentData {
 
-    MutableLiveData<ArrayList<CommentsGroupData>> mutableLiveData = new MutableLiveData<>();
+    MutableLiveData<CommentsGroupData> mutableLiveData = new MutableLiveData<>();
     CommentsGroupRepositotry commentsGroupRepositotry = new CommentsGroupRepositotry(this);
 
     public CommentsGroupViewModel() {
     }
 
     public void GetComments(String groupId, String postId) {
-        commentsGroupRepositotry.loadComments(groupId,postId);
+        commentsGroupRepositotry.loadComments(groupId, postId);
     }
 
-    public LiveData<ArrayList<CommentsGroupData>> getCommentsLiveData() {
+    public LiveData<CommentsGroupData> getCommentsLiveData() {
         return mutableLiveData;
     }
 
 
     @Override
-    public void Comments(ArrayList<CommentsGroupData> commentsGroupData) {
+    public void Comments(CommentsGroupData commentsGroupData) {
         mutableLiveData.setValue(commentsGroupData);
     }
 }

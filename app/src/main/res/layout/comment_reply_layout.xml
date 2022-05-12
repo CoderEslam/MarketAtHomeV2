@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            app:cardBackgroundColor="@color/offwhite"
+            android:layout_marginEnd="16dp"
             app:cardCornerRadius="3dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -53,6 +53,8 @@
                 android:id="@+id/commentReplay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="@color/offwhite"
+                android:padding="3dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="@string/comment" />
@@ -64,13 +66,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="Mon 12/5/2022 12:45"
             android:textAllCaps="false"
             android:textColor="@color/blueDark"
             app:layout_constraintEnd_toEndOf="@+id/cardView8"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/cardView8"
-            app:layout_constraintTop_toBottomOf="@+id/cardView8" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView8"
+            tools:text="Mon 12/5/2022 12:45" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -39,6 +40,8 @@ public class CommentGroupActivity extends AppCompatActivity {
     private String postId, groupId;
     private String userId;
     private CommentsGroupViewModel commentsGroupViewModel;
+    private ArrayList<CommentsGroupData> commentsGroupDataArrayList = new ArrayList<>();
+    private CommentGroupAdapter commentGroupAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +55,18 @@ public class CommentGroupActivity extends AppCompatActivity {
         postId = getIntent().getStringExtra("postId"/* post id*/);
         groupId = getIntent().getStringExtra("groupId" /* group id*/);
         commentsGroupViewModel.GetComments(groupId, postId);
-        commentsGroupViewModel.getCommentsLiveData().observe(this, new Observer<ArrayList<CommentsGroupData>>() {
+        commentGroupAdapter = new CommentGroupAdapter(commentsGroupDataArrayList);
+        Comments.setAdapter(commentGroupAdapter);
+        commentsGroupViewModel.getCommentsLiveData().observe(this, new Observer<CommentsGroupData>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
-            public void onChanged(ArrayList<CommentsGroupData> commentsGroupData) {
-                if (commentsGroupData.size() != 0) {
-                    Comments.setAdapter(new CommentGroupAdapter(commentsGroupData));
+            public void onChanged(CommentsGroupData commentsGroupData) {
+                if (commentsGroupData != null) {
+                    commentsGroupDataArrayList.add(commentsGroupData);
+                    commentGroupAdapter.notifyItemInserted(commentsGroupDataArrayList.size() - 1);
+                    commentGroupAdapter.notifyDataSetChanged();
                     Comments.hideShimmer();
                 }
-
             }
         });
         userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString();

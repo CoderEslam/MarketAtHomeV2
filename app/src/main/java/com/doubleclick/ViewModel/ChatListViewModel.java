@@ -45,4 +45,9 @@ public class ChatListViewModel extends ViewModel implements UserInter {
     public void OnUserLisitner(@NonNull User user) {
 
     }
+
+    @Override
+    public void ItemUserInfoById(@Nullable User user) {
+
+    }
 }

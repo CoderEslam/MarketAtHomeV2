@@ -84,13 +84,11 @@ class AllUsersFragment : BaseFragment(), UserInter {
             }
     }
 
-    override fun ItemUser(user: User?) {
+    override fun ItemUser(user: User?) {}
 
-    }
+    override fun ItemUserInfoById(user: User?) {}
 
-    override fun AllUser(user: ArrayList<User>?) {
-
-    }
+    override fun AllUser(user: ArrayList<User>?) {}
 
     override fun OnUserLisitner(user: User) {
         findNavController().navigate(AllUsersFragmentDirections.actionAllUsersFragmentToChatFragment(user))

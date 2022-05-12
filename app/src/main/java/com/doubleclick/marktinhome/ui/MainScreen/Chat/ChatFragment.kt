@@ -43,6 +43,7 @@ import com.devlomi.record_view.RecordView
 import com.doubleclick.Api.APIService
 import com.doubleclick.OnMessageClick
 import com.doubleclick.ViewModel.ChatViewModel
+import com.doubleclick.ViewModel.UserViewModel
 import com.doubleclick.marktinhome.Adapters.BaseMessageAdapter
 import com.doubleclick.marktinhome.BaseFragment
 import com.doubleclick.marktinhome.Database.ChatViewModelDatabase
@@ -108,7 +109,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     private lateinit var toolbar: Toolbar
     private var sharePost: String = "null".toString()
     private lateinit var chatViewModelDatabase: ChatViewModelDatabase
-
+    private lateinit var userViewModel: UserViewModel
     private lateinit var storageReference: StorageReference
     var fileType: String? = null
 
@@ -116,7 +117,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     private var chats: ArrayList<Chat> = ArrayList();
     var audioPath: String? = null
     private var cklicked = true
-    private var user: User? = null
+    private lateinit var user: User
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,17 +125,18 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         arguments?.let {
             if (!it.isEmpty) {
                 sharePost = it.getString("sharePost").toString()
-                user = it.getSerializable("user") as User?
+            }
+            if (!it.isEmpty) {
+                user = it.getSerializable("user") as User
             }
             if (it.isEmpty) {
                 val User by navArgs<ChatFragmentArgs>()
                 user = User.user;
-            } else {
-                user = it.getSerializable("user") as User?
             }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged", "UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -144,25 +146,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         sendText = view.findViewById(R.id.sendText);
         et_text_message = view.findViewById(R.id.et_text_message);
         continer_attacht = view.findViewById(R.id.continer_attacht);
-        toolbar = view.findViewById(R.id.toolbar)
-        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
-        setHasOptionsMenu(true);
-        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService::class.java)
-        supportMapFragment =
-            requireActivity().supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        client = LocationServices.getFusedLocationProviderClient(requireContext())
-        locationManager =
-            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
-        chatViewModelDatabase.getAllData(myId, user!!.id);
-        chatViewModelDatabase.getLasRowMassage(user!!.id, myId).observe(viewLifecycleOwner) {
-            if (it != null) {
-                Log.e("LastRow", it.toString())
-            }
-        }
-        chatViewModelDatabase.allChats.observe(viewLifecycleOwner) {
-            Log.e("allChats", it.toString())
-        }
         chatRecycler = view.findViewById(R.id.chatRecycler);
         chatRecycler.setHasFixedSize(true);
         sendRecord = view.findViewById(R.id.sendRecord);
@@ -179,11 +162,45 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         profile_image = view.findViewById(R.id.profile_image)
         username = view.findViewById(R.id.username)
         status = view.findViewById(R.id.status)
+        toolbar = view.findViewById(R.id.toolbar)
+        (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
+        setHasOptionsMenu(true);
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService::class.java)
+        supportMapFragment =
+            requireActivity().supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        client = LocationServices.getFusedLocationProviderClient(requireContext())
+        locationManager =
+            requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        chats.addAll(chatViewModelDatabase.getListData(myId, user!!.id));
+        try {
+            chats.removeAt(chats.size - 1)
+        } catch (e: ArrayIndexOutOfBoundsException) {
+
+        }
+        chatAdapter = BaseMessageAdapter(chats, this, myId);
+        chatRecycler.adapter = chatAdapter
+        chatViewModelDatabase.getLasRowMassage(user!!.id, myId).observe(viewLifecycleOwner) {
+            if (it != null) {
+                Log.e("LastRow", it.toString())
+                chats.add(it)
+                chatAdapter.notifyItemInserted(chats.size - 1)
+                chatAdapter.notifyDataSetChanged()
+                chatRecycler.scrollToPosition(chats.size - 1)
+                chatRecycler.smoothScrollToPosition(chats.size - 1)
+            }
+        }
+
         chatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]
         chatViewModel.ChatById(user!!.id, this)
-        Glide.with(requireContext()).load(user!!.image).into(profile_image)
-        username.text = user!!.name;
-        status.text = user!!.status;
+        userViewModel.getUserById(user.id)
+        userViewModel.userInfo.observe(viewLifecycleOwner) {
+            Glide.with(requireContext()).load(it!!.image).into(profile_image)
+            username.text = it!!.name;
+            status.text = it!!.status;
+        }
+
         if (sharePost != "null") {
             et_text_message.setText(sharePost)
             sendRecord.visibility = View.GONE
@@ -197,15 +214,10 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             sentMessage(et_text_message.text.toString().trim(), "text")
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
-            chats.add(it)
-            chatAdapter = BaseMessageAdapter(chats, this,myId);
-            chatRecycler.adapter = chatAdapter
-            chatAdapter.notifyItemInserted((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
-            chatRecycler.scrollToPosition((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
-            chatRecycler.smoothScrollToPosition((chatRecycler.adapter as BaseMessageAdapter).itemCount - 1)
             // TODO update status massage to been seen
             val map: HashMap<String, Any> = HashMap();
             map["StatusMessage"] = "beenSeen" // "Stored" , "beenSeen" , "Uploaded"
+            map["seen"] = true
             if (it.receiver.equals(myId)) {
                 reference.child(CHATS).child(myId).child(user!!.id).child(it.id)
                     .updateChildren(map);
@@ -842,10 +854,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         }
     }
 
-    override fun BeenSeen(chat: Chat?) {
-        chatViewModelDatabase.insert(chat!!)
-    }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.delete_all) {
@@ -858,6 +866,27 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.delete_all_chat, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun BeenSeenForFriend(chat: Chat?) {
+        chatViewModelDatabase.insert(chat!!)
+    }
+
+    override fun BeenSeenForMe(chat: Chat?) {
+        chatViewModelDatabase.update(chat!!)
+        try {
+            chats.removeAt(chats.size - 1)
+        } catch (e: ArrayIndexOutOfBoundsException) {
+
+        }
+    }
+
+    override fun deleteForAll(chat: Chat?) {
+        val c = chat;
+        c!!.message = "this message deleted";
+        chatViewModelDatabase.update(c!!)
+        chats.removeAt(chats.size - 1)
+
     }
 
 }

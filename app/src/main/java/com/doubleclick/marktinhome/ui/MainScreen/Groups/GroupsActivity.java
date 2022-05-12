@@ -7,6 +7,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -14,7 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,11 +53,10 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
 
     private static final int IMAGE_REQUEST = 100;
     private String id;
-    private ImageView back, cover, editName;
+    private ImageView back, cover;
     private CircleImageView imageGroup;
     private LinearProgressIndicator progressIndicator;
     private TextView name, postsNum, username, history, nothing;
-    private FloatingActionButton editCover, editProfile;
     private SocialTextView discription, link;
     private LinearLayout create_post;
     private ShimmerRecyclerView post;
@@ -60,6 +64,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
     private PostsViewModel postsViewModel;
     private GroupsAdapter groupsAdapter;
     private DatabaseReference reference;
+    private Toolbar toolbar;
     private ArrayList<PostData> postDataArrayList = new ArrayList<>();
 
     @Override
@@ -70,7 +75,8 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         id = getIntent().getStringExtra("id" /* id of group*/);
         back = findViewById(R.id.back);
         cover = findViewById(R.id.cover);
-        editName = findViewById(R.id.editName);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         imageGroup = findViewById(R.id.imageGroup);
         progressIndicator = findViewById(R.id.progressBar);
         name = findViewById(R.id.name);
@@ -84,8 +90,6 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         link = findViewById(R.id.link);
         post = findViewById(R.id.post);
         create_post = findViewById(R.id.create_post);
-        editCover = findViewById(R.id.editCover);
-        editProfile = findViewById(R.id.editProfile);
         groupViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
         postsViewModel = new ViewModelProvider(this).get(PostsViewModel.class);
         postsViewModel.loadPosts(id /*  Group Id */, 1000);
@@ -127,20 +131,11 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
             startActivity(new Intent(GroupsActivity.this, MainScreenActivity.class));
             finish();
         });
-        editCover.setOnClickListener(v -> {
-            openImage();
-        });
 
-        editProfile.setOnClickListener(v -> {
-            openImage();
-        });
-        editName.setOnClickListener(v -> {
-            openBottomSheet(id /*group id */);
-        });
 
     }
 
-    public void openImage() {
+    public void openImage(String type) {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -176,4 +171,44 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         startActivity(intent);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int ItemId = item.getItemId();
+        if (ItemId == R.id.members) {
+            Toast.makeText(GroupsActivity.this, "fsbdf", Toast.LENGTH_LONG).show();
+            return true;
+        }
+        if (ItemId == R.id.admins) {
+
+            return true;
+        }
+        if (ItemId == R.id.requsts) {
+
+            return true;
+        }
+        if (ItemId == R.id.editCover) {
+            openImage("cover");
+            return true;
+        }
+        if (ItemId == R.id.editProfile) {
+            openImage("profile");
+            return true;
+        }
+        if (ItemId == R.id.editName) {
+            openBottomSheet(id /*group id */);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_group, menu);
+        return true;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

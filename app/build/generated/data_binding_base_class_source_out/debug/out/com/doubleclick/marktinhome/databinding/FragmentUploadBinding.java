@@ -6,15 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
@@ -31,10 +30,7 @@ public final class FragmentUploadBinding implements ViewBinding {
   public final Button Upload;
 
   @NonNull
-  public final RadioGroup addToggleButton;
-
-  @NonNull
-  public final LinearLayout addToggleButtonColor;
+  public final NestedScrollView addToggleButtonColor;
 
   @NonNull
   public final ImageView addView;
@@ -43,13 +39,16 @@ public final class FragmentUploadBinding implements ViewBinding {
   public final ImageView addViewColor;
 
   @NonNull
+  public final ConstraintLayout constraintLayout;
+
+  @NonNull
+  public final ConstraintLayout constraintLayout2;
+
+  @NonNull
   public final SingleSelectToggleGroup groupColor;
 
   @NonNull
-  public final HorizontalScrollView horizontalScrollView;
-
-  @NonNull
-  public final HorizontalScrollView horizontalScrollView2;
+  public final SingleSelectToggleGroup groupSize;
 
   @NonNull
   public final EditText productLastPrice;
@@ -64,29 +63,37 @@ public final class FragmentUploadBinding implements ViewBinding {
   public final RatingBar ratingSeller;
 
   @NonNull
+  public final TextView textView18;
+
+  @NonNull
+  public final TextView textView19;
+
+  @NonNull
   public final AppCompatSpinner trademark;
 
   private FragmentUploadBinding(@NonNull ConstraintLayout rootView, @NonNull Button Upload,
-      @NonNull RadioGroup addToggleButton, @NonNull LinearLayout addToggleButtonColor,
-      @NonNull ImageView addView, @NonNull ImageView addViewColor,
-      @NonNull SingleSelectToggleGroup groupColor,
-      @NonNull HorizontalScrollView horizontalScrollView,
-      @NonNull HorizontalScrollView horizontalScrollView2, @NonNull EditText productLastPrice,
+      @NonNull NestedScrollView addToggleButtonColor, @NonNull ImageView addView,
+      @NonNull ImageView addViewColor, @NonNull ConstraintLayout constraintLayout,
+      @NonNull ConstraintLayout constraintLayout2, @NonNull SingleSelectToggleGroup groupColor,
+      @NonNull SingleSelectToggleGroup groupSize, @NonNull EditText productLastPrice,
       @NonNull EditText productName, @NonNull EditText productPrice,
-      @NonNull RatingBar ratingSeller, @NonNull AppCompatSpinner trademark) {
+      @NonNull RatingBar ratingSeller, @NonNull TextView textView18, @NonNull TextView textView19,
+      @NonNull AppCompatSpinner trademark) {
     this.rootView = rootView;
     this.Upload = Upload;
-    this.addToggleButton = addToggleButton;
     this.addToggleButtonColor = addToggleButtonColor;
     this.addView = addView;
     this.addViewColor = addViewColor;
+    this.constraintLayout = constraintLayout;
+    this.constraintLayout2 = constraintLayout2;
     this.groupColor = groupColor;
-    this.horizontalScrollView = horizontalScrollView;
-    this.horizontalScrollView2 = horizontalScrollView2;
+    this.groupSize = groupSize;
     this.productLastPrice = productLastPrice;
     this.productName = productName;
     this.productPrice = productPrice;
     this.ratingSeller = ratingSeller;
+    this.textView18 = textView18;
+    this.textView19 = textView19;
     this.trademark = trademark;
   }
 
@@ -123,14 +130,8 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.addToggleButton;
-      RadioGroup addToggleButton = ViewBindings.findChildViewById(rootView, id);
-      if (addToggleButton == null) {
-        break missingId;
-      }
-
       id = R.id.addToggleButtonColor;
-      LinearLayout addToggleButtonColor = ViewBindings.findChildViewById(rootView, id);
+      NestedScrollView addToggleButtonColor = ViewBindings.findChildViewById(rootView, id);
       if (addToggleButtonColor == null) {
         break missingId;
       }
@@ -147,21 +148,27 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.constraintLayout;
+      ConstraintLayout constraintLayout = ViewBindings.findChildViewById(rootView, id);
+      if (constraintLayout == null) {
+        break missingId;
+      }
+
+      id = R.id.constraintLayout2;
+      ConstraintLayout constraintLayout2 = ViewBindings.findChildViewById(rootView, id);
+      if (constraintLayout2 == null) {
+        break missingId;
+      }
+
       id = R.id.groupColor;
       SingleSelectToggleGroup groupColor = ViewBindings.findChildViewById(rootView, id);
       if (groupColor == null) {
         break missingId;
       }
 
-      id = R.id.horizontalScrollView;
-      HorizontalScrollView horizontalScrollView = ViewBindings.findChildViewById(rootView, id);
-      if (horizontalScrollView == null) {
-        break missingId;
-      }
-
-      id = R.id.horizontalScrollView2;
-      HorizontalScrollView horizontalScrollView2 = ViewBindings.findChildViewById(rootView, id);
-      if (horizontalScrollView2 == null) {
+      id = R.id.groupSize;
+      SingleSelectToggleGroup groupSize = ViewBindings.findChildViewById(rootView, id);
+      if (groupSize == null) {
         break missingId;
       }
 
@@ -189,15 +196,27 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textView18;
+      TextView textView18 = ViewBindings.findChildViewById(rootView, id);
+      if (textView18 == null) {
+        break missingId;
+      }
+
+      id = R.id.textView19;
+      TextView textView19 = ViewBindings.findChildViewById(rootView, id);
+      if (textView19 == null) {
+        break missingId;
+      }
+
       id = R.id.trademark;
       AppCompatSpinner trademark = ViewBindings.findChildViewById(rootView, id);
       if (trademark == null) {
         break missingId;
       }
 
-      return new FragmentUploadBinding((ConstraintLayout) rootView, Upload, addToggleButton,
-          addToggleButtonColor, addView, addViewColor, groupColor, horizontalScrollView,
-          horizontalScrollView2, productLastPrice, productName, productPrice, ratingSeller,
+      return new FragmentUploadBinding((ConstraintLayout) rootView, Upload, addToggleButtonColor,
+          addView, addViewColor, constraintLayout, constraintLayout2, groupColor, groupSize,
+          productLastPrice, productName, productPrice, ratingSeller, textView18, textView19,
           trademark);
     }
     String missingId = rootView.getResources().getResourceName(id);

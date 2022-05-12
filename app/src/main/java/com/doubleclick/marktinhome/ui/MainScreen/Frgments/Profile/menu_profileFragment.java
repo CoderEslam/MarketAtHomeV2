@@ -49,7 +49,7 @@ public class menu_profileFragment extends BaseFragment {
     private ImageView editAddress, editPhone, editname;
     private AlertDialog.Builder builder;
     private FloatingActionButton fab;
-    private ConstraintLayout AddProduct, AddAdv, AddTradmark, recentOrder, chat, joinUs, statistices;
+    private ConstraintLayout AddProduct, AddAdv, AddTradmark, recentOrder, chat, statistices;
     private ConstraintLayout logout;
 
     public menu_profileFragment() {
@@ -83,7 +83,6 @@ public class menu_profileFragment extends BaseFragment {
         editAddress = view.findViewById(R.id.editAddress);
         editPhone = view.findViewById(R.id.editPhone);
         editname = view.findViewById(R.id.editname);
-        joinUs = view.findViewById(R.id.joinUs);
         AddProduct = view.findViewById(R.id.AddProduct);
         logout = view.findViewById(R.id.logout);
         AddAdv = view.findViewById(R.id.AddAdv);
@@ -137,10 +136,6 @@ public class menu_profileFragment extends BaseFragment {
         statistices.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), DashBoardActivity.class);
             startActivity(intent);
-        });
-
-        joinUs.setOnClickListener(v -> {
-//            Navigation.findNavController(v).navigate(menu_profileFragmentDirections.actionMenuProfileToJoinUsFragment());
         });
 
         recentOrder.setOnClickListener(v -> {

@@ -135,4 +135,11 @@
     <string name="chat">Chat</string>
     <string name="next">Next</string>
     <string name="delete_all">Delete All</string>
+    <string name="members">Members</string>
+    <string name="admins">Admins</string>
+    <string name="requsts">requsts</string>
+    <string name="add_sizes">Add Sizes</string>
+    <string name="add_colors">Add Colors</string>
+    <string name="edit_cover">Edit Cover</string>
+    <string name="edit_name">Edit Name</string>
 </resources>

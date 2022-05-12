@@ -65,6 +65,7 @@ class ChatListFragment : BaseFragment(), UserInter {
     }
 
     override fun ItemUser(user: User?) {}
+    override fun ItemUserInfoById(user: User?) {}
 
     override fun AllUser(user: ArrayList<User>?) {}
 

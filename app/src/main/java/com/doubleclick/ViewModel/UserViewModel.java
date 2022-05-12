@@ -18,6 +18,8 @@ import java.util.ArrayList;
 public class UserViewModel extends ViewModel implements UserInter {
 
     MutableLiveData<User> mutableLiveData = new MutableLiveData<>();
+    MutableLiveData<User> mutableLiveDataUserInfo = new MutableLiveData<>();
+
     MutableLiveData<ArrayList<User>> arrayListMutableLiveData = new MutableLiveData<>();
     UserRepository userRepository = new UserRepository(this);
 
@@ -26,14 +28,23 @@ public class UserViewModel extends ViewModel implements UserInter {
         userRepository.getAllUser("");
     }
 
-    public void getUserByName(String name){
+    public void getUserByName(String name) {
         userRepository.getAllUser(name);
+    }
+
+    public void getUserById(String id) {
+        userRepository.getInfoUserById(id);
     }
 
 
     public LiveData<User> getUser() {
         return mutableLiveData;
     }
+
+    public LiveData<User> getUserInfo() {
+        return mutableLiveDataUserInfo;
+    }
+
 
     public LiveData<ArrayList<User>> getAllUsers() {
         return arrayListMutableLiveData;
@@ -52,5 +63,10 @@ public class UserViewModel extends ViewModel implements UserInter {
     @Override
     public void OnUserLisitner(@NonNull User user) {
         // nothing
+    }
+
+    @Override
+    public void ItemUserInfoById(@Nullable User user) {
+        mutableLiveDataUserInfo.setValue(user);
     }
 }
