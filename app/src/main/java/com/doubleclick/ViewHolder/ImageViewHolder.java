@@ -1,5 +1,6 @@
 package com.doubleclick.ViewHolder;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Build;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ public class ImageViewHolder extends BaseViewHolder {
         seen = itemView.findViewById(R.id.seen);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     public void ShowImage(Chat chat, int position) {
         Glide.with(itemView.getContext()).load(Uri.parse(chat.getMessage())).into(imageView);
         seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
@@ -45,19 +47,14 @@ public class ImageViewHolder extends BaseViewHolder {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        int id = item.getItemId();
-                        if (R.id.deleteforeveryone == id) {
+                        if (R.id.deleteforeveryone == item.getItemId()) {
                             onMessageClick.deleteForAll(chat, position);
                         }
-                        if (R.id.deleteForme == id) {
+                        if (R.id.deleteForme == item.getItemId()) {
                             onMessageClick.deleteForMe(chat, position);
                         }
-                        if (R.id.download == id) {
-                            try {
-                                onMessageClick.download(chat, position);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
+                        if (R.id.download == item.getItemId()) {
+                            onMessageClick.download(chat, position);
                         }
                         return true;
                     }

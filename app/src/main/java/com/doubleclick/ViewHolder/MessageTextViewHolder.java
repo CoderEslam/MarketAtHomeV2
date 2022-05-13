@@ -48,6 +48,7 @@ public class MessageTextViewHolder extends BaseViewHolder {
         itemView.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(itemView.getContext(), v);
             popupMenu.getMenuInflater().inflate(R.menu.text_chat_option, popupMenu.getMenu());
+            popupMenu.getMenu().findItem(R.id.open).setVisible(false);
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {

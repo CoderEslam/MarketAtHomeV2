@@ -1,14 +1,19 @@
 package com.doubleclick.ViewHolder;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.doubleclick.OnMessageClick;
@@ -32,16 +37,6 @@ public class ContactViewHolder extends BaseViewHolder {
         numberContact = itemView.findViewById(R.id.numberContact);
         seen = itemView.findViewById(R.id.seen);
 
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager clipboardManager = (ClipboardManager) itemView.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                clipboardManager.setText(massege);
-                Toast.makeText(itemView.getContext(), "Copied", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -51,12 +46,30 @@ public class ContactViewHolder extends BaseViewHolder {
         String[] n = massege.split("\n");
         nameContact.setText(n[0]);
         numberContact.setText(n[1]);
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                onMessageClick.deleteForAll(chat, position);
-                return true;
-            }
+        itemView.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(itemView.getContext(), v);
+            popupMenu.getMenuInflater().inflate(R.menu.text_chat_option, popupMenu.getMenu());
+            popupMenu.getMenu().findItem(R.id.open).setVisible(false);
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if (item.getItemId() == R.id.deleteForme) {
+                        onMessageClick.deleteForMe(chat, position);
+                        return true;
+                    } else if (item.getItemId() == R.id.deleteforeveryone) {
+                        onMessageClick.deleteForAll(chat, position);
+                        return true;
+                    } else if (item.getItemId() == R.id.copy) {
+                        ClipboardManager clipboardManager = (ClipboardManager) itemView.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                        clipboardManager.setText(massege);
+                        Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.text_copied), Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+            popupMenu.show();
         });
     }
 }

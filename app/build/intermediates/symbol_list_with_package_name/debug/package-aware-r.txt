@@ -4035,6 +4035,7 @@ id on
 id onAttachStateChangeListener
 id onDateChanged
 id onInterceptTouchReturnSwipe
+id open
 id openDrawer
 id optins
 id option
@@ -5065,6 +5066,7 @@ string off
 string offline
 string ok
 string on
+string open
 string option
 string orders
 string origin

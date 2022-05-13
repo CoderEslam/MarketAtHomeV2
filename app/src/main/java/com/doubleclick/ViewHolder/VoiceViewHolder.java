@@ -4,6 +4,8 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 
 import android.annotation.SuppressLint;
 import android.app.DownloadManager;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -11,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -20,6 +23,7 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -104,12 +108,26 @@ public class VoiceViewHolder extends BaseViewHolder {
 
             }*/
         });
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                onMessageClick.deleteForAll(chat, position);
-                return true;
-            }
+        itemView.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(itemView.getContext(), v);
+            popupMenu.getMenuInflater().inflate(R.menu.text_chat_option, popupMenu.getMenu());
+            popupMenu.getMenu().findItem(R.id.copy).setVisible(false);
+            popupMenu.getMenu().findItem(R.id.open).setVisible(false);
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if (item.getItemId() == R.id.deleteForme) {
+                        onMessageClick.deleteForMe(chat, position);
+                        return true;
+                    } else if (item.getItemId() == R.id.deleteforeveryone) {
+                        onMessageClick.deleteForAll(chat, position);
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+            popupMenu.show();
         });
     }
 
