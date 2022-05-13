@@ -3,6 +3,7 @@ package com.doubleclick.marktinhome.Model;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -129,5 +130,14 @@ public class Chat implements Serializable {
                 ", seen=" + seen +
                 ", uri='" + uri + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof Chat)) return false;
+        Chat chat = (Chat) obj;
+        return chat.getId().equals(this.getId());
     }
 }

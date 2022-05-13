@@ -58,8 +58,6 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
         next = view.findViewById(R.id.next);
         addImages = view.findViewById(R.id.addImages);
 
-
-
         addImages.setOnClickListener {
             openImage()
         }

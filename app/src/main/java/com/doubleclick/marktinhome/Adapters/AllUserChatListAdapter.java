@@ -91,7 +91,7 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Chat chat = snapshot.getValue(Chat.class);
                         assert chat != null;
-                        if (chat.getStatusMessage().equals("Uploaded") && !chat.getSender().equals(myId)) {
+                        if (chat.getStatusMessage().equals("Uploaded") && !chat.getSender().equals(myId) && !chat.isSeen()) {
                             i++;
                             countMessage.setText(String.format("%d", i));
                             countMessage.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.bg_green));

@@ -3,11 +3,14 @@ package com.doubleclick.ViewHolder;
 import android.annotation.SuppressLint;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
+import androidx.appcompat.widget.PopupMenu;
 
 import com.doubleclick.OnMessageClick;
 import com.doubleclick.marktinhome.Model.Chat;
@@ -34,14 +37,6 @@ public class MessageTextViewHolder extends BaseViewHolder {
         textMessage = itemView.findViewById(R.id.textMessage);
         textTime = itemView.findViewById(R.id.textTime);
         seen = itemView.findViewById(R.id.seen);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ClipboardManager clipboardManager = (ClipboardManager) itemView.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-                clipboardManager.setText(textMessage.getText());
-                Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.text_copied), Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
@@ -50,12 +45,29 @@ public class MessageTextViewHolder extends BaseViewHolder {
         textMessage.setText(chat.getMessage());
         textTime.setText(new SimpleDateFormat().format(chat.getDate()).toString());
         seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
-        itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                onMessageClick.deleteForAll(chat, postion);
-                return false;
-            }
+        itemView.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(itemView.getContext(), v);
+            popupMenu.getMenuInflater().inflate(R.menu.text_chat_option, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    if (item.getItemId() == R.id.deleteForme) {
+                        onMessageClick.deleteForMe(chat, postion);
+                        return true;
+                    } else if (item.getItemId() == R.id.deleteforeveryone) {
+                        onMessageClick.deleteForAll(chat, postion);
+                        return true;
+                    } else if (item.getItemId() == R.id.copy) {
+                        ClipboardManager clipboardManager = (ClipboardManager) itemView.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
+                        clipboardManager.setText(textMessage.getText());
+                        Toast.makeText(itemView.getContext(), itemView.getResources().getString(R.string.text_copied), Toast.LENGTH_SHORT).show();
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+            popupMenu.show();
         });
     }
 }

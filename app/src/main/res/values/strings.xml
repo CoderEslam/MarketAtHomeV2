@@ -128,7 +128,7 @@
     <string name="offline">offline</string>
     <string name="download">download</string>
     <string name="delete_for_me">delete for me</string>
-    <string name="delete_for_everyone">delete for everyone</string>
+    <string name="delete_for_everyone">delete for all</string>
     <string name="like">like</string>
     <string name="replay">replay</string>
     <string name="apps">Apps</string>
@@ -142,4 +142,5 @@
     <string name="add_colors">Add Colors</string>
     <string name="edit_cover">Edit Cover</string>
     <string name="edit_name">Edit Name</string>
+    <string name="copy">copy</string>
 </resources>

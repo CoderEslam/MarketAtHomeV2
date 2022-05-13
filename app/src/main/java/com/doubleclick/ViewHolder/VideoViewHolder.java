@@ -1,28 +1,19 @@
 package com.doubleclick.ViewHolder;
 
-import static android.content.Context.DOWNLOAD_SERVICE;
-
-import android.app.DownloadManager;
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
-import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.doubleclick.OnMessageClick;
-import com.doubleclick.ViewModel.ChatViewModel;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -35,7 +26,7 @@ public class VideoViewHolder extends BaseViewHolder {
     private VideoView video;
     private ImageView options;
     private OnMessageClick onMessageClick;
-    private ImageView download;
+    private ImageView download, seen;
 
     public VideoViewHolder(@NonNull View itemView, OnMessageClick onMessageClick) {
         super(itemView);
@@ -43,10 +34,13 @@ public class VideoViewHolder extends BaseViewHolder {
         video = itemView.findViewById(R.id.video);
         options = itemView.findViewById(R.id.options);
         download = itemView.findViewById(R.id.download);
+        seen = itemView.findViewById(R.id.seen);
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void play(Chat chat, int position) {
+        seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
         if (!chat.getMessage().equals("")) {
             video.setVideoURI(Uri.parse(chat.getMessage())); //the string of the URL mentioned above
             video.stopPlayback();
@@ -59,7 +53,7 @@ public class VideoViewHolder extends BaseViewHolder {
 
         options.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(itemView.getContext(), v);
-            popupMenu.getMenuInflater().inflate(R.menu.menu_chat, popupMenu.getMenu());
+            popupMenu.getMenuInflater().inflate(R.menu.menu_chat_image_video, popupMenu.getMenu());
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {

@@ -1,5 +1,6 @@
 package com.doubleclick.ViewHolder;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,14 +20,20 @@ import com.doubleclick.marktinhome.R;
  */
 public class LocationViewHolder extends BaseViewHolder {
     private LottieAnimationView location_lotte;
-    public OnMessageClick onMessageClick;
+    private ImageView seen;
+    private OnMessageClick onMessageClick;
+
     public LocationViewHolder(@NonNull View itemView, OnMessageClick onMessageClick) {
         super(itemView);
         this.onMessageClick = onMessageClick;
         location_lotte = itemView.findViewById(R.id.location_lotte);
+        seen = itemView.findViewById(R.id.seen);
     }
 
-    public void OpenLocation(Chat chat) {
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void OpenLocation(Chat chat, int position) {
+        seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,6 +48,13 @@ public class LocationViewHolder extends BaseViewHolder {
                     i.setPackage(null);
                     itemView.getContext().startActivity(i);
                 }
+            }
+        });
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onMessageClick.deleteForAll(chat, position);
+                return true;
             }
         });
     }

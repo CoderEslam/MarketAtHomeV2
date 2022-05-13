@@ -4,6 +4,7 @@ package com.doubleclick.marktinhome.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,11 +26,15 @@ public final class ItemContactLeftBinding implements ViewBinding {
   @NonNull
   public final TextView numberContact;
 
+  @NonNull
+  public final ImageView seen;
+
   private ItemContactLeftBinding(@NonNull ConstraintLayout rootView, @NonNull TextView nameContact,
-      @NonNull TextView numberContact) {
+      @NonNull TextView numberContact, @NonNull ImageView seen) {
     this.rootView = rootView;
     this.nameContact = nameContact;
     this.numberContact = numberContact;
+    this.seen = seen;
   }
 
   @Override
@@ -71,7 +76,14 @@ public final class ItemContactLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemContactLeftBinding((ConstraintLayout) rootView, nameContact, numberContact);
+      id = R.id.seen;
+      ImageView seen = ViewBindings.findChildViewById(rootView, id);
+      if (seen == null) {
+        break missingId;
+      }
+
+      return new ItemContactLeftBinding((ConstraintLayout) rootView, nameContact, numberContact,
+          seen);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

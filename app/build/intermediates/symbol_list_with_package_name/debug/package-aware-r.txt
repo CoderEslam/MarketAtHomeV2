@@ -3599,6 +3599,7 @@ id contiguous
 id continer_attacht
 id continuousVelocity
 id coordinator
+id copy
 id cos
 id countMessage
 id counter_tv
@@ -4545,7 +4546,6 @@ layout fragment_cart
 layout fragment_chat
 layout fragment_chat_list
 layout fragment_child
-layout fragment_connct_us
 layout fragment_edit
 layout fragment_edit_hyperlink
 layout fragment_edit_table
@@ -4728,12 +4728,13 @@ layout view_marker_button
 layout widget_navigation_drawer
 menu delete_all_chat
 menu menu_bottom
-menu menu_chat
+menu menu_chat_image_video
 menu menu_group
 menu menu_groups
 menu option_group
 menu option_tradmark
 menu share_option
+menu text_chat_option
 mipmap checkbox_checked
 mipmap checkbox_normal
 mipmap default_image
@@ -4862,6 +4863,7 @@ string complete
 string confirm
 string connect_us
 string contact
+string copy
 string create
 string create_by_x_team
 string creator

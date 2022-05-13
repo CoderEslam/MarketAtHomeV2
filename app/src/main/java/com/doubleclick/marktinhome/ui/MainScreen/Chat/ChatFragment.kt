@@ -74,6 +74,7 @@ import retrofit2.Response
 import java.io.File
 import java.io.IOException
 import java.util.*
+import kotlin.collections.HashMap
 
 
 class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReopsitory.StatusChat {
@@ -173,24 +174,11 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        // TODO get All chat from database and put it in arrayList
         chats.addAll(chatViewModelDatabase.getListData(myId, user!!.id));
-        try {
-            chats.removeAt(chats.size - 1)
-        } catch (e: ArrayIndexOutOfBoundsException) {
-
-        }
         chatAdapter = BaseMessageAdapter(chats, this, myId);
         chatRecycler.adapter = chatAdapter
-        chatViewModelDatabase.getLasRowMassage(user!!.id, myId).observe(viewLifecycleOwner) {
-            if (it != null) {
-                Log.e("LastRow", it.toString())
-                chats.add(it)
-                chatAdapter.notifyItemInserted(chats.size - 1)
-                chatAdapter.notifyDataSetChanged()
-                chatRecycler.scrollToPosition(chats.size - 1)
-                chatRecycler.smoothScrollToPosition(chats.size - 1)
-            }
-        }
+        chatAdapter.notifyDataSetChanged()
 
         chatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]
         chatViewModel.ChatById(user!!.id, this)
@@ -214,11 +202,22 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             sentMessage(et_text_message.text.toString().trim(), "text")
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
-            // TODO update status massage to been seen
-            val map: HashMap<String, Any> = HashMap();
-            map["StatusMessage"] = "beenSeen" // "Stored" , "beenSeen" , "Uploaded"
-            map["seen"] = true
+            Log.e("Addddddddddd", it.toString());
+            if (it.sender.equals(myId) && !it.isSeen) {
+                chats.add(it)
+                chatAdapter.notifyItemInserted(chats.size - 1)
+                chatAdapter.notifyDataSetChanged()
+                chatRecycler.scrollToPosition(chats.size - 1)
+                chatRecycler.smoothScrollToPosition(chats.size - 1)
+            }
+            /*
+            * if I'm receiver -> update that i see this message
+            * */
             if (it.receiver.equals(myId)) {
+                // TODO update status massage to been seen
+                val map: HashMap<String, Any> = HashMap();
+                map["StatusMessage"] = "beenSeen" // "Stored" , "beenSeen" , "Uploaded"
+                map["seen"] = true
                 reference.child(CHATS).child(myId).child(user!!.id).child(it.id)
                     .updateChildren(map);
                 reference.child(CHATS).child(user!!.id).child(myId).child(it.id)
@@ -388,7 +387,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         map["StatusMessage"] = "Uploaded"
         val chat = Chat(text, "", type, myId, user!!.id, time, id, "Uploaded", false);
         chatViewModelDatabase.insert(chat);
-//        reference.child(CHATS).child(id).updateChildren(map)
         upload(id, map);
         et_text_message.setText("")
         makeChatList();
@@ -711,49 +709,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                 Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 progressDialog.dismiss()
             }
-/*            uploadTask.continueWithTask(Continuation { task ->
-                if (!task.isSuccessful) {
-                    throw task.exception!!
-                }
-                fileReference.downloadUrl
-            }).addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val url = task.result.toString()
-                    val map = HashMap<String, Any>()
-                    val id = reference.push().key.toString()
-                    val time = Date().time;
-                    map["sender"] = myId
-                    map["receiver"] = user!!.id
-                    map["message"] = url
-                    map["type"] = fileType.toString()
-                    map["id"] = id
-                    map["date"] = time
-                    map["StatusMessage"] = "Uploaded" // "Stored" , "beenSeen"
-                    val chat =
-                        Chat(
-                            url,
-                            fileType.toString(),
-                            myId,
-                            user!!.id,
-                            time,
-                            id,
-                            "Uploaded",
-                            false
-                        );
-                    chatViewModelDatabase.insert(chat);
-//                    reference.child(CHATS).child(id).setValue(hashMap)
-                    upload(id, map);
-                    progressDialog.dismiss()
-                    makeChatList()
-                    sendNotifiaction(fileType.toString())
-                } else {
-                    Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show()
-                    progressDialog.dismiss()
-                }
-            }.addOnFailureListener { e ->
-                Toast.makeText(context, e.message, Toast.LENGTH_SHORT).show()
-                progressDialog.dismiss()
-            }*/
         } else {
             Toast.makeText(context, "No image selected", Toast.LENGTH_SHORT).show()
         }
@@ -786,32 +741,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             })
     }
 
-
-    @SuppressLint("NotifyDataSetChanged")
-    override fun deleteForMe(chat: Chat, pos: Int) {
-        chatViewModelDatabase.delete(chat)
-        chats.removeAt(pos)
-        reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).removeValue()
-        chatAdapter.notifyItemRemoved(pos)
-        chatAdapter.notifyDataSetChanged()
-
-
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    override fun deleteForAll(chat: Chat, pos: Int) {
-        chatViewModelDatabase.delete(chat)
-        chats.removeAt(pos)
-        reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).removeValue()
-            .addOnCompleteListener {
-                reference.child(CHATS).child(user!!.id).child(myId).child(chat.id).removeValue()
-                    .addOnCompleteListener {
-                        chatAdapter.notifyItemRemoved(pos)
-                        chatAdapter.notifyDataSetChanged()
-                    }
-            }
-
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -868,25 +797,100 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         super.onCreateOptionsMenu(menu, inflater)
     }
 
+    /*
+    *  TODO Store data when friend sent it to me
+    *  لمه صاحبي يبعت رساله وانا اشوفها
+    */
+    @SuppressLint("NotifyDataSetChanged")
     override fun BeenSeenForFriend(chat: Chat?) {
         chatViewModelDatabase.insert(chat!!)
+        chats.add(chat)
+        chatAdapter.notifyItemInserted(chats.size - 1)
+        chatAdapter.notifyDataSetChanged()
+        chatRecycler.scrollToPosition(chats.size - 1)
+        chatRecycler.smoothScrollToPosition(chats.size - 1)
     }
 
+
+    /*
+    * TODO when i send message and my friend see it
+    *  بتتنفذ لمه انا ابعت الرساله و صاحبي يشوفها
+    * */
     override fun BeenSeenForMe(chat: Chat?) {
         chatViewModelDatabase.update(chat!!)
         try {
-            chats.removeAt(chats.size - 1)
+//            chats.add(chat)
+            // TODO update in ArrayList
+            chats[chats.indexOf(chat)] = chat
+            // TODO update in adapter
+            chatAdapter.notifyItemChanged(chats.indexOf(chat))
+            chatRecycler.scrollToPosition(chats.size - 1)
+            chatRecycler.smoothScrollToPosition(chats.size - 1)
+
         } catch (e: ArrayIndexOutOfBoundsException) {
 
         }
     }
 
-    override fun deleteForAll(chat: Chat?) {
-        val c = chat;
-        c!!.message = "this message deleted";
-        chatViewModelDatabase.update(c!!)
-        chats.removeAt(chats.size - 1)
-
+    @SuppressLint("NotifyDataSetChanged")
+    override fun deleteForMe(chat: Chat, pos: Int) {
+        chatViewModelDatabase.delete(chat)
+        chats.removeAt(pos)
+        reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).removeValue()
+        chatAdapter.notifyItemRemoved(pos)
+        chatAdapter.notifyDataSetChanged()
     }
+
+    /*
+    * this method implimented from OnClickListner
+    * working when I make delete for all
+    * delete in firebase and update for friend that is deleted
+    * */
+    @SuppressLint("NotifyDataSetChanged")
+    override fun deleteForAll(chat: Chat, pos: Int) {
+        try {
+            reference.child(CHATS).child(myId).child(user.id).child(chat.id).removeValue()
+                .addOnCompleteListener {
+                    reference.child(CHATS).child(user.id).child(myId).child(chat.id).removeValue()
+                        .addOnCompleteListener {
+                            val c = chat;
+                            c!!.message = "this message deleted";
+                            c.type = "text"
+                            // TODO update in database
+                            chatViewModelDatabase.update(c!!)
+                            // TODO update in ArrayList
+                            chats[pos] = c
+                            // TODO update in Adapter
+                            chatAdapter.notifyItemChanged(pos)
+                            chatAdapter.notifyDataSetChanged()
+                        }
+                }
+        } catch (e: ArrayIndexOutOfBoundsException) {
+            Log.e("ArrayIndexOutOfBound", e.message.toString())
+        }
+    }
+
+    /*
+    *this method implimented from statusMessage
+    * working when friend make delete for all
+    * */
+    @SuppressLint("NotifyDataSetChanged")
+    override fun deleteForAll(chat: Chat?) {
+        try {
+            val c = chat;
+            c!!.message = "this message deleted";
+            c.type = "text"
+            chatViewModelDatabase.update(c!!)
+//            chats.remove(c)
+            chats[chats.indexOf(c)] = c
+            chatAdapter.notifyItemChanged(
+                chats.indexOf(c)
+            )
+            chatAdapter.notifyDataSetChanged()
+        } catch (e: ArrayIndexOutOfBoundsException) {
+            Log.e("ArrayIndexOutOfBound", e.message.toString())
+        }
+    }
+
 
 }

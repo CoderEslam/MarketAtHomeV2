@@ -64,7 +64,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
     private PostsViewModel postsViewModel;
     private GroupsAdapter groupsAdapter;
     private DatabaseReference reference;
-    private Toolbar toolbar;
+    private ImageView option;
     private ArrayList<PostData> postDataArrayList = new ArrayList<>();
 
     @Override
@@ -75,14 +75,13 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         id = getIntent().getStringExtra("id" /* id of group*/);
         back = findViewById(R.id.back);
         cover = findViewById(R.id.cover);
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         imageGroup = findViewById(R.id.imageGroup);
         progressIndicator = findViewById(R.id.progressBar);
         name = findViewById(R.id.name);
         postsNum = findViewById(R.id.postsNum);
         username = findViewById(R.id.username);
         history = findViewById(R.id.history);
+        option = findViewById(R.id.option);
         reference = FirebaseDatabase.getInstance().getReference();
         // todo show when there is nothing to show
         nothing = findViewById(R.id.nothing);
@@ -131,8 +130,42 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
             startActivity(new Intent(GroupsActivity.this, MainScreenActivity.class));
             finish();
         });
+        option.setOnClickListener(v -> {
+            PopupMenu popupMenu = new PopupMenu(this, v);
+            popupMenu.getMenuInflater().inflate(R.menu.menu_group, popupMenu.getMenu());
+            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    int ItemId = item.getItemId();
+                    if (ItemId == R.id.members) {
+                        Toast.makeText(GroupsActivity.this, "fsbdf", Toast.LENGTH_LONG).show();
+                        return true;
+                    }
+                    if (ItemId == R.id.admins) {
 
+                        return true;
+                    }
+                    if (ItemId == R.id.requsts) {
 
+                        return true;
+                    }
+                    if (ItemId == R.id.editCover) {
+                        openImage("cover");
+                        return true;
+                    }
+                    if (ItemId == R.id.editProfile) {
+                        openImage("profile");
+                        return true;
+                    }
+                    if (ItemId == R.id.editName) {
+                        openBottomSheet(id /*group id */);
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            popupMenu.show();
+        });
     }
 
     public void openImage(String type) {
@@ -169,42 +202,6 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         intent.putExtra("idGroup", id);
         intent.putExtra("idPost", idPost);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int ItemId = item.getItemId();
-        if (ItemId == R.id.members) {
-            Toast.makeText(GroupsActivity.this, "fsbdf", Toast.LENGTH_LONG).show();
-            return true;
-        }
-        if (ItemId == R.id.admins) {
-
-            return true;
-        }
-        if (ItemId == R.id.requsts) {
-
-            return true;
-        }
-        if (ItemId == R.id.editCover) {
-            openImage("cover");
-            return true;
-        }
-        if (ItemId == R.id.editProfile) {
-            openImage("profile");
-            return true;
-        }
-        if (ItemId == R.id.editName) {
-            openBottomSheet(id /*group id */);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_group, menu);
-        return true;
     }
 
     @Override

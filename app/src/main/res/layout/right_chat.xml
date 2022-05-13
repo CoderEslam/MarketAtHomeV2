@@ -47,7 +47,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/black"
                 android:textSize="10sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textMessage"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textMessage"
                 app:layout_constraintTop_toBottomOf="@+id/textMessage" />

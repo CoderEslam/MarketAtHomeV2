@@ -34,16 +34,21 @@ public final class ItemVideoLeftBinding implements ViewBinding {
   public final ImageView options;
 
   @NonNull
+  public final ImageView seen;
+
+  @NonNull
   public final VideoView video;
 
   private ItemVideoLeftBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinerViedo, @NonNull CardView cardView,
-      @NonNull ImageView download, @NonNull ImageView options, @NonNull VideoView video) {
+      @NonNull ImageView download, @NonNull ImageView options, @NonNull ImageView seen,
+      @NonNull VideoView video) {
     this.rootView = rootView;
     this.ContinerViedo = ContinerViedo;
     this.cardView = cardView;
     this.download = download;
     this.options = options;
+    this.seen = seen;
     this.video = video;
   }
 
@@ -94,6 +99,12 @@ public final class ItemVideoLeftBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.seen;
+      ImageView seen = ViewBindings.findChildViewById(rootView, id);
+      if (seen == null) {
+        break missingId;
+      }
+
       id = R.id.video;
       VideoView video = ViewBindings.findChildViewById(rootView, id);
       if (video == null) {
@@ -101,7 +112,7 @@ public final class ItemVideoLeftBinding implements ViewBinding {
       }
 
       return new ItemVideoLeftBinding((ConstraintLayout) rootView, ContinerViedo, cardView,
-          download, options, video);
+          download, options, seen, video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -33,14 +33,18 @@ public final class ItemImageLeftBinding implements ViewBinding {
   @NonNull
   public final ImageView optins;
 
+  @NonNull
+  public final ImageView seen;
+
   private ItemImageLeftBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinnerImage, @NonNull CardView cardView3,
-      @NonNull PhotoView image, @NonNull ImageView optins) {
+      @NonNull PhotoView image, @NonNull ImageView optins, @NonNull ImageView seen) {
     this.rootView = rootView;
     this.ContinnerImage = ContinnerImage;
     this.cardView3 = cardView3;
     this.image = image;
     this.optins = optins;
+    this.seen = seen;
   }
 
   @Override
@@ -90,8 +94,14 @@ public final class ItemImageLeftBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.seen;
+      ImageView seen = ViewBindings.findChildViewById(rootView, id);
+      if (seen == null) {
+        break missingId;
+      }
+
       return new ItemImageLeftBinding((ConstraintLayout) rootView, ContinnerImage, cardView3, image,
-          optins);
+          optins, seen);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

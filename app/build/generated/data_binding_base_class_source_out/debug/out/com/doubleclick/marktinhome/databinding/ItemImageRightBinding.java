@@ -36,16 +36,20 @@ public final class ItemImageRightBinding implements ViewBinding {
   @NonNull
   public final ImageView optins;
 
+  @NonNull
+  public final ImageView seen;
+
   private ItemImageRightBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinnerImage, @NonNull CardView cardView4,
       @NonNull ConstraintLayout constraintLayout13, @NonNull PhotoView image,
-      @NonNull ImageView optins) {
+      @NonNull ImageView optins, @NonNull ImageView seen) {
     this.rootView = rootView;
     this.ContinnerImage = ContinnerImage;
     this.cardView4 = cardView4;
     this.constraintLayout13 = constraintLayout13;
     this.image = image;
     this.optins = optins;
+    this.seen = seen;
   }
 
   @Override
@@ -101,8 +105,14 @@ public final class ItemImageRightBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.seen;
+      ImageView seen = ViewBindings.findChildViewById(rootView, id);
+      if (seen == null) {
+        break missingId;
+      }
+
       return new ItemImageRightBinding((ConstraintLayout) rootView, ContinnerImage, cardView4,
-          constraintLayout13, image, optins);
+          constraintLayout13, image, optins, seen);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

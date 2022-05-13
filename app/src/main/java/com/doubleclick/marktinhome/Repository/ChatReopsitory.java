@@ -13,6 +13,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import io.realm.Realm;
 
@@ -58,10 +59,13 @@ public class ChatReopsitory extends BaseRepository {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Chat chat = snapshot.getValue(Chat.class);
-                Log.e("onChildAdded", snapshot.getValue(Chat.class).toString());
+                Log.e("onChildAdded", Objects.requireNonNull(snapshot.getValue(Chat.class)).toString());
                 assert chat != null;
                 Log.e("newInsert", chat.toString());
+//                if (chat.getSender().equals(userId)){
                 chats.newInsertChat(chat);
+//                }
+
 
             }
 
@@ -75,7 +79,6 @@ public class ChatReopsitory extends BaseRepository {
                 if (chat.getStatusMessage().equals("beenSeen") && chat.getSender().equals(myId) && chat.isSeen()) {
                     statusChat.BeenSeenForMe(chat);
                 }
-
             }
 
             @Override
@@ -97,8 +100,6 @@ public class ChatReopsitory extends BaseRepository {
     }
 
     public interface Chats {
-        void getChat(ArrayList<Chat> chats);
-
         void newInsertChat(Chat chat);
     }
 

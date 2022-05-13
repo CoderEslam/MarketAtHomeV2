@@ -100,13 +100,13 @@ public class BaseMessageAdapter extends RecyclerView.Adapter {
                     ((VideoViewHolder) holder).play(chats.get(position), position);
                     break;
                 case "contact":
-                    ((ContactViewHolder) holder).Contact(chats.get(position).getMessage());
+                    ((ContactViewHolder) holder).Contact(chats.get(position), position);
                     break;
                 case "file":
                     ((FileViewHolder) holder).downloadFile(chats.get(position), position);
                     break;
                 case "location":
-                    ((LocationViewHolder) holder).OpenLocation(chats.get(position));
+                    ((LocationViewHolder) holder).OpenLocation(chats.get(position), position);
                     break;
                 default:
                     ((BaseViewHolder) holder).animationView.setVisibility(View.VISIBLE);

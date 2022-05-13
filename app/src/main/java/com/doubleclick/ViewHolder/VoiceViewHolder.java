@@ -43,6 +43,7 @@ public class VoiceViewHolder extends BaseViewHolder {
     private ProgressBar progress;
     private OnMessageClick onMessageClick;
     private String myId;
+    private ImageView seen;
 
     public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
@@ -52,12 +53,14 @@ public class VoiceViewHolder extends BaseViewHolder {
         downloadVoice = itemView.findViewById(R.id.downloadVoice);
         progress = itemView.findViewById(R.id.progress);
         playVoice = itemView.findViewById(R.id.playVoice);
+        seen = itemView.findViewById(R.id.seen);
 
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void Play(Chat chat, int position) {
+        seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
         if (!chat.getMessage().equals("")) {
             progress.setVisibility(View.GONE);
             playVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));
@@ -100,6 +103,13 @@ public class VoiceViewHolder extends BaseViewHolder {
             /*if (!chat.getUri().equals("") && chat.getSender().equals(myId)){
 
             }*/
+        });
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onMessageClick.deleteForAll(chat, position);
+                return true;
+            }
         });
     }
 

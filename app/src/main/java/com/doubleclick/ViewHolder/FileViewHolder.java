@@ -1,5 +1,6 @@
 package com.doubleclick.ViewHolder;
 
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
@@ -20,17 +21,20 @@ import com.doubleclick.marktinhome.R;
 public class FileViewHolder extends BaseViewHolder {
     private LottieAnimationView lottieAnimationView;
     private OnMessageClick onMessageClick;
-    private ImageView download;
+    private ImageView download, seen;
 
     public FileViewHolder(View itemView, OnMessageClick onMessageClick) {
         super(itemView);
         this.onMessageClick = onMessageClick;
         lottieAnimationView = itemView.findViewById(R.id.file);
         download = itemView.findViewById(R.id.download);
+        seen = itemView.findViewById(R.id.seen);
     }
 
 
-    public void downloadFile(Chat chat, int pos) {
+    @SuppressLint("UseCompatLoadingForDrawables")
+    public void downloadFile(Chat chat, int position) {
+        seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +50,13 @@ public class FileViewHolder extends BaseViewHolder {
                     itemView.getContext().startActivity(i);
                 }
                 onMessageClick.download(chat, getAdapterPosition());
+            }
+        });
+        itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                onMessageClick.deleteForAll(chat, position);
+                return true;
             }
         });
     }

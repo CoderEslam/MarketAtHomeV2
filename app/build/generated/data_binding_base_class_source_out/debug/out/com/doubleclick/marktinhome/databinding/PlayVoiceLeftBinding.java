@@ -42,12 +42,16 @@ public final class PlayVoiceLeftBinding implements ViewBinding {
   public final ProgressBar progress;
 
   @NonNull
+  public final ImageView seen;
+
+  @NonNull
   public final VideoView video;
 
   private PlayVoiceLeftBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinerVoice, @NonNull CardView cardView6,
       @NonNull ImageView downloadVoice, @NonNull LottieAnimationView file,
-      @NonNull ImageView playVoice, @NonNull ProgressBar progress, @NonNull VideoView video) {
+      @NonNull ImageView playVoice, @NonNull ProgressBar progress, @NonNull ImageView seen,
+      @NonNull VideoView video) {
     this.rootView = rootView;
     this.ContinerVoice = ContinerVoice;
     this.cardView6 = cardView6;
@@ -55,6 +59,7 @@ public final class PlayVoiceLeftBinding implements ViewBinding {
     this.file = file;
     this.playVoice = playVoice;
     this.progress = progress;
+    this.seen = seen;
     this.video = video;
   }
 
@@ -117,6 +122,12 @@ public final class PlayVoiceLeftBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.seen;
+      ImageView seen = ViewBindings.findChildViewById(rootView, id);
+      if (seen == null) {
+        break missingId;
+      }
+
       id = R.id.video;
       VideoView video = ViewBindings.findChildViewById(rootView, id);
       if (video == null) {
@@ -124,7 +135,7 @@ public final class PlayVoiceLeftBinding implements ViewBinding {
       }
 
       return new PlayVoiceLeftBinding((ConstraintLayout) rootView, ContinerVoice, cardView6,
-          downloadVoice, file, playVoice, progress, video);
+          downloadVoice, file, playVoice, progress, seen, video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
