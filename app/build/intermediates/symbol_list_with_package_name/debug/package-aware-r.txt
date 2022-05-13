@@ -88,6 +88,8 @@ anim sample_anim
 anim scale_in
 anim scale_out
 anim show_from_bottom
+anim top_defaults_view_color_picker_popup_hide
+anim top_defaults_view_color_picker_popup_show
 anim top_in
 anim top_out
 anim zoomin
@@ -563,6 +565,8 @@ attr emojiCompatEnabled
 attr emojiDivider
 attr emojiIcons
 attr emojiSize
+attr enableAlpha
+attr enableBrightness
 attr enableEdgeToEdge
 attr endIconCheckable
 attr endIconContentDescription
@@ -997,6 +1001,7 @@ attr onPositiveCross
 attr onShow
 attr onStateTransition
 attr onTouchUp
+attr onlyUpdateOnTouchEventUp
 attr overlapAnchor
 attr overlay
 attr paddingBottomNoButtons
@@ -3415,15 +3420,14 @@ id actions
 id activity_chooser_view_content
 id add
 id addChild
+id addColor
 id addGroup
 id addImages
 id addParent
-id addToggalsLinearLayout
+id addSizes
 id addToggalsScrollView
 id addToggleButtonColor
 id addVideo
-id addView
-id addViewColor
 id add_navigation
 id address
 id addressFragment
@@ -3562,6 +3566,8 @@ id clockwise
 id closest
 id codeView
 id collapseActionView
+id colorHex
+id colorIndicator
 id colorPickerView
 id colorPickerViewFrame
 id color_seek_bar
@@ -4297,7 +4303,8 @@ id titleTV
 id titleTV1
 id title_template
 id toggle
-id toggleGroup
+id toggleColors
+id toggleSizes
 id toolbar
 id toolbar_Collapsinglayout
 id top
@@ -4717,6 +4724,7 @@ layout text_view_with_theme_line_height
 layout text_view_without_line_height
 layout top_deal_layout
 layout top_deals
+layout top_defaults_view_color_picker_popup
 layout tradmark_layout
 layout upload_progress_layout
 layout user_chat_layout
@@ -5806,6 +5814,7 @@ style ThemeOverlay_MaterialComponents_Toolbar_Popup_Primary
 style ThemeOverlay_MaterialComponents_Toolbar_Primary
 style ThemeOverlay_MaterialComponents_Toolbar_Surface
 style ThemeOverlayColorAccentRed
+style TopDefaultsViewColorPickerPopupAnimation
 style Widget_AppCompat_ActionBar
 style Widget_AppCompat_ActionBar_Solid
 style Widget_AppCompat_ActionBar_TabBar
@@ -6201,7 +6210,7 @@ styleable ClockFaceView clockFaceBackgroundColor clockNumberTextColor
 styleable ClockHandView clockHandColor materialCircleRadius selectorSize
 styleable CollapsingToolbarLayout collapsedTitleGravity collapsedTitleTextAppearance collapsedTitleTextColor contentScrim expandedTitleGravity expandedTitleMargin expandedTitleMarginBottom expandedTitleMarginEnd expandedTitleMarginStart expandedTitleMarginTop expandedTitleTextAppearance expandedTitleTextColor extraMultilineHeightEnabled forceApplySystemWindowInsetTop maxLines scrimAnimationDuration scrimVisibleHeightTrigger statusBarScrim title titleCollapseMode titleEnabled titlePositionInterpolator toolbarId
 styleable CollapsingToolbarLayout_Layout layout_collapseMode layout_collapseParallaxMultiplier
-styleable ColorPickerView actionMode debounceDuration flag_alpha flag_isFlipAble initialColor palette preferenceName selector selector_alpha selector_size
+styleable ColorPickerView actionMode debounceDuration enableAlpha enableBrightness flag_alpha flag_isFlipAble initialColor onlyUpdateOnTouchEventUp palette preferenceName selector selector_alpha selector_size
 styleable ColorSeekBar barHeight colorSeeds cornerRadius thumbBorder thumbBorderColor
 styleable ColorStateListItem android_color android_alpha android_lStar alpha lStar
 styleable CompoundButton android_button buttonCompat buttonTint buttonTintMode

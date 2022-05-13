@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -49,25 +50,21 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
     private lateinit var productName: EditText;
     private lateinit var productPrice: EditText;
     private lateinit var productLastPrice: EditText;
-
-    //    private lateinit var RichTable: FrameLayout;
-    //    private lateinit var keywords: ConstraintLayout
-//    private lateinit var addKeywords: Button
-//    private lateinit var keys: RecyclerView;
     private lateinit var trademark: AppCompatSpinner;
     private lateinit var Upload: Button;
     private lateinit var tradmarkViewModel: TradmarkViewModel
     private lateinit var ratingSeller: RatingBar
-    private var ToggleButton: ArrayList<String> = ArrayList()
+    private var Sizes: ArrayList<String> = ArrayList()
     var rate: Float = 0f
     lateinit var groupSize: SingleSelectToggleGroup
-    lateinit var addView: ImageView
+    lateinit var addSizes: ImageView
     private lateinit var builder: AlertDialog.Builder
     private var colorToggle: Int = 0
     private lateinit var keywordAdapter: KeywordAdapter;
     private lateinit var groupColor: SingleSelectToggleGroup
-    private lateinit var addViewColor: ImageView
+    private lateinit var addColor: ImageView
     private var colors: ArrayList<Int> = ArrayList();
+    private var colorsName: ArrayList<String> = ArrayList();
     val parent_child by navArgs<UploadFragmentArgs>()
     var begin = "<!DOCTYPE html>\n" +
             "<html>\n" +
@@ -110,23 +107,15 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         productName = view.findViewById(R.id.productName);
         productPrice = view.findViewById(R.id.productPrice);
         productLastPrice = view.findViewById(R.id.productLastPrice);
-//        description = view.findViewById(R.id.description);
-//        RichTable = view.findViewById(R.id.RichTable);
-//        addKeywords = view.findViewById(R.id.addKeywords);
         groupColor = view.findViewById(R.id.groupColor);
-//        keys = view.findViewById(R.id.keys);
-        addViewColor = view.findViewById(R.id.addViewColor);
-//        requireActivity().supportFragmentManager.beginTransaction()
-//            .replace(RichTable.id, RichFragment()).commit()
+        addColor = view.findViewById(R.id.addColor);
         trademark = view.findViewById(R.id.trademark);
         Upload = view.findViewById(R.id.Upload);
-//        keywords = view.findViewById(R.id.keywords);
         ratingSeller = view.findViewById(R.id.ratingSeller);
         groupSize = view.findViewById(R.id.groupSize);
-        addView = view.findViewById(R.id.addView);
+        addSizes = view.findViewById(R.id.addSizes);
         tradmarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
         tradmarkViewModel.namesMark.observe(viewLifecycleOwner, Observer {
-//            var trademarkAdapter  = TrademarkAdapter(it)
             trademark.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -186,17 +175,17 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
 //            keywordBottomSheet.show(requireActivity().supportFragmentManager, "keywords")
 //        }
 
-        addView.setOnClickListener {
+        addSizes.setOnClickListener {
             builder = AlertDialog.Builder(requireContext())
             var radio = CircularToggle(requireContext())
             val view = LayoutInflater.from(context).inflate(R.layout.add_toggal, null, false)
             val editorder: TextInputEditText = view.findViewById(R.id.editname)
             val color_seek_bar: ColorSeekBar = view.findViewById(R.id.color_seek_bar);
-            color_seek_bar.visibility = View.INVISIBLE
-            builder.setTitle("Add Options")
+            color_seek_bar.visibility = View.GONE
+            builder.setTitle("Add Sizes")
             builder.setPositiveButton("ok") { dialog, which ->
-                radio.setText("" + editorder.text.toString().trim())
-                ToggleButton.add(editorder.text.toString().trim());
+                radio.text = "" + editorder.text.toString().trim()
+                Sizes.add(editorder.text.toString().trim());
                 groupSize.addView(radio)
                 dialog.dismiss()
             }
@@ -206,7 +195,9 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
             builder.setView(view)
             builder.show()
         }
-        addViewColor.setOnClickListener {
+
+        // todo add color
+        addColor.setOnClickListener {
             builder = AlertDialog.Builder(requireContext())
             var circuleToggle = CircularToggle(requireContext())
             val view = LayoutInflater.from(context).inflate(R.layout.add_toggal, null, false)
@@ -221,11 +212,12 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
                     cardView.setBackgroundColor(color)
                 }
             })
-            builder.setTitle("Add Options")
+            builder.setTitle("Add Colors")
             builder.setPositiveButton("ok", DialogInterface.OnClickListener { dialog, which ->
                 circuleToggle.setText("" + editorder.text.toString().trim())
-//                circuleToggle.setBackgroundColor(colorToggle)
                 circuleToggle.markerColor = colorToggle
+                colors.add(colorToggle)
+                colorsName.add(editorder.text.toString().trim())
                 groupColor.addView(circuleToggle)
                 dialog.dismiss()
             })
@@ -261,7 +253,6 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         }
         val discount = (-1 * (100 - ((price / LastPrice) * 100.0)))
 
-
         val product = Product(
             "",
             money,
@@ -279,11 +270,12 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
             discount,
             "",
             "",
-            ToggleButton.toString(),
+            Sizes.toString(),
+            colors.toString(),
+            colorsName.toString(),
             rate
         );
-
-//        reference.child(PRODUCT).child(Objects.requireNonNull(push)).updateChildren(map)
+        Log.e("sddddss", product.toString());
         findNavController().navigate(
             UploadFragmentDirections.actionUploadFragmentToUploadStep2Fragment(
                 product

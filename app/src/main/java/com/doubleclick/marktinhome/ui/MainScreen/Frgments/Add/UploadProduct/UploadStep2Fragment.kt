@@ -2,6 +2,7 @@ package com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.UploadProduct
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.ProgressDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
@@ -13,11 +14,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.doubleclick.marktinhome.Adapters.ImageAdapter
 import com.doubleclick.marktinhome.BaseFragment
+import com.doubleclick.marktinhome.Model.Constantes.PRODUCT
 import com.doubleclick.marktinhome.R
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.OnSuccessListener
@@ -87,6 +90,9 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
     }
 
     fun UploadData() {
+        val progressDialog = ProgressDialog(context)
+        progressDialog.setMessage("Uploading")
+        progressDialog.show()
         if (uris.size != 0) {
             var storageReference = FirebaseStorage.getInstance().getReference("Uploads")
             for (i in 0 until uris.size) {
@@ -94,42 +100,51 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
                     System.currentTimeMillis()
                         .toString() + "." + getFileExtension(Uri.parse(uris[i]))
                 )
-                val uploadTask: StorageTask<*>
-                uploadTask = fileReference.putFile(Uri.parse(uris[i]))
-                uploadTask.continueWithTask(Continuation<UploadTask.TaskSnapshot?, Task<Uri?>?> { task ->
-                    if (!task.isSuccessful) {
-                        throw task.exception!!
-                    }
-                    fileReference.downloadUrl.addOnSuccessListener(OnSuccessListener {
-                        downloadUri.add(it.toString())
-                        Log.e("uri", downloadUri.toString());
-
-                    })
-                }).addOnCompleteListener { task ->
-                    if (task.isSuccessful()) {
-                        if (uris.size == downloadUri.size) {
-                            val map: HashMap<String, Any> = HashMap()
-                            val push = reference.push().key.toString();
-                            map["productId"] = push
-                            map["price"] = product.product.price
-                            map["date"] = Date().time
-                            map["adminId"] = myId.toString()
-                            map["productName"] = product.product.productName.toString()
-                            map["lastPrice"] = product.product.lastPrice
-                            map["tradeMark"] = product.product.tradeMark.toString()
-                            map["parentCategoryId"] = product.product.parentCategoryId.toString()
-                            map["childCategoryId"] = product.product.childCategoryId.toString()
-                            map["parentCategoryName"] =
-                                product.product.parentCategoryName.toString()
-                            map["childCategoryName"] = product.product.childCategoryName.toString()
-                            map["TotalRating"] = 0
-                            map["discount"] = product.product.discount
-                            map["ratingSeller"] = product.product.ratingSeller
-                            map["Images"] = ""
-                            map["description"] = ""
-                            map["Toggals"] = product.product.toggals.toString()
+                fileReference.putFile(Uri.parse(uris[i])).addOnSuccessListener {
+                    val url = it.storage.downloadUrl
+                    url.addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            downloadUri.add(it.result.toString())
+                            if (uris.size == downloadUri.size) {
+                                val map: HashMap<String, Any> = HashMap()
+                                val push = reference.push().key.toString();
+                                map["productId"] = push
+                                map["price"] = product.product.price
+                                map["date"] = Date().time
+                                map["adminId"] = myId.toString()
+                                map["productName"] = product.product.productName.toString()
+                                map["lastPrice"] = product.product.lastPrice
+                                map["tradeMark"] = product.product.tradeMark.toString()
+                                map["parentCategoryId"] =
+                                    product.product.parentCategoryId.toString()
+                                map["childCategoryId"] = product.product.childCategoryId.toString()
+                                map["parentCategoryName"] =
+                                    product.product.parentCategoryName.toString()
+                                map["childCategoryName"] =
+                                    product.product.childCategoryName.toString()
+                                map["totalRating"] = 0
+                                map["discount"] = product.product.discount
+                                map["ratingSeller"] = product.product.ratingSeller
+                                map["images"] = downloadUri.toString()
+                                map["description"] = ""
+                                map["sizes"] = product.product.sizes.toString()
+                                map["colors"] = product.product.colors.toString()
+                                map["colorsName"] = product.product.colorsName.toString()
+                                reference.child(PRODUCT).child(push).updateChildren(map)
+                                progressDialog.dismiss()
+                            }
+                        } else {
+                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show()
+                            progressDialog.dismiss()
                         }
                     }
+                }.addOnProgressListener {
+                    val p: Double =
+                        100.0 * it.bytesTransferred / it.totalByteCount
+                    progressDialog.setMessage("${p.toInt()} % Uploading...")
+                }.addOnFailureListener {
+                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
                 }
             }
         }

@@ -15,6 +15,7 @@ MERGED from [com.karumi:dexter:6.2.3] C:\Users\eslam\.gradle\caches\transforms-3
 MERGED from [androidx.navigation:navigation-ui-ktx:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\d715b5c552994e8b3048232400451469\transformed\navigation-ui-ktx-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-ui:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\c2c69c019774e803772c52bdb943ee91\transformed\navigation-ui-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\eslam\.gradle\caches\transforms-3\5b0c0dc0192c5aa28a7a2f8d9b6b5481\transformed\material-1.5.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.github.duanhong169:colorpicker:1.1.6] C:\Users\eslam\.gradle\caches\transforms-3\5ade0e7c13cfc4f05f9263c941d4b095\transformed\jetified-colorpicker-1.1.6\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\eslam\.gradle\caches\transforms-3\7cd099040a0a4eb5e50e8f2cd5f09fb7\transformed\constraintlayout-2.1.3\AndroidManifest.xml:2:1-11:12
 MERGED from [com.airbnb.android:lottie:3.4.0] C:\Users\eslam\.gradle\caches\transforms-3\56d48516436b66434fbdb8e788cffb7c\transformed\jetified-lottie-3.4.0\AndroidManifest.xml:2:1-11:12
 MERGED from [com.divyanshu.colorseekbar:colorseekbar:1.0.2] C:\Users\eslam\.gradle\caches\transforms-3\45c91802eaa6428450e0a40e7f7f6901\transformed\jetified-colorseekbar-1.0.2\AndroidManifest.xml:2:1-11:12
@@ -23,6 +24,7 @@ MERGED from [com.devlomi.record-view:record-view:2.0.1] C:\Users\eslam\.gradle\c
 MERGED from [com.vanniktech:emoji-google:0.8.0] C:\Users\eslam\.gradle\caches\transforms-3\7b09bcf539fda8f9a1acd13239009240\transformed\jetified-emoji-google-0.8.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.vanniktech:emoji:0.8.0] C:\Users\eslam\.gradle\caches\transforms-3\788066c4c39ec85db56dfe1429f749f6\transformed\jetified-emoji-0.8.0\AndroidManifest.xml:2:1-7:12
 MERGED from [com.nex3z:toggle-button-group:1.2.3] C:\Users\eslam\.gradle\caches\transforms-3\b86e12bbb9483db39966b7920fecf5f0\transformed\jetified-toggle-button-group-1.2.3\AndroidManifest.xml:2:1-13:12
+MERGED from [com.github.duanhong169:checkerboarddrawable:1.0.2] C:\Users\eslam\.gradle\caches\transforms-3\84dcf5cfc995d3b92f00fc380044e539\transformed\jetified-checkerboarddrawable-1.0.2\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\eslam\.gradle\caches\transforms-3\b8be919961c09948d570b965ce3efbf7\transformed\appcompat-1.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.navigation:navigation-runtime-ktx:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\cd2f2a95551a296df0dee7854e641a3f\transformed\navigation-runtime-ktx-2.4.1\AndroidManifest.xml:17:1-24:12
 MERGED from [com.firebaseui:firebase-ui-database:6.2.0] C:\Users\eslam\.gradle\caches\transforms-3\4b2874961b768217dd34e9a92e3ee0a3\transformed\jetified-firebase-ui-database-6.2.0\AndroidManifest.xml:2:1-13:12
@@ -138,6 +140,7 @@ MERGED from [com.google.firebase:firebase-encoders-json:18.0.0] C:\Users\eslam\.
 MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\eslam\.gradle\caches\transforms-3\d9bd9c9457d8cdef5731b88bd001e475\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\eslam\.gradle\caches\transforms-3\414750466e377fea560fa20090342af7\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
 MERGED from [io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\bf6390f6217826e62e29acd39b096116\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:2:1-26:12
+MERGED from [com.github.duanhong169:logger:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\97335f3a7eba7f77b9ed251f8bf7ad52\transformed\jetified-logger-1.0.0\AndroidManifest.xml:2:1-11:12
 INJECTED from C:\Users\eslam\AndroidStudioProjects\Eslam\MarketAtHomeforSeller\MarktInHome\app\src\main\AndroidManifest.xml:2:1-153:12
 INJECTED from C:\Users\eslam\AndroidStudioProjects\Eslam\MarketAtHomeforSeller\MarktInHome\app\src\main\AndroidManifest.xml:2:1-153:12
 INJECTED from C:\Users\eslam\AndroidStudioProjects\Eslam\MarketAtHomeforSeller\MarktInHome\app\src\main\AndroidManifest.xml:2:1-153:12
@@ -597,6 +600,8 @@ MERGED from [androidx.navigation:navigation-ui:2.4.1] C:\Users\eslam\.gradle\cac
 MERGED from [androidx.navigation:navigation-ui:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\c2c69c019774e803772c52bdb943ee91\transformed\navigation-ui-2.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\eslam\.gradle\caches\transforms-3\5b0c0dc0192c5aa28a7a2f8d9b6b5481\transformed\material-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.material:material:1.5.0] C:\Users\eslam\.gradle\caches\transforms-3\5b0c0dc0192c5aa28a7a2f8d9b6b5481\transformed\material-1.5.0\AndroidManifest.xml:20:5-44
+MERGED from [com.github.duanhong169:colorpicker:1.1.6] C:\Users\eslam\.gradle\caches\transforms-3\5ade0e7c13cfc4f05f9263c941d4b095\transformed\jetified-colorpicker-1.1.6\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.duanhong169:colorpicker:1.1.6] C:\Users\eslam\.gradle\caches\transforms-3\5ade0e7c13cfc4f05f9263c941d4b095\transformed\jetified-colorpicker-1.1.6\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\eslam\.gradle\caches\transforms-3\7cd099040a0a4eb5e50e8f2cd5f09fb7\transformed\constraintlayout-2.1.3\AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.3] C:\Users\eslam\.gradle\caches\transforms-3\7cd099040a0a4eb5e50e8f2cd5f09fb7\transformed\constraintlayout-2.1.3\AndroidManifest.xml:5:5-7:41
 MERGED from [com.airbnb.android:lottie:3.4.0] C:\Users\eslam\.gradle\caches\transforms-3\56d48516436b66434fbdb8e788cffb7c\transformed\jetified-lottie-3.4.0\AndroidManifest.xml:5:5-7:41
@@ -613,6 +618,8 @@ MERGED from [com.vanniktech:emoji:0.8.0] C:\Users\eslam\.gradle\caches\transform
 MERGED from [com.vanniktech:emoji:0.8.0] C:\Users\eslam\.gradle\caches\transforms-3\788066c4c39ec85db56dfe1429f749f6\transformed\jetified-emoji-0.8.0\AndroidManifest.xml:5:5-44
 MERGED from [com.nex3z:toggle-button-group:1.2.3] C:\Users\eslam\.gradle\caches\transforms-3\b86e12bbb9483db39966b7920fecf5f0\transformed\jetified-toggle-button-group-1.2.3\AndroidManifest.xml:7:5-9:41
 MERGED from [com.nex3z:toggle-button-group:1.2.3] C:\Users\eslam\.gradle\caches\transforms-3\b86e12bbb9483db39966b7920fecf5f0\transformed\jetified-toggle-button-group-1.2.3\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.duanhong169:checkerboarddrawable:1.0.2] C:\Users\eslam\.gradle\caches\transforms-3\84dcf5cfc995d3b92f00fc380044e539\transformed\jetified-checkerboarddrawable-1.0.2\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.duanhong169:checkerboarddrawable:1.0.2] C:\Users\eslam\.gradle\caches\transforms-3\84dcf5cfc995d3b92f00fc380044e539\transformed\jetified-checkerboarddrawable-1.0.2\AndroidManifest.xml:7:5-9:41
 MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\eslam\.gradle\caches\transforms-3\b8be919961c09948d570b965ce3efbf7\transformed\appcompat-1.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.4.1] C:\Users\eslam\.gradle\caches\transforms-3\b8be919961c09948d570b965ce3efbf7\transformed\appcompat-1.4.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.navigation:navigation-runtime-ktx:2.4.1] C:\Users\eslam\.gradle\caches\transforms-3\cd2f2a95551a296df0dee7854e641a3f\transformed\navigation-runtime-ktx-2.4.1\AndroidManifest.xml:20:5-22:41
@@ -843,6 +850,8 @@ MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\esl
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\eslam\.gradle\caches\transforms-3\414750466e377fea560fa20090342af7\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\bf6390f6217826e62e29acd39b096116\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:5:5-7:41
 MERGED from [io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\bf6390f6217826e62e29acd39b096116\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.duanhong169:logger:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\97335f3a7eba7f77b9ed251f8bf7ad52\transformed\jetified-logger-1.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.duanhong169:logger:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\97335f3a7eba7f77b9ed251f8bf7ad52\transformed\jetified-logger-1.0.0\AndroidManifest.xml:7:5-9:41
 INJECTED from C:\Users\eslam\AndroidStudioProjects\Eslam\MarketAtHomeforSeller\MarktInHome\app\src\main\AndroidManifest.xml
 INJECTED from C:\Users\eslam\AndroidStudioProjects\Eslam\MarketAtHomeforSeller\MarktInHome\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion

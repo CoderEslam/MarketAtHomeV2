@@ -121,7 +121,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/addView"
+                            android:id="@+id/addSizes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
@@ -181,7 +181,7 @@
 
 
                         <ImageView
-                            android:id="@+id/addViewColor"
+                            android:id="@+id/addColor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

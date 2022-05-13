@@ -31,7 +31,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:hint="@string/name_button"
+                    android:hint="@string/type_here"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -53,7 +53,18 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+                <!--colors=[-7364, -2800572, -16777216, -13316274], colorsName='[Yellow, Red, Black, Green]'-->
 
+
+                <!--                <top.defaults.colorpicker.ColorPickerView-->
+                <!--                    android:id="@+id/colorPicker"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    app:enableAlpha="true"-->
+                <!--                    app:enableBrightness="true"-->
+                <!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+                <!--                    app:layout_constraintRight_toRightOf="parent"-->
+                <!--                    app:layout_constraintTop_toTopOf="parent" />-->
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

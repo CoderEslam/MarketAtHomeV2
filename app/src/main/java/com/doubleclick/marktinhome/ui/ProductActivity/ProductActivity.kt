@@ -34,6 +34,7 @@ import com.paypal.android.sdk.v
 import lecho.lib.hellocharts.model.PieChartData
 import lecho.lib.hellocharts.model.SliceValue
 import lecho.lib.hellocharts.view.PieChartView
+import java.lang.NumberFormatException
 import java.util.ArrayList
 import java.util.HashMap
 
@@ -48,7 +49,6 @@ class productActivity : AppCompatActivity() {
     private lateinit var TotalRating: TextView;
     private lateinit var yourRate: RatingBar;
     private lateinit var rateViewModel: RateViewModel;
-    private lateinit var addToggalsLinearLayout: LinearLayout
     lateinit var plus: ImageView
     lateinit var mins: ImageView
     lateinit var quantity: TextView
@@ -59,7 +59,8 @@ class productActivity : AppCompatActivity() {
     private var ToggleItem: String? = ""
     lateinit var comments: TextView;
     lateinit var product: Product
-    lateinit var toggleGroup: SingleSelectToggleGroup
+    lateinit var toggleSizes: SingleSelectToggleGroup
+    lateinit var toggleColors: SingleSelectToggleGroup
     lateinit var webView: WebView
     private lateinit var speedView: AwesomeSpeedometer
 
@@ -81,12 +82,12 @@ class productActivity : AppCompatActivity() {
         yourRate = findViewById(R.id.yourRate);
         comments = findViewById(R.id.comments);
         speedView = findViewById(R.id.speedView);
-        addToggalsLinearLayout = findViewById(R.id.addToggalsLinearLayout);
+        toggleColors = findViewById(R.id.toggleColors);
         plus = findViewById(R.id.plus)
         quantity = findViewById(R.id.quantity)
         mins = findViewById(R.id.mins)
         share = findViewById(R.id.share);
-        toggleGroup = findViewById(R.id.toggleGroup)
+        toggleSizes = findViewById(R.id.toggleSizes)
         ratingSeller = findViewById(R.id.ratingSeller)
         pieChartView = findViewById(R.id.pieChartView);
         product = intent.getParcelableExtra("product")!!
@@ -103,20 +104,44 @@ class productActivity : AppCompatActivity() {
             null
         );
 
-        val spliter =
-            product.toggals.toString().replace("[", "").replace("]", "").replace(" ", "").split(",")
-        for (i in spliter.indices) {
+        val spliterSizes =
+            product.sizes.toString().replace("[", "").replace("]", "").replace(" ", "").split(",")
+        for (i in spliterSizes.indices) {
             val circularToggle = CircularToggle(this)
-            circularToggle.text = spliter[i]
+            circularToggle.text = spliterSizes[i]
             if (i == 0) {
                 circularToggle.id = 1234567890; /* to chek at first element in toggle*/
-                ToggleItem = spliter[i];
+                ToggleItem = spliterSizes[i];
             }
             circularToggle.setOnClickListener {
-                ToggleItem = spliter[i]
+                ToggleItem = spliterSizes[i]
             }
-            toggleGroup.addView(circularToggle)
-            toggleGroup.check(1234567890)
+            toggleSizes.addView(circularToggle)
+            toggleSizes.check(1234567890)
+        }
+
+        val spliterColors =
+            product.colors.toString().replace("[", "").replace("]", "").replace(" ", "").split(",")
+        val spliterColorsName =
+            product.colorsName.toString().replace("[", "").replace("]", "").replace(" ", "")
+                .split(",")
+        for (i in spliterColors.indices) {
+            val circularToggle = CircularToggle(this)
+            circularToggle.text = spliterColorsName[i]
+            try {
+                circularToggle.markerColor = Integer.parseInt(spliterColors[i])
+            }catch (e:NumberFormatException){
+            }
+
+            if (i == 0) {
+                circularToggle.id = 1234567890; /* to chek at first element in toggle*/
+                ToggleItem = spliterColors[i];
+            }
+            circularToggle.setOnClickListener {
+                ToggleItem = spliterColors[i]
+            }
+            toggleColors.addView(circularToggle)
+            toggleColors.check(1234567890)
         }
         ratingSeller.text = product.ratingSeller.toInt().toString()
         speedView.speedTo(product.ratingSeller.toFloat());

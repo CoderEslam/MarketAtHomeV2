@@ -84,6 +84,9 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final LinearLayout numbers;
 
   @NonNull
+  public final ImageView option;
+
+  @NonNull
   public final ShimmerRecyclerView post;
 
   @NonNull
@@ -112,7 +115,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
       @NonNull SocialTextView link, @NonNull LinearLayout linkLayout,
       @NonNull LinearLayout locationLayout, @NonNull LinearLayout main, @NonNull TextView members,
       @NonNull TextView name, @NonNull TextView nothing, @NonNull LinearLayout numbers,
-      @NonNull ShimmerRecyclerView post, @NonNull TextView postsNum,
+      @NonNull ImageView option, @NonNull ShimmerRecyclerView post, @NonNull TextView postsNum,
       @NonNull LinearProgressIndicator progressBar, @NonNull RelativeLayout scroll,
       @NonNull CircleImageView selectImage, @NonNull Toolbar toolbar, @NonNull TextView username) {
     this.rootView = rootView;
@@ -134,6 +137,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
     this.name = name;
     this.nothing = nothing;
     this.numbers = numbers;
+    this.option = option;
     this.post = post;
     this.postsNum = postsNum;
     this.progressBar = progressBar;
@@ -278,6 +282,12 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.option;
+      ImageView option = ViewBindings.findChildViewById(rootView, id);
+      if (option == null) {
+        break missingId;
+      }
+
       id = R.id.post;
       ShimmerRecyclerView post = ViewBindings.findChildViewById(rootView, id);
       if (post == null) {
@@ -322,7 +332,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
 
       return new ActivityGroupsBinding((CoordinatorLayout) rootView, appbar, back, constraintLayout,
           cover, createPost, details, discription, history, imageGroup, linearLayout3, link,
-          linkLayout, locationLayout, main, members, name, nothing, numbers, post, postsNum,
+          linkLayout, locationLayout, main, members, name, nothing, numbers, option, post, postsNum,
           progressBar, scroll, selectImage, toolbar, username);
     }
     String missingId = rootView.getResources().getResourceName(id);

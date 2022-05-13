@@ -30,13 +30,13 @@ public final class FragmentUploadBinding implements ViewBinding {
   public final Button Upload;
 
   @NonNull
+  public final ImageView addColor;
+
+  @NonNull
+  public final ImageView addSizes;
+
+  @NonNull
   public final NestedScrollView addToggleButtonColor;
-
-  @NonNull
-  public final ImageView addView;
-
-  @NonNull
-  public final ImageView addViewColor;
 
   @NonNull
   public final ConstraintLayout constraintLayout;
@@ -72,8 +72,8 @@ public final class FragmentUploadBinding implements ViewBinding {
   public final AppCompatSpinner trademark;
 
   private FragmentUploadBinding(@NonNull ConstraintLayout rootView, @NonNull Button Upload,
-      @NonNull NestedScrollView addToggleButtonColor, @NonNull ImageView addView,
-      @NonNull ImageView addViewColor, @NonNull ConstraintLayout constraintLayout,
+      @NonNull ImageView addColor, @NonNull ImageView addSizes,
+      @NonNull NestedScrollView addToggleButtonColor, @NonNull ConstraintLayout constraintLayout,
       @NonNull ConstraintLayout constraintLayout2, @NonNull SingleSelectToggleGroup groupColor,
       @NonNull SingleSelectToggleGroup groupSize, @NonNull EditText productLastPrice,
       @NonNull EditText productName, @NonNull EditText productPrice,
@@ -81,9 +81,9 @@ public final class FragmentUploadBinding implements ViewBinding {
       @NonNull AppCompatSpinner trademark) {
     this.rootView = rootView;
     this.Upload = Upload;
+    this.addColor = addColor;
+    this.addSizes = addSizes;
     this.addToggleButtonColor = addToggleButtonColor;
-    this.addView = addView;
-    this.addViewColor = addViewColor;
     this.constraintLayout = constraintLayout;
     this.constraintLayout2 = constraintLayout2;
     this.groupColor = groupColor;
@@ -130,21 +130,21 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.addColor;
+      ImageView addColor = ViewBindings.findChildViewById(rootView, id);
+      if (addColor == null) {
+        break missingId;
+      }
+
+      id = R.id.addSizes;
+      ImageView addSizes = ViewBindings.findChildViewById(rootView, id);
+      if (addSizes == null) {
+        break missingId;
+      }
+
       id = R.id.addToggleButtonColor;
       NestedScrollView addToggleButtonColor = ViewBindings.findChildViewById(rootView, id);
       if (addToggleButtonColor == null) {
-        break missingId;
-      }
-
-      id = R.id.addView;
-      ImageView addView = ViewBindings.findChildViewById(rootView, id);
-      if (addView == null) {
-        break missingId;
-      }
-
-      id = R.id.addViewColor;
-      ImageView addViewColor = ViewBindings.findChildViewById(rootView, id);
-      if (addViewColor == null) {
         break missingId;
       }
 
@@ -214,8 +214,8 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentUploadBinding((ConstraintLayout) rootView, Upload, addToggleButtonColor,
-          addView, addViewColor, constraintLayout, constraintLayout2, groupColor, groupSize,
+      return new FragmentUploadBinding((ConstraintLayout) rootView, Upload, addColor, addSizes,
+          addToggleButtonColor, constraintLayout, constraintLayout2, groupColor, groupSize,
           productLastPrice, productName, productPrice, ratingSeller, textView18, textView19,
           trademark);
     }

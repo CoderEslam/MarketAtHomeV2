@@ -1,5 +1,6 @@
 package com.doubleclick.marktinhome.Adapters;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -86,6 +87,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             ratingBar = itemView.findViewById(R.id.ratingBar);
         }
 
+        @SuppressLint("ClickableViewAccessibility")
         public void setBannerSliderViewPager(String list) {
             currentPage = 2;
             //////////////////////////////////////////////////////////////////
@@ -94,19 +96,21 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             banner_slier_view_pager.setClipToPadding(false);
             banner_slier_view_pager.setPageMargin(20);
             banner_slier_view_pager.setCurrentItem(currentPage);
-            List<String> l = Arrays.asList(list.trim().replace("[", "").replace("]", "").replace(" ", "").split(","));
-            StartbannerSlideShow(l);
-            //if banner Touch this mathod is excut
-            banner_slier_view_pager.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
+            try {
+                List<String> l = Arrays.asList(list.trim().replace("[", "").replace("]", "").replace(" ", "").split(","));
+                StartbannerSlideShow(l);
+                banner_slier_view_pager.setOnTouchListener((View v, MotionEvent event) -> {
                     StopBannerSlideShow();
                     if (event.getAction() == MotionEvent.ACTION_UP) {
                         StartbannerSlideShow(l);
                     }
                     return false;
-                }
-            });
+                });
+            } catch (NullPointerException e) {
+
+            }
+            //if banner Touch this mathod is excut
+
         }
 
         // this resbonsable to loop slider

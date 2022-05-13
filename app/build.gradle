@@ -142,4 +142,8 @@ dependencies {
 //    implementation 'com.github.sparrow007:carouselrecyclerview:1.2.4'
 
 //    implementation 'com.github.mohammadatif:Animatoo:master'
+
+    // Picker Color
+    implementation 'com.github.duanhong169:colorpicker:1.1.6'
+
 }

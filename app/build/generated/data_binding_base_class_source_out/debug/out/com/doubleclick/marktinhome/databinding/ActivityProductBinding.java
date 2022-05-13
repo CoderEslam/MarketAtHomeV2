@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -37,10 +36,7 @@ public final class ActivityProductBinding implements ViewBinding {
   public final TextView TotalRating;
 
   @NonNull
-  public final LinearLayout addToggalsLinearLayout;
-
-  @NonNull
-  public final HorizontalScrollView addToggalsScrollView;
+  public final LinearLayout addToggalsScrollView;
 
   @NonNull
   public final LottieAnimationView animationView;
@@ -190,7 +186,10 @@ public final class ActivityProductBinding implements ViewBinding {
   public final TextView textView7;
 
   @NonNull
-  public final SingleSelectToggleGroup toggleGroup;
+  public final SingleSelectToggleGroup toggleColors;
+
+  @NonNull
+  public final SingleSelectToggleGroup toggleSizes;
 
   @NonNull
   public final TextView trarmark;
@@ -220,10 +219,9 @@ public final class ActivityProductBinding implements ViewBinding {
   public final RatingBar yourRate;
 
   private ActivityProductBinding(@NonNull ConstraintLayout rootView, @NonNull TextView TotalRating,
-      @NonNull LinearLayout addToggalsLinearLayout,
-      @NonNull HorizontalScrollView addToggalsScrollView,
-      @NonNull LottieAnimationView animationView, @NonNull ViewPager bannerSlierViewPager,
-      @NonNull CardView cardView, @NonNull CardView cardView11, @NonNull TextView comments,
+      @NonNull LinearLayout addToggalsScrollView, @NonNull LottieAnimationView animationView,
+      @NonNull ViewPager bannerSlierViewPager, @NonNull CardView cardView,
+      @NonNull CardView cardView11, @NonNull TextView comments,
       @NonNull ConstraintLayout constraintLayout, @NonNull ConstraintLayout constraintLayout11,
       @NonNull ConstraintLayout constraintLayout2, @NonNull ConstraintLayout constraintLayout3,
       @NonNull ConstraintLayout constraintLayout4, @NonNull ConstraintLayout constraintLayout7,
@@ -242,13 +240,12 @@ public final class ActivityProductBinding implements ViewBinding {
       @NonNull TextView textView13, @NonNull TextView textView14, @NonNull TextView textView15,
       @NonNull TextView textView16, @NonNull TextView textView4, @NonNull TextView textView5,
       @NonNull TextView textView6, @NonNull TextView textView60, @NonNull TextView textView7,
-      @NonNull SingleSelectToggleGroup toggleGroup, @NonNull TextView trarmark,
-      @NonNull TextView tvRate1, @NonNull TextView tvRate2, @NonNull TextView tvRate3,
-      @NonNull TextView tvRate4, @NonNull TextView tvRate5, @NonNull TextView tvYourRatins,
-      @NonNull WebView webView, @NonNull RatingBar yourRate) {
+      @NonNull SingleSelectToggleGroup toggleColors, @NonNull SingleSelectToggleGroup toggleSizes,
+      @NonNull TextView trarmark, @NonNull TextView tvRate1, @NonNull TextView tvRate2,
+      @NonNull TextView tvRate3, @NonNull TextView tvRate4, @NonNull TextView tvRate5,
+      @NonNull TextView tvYourRatins, @NonNull WebView webView, @NonNull RatingBar yourRate) {
     this.rootView = rootView;
     this.TotalRating = TotalRating;
-    this.addToggalsLinearLayout = addToggalsLinearLayout;
     this.addToggalsScrollView = addToggalsScrollView;
     this.animationView = animationView;
     this.bannerSlierViewPager = bannerSlierViewPager;
@@ -299,7 +296,8 @@ public final class ActivityProductBinding implements ViewBinding {
     this.textView6 = textView6;
     this.textView60 = textView60;
     this.textView7 = textView7;
-    this.toggleGroup = toggleGroup;
+    this.toggleColors = toggleColors;
+    this.toggleSizes = toggleSizes;
     this.trarmark = trarmark;
     this.tvRate1 = tvRate1;
     this.tvRate2 = tvRate2;
@@ -344,14 +342,8 @@ public final class ActivityProductBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.addToggalsLinearLayout;
-      LinearLayout addToggalsLinearLayout = ViewBindings.findChildViewById(rootView, id);
-      if (addToggalsLinearLayout == null) {
-        break missingId;
-      }
-
       id = R.id.addToggalsScrollView;
-      HorizontalScrollView addToggalsScrollView = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout addToggalsScrollView = ViewBindings.findChildViewById(rootView, id);
       if (addToggalsScrollView == null) {
         break missingId;
       }
@@ -650,9 +642,15 @@ public final class ActivityProductBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.toggleGroup;
-      SingleSelectToggleGroup toggleGroup = ViewBindings.findChildViewById(rootView, id);
-      if (toggleGroup == null) {
+      id = R.id.toggleColors;
+      SingleSelectToggleGroup toggleColors = ViewBindings.findChildViewById(rootView, id);
+      if (toggleColors == null) {
+        break missingId;
+      }
+
+      id = R.id.toggleSizes;
+      SingleSelectToggleGroup toggleSizes = ViewBindings.findChildViewById(rootView, id);
+      if (toggleSizes == null) {
         break missingId;
       }
 
@@ -711,16 +709,15 @@ public final class ActivityProductBinding implements ViewBinding {
       }
 
       return new ActivityProductBinding((ConstraintLayout) rootView, TotalRating,
-          addToggalsLinearLayout, addToggalsScrollView, animationView, bannerSlierViewPager,
-          cardView, cardView11, comments, constraintLayout, constraintLayout11, constraintLayout2,
-          constraintLayout3, constraintLayout4, constraintLayout7, constraintLayout8, fab,
-          imageView3, imageView4, imageView5, imageView6, imageView7, imageView8, lastPrice,
-          linearLayout5, linearLayout7, lldescription, mins, pieChartView, plus, price, productName,
-          progressBar1, progressBar2, progressBar3, progressBar4, progressBar5, quantity,
-          rateNowContainer, ratingSeller, scrollView2, share, speedView, textView12, textView13,
-          textView14, textView15, textView16, textView4, textView5, textView6, textView60,
-          textView7, toggleGroup, trarmark, tvRate1, tvRate2, tvRate3, tvRate4, tvRate5,
-          tvYourRatins, webView, yourRate);
+          addToggalsScrollView, animationView, bannerSlierViewPager, cardView, cardView11, comments,
+          constraintLayout, constraintLayout11, constraintLayout2, constraintLayout3,
+          constraintLayout4, constraintLayout7, constraintLayout8, fab, imageView3, imageView4,
+          imageView5, imageView6, imageView7, imageView8, lastPrice, linearLayout5, linearLayout7,
+          lldescription, mins, pieChartView, plus, price, productName, progressBar1, progressBar2,
+          progressBar3, progressBar4, progressBar5, quantity, rateNowContainer, ratingSeller,
+          scrollView2, share, speedView, textView12, textView13, textView14, textView15, textView16,
+          textView4, textView5, textView6, textView60, textView7, toggleColors, toggleSizes,
+          trarmark, tvRate1, tvRate2, tvRate3, tvRate4, tvRate5, tvYourRatins, webView, yourRate);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

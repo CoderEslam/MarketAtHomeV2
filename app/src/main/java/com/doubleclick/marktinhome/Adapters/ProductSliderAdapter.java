@@ -29,7 +29,11 @@ public class ProductSliderAdapter extends PagerAdapter {
     private List<String> list = new ArrayList<>();
 
     public ProductSliderAdapter(String list) {
-        this.list = Arrays.asList(list.trim().replace("[","").replace("]","").replace(" ","").split(","));
+        try {
+            this.list = Arrays.asList(list.trim().replace("[", "").replace("]", "").replace(" ", "").split(","));
+        } catch (NullPointerException e) {
+
+        }
     }
 
     @Override

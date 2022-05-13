@@ -30,15 +30,17 @@ public class Product implements Comparable, Parcelable {
     private String childCategoryName;
     private String parentCategoryId;
     private String childCategoryId;
-    private int TotalRating;
+    private int totalRating;
     private double discount;
     private String keywords;
-    private String Images;
-    private String Toggals;
+    private String images;
+    private String sizes;
+    private String colors;
+    private String colorsName;
     private float ratingSeller;
 
 
-    public Product(String productId, double price, String description, long date, String adminId, String productName, double lastPrice, String tradeMark, String parentCategoryName, String childCategoryName, String parentCategoryId, String childCategoryId, int totalRating, double discount, String keywords, String images, String toggals, float ratingSeller) {
+    public Product(String productId, double price, String description, long date, String adminId, String productName, double lastPrice, String tradeMark, String parentCategoryName, String childCategoryName, String parentCategoryId, String childCategoryId, int totalRating, double discount, String keywords, String images, String sizes, float ratingSeller) {
         this.productId = productId;
         this.price = price;
         this.description = description;
@@ -51,11 +53,11 @@ public class Product implements Comparable, Parcelable {
         this.childCategoryName = childCategoryName;
         this.parentCategoryId = parentCategoryId;
         this.childCategoryId = childCategoryId;
-        TotalRating = totalRating;
+        this.totalRating = totalRating;
         this.discount = discount;
         this.keywords = keywords;
-        Images = images;
-        Toggals = toggals;
+        this.images = images;
+        this.sizes = sizes;
         this.ratingSeller = ratingSeller;
     }
 
@@ -73,11 +75,13 @@ public class Product implements Comparable, Parcelable {
         childCategoryName = in.readString();
         parentCategoryId = in.readString();
         childCategoryId = in.readString();
-        TotalRating = in.readInt();
+        totalRating = in.readInt();
         discount = in.readDouble();
         keywords = in.readString();
-        Images = in.readString();
-        Toggals = in.readString();
+        images = in.readString();
+        sizes = in.readString();
+        colors = in.readString();
+        colorsName = in.readString();
         ratingSeller = in.readFloat();
     }
 
@@ -93,9 +97,36 @@ public class Product implements Comparable, Parcelable {
         }
     };
 
+    public Product(String productId, double price, String description, long date, String adminId, String productName, double lastPrice, String tradeMark, String parentCategoryName, String childCategoryName, String parentCategoryId, String childCategoryId, int totalRating, double discount, String keywords, String images, String sizes, String colors, String colorsName, float ratingSeller) {
+        this.productId = productId;
+        this.price = price;
+        this.description = description;
+        this.date = date;
+        this.adminId = adminId;
+        this.productName = productName;
+        this.lastPrice = lastPrice;
+        this.tradeMark = tradeMark;
+        this.parentCategoryName = parentCategoryName;
+        this.childCategoryName = childCategoryName;
+        this.parentCategoryId = parentCategoryId;
+        this.childCategoryId = childCategoryId;
+        this.totalRating = totalRating;
+        this.discount = discount;
+        this.keywords = keywords;
+        this.images = images;
+        this.sizes = sizes;
+        this.colors = colors;
+        this.colorsName = colorsName;
+        this.ratingSeller = ratingSeller;
+    }
+
     public String getOnlyImage() {
-        List<String> image = Arrays.asList(getImages().replace("[", "").replace("]", "").replace(" ", "").trim().split(","));
-        return image.get(0);
+        try {
+            List<String> image = Arrays.asList(getImages().replace("[", "").replace("]", "").replace(" ", "").trim().split(","));
+            return image.get(0);
+        } catch (NullPointerException e) {
+            return "";
+        }
     }
 
 
@@ -106,33 +137,36 @@ public class Product implements Comparable, Parcelable {
     @Override
     public int compareTo(Object o) {
         int rate = ((Product) o).getTotalRating();
-        return (this.TotalRating - rate);
+        return (this.totalRating - rate);
     }
 
-
-    @NonNull
     @Override
-    public String toString() {
-        return "Product{" +
-                "productId='" + productId + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                ", date=" + date +
-                ", adminId='" + adminId + '\'' +
-                ", productName='" + productName + '\'' +
-                ", lastPrice=" + lastPrice +
-                ", tradeMark='" + tradeMark + '\'' +
-                ", parentCategoryName='" + parentCategoryName + '\'' +
-                ", childCategoryName='" + childCategoryName + '\'' +
-                ", parentCategoryId='" + parentCategoryId + '\'' +
-                ", childCategoryId='" + childCategoryId + '\'' +
-                ", TotalRating=" + TotalRating +
-                ", discount=" + discount +
-                ", keywords='" + keywords + '\'' +
-                ", Images='" + Images + '\'' +
-                ", Toggals='" + Toggals + '\'' +
-                ", ratingSeller=" + ratingSeller +
-                '}';
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(productId);
+        dest.writeDouble(price);
+        dest.writeString(description);
+        dest.writeLong(date);
+        dest.writeString(adminId);
+        dest.writeString(productName);
+        dest.writeDouble(lastPrice);
+        dest.writeString(tradeMark);
+        dest.writeString(parentCategoryName);
+        dest.writeString(childCategoryName);
+        dest.writeString(parentCategoryId);
+        dest.writeString(childCategoryId);
+        dest.writeInt(totalRating);
+        dest.writeDouble(discount);
+        dest.writeString(keywords);
+        dest.writeString(images);
+        dest.writeString(sizes);
+        dest.writeString(colors);
+        dest.writeString(colorsName);
+        dest.writeFloat(ratingSeller);
     }
 
     public String getProductId() {
@@ -232,11 +266,11 @@ public class Product implements Comparable, Parcelable {
     }
 
     public int getTotalRating() {
-        return TotalRating;
+        return totalRating;
     }
 
     public void setTotalRating(int totalRating) {
-        TotalRating = totalRating;
+        this.totalRating = totalRating;
     }
 
     public double getDiscount() {
@@ -256,19 +290,35 @@ public class Product implements Comparable, Parcelable {
     }
 
     public String getImages() {
-        return Images;
+        return images;
     }
 
     public void setImages(String images) {
-        Images = images;
+        this.images = images;
     }
 
-    public String getToggals() {
-        return Toggals;
+    public String getSizes() {
+        return sizes;
     }
 
-    public void setToggals(String toggals) {
-        Toggals = toggals;
+    public void setSizes(String sizes) {
+        this.sizes = sizes;
+    }
+
+    public String getColors() {
+        return colors;
+    }
+
+    public void setColors(String colors) {
+        this.colors = colors;
+    }
+
+    public String getColorsName() {
+        return colorsName;
+    }
+
+    public void setColorsName(String colorsName) {
+        this.colorsName = colorsName;
     }
 
     public float getRatingSeller() {
@@ -280,29 +330,29 @@ public class Product implements Comparable, Parcelable {
     }
 
     @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(productId);
-        dest.writeDouble(price);
-        dest.writeString(description);
-        dest.writeLong(date);
-        dest.writeString(adminId);
-        dest.writeString(productName);
-        dest.writeDouble(lastPrice);
-        dest.writeString(tradeMark);
-        dest.writeString(parentCategoryName);
-        dest.writeString(childCategoryName);
-        dest.writeString(parentCategoryId);
-        dest.writeString(childCategoryId);
-        dest.writeInt(TotalRating);
-        dest.writeDouble(discount);
-        dest.writeString(keywords);
-        dest.writeString(Images);
-        dest.writeString(Toggals);
-        dest.writeFloat(ratingSeller);
+    public String toString() {
+        return "Product{" +
+                "productId='" + productId + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", adminId='" + adminId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", lastPrice=" + lastPrice +
+                ", tradeMark='" + tradeMark + '\'' +
+                ", parentCategoryName='" + parentCategoryName + '\'' +
+                ", childCategoryName='" + childCategoryName + '\'' +
+                ", parentCategoryId='" + parentCategoryId + '\'' +
+                ", childCategoryId='" + childCategoryId + '\'' +
+                ", totalRating=" + totalRating +
+                ", discount=" + discount +
+                ", keywords='" + keywords + '\'' +
+                ", images='" + images + '\'' +
+                ", sizes='" + sizes + '\'' +
+                ", colors=" + colors +
+                ", colorsName='" + colorsName + '\'' +
+                ", ratingSeller=" + ratingSeller +
+                '}';
     }
 }
+
