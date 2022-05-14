@@ -49,33 +49,33 @@ public class BaseMessageAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         switch (viewType) {
             case Constantes.VIDEO_RIGHT:
-                return new VideoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video_right, parent, false), onMessageClick);
+                return new VideoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video_right, parent, false), onMessageClick, myId);
             case Constantes.VOICE_RIGHT:
                 return new VoiceViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.play_voice_right, parent, false), onMessageClick, myId);
             case Constantes.CONTACT_RIGHT:
-                return new ContactViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_contact_right, parent, false), onMessageClick);
+                return new ContactViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_contact_right, parent, false), onMessageClick, myId);
             case Constantes.TEXT_RIGHT:
-                return new MessageTextViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.right_chat, parent, false), onMessageClick);
+                return new MessageTextViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.right_chat, parent, false), onMessageClick, myId);
             case Constantes.LOCATION_RIGHT:
-                return new LocationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_location_right, parent, false), onMessageClick);
+                return new LocationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_location_right, parent, false), onMessageClick, myId);
             case Constantes.IMAGE_RIGHT:
-                return new ImageViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_right, parent, false), onMessageClick);
+                return new ImageViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_right, parent, false), onMessageClick, myId);
             case Constantes.FILE_RIGHT:
-                return new FileViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_file_right, parent, false), onMessageClick);
+                return new FileViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_file_right, parent, false), onMessageClick, myId);
             case Constantes.VIDEO_LEFT:
-                return new VideoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video_left, parent, false), onMessageClick);
+                return new VideoViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video_left, parent, false), onMessageClick, myId);
             case Constantes.VOICE_LEFT:
                 return new VoiceViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.play_voice_left, parent, false), onMessageClick, myId);
             case Constantes.CONTACT_LEFT:
-                return new ContactViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_contact_left, parent, false), onMessageClick);
+                return new ContactViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_contact_left, parent, false), onMessageClick, myId);
             case Constantes.TEXT_LEFT:
-                return new MessageTextViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.left_chat, parent, false), onMessageClick);
+                return new MessageTextViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.left_chat, parent, false), onMessageClick, myId);
             case Constantes.LOCATION_LEFT:
-                return new LocationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_location_left, parent, false), onMessageClick);
+                return new LocationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_location_left, parent, false), onMessageClick, myId);
             case Constantes.IMAGE_LEFT:
-                return new ImageViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_left, parent, false), onMessageClick);
+                return new ImageViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_image_left, parent, false), onMessageClick, myId);
             case Constantes.FILE_LEFT:
-                return new FileViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_file_left, parent, false), onMessageClick);
+                return new FileViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_file_left, parent, false), onMessageClick, myId);
             default:
                 return new BaseViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.empty_view, parent, false));  // return  view  defulte
         }

@@ -20,6 +20,8 @@ import com.doubleclick.OnMessageClick;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
+import java.text.SimpleDateFormat;
+
 /**
  * Created By Eslam Ghazy on 2/7/2022
  */
@@ -29,20 +31,29 @@ public class ContactViewHolder extends BaseViewHolder {
     private String massege;
     private OnMessageClick onMessageClick;
     private ImageView seen;
+    private String myId;
+    private TextView time;
 
-    public ContactViewHolder(@NonNull View itemView, OnMessageClick onMessageClick) {
+    public ContactViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
         this.onMessageClick = onMessageClick;
+        this.myId = myId;
         nameContact = itemView.findViewById(R.id.nameContact);
         numberContact = itemView.findViewById(R.id.numberContact);
         seen = itemView.findViewById(R.id.seen);
+        time = itemView.findViewById(R.id.time);
 
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
     public void Contact(Chat chat, int position) {
         this.massege = chat.getMessage();
-        seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+        time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
+        if (chat.getReceiver().equals(myId)) {
+            seen.setVisibility(View.GONE);
+        } else {
+            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+        }
         String[] n = massege.split("\n");
         nameContact.setText(n[0]);
         numberContact.setText(n[1]);

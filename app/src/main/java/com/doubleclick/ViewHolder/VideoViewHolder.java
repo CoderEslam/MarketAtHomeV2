@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,8 @@ import androidx.appcompat.widget.PopupMenu;
 import com.doubleclick.OnMessageClick;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
+
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -29,21 +32,30 @@ public class VideoViewHolder extends BaseViewHolder {
     private OnMessageClick onMessageClick;
     private ImageView download, seen;
     private ProgressBar progressBar;
+    private String myId;
+    private TextView time;
 
-    public VideoViewHolder(@NonNull View itemView, OnMessageClick onMessageClick) {
+    public VideoViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
         this.onMessageClick = onMessageClick;
+        this.myId = myId;
         video = itemView.findViewById(R.id.video);
         options = itemView.findViewById(R.id.options);
         download = itemView.findViewById(R.id.download);
         seen = itemView.findViewById(R.id.seen);
         progressBar = itemView.findViewById(R.id.progressBar);
+        time = itemView.findViewById(R.id.time);
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void play(Chat chat, int position) {
-        seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+        time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
+        if (chat.getReceiver().equals(myId)) {
+            seen.setVisibility(View.GONE);
+        } else {
+            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+        }
         if (!chat.getUri().toString().equals("")) {
             progressBar.setVisibility(View.GONE);
             download.setVisibility(View.GONE);

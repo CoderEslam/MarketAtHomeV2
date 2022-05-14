@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
@@ -33,6 +34,7 @@ import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -49,6 +51,7 @@ public class VoiceViewHolder extends BaseViewHolder {
     private String myId;
     private ImageView seen;
     private ProgressBar progressBar;
+    private TextView time;
 
     public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
@@ -60,12 +63,19 @@ public class VoiceViewHolder extends BaseViewHolder {
         playVoice = itemView.findViewById(R.id.playVoice);
         seen = itemView.findViewById(R.id.seen);
         progressBar = itemView.findViewById(R.id.progressBar);
+        time = itemView.findViewById(R.id.time);
+
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void Play(Chat chat, int position) {
-        seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+        time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
+        if (chat.getReceiver().equals(myId)) {
+            seen.setVisibility(View.GONE);
+        } else {
+            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+        }
         if (!chat.getMessage().equals("")) {
             progress.setVisibility(View.GONE);
             playVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));

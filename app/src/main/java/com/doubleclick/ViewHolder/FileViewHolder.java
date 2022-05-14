@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +17,8 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.doubleclick.OnMessageClick;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
+
+import java.text.SimpleDateFormat;
 
 
 /**
@@ -26,20 +29,29 @@ public class FileViewHolder extends BaseViewHolder {
     private OnMessageClick onMessageClick;
     private ImageView download, seen;
     private ProgressBar progressBar;
+    private String myId;
+    private TextView time;
 
-    public FileViewHolder(View itemView, OnMessageClick onMessageClick) {
+    public FileViewHolder(View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
         this.onMessageClick = onMessageClick;
+        this.myId = myId;
         lottieAnimationView = itemView.findViewById(R.id.file);
         download = itemView.findViewById(R.id.download);
         seen = itemView.findViewById(R.id.seen);
         progressBar = itemView.findViewById(R.id.progressBar);
+        time = itemView.findViewById(R.id.time);
     }
 
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
     public void downloadFile(Chat chat, int position) {
-        seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+        time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
+        if (chat.getReceiver().equals(myId)) {
+            seen.setVisibility(View.GONE);
+        } else {
+            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+        }
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

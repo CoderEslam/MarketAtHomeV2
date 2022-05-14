@@ -37,7 +37,7 @@ public interface ChatDao {
     @Query("SELECT * FROM Chat  WHERE ((sender==:myID AND receiver == :friendID) OR (sender==:friendID AND receiver == :myID)) ORDER BY date DESC LIMIT 1")
     LiveData<List<Chat>> GetChat(String myID, String friendID);
 
-    @Query("SELECT * FROM Chat  WHERE (((sender==:myID AND receiver == :friendID) OR (sender==:friendID AND receiver == :myID)) AND  StatusMessage!='Uploaded') ORDER BY date ASC")
+    @Query("SELECT * FROM Chat  WHERE (((sender==:myID AND receiver == :friendID) OR (sender==:friendID AND receiver == :myID))) ORDER BY date ASC")
     List<Chat> getList(String myID, String friendID);
 
 //    @Query("SELECT * FROM Chat  WHERE (sender ==:friendID AND receiver == :myID) ORDER BY date DESC LIMIT 1")

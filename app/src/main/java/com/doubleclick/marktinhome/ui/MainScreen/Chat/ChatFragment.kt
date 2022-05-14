@@ -109,6 +109,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     private lateinit var chatViewModelDatabase: ChatViewModelDatabase
     private lateinit var userViewModel: UserViewModel
     private lateinit var storageReference: StorageReference
+    private lateinit var option: ImageView;
     var fileType: String? = null
     private var chats: ArrayList<Chat> = ArrayList();
     var audioPath: String? = null
@@ -151,6 +152,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         attach_file = view.findViewById(R.id.attach_file);
         sendRecord.setRecordView(recordView)
         file = view.findViewById(R.id.file)
+        option = view.findViewById(R.id.option);
         location = view.findViewById(R.id.location)
         image = view.findViewById(R.id.image)
         video = view.findViewById(R.id.video)
@@ -198,11 +200,13 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
             if (it.sender.equals(myId) && !it.isSeen) {
-                chats.add(it)
-                chatAdapter.notifyItemInserted(chats.size - 1)
-                chatAdapter.notifyDataSetChanged()
-                chatRecycler.scrollToPosition(chats.size - 1)
-                chatRecycler.smoothScrollToPosition(chats.size - 1)
+                if (!chats.contains(it)) {
+                    chats.add(it)
+                    chatAdapter.notifyItemInserted(chats.size - 1)
+                    chatAdapter.notifyDataSetChanged()
+                    chatRecycler.scrollToPosition(chats.size - 1)
+                    chatRecycler.smoothScrollToPosition(chats.size - 1)
+                }
             }
             /*
             * if I'm receiver -> update that i see this message
@@ -210,7 +214,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             if (it.receiver.equals(myId)) {
                 // TODO update status massage to been seen
                 val map: HashMap<String, Any> = HashMap();
-                map["StatusMessage"] = "beenSeen" // "Stored" , "beenSeen" , "Uploaded"
+                map["StatusMessage"] = "beenSeen" //"beenSeen" , "Uploaded"
                 map["seen"] = true
                 reference.child(CHATS).child(myId).child(user!!.id).child(it.id)
                     .updateChildren(map);
@@ -364,6 +368,18 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         contact.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
             startActivityForResult(intent, PICK_CONTACT)
+        }
+        option.setOnClickListener { v ->
+            val pupMenu = PopupMenu(requireContext(), v);
+            pupMenu.menuInflater.inflate(R.menu.delete_all_chat, pupMenu.menu);
+            pupMenu.setOnMenuItemClickListener {
+                if (it.itemId == R.id.delete_all) {
+                    chatViewModelDatabase.deleteAll();
+                    Toast.makeText(context, "Deleted", Toast.LENGTH_LONG).show()
+                }
+                true;
+            }
+            pupMenu.show()
         }
         return view;
     }
@@ -779,20 +795,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         }
     }
 
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.delete_all) {
-            chatViewModelDatabase.deleteAll();
-            Toast.makeText(context, "Deleted", Toast.LENGTH_LONG).show()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.delete_all_chat, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
     /*
     *  TODO Store data when friend sent it to me
     *  لمه صاحبي يبعت رساله وانا اشوفها
@@ -815,7 +817,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     override fun BeenSeenForMe(chat: Chat?) {
         chatViewModelDatabase.update(chat!!)
         try {
-//            chats.add(chat)
             // TODO update in ArrayList
             chats[chats.indexOf(chat)] = chat
             // TODO update in adapter
