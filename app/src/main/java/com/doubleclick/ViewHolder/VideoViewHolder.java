@@ -47,6 +47,7 @@ public class VideoViewHolder extends BaseViewHolder {
         time = itemView.findViewById(R.id.time);
     }
 
+
     @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void play(Chat chat, int position) {
