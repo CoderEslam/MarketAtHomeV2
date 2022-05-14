@@ -48,6 +48,7 @@ public class VoiceViewHolder extends BaseViewHolder {
     private OnMessageClick onMessageClick;
     private String myId;
     private ImageView seen;
+    private ProgressBar progressBar;
 
     public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
@@ -58,7 +59,7 @@ public class VoiceViewHolder extends BaseViewHolder {
         progress = itemView.findViewById(R.id.progress);
         playVoice = itemView.findViewById(R.id.playVoice);
         seen = itemView.findViewById(R.id.seen);
-
+        progressBar = itemView.findViewById(R.id.progressBar);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -86,7 +87,7 @@ public class VoiceViewHolder extends BaseViewHolder {
         voice.setMediaController(mediaController);
         voice.requestFocus();
         downloadVoice.setOnClickListener(v -> {
-            onMessageClick.download(chat, getAdapterPosition());
+            onMessageClick.download(chat, getAdapterPosition(), progressBar);
         });
 
         playVoice.setOnClickListener(v -> {

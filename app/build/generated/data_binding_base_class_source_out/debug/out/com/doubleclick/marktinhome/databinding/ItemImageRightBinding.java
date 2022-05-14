@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -37,18 +38,22 @@ public final class ItemImageRightBinding implements ViewBinding {
   public final ImageView optins;
 
   @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
   public final ImageView seen;
 
   private ItemImageRightBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinnerImage, @NonNull CardView cardView4,
       @NonNull ConstraintLayout constraintLayout13, @NonNull PhotoView image,
-      @NonNull ImageView optins, @NonNull ImageView seen) {
+      @NonNull ImageView optins, @NonNull ProgressBar progressBar, @NonNull ImageView seen) {
     this.rootView = rootView;
     this.ContinnerImage = ContinnerImage;
     this.cardView4 = cardView4;
     this.constraintLayout13 = constraintLayout13;
     this.image = image;
     this.optins = optins;
+    this.progressBar = progressBar;
     this.seen = seen;
   }
 
@@ -105,6 +110,12 @@ public final class ItemImageRightBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.seen;
       ImageView seen = ViewBindings.findChildViewById(rootView, id);
       if (seen == null) {
@@ -112,7 +123,7 @@ public final class ItemImageRightBinding implements ViewBinding {
       }
 
       return new ItemImageRightBinding((ConstraintLayout) rootView, ContinnerImage, cardView4,
-          constraintLayout13, image, optins, seen);
+          constraintLayout13, image, optins, progressBar, seen);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

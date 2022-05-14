@@ -3519,7 +3519,9 @@ int id cancel_action 0x7f0a0103
 int id cancel_button 0x7f0a0104
 int id caption 0x7f0a0105
 int id cardView 0x7f0a0106
+int id cardView10 0x7f0a046e
 int id cardView11 0x7f0a0107
+int id cardView12 0x7f0a046f
 int id cardView2 0x7f0a0108
 int id cardView3 0x7f0a0109
 int id cardView4 0x7f0a010a

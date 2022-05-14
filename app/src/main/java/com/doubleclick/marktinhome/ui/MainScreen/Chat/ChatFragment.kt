@@ -24,10 +24,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.*
 import android.webkit.MimeTypeMap
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -113,8 +110,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     private lateinit var userViewModel: UserViewModel
     private lateinit var storageReference: StorageReference
     var fileType: String? = null
-
-
     private var chats: ArrayList<Chat> = ArrayList();
     var audioPath: String? = null
     private var cklicked = true
@@ -745,19 +740,21 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Throws(java.lang.Exception::class)
-    override fun download(chat: Chat, pos: Int) {
+    override fun download(chat: Chat, pos: Int, progressBar: ProgressBar) {
         try {
             val request = DownloadManager.Request(Uri.parse(chat.message))
             request.setDestinationInExternalPublicDir(
                 Environment.DIRECTORY_DOWNLOADS,
-                "video" + chat.id
+                "" + chat.type + Date().time
             )
+            request.setTitle(requireContext().resources.getString(R.string.app_name));
+            request.setDescription("Downloading");
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED) // to notify when download is complete
             request.allowScanningByMediaScanner() // if you want to be available from media players
-            val manager =
-                requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            request.setVisibleInDownloadsUi(false);
+            val manager = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             val uri = manager.getUriForDownloadedFile(manager.enqueue(request))
-            Toast.makeText(context, uri.toString(), Toast.LENGTH_LONG).show()
+            Toast.makeText(requireContext(), uri.toString(), Toast.LENGTH_LONG).show()
             val chat = Chat(
                 chat.message,
                 uri.toString(),

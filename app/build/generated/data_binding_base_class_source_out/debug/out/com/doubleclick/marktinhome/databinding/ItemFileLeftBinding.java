@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -21,16 +23,25 @@ public final class ItemFileLeftBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final CardView cardView12;
+
+  @NonNull
   public final ImageView download;
 
   @NonNull
   public final LottieAnimationView file;
 
-  private ItemFileLeftBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView download,
-      @NonNull LottieAnimationView file) {
+  @NonNull
+  public final ProgressBar progressBar;
+
+  private ItemFileLeftBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView12,
+      @NonNull ImageView download, @NonNull LottieAnimationView file,
+      @NonNull ProgressBar progressBar) {
     this.rootView = rootView;
+    this.cardView12 = cardView12;
     this.download = download;
     this.file = file;
+    this.progressBar = progressBar;
   }
 
   @Override
@@ -60,6 +71,12 @@ public final class ItemFileLeftBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.cardView12;
+      CardView cardView12 = ViewBindings.findChildViewById(rootView, id);
+      if (cardView12 == null) {
+        break missingId;
+      }
+
       id = R.id.download;
       ImageView download = ViewBindings.findChildViewById(rootView, id);
       if (download == null) {
@@ -72,7 +89,14 @@ public final class ItemFileLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemFileLeftBinding((ConstraintLayout) rootView, download, file);
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
+      return new ItemFileLeftBinding((ConstraintLayout) rootView, cardView12, download, file,
+          progressBar);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

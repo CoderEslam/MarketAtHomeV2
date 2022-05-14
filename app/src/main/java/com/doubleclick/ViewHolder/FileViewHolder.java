@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,6 +25,7 @@ public class FileViewHolder extends BaseViewHolder {
     private LottieAnimationView lottieAnimationView;
     private OnMessageClick onMessageClick;
     private ImageView download, seen;
+    private ProgressBar progressBar;
 
     public FileViewHolder(View itemView, OnMessageClick onMessageClick) {
         super(itemView);
@@ -31,6 +33,7 @@ public class FileViewHolder extends BaseViewHolder {
         lottieAnimationView = itemView.findViewById(R.id.file);
         download = itemView.findViewById(R.id.download);
         seen = itemView.findViewById(R.id.seen);
+        progressBar = itemView.findViewById(R.id.progressBar);
     }
 
 
@@ -40,7 +43,7 @@ public class FileViewHolder extends BaseViewHolder {
         download.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onMessageClick.download(chat, getAdapterPosition());
+                onMessageClick.download(chat, getAdapterPosition(), progressBar);
             }
         });
         itemView.setOnClickListener(v -> {

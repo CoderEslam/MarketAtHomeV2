@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ public class VideoViewHolder extends BaseViewHolder {
     private ImageView options;
     private OnMessageClick onMessageClick;
     private ImageView download, seen;
+    private ProgressBar progressBar;
 
     public VideoViewHolder(@NonNull View itemView, OnMessageClick onMessageClick) {
         super(itemView);
@@ -35,21 +37,36 @@ public class VideoViewHolder extends BaseViewHolder {
         options = itemView.findViewById(R.id.options);
         download = itemView.findViewById(R.id.download);
         seen = itemView.findViewById(R.id.seen);
+        progressBar = itemView.findViewById(R.id.progressBar);
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void play(Chat chat, int position) {
         seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
-        if (!chat.getMessage().equals("")) {
+        if (!chat.getUri().toString().equals("")) {
+            progressBar.setVisibility(View.GONE);
+            download.setVisibility(View.GONE);
+            video.setVideoURI(Uri.parse(chat.getUri())); //the string of the URL mentioned above
+            video.stopPlayback();
+            video.pause();
+            MediaController ctlr = new MediaController(itemView.getContext());
+            ctlr.setMediaPlayer(video);
+            video.setMediaController(ctlr);
+            video.requestFocus();
+
+        } else if (!chat.getMessage().equals("")) {
+            download.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
             video.setVideoURI(Uri.parse(chat.getMessage())); //the string of the URL mentioned above
             video.stopPlayback();
             video.pause();
+        } else {
+            download.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+            itemView.setVisibility(View.GONE);
         }
-        MediaController ctlr = new MediaController(itemView.getContext());
-        ctlr.setMediaPlayer(video);
-        video.setMediaController(ctlr);
-        video.requestFocus();
+
 
         options.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(itemView.getContext(), v);
@@ -71,7 +88,9 @@ public class VideoViewHolder extends BaseViewHolder {
         });
 
         download.setOnClickListener(v -> {
-            onMessageClick.download(chat, getAdapterPosition());
+            progressBar.setVisibility(View.VISIBLE);
+            download.setVisibility(View.VISIBLE);
+            onMessageClick.download(chat, getAdapterPosition(), progressBar);
         });
     }
 

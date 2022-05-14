@@ -1,5 +1,6 @@
 package com.doubleclick
 
+import android.widget.ProgressBar
 import com.doubleclick.marktinhome.Model.Chat
 
 /**
@@ -7,7 +8,7 @@ import com.doubleclick.marktinhome.Model.Chat
  */
 interface OnMessageClick {
 
-    fun download(chat: Chat, pos: Int);
+    fun download(chat: Chat, pos: Int, progressBar: ProgressBar);
 
     fun deleteForMe(chat: Chat, pos: Int)
 

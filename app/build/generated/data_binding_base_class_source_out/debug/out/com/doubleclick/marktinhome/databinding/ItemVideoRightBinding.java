@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +35,9 @@ public final class ItemVideoRightBinding implements ViewBinding {
   public final ImageView options;
 
   @NonNull
+  public final ProgressBar progressBar;
+
+  @NonNull
   public final ImageView seen;
 
   @NonNull
@@ -41,13 +45,14 @@ public final class ItemVideoRightBinding implements ViewBinding {
 
   private ItemVideoRightBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinerViedo, @NonNull CardView cardView2,
-      @NonNull ImageView download, @NonNull ImageView options, @NonNull ImageView seen,
-      @NonNull VideoView video) {
+      @NonNull ImageView download, @NonNull ImageView options, @NonNull ProgressBar progressBar,
+      @NonNull ImageView seen, @NonNull VideoView video) {
     this.rootView = rootView;
     this.ContinerViedo = ContinerViedo;
     this.cardView2 = cardView2;
     this.download = download;
     this.options = options;
+    this.progressBar = progressBar;
     this.seen = seen;
     this.video = video;
   }
@@ -99,6 +104,12 @@ public final class ItemVideoRightBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.progressBar;
+      ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
+      if (progressBar == null) {
+        break missingId;
+      }
+
       id = R.id.seen;
       ImageView seen = ViewBindings.findChildViewById(rootView, id);
       if (seen == null) {
@@ -112,7 +123,7 @@ public final class ItemVideoRightBinding implements ViewBinding {
       }
 
       return new ItemVideoRightBinding((ConstraintLayout) rootView, ContinerViedo, cardView2,
-          download, options, seen, video);
+          download, options, progressBar, seen, video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
