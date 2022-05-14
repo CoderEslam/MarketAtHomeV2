@@ -52,12 +52,7 @@ public class VideoViewHolder extends BaseViewHolder {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void play(Chat chat, int position) {
         time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
-        if (chat.getReceiver().equals(myId)) {
-            seen.setVisibility(View.GONE);
-        } else {
-            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
-        }
-        if (!chat.getUri().toString().equals("")) {
+        if (!chat.getUri().equals("")) {
             progressBar.setVisibility(View.GONE);
             download.setVisibility(View.GONE);
             video.setVideoURI(Uri.parse(chat.getUri())); //the string of the URL mentioned above
@@ -67,8 +62,12 @@ public class VideoViewHolder extends BaseViewHolder {
             ctlr.setMediaPlayer(video);
             video.setMediaController(ctlr);
             video.requestFocus();
-
         } else if (!chat.getMessage().equals("")) {
+            if (chat.getReceiver().equals(myId)) {
+                seen.setVisibility(View.GONE);
+            } else {
+                seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+            }
             download.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
             video.setVideoURI(Uri.parse(chat.getMessage())); //the string of the URL mentioned above

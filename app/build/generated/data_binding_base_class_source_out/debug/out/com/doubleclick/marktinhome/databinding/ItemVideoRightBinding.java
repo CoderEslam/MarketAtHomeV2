@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.VideoView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,12 +42,15 @@ public final class ItemVideoRightBinding implements ViewBinding {
   public final ImageView seen;
 
   @NonNull
+  public final TextView time;
+
+  @NonNull
   public final VideoView video;
 
   private ItemVideoRightBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinerViedo, @NonNull CardView cardView2,
       @NonNull ImageView download, @NonNull ImageView options, @NonNull ProgressBar progressBar,
-      @NonNull ImageView seen, @NonNull VideoView video) {
+      @NonNull ImageView seen, @NonNull TextView time, @NonNull VideoView video) {
     this.rootView = rootView;
     this.ContinerViedo = ContinerViedo;
     this.cardView2 = cardView2;
@@ -54,6 +58,7 @@ public final class ItemVideoRightBinding implements ViewBinding {
     this.options = options;
     this.progressBar = progressBar;
     this.seen = seen;
+    this.time = time;
     this.video = video;
   }
 
@@ -116,6 +121,12 @@ public final class ItemVideoRightBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.time;
+      TextView time = ViewBindings.findChildViewById(rootView, id);
+      if (time == null) {
+        break missingId;
+      }
+
       id = R.id.video;
       VideoView video = ViewBindings.findChildViewById(rootView, id);
       if (video == null) {
@@ -123,7 +134,7 @@ public final class ItemVideoRightBinding implements ViewBinding {
       }
 
       return new ItemVideoRightBinding((ConstraintLayout) rootView, ContinerViedo, cardView2,
-          download, options, progressBar, seen, video);
+          download, options, progressBar, seen, time, video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

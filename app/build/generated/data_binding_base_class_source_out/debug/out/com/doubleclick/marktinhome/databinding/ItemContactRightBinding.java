@@ -29,12 +29,16 @@ public final class ItemContactRightBinding implements ViewBinding {
   @NonNull
   public final ImageView seen;
 
+  @NonNull
+  public final TextView time;
+
   private ItemContactRightBinding(@NonNull ConstraintLayout rootView, @NonNull TextView nameContact,
-      @NonNull TextView numberContact, @NonNull ImageView seen) {
+      @NonNull TextView numberContact, @NonNull ImageView seen, @NonNull TextView time) {
     this.rootView = rootView;
     this.nameContact = nameContact;
     this.numberContact = numberContact;
     this.seen = seen;
+    this.time = time;
   }
 
   @Override
@@ -82,8 +86,14 @@ public final class ItemContactRightBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.time;
+      TextView time = ViewBindings.findChildViewById(rootView, id);
+      if (time == null) {
+        break missingId;
+      }
+
       return new ItemContactRightBinding((ConstraintLayout) rootView, nameContact, numberContact,
-          seen);
+          seen, time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

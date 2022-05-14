@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -43,10 +44,14 @@ public final class ItemImageRightBinding implements ViewBinding {
   @NonNull
   public final ImageView seen;
 
+  @NonNull
+  public final TextView time;
+
   private ItemImageRightBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinnerImage, @NonNull CardView cardView4,
       @NonNull ConstraintLayout constraintLayout13, @NonNull PhotoView image,
-      @NonNull ImageView optins, @NonNull ProgressBar progressBar, @NonNull ImageView seen) {
+      @NonNull ImageView optins, @NonNull ProgressBar progressBar, @NonNull ImageView seen,
+      @NonNull TextView time) {
     this.rootView = rootView;
     this.ContinnerImage = ContinnerImage;
     this.cardView4 = cardView4;
@@ -55,6 +60,7 @@ public final class ItemImageRightBinding implements ViewBinding {
     this.optins = optins;
     this.progressBar = progressBar;
     this.seen = seen;
+    this.time = time;
   }
 
   @Override
@@ -122,8 +128,14 @@ public final class ItemImageRightBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.time;
+      TextView time = ViewBindings.findChildViewById(rootView, id);
+      if (time == null) {
+        break missingId;
+      }
+
       return new ItemImageRightBinding((ConstraintLayout) rootView, ContinnerImage, cardView4,
-          constraintLayout13, image, optins, progressBar, seen);
+          constraintLayout13, image, optins, progressBar, seen, time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

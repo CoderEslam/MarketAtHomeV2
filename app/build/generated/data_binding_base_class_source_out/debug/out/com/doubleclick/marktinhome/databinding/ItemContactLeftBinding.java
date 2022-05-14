@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -21,6 +22,9 @@ public final class ItemContactLeftBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final CardView cardView13;
+
+  @NonNull
   public final TextView nameContact;
 
   @NonNull
@@ -29,12 +33,18 @@ public final class ItemContactLeftBinding implements ViewBinding {
   @NonNull
   public final ImageView seen;
 
-  private ItemContactLeftBinding(@NonNull ConstraintLayout rootView, @NonNull TextView nameContact,
-      @NonNull TextView numberContact, @NonNull ImageView seen) {
+  @NonNull
+  public final TextView time;
+
+  private ItemContactLeftBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView13,
+      @NonNull TextView nameContact, @NonNull TextView numberContact, @NonNull ImageView seen,
+      @NonNull TextView time) {
     this.rootView = rootView;
+    this.cardView13 = cardView13;
     this.nameContact = nameContact;
     this.numberContact = numberContact;
     this.seen = seen;
+    this.time = time;
   }
 
   @Override
@@ -64,6 +74,12 @@ public final class ItemContactLeftBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.cardView13;
+      CardView cardView13 = ViewBindings.findChildViewById(rootView, id);
+      if (cardView13 == null) {
+        break missingId;
+      }
+
       id = R.id.nameContact;
       TextView nameContact = ViewBindings.findChildViewById(rootView, id);
       if (nameContact == null) {
@@ -82,8 +98,14 @@ public final class ItemContactLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemContactLeftBinding((ConstraintLayout) rootView, nameContact, numberContact,
-          seen);
+      id = R.id.time;
+      TextView time = ViewBindings.findChildViewById(rootView, id);
+      if (time == null) {
+        break missingId;
+      }
+
+      return new ItemContactLeftBinding((ConstraintLayout) rootView, cardView13, nameContact,
+          numberContact, seen, time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

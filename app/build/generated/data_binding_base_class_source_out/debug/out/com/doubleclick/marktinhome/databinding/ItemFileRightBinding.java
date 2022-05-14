@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -34,14 +35,22 @@ public final class ItemFileRightBinding implements ViewBinding {
   @NonNull
   public final ProgressBar progressBar;
 
+  @NonNull
+  public final ImageView seen;
+
+  @NonNull
+  public final TextView time;
+
   private ItemFileRightBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView10,
       @NonNull ImageView download, @NonNull LottieAnimationView file,
-      @NonNull ProgressBar progressBar) {
+      @NonNull ProgressBar progressBar, @NonNull ImageView seen, @NonNull TextView time) {
     this.rootView = rootView;
     this.cardView10 = cardView10;
     this.download = download;
     this.file = file;
     this.progressBar = progressBar;
+    this.seen = seen;
+    this.time = time;
   }
 
   @Override
@@ -95,8 +104,20 @@ public final class ItemFileRightBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.seen;
+      ImageView seen = ViewBindings.findChildViewById(rootView, id);
+      if (seen == null) {
+        break missingId;
+      }
+
+      id = R.id.time;
+      TextView time = ViewBindings.findChildViewById(rootView, id);
+      if (time == null) {
+        break missingId;
+      }
+
       return new ItemFileRightBinding((ConstraintLayout) rootView, cardView10, download, file,
-          progressBar);
+          progressBar, seen, time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -66,6 +66,9 @@ public final class FragmentChatBinding implements ViewBinding {
   public final LottieAnimationView location;
 
   @NonNull
+  public final ImageView option;
+
+  @NonNull
   public final CircleImageView profileImage;
 
   @NonNull
@@ -101,11 +104,11 @@ public final class FragmentChatBinding implements ViewBinding {
       @NonNull ConstraintLayout continerAttacht, @NonNull ImageView emotion,
       @NonNull EditText etTextMessage, @NonNull LottieAnimationView file,
       @NonNull LottieAnimationView image, @NonNull ConstraintLayout layoutText,
-      @NonNull LottieAnimationView location, @NonNull CircleImageView profileImage,
-      @NonNull RecordView recordView, @NonNull RelativeLayout relativeLayout,
-      @NonNull ConstraintLayout rootView, @NonNull RecordButton sendRecord,
-      @NonNull ImageView sendText, @NonNull TextView status, @NonNull Toolbar toolbar,
-      @NonNull TextView username, @NonNull LottieAnimationView video) {
+      @NonNull LottieAnimationView location, @NonNull ImageView option,
+      @NonNull CircleImageView profileImage, @NonNull RecordView recordView,
+      @NonNull RelativeLayout relativeLayout, @NonNull ConstraintLayout rootView,
+      @NonNull RecordButton sendRecord, @NonNull ImageView sendText, @NonNull TextView status,
+      @NonNull Toolbar toolbar, @NonNull TextView username, @NonNull LottieAnimationView video) {
     this.rootView_ = rootView_;
     this.attachFile = attachFile;
     this.barLayout = barLayout;
@@ -119,6 +122,7 @@ public final class FragmentChatBinding implements ViewBinding {
     this.image = image;
     this.layoutText = layoutText;
     this.location = location;
+    this.option = option;
     this.profileImage = profileImage;
     this.recordView = recordView;
     this.relativeLayout = relativeLayout;
@@ -230,6 +234,12 @@ public final class FragmentChatBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.option;
+      ImageView option = ViewBindings.findChildViewById(rootView, id);
+      if (option == null) {
+        break missingId;
+      }
+
       id = R.id.profile_image;
       CircleImageView profileImage = ViewBindings.findChildViewById(rootView, id);
       if (profileImage == null) {
@@ -288,7 +298,7 @@ public final class FragmentChatBinding implements ViewBinding {
 
       return new FragmentChatBinding((ConstraintLayout) rootView, attachFile, barLayout,
           chatRecycler, constraintLayout, contact, continerAttacht, emotion, etTextMessage, file,
-          image, layoutText, location, profileImage, recordView, relativeLayout, rootView_,
+          image, layoutText, location, option, profileImage, recordView, relativeLayout, rootView_,
           sendRecord, sendText, status, toolbar, username, video);
     }
     String missingId = rootView.getResources().getResourceName(id);

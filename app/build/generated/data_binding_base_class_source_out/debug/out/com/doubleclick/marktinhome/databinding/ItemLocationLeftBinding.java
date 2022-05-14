@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -26,11 +27,15 @@ public final class ItemLocationLeftBinding implements ViewBinding {
   @NonNull
   public final ImageView seen;
 
+  @NonNull
+  public final TextView time;
+
   private ItemLocationLeftBinding(@NonNull ConstraintLayout rootView,
-      @NonNull LottieAnimationView locationLotte, @NonNull ImageView seen) {
+      @NonNull LottieAnimationView locationLotte, @NonNull ImageView seen, @NonNull TextView time) {
     this.rootView = rootView;
     this.locationLotte = locationLotte;
     this.seen = seen;
+    this.time = time;
   }
 
   @Override
@@ -72,7 +77,13 @@ public final class ItemLocationLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemLocationLeftBinding((ConstraintLayout) rootView, locationLotte, seen);
+      id = R.id.time;
+      TextView time = ViewBindings.findChildViewById(rootView, id);
+      if (time == null) {
+        break missingId;
+      }
+
+      return new ItemLocationLeftBinding((ConstraintLayout) rootView, locationLotte, seen, time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

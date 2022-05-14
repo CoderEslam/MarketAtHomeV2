@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -40,10 +41,13 @@ public final class ItemImageLeftBinding implements ViewBinding {
   @NonNull
   public final ImageView seen;
 
+  @NonNull
+  public final TextView time;
+
   private ItemImageLeftBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinnerImage, @NonNull CardView cardView3,
       @NonNull PhotoView image, @NonNull ImageView optins, @NonNull ProgressBar progressBar,
-      @NonNull ImageView seen) {
+      @NonNull ImageView seen, @NonNull TextView time) {
     this.rootView = rootView;
     this.ContinnerImage = ContinnerImage;
     this.cardView3 = cardView3;
@@ -51,6 +55,7 @@ public final class ItemImageLeftBinding implements ViewBinding {
     this.optins = optins;
     this.progressBar = progressBar;
     this.seen = seen;
+    this.time = time;
   }
 
   @Override
@@ -112,8 +117,14 @@ public final class ItemImageLeftBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.time;
+      TextView time = ViewBindings.findChildViewById(rootView, id);
+      if (time == null) {
+        break missingId;
+      }
+
       return new ItemImageLeftBinding((ConstraintLayout) rootView, ContinnerImage, cardView3, image,
-          optins, progressBar, seen);
+          optins, progressBar, seen, time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

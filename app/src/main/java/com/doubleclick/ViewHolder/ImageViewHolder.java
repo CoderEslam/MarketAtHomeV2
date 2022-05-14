@@ -49,14 +49,13 @@ public class ImageViewHolder extends BaseViewHolder {
     public void ShowImage(Chat chat, int position) {
         Log.e("CHATS", chat.toString());
         time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
-        if (chat.getReceiver().equals(myId)) {
-            seen.setVisibility(View.GONE);
-        } else {
-            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
-        }
         if (!chat.getMessage().toString().equals("")) {
+            if (chat.getReceiver().equals(myId)) {
+                seen.setVisibility(View.GONE);
+            } else {
+                seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+            }
             Glide.with(itemView.getContext()).load(chat.getMessage()).into(imageView);
-            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
             optins.setOnClickListener(v -> {
                 PopupMenu popupMenu = new PopupMenu(imageView.getContext(), v);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_chat_image_video, popupMenu.getMenu());

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
@@ -23,7 +24,7 @@ public final class ItemFileLeftBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final CardView cardView12;
+  public final CardView cardView10;
 
   @NonNull
   public final ImageView download;
@@ -34,14 +35,22 @@ public final class ItemFileLeftBinding implements ViewBinding {
   @NonNull
   public final ProgressBar progressBar;
 
-  private ItemFileLeftBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView12,
+  @NonNull
+  public final ImageView seen;
+
+  @NonNull
+  public final TextView time;
+
+  private ItemFileLeftBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView10,
       @NonNull ImageView download, @NonNull LottieAnimationView file,
-      @NonNull ProgressBar progressBar) {
+      @NonNull ProgressBar progressBar, @NonNull ImageView seen, @NonNull TextView time) {
     this.rootView = rootView;
-    this.cardView12 = cardView12;
+    this.cardView10 = cardView10;
     this.download = download;
     this.file = file;
     this.progressBar = progressBar;
+    this.seen = seen;
+    this.time = time;
   }
 
   @Override
@@ -71,9 +80,9 @@ public final class ItemFileLeftBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.cardView12;
-      CardView cardView12 = ViewBindings.findChildViewById(rootView, id);
-      if (cardView12 == null) {
+      id = R.id.cardView10;
+      CardView cardView10 = ViewBindings.findChildViewById(rootView, id);
+      if (cardView10 == null) {
         break missingId;
       }
 
@@ -95,8 +104,20 @@ public final class ItemFileLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemFileLeftBinding((ConstraintLayout) rootView, cardView12, download, file,
-          progressBar);
+      id = R.id.seen;
+      ImageView seen = ViewBindings.findChildViewById(rootView, id);
+      if (seen == null) {
+        break missingId;
+      }
+
+      id = R.id.time;
+      TextView time = ViewBindings.findChildViewById(rootView, id);
+      if (time == null) {
+        break missingId;
+      }
+
+      return new ItemFileLeftBinding((ConstraintLayout) rootView, cardView10, download, file,
+          progressBar, seen, time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

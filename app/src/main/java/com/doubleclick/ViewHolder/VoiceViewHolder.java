@@ -71,12 +71,12 @@ public class VoiceViewHolder extends BaseViewHolder {
     @RequiresApi(api = Build.VERSION_CODES.M)
     public void Play(Chat chat, int position) {
         time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
-        if (chat.getReceiver().equals(myId)) {
-            seen.setVisibility(View.GONE);
-        } else {
-            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
-        }
         if (!chat.getMessage().equals("")) {
+            if (chat.getReceiver().equals(myId)) {
+                seen.setVisibility(View.GONE);
+            } else {
+                seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
+            }
             progress.setVisibility(View.GONE);
             playVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));
             voice.setVideoURI(Uri.parse(chat.getMessage())); //the string of the URL mentioned above
