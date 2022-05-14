@@ -35,9 +35,9 @@ public class ChatDatabaseReopsitory {
     }
 
     //getLastMassage
-    public LiveData<Chat> getLastMassage(String id, String myId) {
-        return chatDao.getLastMassege(id, myId);
-    }
+//    public LiveData<Chat> getLastMassage(String id, String myId) {
+//        return chatDao.getLastMassege(id, myId);
+//    }
 
     public LiveData<Chat> getLastRowMessage(String myID, String FriendID) {
         return chatDao.getLastRowMessage(FriendID, myID);

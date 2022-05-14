@@ -26,10 +26,12 @@ public class Chat implements Serializable {
     private long date;
     private String StatusMessage;
     private boolean seen;
+    @NonNull
     private String uri;
 
     public Chat() {
-        id = "vgldelafgjrelghrwl";
+        uri = "";
+        id = "";
     }
 
     public Chat(String message, String uri, String type, String sender, String receiver, long date, String id, String statusMessage, boolean seen) {

@@ -40,35 +40,16 @@ public class ImageViewHolder extends BaseViewHolder {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     public void ShowImage(Chat chat, int position) {
-        if (!chat.getUri().toString().equals("")) {
-            Glide.with(itemView.getContext()).load(Uri.parse(chat.getUri())).into(imageView);
-            seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
-            optins.setOnClickListener(v -> {
-                PopupMenu popupMenu = new PopupMenu(imageView.getContext(), v);
-                popupMenu.getMenuInflater().inflate(R.menu.menu_chat_image_video, popupMenu.getMenu());
-                popupMenu.getMenu().findItem(R.id.download).setVisible(false);
-                progressBar.setVisibility(View.GONE);
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        if (R.id.deleteforeveryone == item.getItemId()) {
-                            onMessageClick.deleteForAll(chat, position);
-                        }
-                        if (R.id.deleteForme == item.getItemId()) {
-                            onMessageClick.deleteForMe(chat, position);
-                        }
-
-                        return true;
-                    }
-                });
-                popupMenu.show();
-            });
-        } else {
+        Log.e("CHATS", chat.toString());
+        if (!chat.getMessage().toString().equals("")) {
             Glide.with(itemView.getContext()).load(chat.getMessage()).into(imageView);
             seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
             optins.setOnClickListener(v -> {
                 PopupMenu popupMenu = new PopupMenu(imageView.getContext(), v);
                 popupMenu.getMenuInflater().inflate(R.menu.menu_chat_image_video, popupMenu.getMenu());
+                if (!chat.getUri().toString().equals("")) {
+                    popupMenu.getMenu().findItem(R.id.download).setVisible(false);
+                }
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
@@ -80,7 +61,7 @@ public class ImageViewHolder extends BaseViewHolder {
                         }
                         if (R.id.download == item.getItemId()) {
                             onMessageClick.download(chat, position, progressBar);
-                            progressBar.setVisibility(View.VISIBLE);
+//                            progressBar.setVisibility(View.VISIBLE);
                         }
                         return true;
                     }

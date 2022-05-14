@@ -197,7 +197,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             sentMessage(et_text_message.text.toString().trim(), "text")
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
-            Log.e("Addddddddddd", it.toString());
             if (it.sender.equals(myId) && !it.isSeen) {
                 chats.add(it)
                 chatAdapter.notifyItemInserted(chats.size - 1)
@@ -752,9 +751,9 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED) // to notify when download is complete
             request.allowScanningByMediaScanner() // if you want to be available from media players
             request.setVisibleInDownloadsUi(false);
-            val manager = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            val manager =
+                requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
             val uri = manager.getUriForDownloadedFile(manager.enqueue(request))
-            Toast.makeText(requireContext(), uri.toString(), Toast.LENGTH_LONG).show()
             val chat = Chat(
                 chat.message,
                 uri.toString(),

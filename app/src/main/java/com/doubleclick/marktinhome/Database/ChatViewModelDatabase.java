@@ -36,7 +36,6 @@ public class ChatViewModelDatabase extends AndroidViewModel {
 
     public void update(Chat chat) { //done
         mRepositry.update(chat);
-
     }
 
     public void delete(Chat chat) {
@@ -49,9 +48,9 @@ public class ChatViewModelDatabase extends AndroidViewModel {
         mRepositry.deleteAllChats();
     }
 
-    public LiveData<Chat> getLastMassage(String id,String myId) {
-        return mRepositry.getLastMassage(id,myId);
-    }
+//    public LiveData<Chat> getLastMassage(String id,String myId) {
+//        return mRepositry.getLastMassage(id,myId);
+//    }
     public LiveData<Chat> getLasRowMassage(String id,String myId) {
         return mRepositry.getLastRowMessage(myId,id);
     }
