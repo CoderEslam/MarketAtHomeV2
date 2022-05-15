@@ -27,6 +27,7 @@ import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 import com.doubleclick.marktinhome.ui.MainScreen.Chat.ChatActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Groups.Comments.CommentGroupActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewActivity;
+import com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -88,10 +89,10 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
                 public boolean onMenuItemClick(MenuItem item) {
                     int id = item.getItemId();
                     if (id == R.id.deleteOption) {
-                        optionPost.delete(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId(),holder.getAdapterPosition());
+                        optionPost.delete(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId(), holder.getAdapterPosition());
                     }
                     if (id == R.id.editOption) {
-                        optionPost.edit(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId(),holder.getAdapterPosition());
+                        optionPost.edit(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId(), holder.getAdapterPosition());
                     }
                     return true;
                 }
@@ -103,7 +104,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
             holder.images.setAdapter(new ImagesGroupAdapter(image));
             holder.video.setVisibility(View.GONE);
             holder.playVideo.setVisibility(View.GONE);
-
         } else if (postsData.get(holder.getAdapterPosition()).getPostsGroup().getType().equals("video")) {
             holder.video.setVisibility(View.VISIBLE);
             holder.images.setVisibility(View.GONE);
@@ -195,6 +195,12 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
                 loadmore.loadmore(1000);
             });
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(holder.itemView.getContext(), ViewPostActivity.class);
+            intent.putExtra("post", postsData.get(holder.getAdapterPosition()));
+            holder.itemView.getContext().startActivity(intent);
+        });
 
     }
 

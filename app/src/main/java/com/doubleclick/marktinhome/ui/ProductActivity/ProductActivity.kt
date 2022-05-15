@@ -142,7 +142,6 @@ class productActivity : AppCompatActivity() {
                     circularToggle.markerColor = Integer.parseInt(spliterColors[i])
                 } catch (e: NumberFormatException) {
                 }
-
                 if (i == 0) {
                     circularToggle.id = 1234567890; /* to chek at first element in toggle*/
                     ToggleItem = spliterColors[i];

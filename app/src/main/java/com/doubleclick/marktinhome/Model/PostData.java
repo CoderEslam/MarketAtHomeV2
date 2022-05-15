@@ -1,11 +1,12 @@
 package com.doubleclick.marktinhome.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created By Eslam Ghazy on 4/26/2022
  */
-public class PostData {
+public class PostData implements Serializable {
 
     private PostsGroup postsGroup;
     private User user;
