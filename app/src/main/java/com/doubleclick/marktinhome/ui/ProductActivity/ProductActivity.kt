@@ -12,6 +12,7 @@ import android.webkit.WebView
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatToggleButton
+import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
@@ -63,6 +64,8 @@ class productActivity : AppCompatActivity() {
     lateinit var toggleColors: SingleSelectToggleGroup
     lateinit var webView: WebView
     private lateinit var speedView: AwesomeSpeedometer
+    private lateinit var nestedScrollColor: NestedScrollView
+    private lateinit var nestedScrollSize: NestedScrollView
 
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -74,6 +77,8 @@ class productActivity : AppCompatActivity() {
         fab = findViewById(R.id.fab)
         banner_slier_view_pager = findViewById(R.id.banner_slier_view_pager)
         productName = findViewById(R.id.productName)
+        nestedScrollColor = findViewById(R.id.nestedScrollColor);
+        nestedScrollSize = findViewById(R.id.nestedScrollSize);
         trarmark = findViewById(R.id.trarmark)
         price = findViewById(R.id.price)
         webView = findViewById(R.id.webView);
@@ -106,18 +111,22 @@ class productActivity : AppCompatActivity() {
 
         val spliterSizes =
             product.sizes.toString().replace("[", "").replace("]", "").replace(" ", "").split(",")
-        for (i in spliterSizes.indices) {
-            val circularToggle = CircularToggle(this)
-            circularToggle.text = spliterSizes[i]
-            if (i == 0) {
-                circularToggle.id = 1234567890; /* to chek at first element in toggle*/
-                ToggleItem = spliterSizes[i];
+        if (!product.sizes.equals("[]")) {
+            for (i in spliterSizes.indices) {
+                val circularToggle = CircularToggle(this)
+                circularToggle.text = spliterSizes[i]
+                if (i == 0) {
+                    circularToggle.id = 1234567890; /* to chek at first element in toggle*/
+                    ToggleItem = spliterSizes[i];
+                }
+                circularToggle.setOnClickListener {
+                    ToggleItem = spliterSizes[i]
+                }
+                toggleSizes.addView(circularToggle)
+                toggleSizes.check(1234567890)
             }
-            circularToggle.setOnClickListener {
-                ToggleItem = spliterSizes[i]
-            }
-            toggleSizes.addView(circularToggle)
-            toggleSizes.check(1234567890)
+        } else {
+            nestedScrollSize.visibility = View.GONE
         }
 
         val spliterColors =
@@ -125,24 +134,29 @@ class productActivity : AppCompatActivity() {
         val spliterColorsName =
             product.colorsName.toString().replace("[", "").replace("]", "").replace(" ", "")
                 .split(",")
-        for (i in spliterColors.indices) {
-            val circularToggle = CircularToggle(this)
-            circularToggle.text = spliterColorsName[i]
-            try {
-                circularToggle.markerColor = Integer.parseInt(spliterColors[i])
-            }catch (e:NumberFormatException){
-            }
+        if (!product.colors.equals("[]") && !product.colorsName.equals("[]")) {
+            for (i in spliterColors.indices) {
+                val circularToggle = CircularToggle(this)
+                circularToggle.text = spliterColorsName[i]
+                try {
+                    circularToggle.markerColor = Integer.parseInt(spliterColors[i])
+                } catch (e: NumberFormatException) {
+                }
 
-            if (i == 0) {
-                circularToggle.id = 1234567890; /* to chek at first element in toggle*/
-                ToggleItem = spliterColors[i];
+                if (i == 0) {
+                    circularToggle.id = 1234567890; /* to chek at first element in toggle*/
+                    ToggleItem = spliterColors[i];
+                }
+                circularToggle.setOnClickListener {
+                    ToggleItem = spliterColors[i]
+                }
+                toggleColors.addView(circularToggle)
+                toggleColors.check(1234567890)
             }
-            circularToggle.setOnClickListener {
-                ToggleItem = spliterColors[i]
-            }
-            toggleColors.addView(circularToggle)
-            toggleColors.check(1234567890)
+        } else {
+            nestedScrollColor.visibility = View.GONE
         }
+
         ratingSeller.text = product.ratingSeller.toInt().toString()
         speedView.speedTo(product.ratingSeller.toFloat());
         setBannerSliderViewPager(product.images)

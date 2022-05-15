@@ -15,6 +15,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -66,6 +67,9 @@ public final class FragmentRichBinding implements ViewBinding {
   public final LinearLayout llActionBarContainer;
 
   @NonNull
+  public final FloatingActionButton upload;
+
+  @NonNull
   public final WebView wvContainer;
 
   private FragmentRichBinding(@NonNull ConstraintLayout rootView, @NonNull FrameLayout flAction,
@@ -75,7 +79,8 @@ public final class FragmentRichBinding implements ViewBinding {
       @NonNull ImageView ivActionRedo, @NonNull ImageView ivActionTable,
       @NonNull ImageView ivActionTxtBgColor, @NonNull ImageView ivActionTxtColor,
       @NonNull ImageView ivActionUndo, @NonNull ImageView ivGetHtml,
-      @NonNull LinearLayout llActionBarContainer, @NonNull WebView wvContainer) {
+      @NonNull LinearLayout llActionBarContainer, @NonNull FloatingActionButton upload,
+      @NonNull WebView wvContainer) {
     this.rootView = rootView;
     this.flAction = flAction;
     this.flContainer = flContainer;
@@ -91,6 +96,7 @@ public final class FragmentRichBinding implements ViewBinding {
     this.ivActionUndo = ivActionUndo;
     this.ivGetHtml = ivGetHtml;
     this.llActionBarContainer = llActionBarContainer;
+    this.upload = upload;
     this.wvContainer = wvContainer;
   }
 
@@ -201,6 +207,12 @@ public final class FragmentRichBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.upload;
+      FloatingActionButton upload = ViewBindings.findChildViewById(rootView, id);
+      if (upload == null) {
+        break missingId;
+      }
+
       id = R.id.wv_container;
       WebView wvContainer = ViewBindings.findChildViewById(rootView, id);
       if (wvContainer == null) {
@@ -210,7 +222,7 @@ public final class FragmentRichBinding implements ViewBinding {
       return new FragmentRichBinding((ConstraintLayout) rootView, flAction, flContainer,
           hsvActionBar, ivAction, ivActionInsertImage, ivActionInsertLink, ivActionLineHeight,
           ivActionRedo, ivActionTable, ivActionTxtBgColor, ivActionTxtColor, ivActionUndo,
-          ivGetHtml, llActionBarContainer, wvContainer);
+          ivGetHtml, llActionBarContainer, upload, wvContainer);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

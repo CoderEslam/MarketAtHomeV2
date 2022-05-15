@@ -67,7 +67,7 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
         }
 
         next.setOnClickListener {
-            val p = Product(
+            val productAllData = Product(
                 product.product.productId,
                 product.product.price,
                 "",
@@ -91,10 +91,9 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
             );
             findNavController().navigate(
                 UploadStep2FragmentDirections.actionUploadStep2FragmentToRichFragment(
-                    product.product
+                    productAllData
                 )
             )
-//            UploadData()
         }
 
 
@@ -116,10 +115,6 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
             }
         }
     }
-
-
-
-
 
 
     override fun openImage() {

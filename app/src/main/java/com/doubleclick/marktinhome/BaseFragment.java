@@ -65,12 +65,11 @@ public class BaseFragment extends Fragment {
     private StorageReference storageReference;
     private static final int IMAGE_REQUEST = 1;
     public static Uri imageUri;
-    private StorageTask uploadTask;
+    public StorageTask<UploadTask.TaskSnapshot> uploadTask;
     private String Name;
     private String Location = "";
     private String PushIdParents;
     private APIService apiService;
-    public static String HTMLText = "";
 
     public BaseFragment() {
         super();
@@ -213,14 +212,11 @@ public class BaseFragment extends Fragment {
         if (imageUri != null) {
             final StorageReference fileReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));
             uploadTask = fileReference.putFile(imageUri);
-            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
-                    }
-                    return fileReference.getDownloadUrl();
+            uploadTask.continueWithTask(task -> {
+                if (!task.isSuccessful()) {
+                    throw Objects.requireNonNull(task.getException());
                 }
+                return fileReference.getDownloadUrl();
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                 @Override
                 public void onComplete(@NonNull Task<Uri> task) {
@@ -229,7 +225,7 @@ public class BaseFragment extends Fragment {
                         String mUri = downloadUri.toString();
                         String push = reference.push().getKey();
                         Date date = new Date();
-                        HashMap<String, Object> map = new HashMap();
+                        HashMap<String, Object> map = new HashMap<>();
                         double discount = (100.0 - (-1.0 * ((price / LastPrice) * 100.0)));
                         map.put("productId", push);
                         map.put("price", price);

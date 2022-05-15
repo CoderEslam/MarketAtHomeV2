@@ -104,6 +104,7 @@ public class RichFragment extends BaseFragment {
     private Product product;
     private ArrayList<String> downloadUri = new ArrayList<>();
     private FloatingActionButton upload;
+    private String HTMLText = "";
 
 
     private String begin = "<!DOCTYPE html>\n" +
@@ -302,7 +303,7 @@ public class RichFragment extends BaseFragment {
         });
 
         upload.setOnClickListener(v -> {
-//            onClickGetHtml();
+            onClickGetHtml();
             UploadData();
         });
         return view;
@@ -582,6 +583,8 @@ public class RichFragment extends BaseFragment {
         ProgressDialog progressDialog = new ProgressDialog(requireContext());
         progressDialog.setMessage("Uploading");
         progressDialog.show();
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
         List<String> uris = Arrays.asList(product.getImages().replace("[", "").replace("]", "").replace(" ", "").split(","));
         if (uris.size() != 0) {
             StorageReference storageReference = FirebaseStorage.getInstance().getReference("Uploads");
@@ -628,7 +631,7 @@ public class RichFragment extends BaseFragment {
                     double p = 100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount();
                     progressDialog.setMessage(p + " % Uploading...");
                 }).addOnFailureListener(e -> {
-                    Toast.makeText(requireContext(), "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Error:" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 });
             }

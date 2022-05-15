@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatSpinner;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
@@ -39,16 +40,25 @@ public final class FragmentUploadBinding implements ViewBinding {
   public final NestedScrollView addToggleButtonColor;
 
   @NonNull
+  public final ImageView addkeyword;
+
+  @NonNull
   public final ConstraintLayout constraintLayout;
 
   @NonNull
   public final ConstraintLayout constraintLayout2;
 
   @NonNull
+  public final ConstraintLayout constraintLayout3;
+
+  @NonNull
   public final SingleSelectToggleGroup groupColor;
 
   @NonNull
   public final SingleSelectToggleGroup groupSize;
+
+  @NonNull
+  public final RecyclerView keyword;
 
   @NonNull
   public final EditText productLastPrice;
@@ -69,31 +79,40 @@ public final class FragmentUploadBinding implements ViewBinding {
   public final TextView textView19;
 
   @NonNull
+  public final TextView textView20;
+
+  @NonNull
   public final AppCompatSpinner trademark;
 
   private FragmentUploadBinding(@NonNull ConstraintLayout rootView, @NonNull Button Upload,
       @NonNull ImageView addColor, @NonNull ImageView addSizes,
-      @NonNull NestedScrollView addToggleButtonColor, @NonNull ConstraintLayout constraintLayout,
-      @NonNull ConstraintLayout constraintLayout2, @NonNull SingleSelectToggleGroup groupColor,
-      @NonNull SingleSelectToggleGroup groupSize, @NonNull EditText productLastPrice,
-      @NonNull EditText productName, @NonNull EditText productPrice,
-      @NonNull RatingBar ratingSeller, @NonNull TextView textView18, @NonNull TextView textView19,
+      @NonNull NestedScrollView addToggleButtonColor, @NonNull ImageView addkeyword,
+      @NonNull ConstraintLayout constraintLayout, @NonNull ConstraintLayout constraintLayout2,
+      @NonNull ConstraintLayout constraintLayout3, @NonNull SingleSelectToggleGroup groupColor,
+      @NonNull SingleSelectToggleGroup groupSize, @NonNull RecyclerView keyword,
+      @NonNull EditText productLastPrice, @NonNull EditText productName,
+      @NonNull EditText productPrice, @NonNull RatingBar ratingSeller, @NonNull TextView textView18,
+      @NonNull TextView textView19, @NonNull TextView textView20,
       @NonNull AppCompatSpinner trademark) {
     this.rootView = rootView;
     this.Upload = Upload;
     this.addColor = addColor;
     this.addSizes = addSizes;
     this.addToggleButtonColor = addToggleButtonColor;
+    this.addkeyword = addkeyword;
     this.constraintLayout = constraintLayout;
     this.constraintLayout2 = constraintLayout2;
+    this.constraintLayout3 = constraintLayout3;
     this.groupColor = groupColor;
     this.groupSize = groupSize;
+    this.keyword = keyword;
     this.productLastPrice = productLastPrice;
     this.productName = productName;
     this.productPrice = productPrice;
     this.ratingSeller = ratingSeller;
     this.textView18 = textView18;
     this.textView19 = textView19;
+    this.textView20 = textView20;
     this.trademark = trademark;
   }
 
@@ -148,6 +167,12 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.addkeyword;
+      ImageView addkeyword = ViewBindings.findChildViewById(rootView, id);
+      if (addkeyword == null) {
+        break missingId;
+      }
+
       id = R.id.constraintLayout;
       ConstraintLayout constraintLayout = ViewBindings.findChildViewById(rootView, id);
       if (constraintLayout == null) {
@@ -160,6 +185,12 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.constraintLayout3;
+      ConstraintLayout constraintLayout3 = ViewBindings.findChildViewById(rootView, id);
+      if (constraintLayout3 == null) {
+        break missingId;
+      }
+
       id = R.id.groupColor;
       SingleSelectToggleGroup groupColor = ViewBindings.findChildViewById(rootView, id);
       if (groupColor == null) {
@@ -169,6 +200,12 @@ public final class FragmentUploadBinding implements ViewBinding {
       id = R.id.groupSize;
       SingleSelectToggleGroup groupSize = ViewBindings.findChildViewById(rootView, id);
       if (groupSize == null) {
+        break missingId;
+      }
+
+      id = R.id.keyword;
+      RecyclerView keyword = ViewBindings.findChildViewById(rootView, id);
+      if (keyword == null) {
         break missingId;
       }
 
@@ -208,6 +245,12 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.textView20;
+      TextView textView20 = ViewBindings.findChildViewById(rootView, id);
+      if (textView20 == null) {
+        break missingId;
+      }
+
       id = R.id.trademark;
       AppCompatSpinner trademark = ViewBindings.findChildViewById(rootView, id);
       if (trademark == null) {
@@ -215,9 +258,9 @@ public final class FragmentUploadBinding implements ViewBinding {
       }
 
       return new FragmentUploadBinding((ConstraintLayout) rootView, Upload, addColor, addSizes,
-          addToggleButtonColor, constraintLayout, constraintLayout2, groupColor, groupSize,
-          productLastPrice, productName, productPrice, ratingSeller, textView18, textView19,
-          trademark);
+          addToggleButtonColor, addkeyword, constraintLayout, constraintLayout2, constraintLayout3,
+          groupColor, groupSize, keyword, productLastPrice, productName, productPrice, ratingSeller,
+          textView18, textView19, textView20, trademark);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

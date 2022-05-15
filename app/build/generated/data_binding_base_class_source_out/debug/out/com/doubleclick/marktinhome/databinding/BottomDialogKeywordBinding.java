@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -24,7 +23,7 @@ public final class BottomDialogKeywordBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
-  public final CardView cardView9;
+  public final ConstraintLayout constraintLayout15;
 
   @NonNull
   public final RecyclerView keys;
@@ -39,10 +38,10 @@ public final class BottomDialogKeywordBinding implements ViewBinding {
   public final ImageView send;
 
   private BottomDialogKeywordBinding(@NonNull ConstraintLayout rootView,
-      @NonNull CardView cardView9, @NonNull RecyclerView keys, @NonNull EditText keyword,
-      @NonNull TextView ok, @NonNull ImageView send) {
+      @NonNull ConstraintLayout constraintLayout15, @NonNull RecyclerView keys,
+      @NonNull EditText keyword, @NonNull TextView ok, @NonNull ImageView send) {
     this.rootView = rootView;
-    this.cardView9 = cardView9;
+    this.constraintLayout15 = constraintLayout15;
     this.keys = keys;
     this.keyword = keyword;
     this.ok = ok;
@@ -76,9 +75,9 @@ public final class BottomDialogKeywordBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.cardView9;
-      CardView cardView9 = ViewBindings.findChildViewById(rootView, id);
-      if (cardView9 == null) {
+      id = R.id.constraintLayout15;
+      ConstraintLayout constraintLayout15 = ViewBindings.findChildViewById(rootView, id);
+      if (constraintLayout15 == null) {
         break missingId;
       }
 
@@ -106,8 +105,8 @@ public final class BottomDialogKeywordBinding implements ViewBinding {
         break missingId;
       }
 
-      return new BottomDialogKeywordBinding((ConstraintLayout) rootView, cardView9, keys, keyword,
-          ok, send);
+      return new BottomDialogKeywordBinding((ConstraintLayout) rootView, constraintLayout15, keys,
+          keyword, ok, send);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
