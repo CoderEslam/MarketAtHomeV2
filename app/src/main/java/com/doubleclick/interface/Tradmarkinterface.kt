@@ -14,7 +14,4 @@ interface Tradmarkinterface {
     fun onEditTradmark(tradmark: Trademark)
     fun onDeleteTradmark(tradmark: Trademark)
 
-
-
-
 }

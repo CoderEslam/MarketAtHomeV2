@@ -77,6 +77,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="richFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="829" />
+                            <option name="y" value="-419" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="uploadFragment">
                     <value>
                       <LayoutPositions>
@@ -89,6 +101,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="action_uploadFragment_to_childFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_uploadFragment_to_uploadStep2Fragment">
                               <value>
                                 <LayoutPositions />
                               </value>

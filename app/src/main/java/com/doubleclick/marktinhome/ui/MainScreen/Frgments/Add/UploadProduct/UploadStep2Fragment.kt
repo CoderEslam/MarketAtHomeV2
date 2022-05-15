@@ -16,11 +16,13 @@ import android.webkit.MimeTypeMap
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
 import com.doubleclick.marktinhome.Adapters.ImageAdapter
 import com.doubleclick.marktinhome.BaseFragment
 import com.doubleclick.marktinhome.Model.Constantes.PRODUCT
+import com.doubleclick.marktinhome.Model.Product
 import com.doubleclick.marktinhome.R
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.OnSuccessListener
@@ -40,7 +42,6 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
     private lateinit var addImages: FloatingActionButton
     private var IMAGES_REQUEST: Int = 100
     private var uris: ArrayList<String> = ArrayList()
-    private var downloadUri: ArrayList<String> = ArrayList()
     private lateinit var imageAdapter: ImageAdapter
     val product by navArgs<UploadStep2FragmentArgs>()
 
@@ -66,7 +67,34 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
         }
 
         next.setOnClickListener {
-            UploadData()
+            val p = Product(
+                product.product.productId,
+                product.product.price,
+                "",
+                0,
+                myId.toString(),
+                product.product.productName.toString(),
+                product.product.lastPrice,
+                product.product.tradeMark.toString(),
+                product.product.parentCategoryName.toString(),
+                product.product.childCategoryName.toString(),
+                product.product.parentCategoryId.toString(),
+                product.product.childCategoryId.toString(),
+                0,
+                product.product.discount,
+                product.product.keywords,
+                uris.toString(),
+                product.product.sizes.toString(),
+                product.product.colors.toString(),
+                product.product.colorsName.toString(),
+                product.product.ratingSeller.toFloat()
+            );
+            findNavController().navigate(
+                UploadStep2FragmentDirections.actionUploadStep2FragmentToRichFragment(
+                    product.product
+                )
+            )
+//            UploadData()
         }
 
 
@@ -89,72 +117,9 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
         }
     }
 
-    fun UploadData() {
-        val progressDialog = ProgressDialog(context)
-        progressDialog.setMessage("Uploading")
-        progressDialog.show()
-        if (uris.size != 0) {
-            var storageReference = FirebaseStorage.getInstance().getReference("Uploads")
-            for (i in 0 until uris.size) {
-                val fileReference = storageReference.child(
-                    System.currentTimeMillis()
-                        .toString() + "." + getFileExtension(Uri.parse(uris[i]))
-                )
-                fileReference.putFile(Uri.parse(uris[i])).addOnSuccessListener {
-                    val url = it.storage.downloadUrl
-                    url.addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            downloadUri.add(it.result.toString())
-                            if (uris.size == downloadUri.size) {
-                                val map: HashMap<String, Any> = HashMap()
-                                val push = reference.push().key.toString();
-                                map["productId"] = push
-                                map["price"] = product.product.price
-                                map["date"] = Date().time
-                                map["adminId"] = myId.toString()
-                                map["productName"] = product.product.productName.toString()
-                                map["lastPrice"] = product.product.lastPrice
-                                map["tradeMark"] = product.product.tradeMark.toString()
-                                map["parentCategoryId"] =
-                                    product.product.parentCategoryId.toString()
-                                map["childCategoryId"] = product.product.childCategoryId.toString()
-                                map["parentCategoryName"] =
-                                    product.product.parentCategoryName.toString()
-                                map["childCategoryName"] =
-                                    product.product.childCategoryName.toString()
-                                map["totalRating"] = 0
-                                map["discount"] = product.product.discount
-                                map["ratingSeller"] = product.product.ratingSeller
-                                map["images"] = downloadUri.toString()
-                                map["description"] = ""
-                                map["sizes"] = product.product.sizes.toString()
-                                map["colors"] = product.product.colors.toString()
-                                map["colorsName"] = product.product.colorsName.toString()
-                                reference.child(PRODUCT).child(push).updateChildren(map)
-                                progressDialog.dismiss()
-                            }
-                        } else {
-                            Toast.makeText(context, "Failed!", Toast.LENGTH_SHORT).show()
-                            progressDialog.dismiss()
-                        }
-                    }
-                }.addOnProgressListener {
-                    val p: Double =
-                        100.0 * it.bytesTransferred / it.totalByteCount
-                    progressDialog.setMessage("${p.toInt()} % Uploading...")
-                }.addOnFailureListener {
-                    Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                    progressDialog.dismiss()
-                }
-            }
-        }
-    }
 
-    override fun getFileExtension(uri: Uri?): String? {
-        val contentResolver = requireContext().contentResolver
-        val mimeTypeMap = MimeTypeMap.getSingleton()
-        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri!!))
-    }
+
+
 
 
     override fun openImage() {
@@ -165,23 +130,6 @@ class UploadStep2Fragment : BaseFragment(), ImageAdapter.deleteImage {
         startActivityForResult(intent, IMAGES_REQUEST)
     }
 
-    private fun progress() {
-        val builder = AlertDialog.Builder(requireContext());
-        val view =
-            LayoutInflater.from(context).inflate(R.layout.upload_progress_layout, null, false);
-//        builder.setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, which ->
-//
-//        })
-        builder.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
-            dialog.dismiss()
-            var intent = requireActivity().intent;
-            requireActivity().finish()
-            startActivity(intent)
-        })
-        builder.setView(view)
-        builder.show()
-
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun deleteImage(postion: Int) {

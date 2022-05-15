@@ -1,9 +1,14 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add;
 
+import static com.doubleclick.marktinhome.Model.Constantes.PRODUCT;
+
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +27,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -43,7 +49,18 @@ import com.doubleclick.RichEditor.sample.fragment.EditTableFragment;
 import com.doubleclick.RichEditor.sample.fragment.EditorMenuFragment;
 import com.doubleclick.RichEditor.sample.interfaces.OnActionPerformListener;
 import com.doubleclick.marktinhome.BaseFragment;
+import com.doubleclick.marktinhome.Model.Product;
 import com.doubleclick.marktinhome.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.google.protobuf.Any;
 import com.lzy.imagepicker.ImagePicker;
 import com.lzy.imagepicker.bean.ImageItem;
 import com.lzy.imagepicker.ui.ImageGridActivity;
@@ -51,6 +68,8 @@ import com.lzy.imagepicker.view.CropImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -80,8 +99,35 @@ public class RichFragment extends BaseFragment {
     private String htmlContent = "<p>" + "type here....." + "</p>";
     private RichEditorAction mRichEditorAction;
     private RichEditorCallback mRichEditorCallback;
-//    private ShareHTML shareHTML;
+    //    private ShareHTML shareHTML;
     private EditorMenuFragment mEditorMenuFragment;
+    private Product product;
+    private ArrayList<String> downloadUri = new ArrayList<>();
+    private FloatingActionButton upload;
+
+
+    private String begin = "<!DOCTYPE html>\n" +
+            "<html>\n" +
+            "\n" +
+            "<head>\n" +
+            "    <style>\n" +
+            "        table,\n" +
+            "        th,\n" +
+            "        td {\n" +
+            "            border: 2px solid black;\n" +
+            "            border-collapse: collapse;\n" +
+            "        }\n" +
+            "      table{\n" +
+            "        width: 100%\n" +
+            "      }\n" +
+            "    </style>\n" +
+            "</head>\n" +
+            "\n" +
+            "<body>";
+    private String end = "</body>\n" +
+            "\n" +
+            "</html>";
+
 
     private List<ActionType> mActionTypeList =
             Arrays.asList(ActionType.BOLD,
@@ -158,6 +204,7 @@ public class RichFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        product = RichFragmentArgs.fromBundle(getArguments()).getProduct();
     }
 
     @Override
@@ -179,12 +226,12 @@ public class RichFragment extends BaseFragment {
         iv_action_insert_image = view.findViewById(R.id.iv_action_insert_image);
         iv_action_table = view.findViewById(R.id.iv_action_table);
         webView = view.findViewById(R.id.wv_container);
+        upload = view.findViewById(R.id.upload);
         webView.setNestedScrollingEnabled(true);
         webView.setVerticalScrollbarOverlay(true);
         webView.setVerticalScrollBarEnabled(true);
         initImageLoader();
         initView();
-        UpdateHTML();
         int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, getResources().getDisplayMetrics());
         int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 9, getResources().getDisplayMetrics());
         for (int i = 0, size = mActionTypeList.size(); i < size; i++) {
@@ -252,6 +299,11 @@ public class RichFragment extends BaseFragment {
         });
         iv_action_insert_image.setOnClickListener(v -> {
             onClickInsertImage();
+        });
+
+        upload.setOnClickListener(v -> {
+//            onClickGetHtml();
+            UploadData();
         });
         return view;
     }
@@ -325,39 +377,18 @@ public class RichFragment extends BaseFragment {
         }
     }
 
-//    public interface ShareHTML {
-//        void input(String html);
-//    }
 
     private RichEditorCallback.OnGetHtmlListener onGetHtmlListener = html -> {
         if (TextUtils.isEmpty(html)) {
-//            Toast.makeText(getActivity(), "Empty Html String", Toast.LENGTH_SHORT).show();
             return;
         }
         HTMLText = html;
-//        shareHTML.input(html);
-//        Log.e("RichFragment=336", html);
     };
 
     void onClickGetHtml() {
         mRichEditorAction.refreshHtml(mRichEditorCallback, onGetHtmlListener);
     }
 
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        if (context instanceof ShareHTML) {
-//            shareHTML = (ShareHTML) context;
-//        } else {
-//            throw new RuntimeException(context.toString() + "must implement shareHTML");
-//        }
-//    }
-
-//    @Override
-//    public void onDetach() {
-//        super.onDetach();
-//        shareHTML = null;
-//    }
 
     void onClickUndo() {
         mRichEditorAction.undo();
@@ -547,21 +578,66 @@ public class RichFragment extends BaseFragment {
     }
 
 
-    private void UpdateHTML() {
-        Timer timer = new Timer();
-        Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                onClickGetHtml();
+    private void UploadData() {
+        ProgressDialog progressDialog = new ProgressDialog(requireContext());
+        progressDialog.setMessage("Uploading");
+        progressDialog.show();
+        List<String> uris = Arrays.asList(product.getImages().replace("[", "").replace("]", "").replace(" ", "").split(","));
+        if (uris.size() != 0) {
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference("Uploads");
+            for (String uri : uris) {
+                StorageReference fileReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(Uri.parse(uri)));
+                fileReference.putFile(Uri.parse(uri)).addOnSuccessListener(taskSnapshot -> {
+                    Task<Uri> url = taskSnapshot.getStorage().getDownloadUrl();
+                    url.addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            downloadUri.add(task.getResult().toString());
+                            if (uris.size() == downloadUri.size()) {
+                                HashMap<String, Object> map = new HashMap<>();
+                                long time = new Date().getTime();
+                                String push = reference.push().getKey() + time;
+                                map.put("productId", push);
+                                map.put("price", product.getPrice());
+                                map.put("date", time);
+                                map.put("adminId", myId.toString());
+                                map.put("productName", product.getProductName());
+                                map.put("lastPrice", product.getLastPrice());
+                                map.put("tradeMark", product.getTradeMark());
+                                map.put("parentCategoryId", product.getParentCategoryId());
+                                map.put("childCategoryId", product.getChildCategoryId());
+                                map.put("parentCategoryName", product.getParentCategoryName());
+                                map.put("childCategoryName", product.getChildCategoryName());
+                                map.put("totalRating", 0);
+                                map.put("discount", product.getDiscount());
+                                map.put("ratingSeller", product.getRatingSeller());
+                                map.put("images", downloadUri.toString());
+                                map.put("description", begin + HTMLText + end);
+                                map.put("sizes", product.getSizes());
+                                map.put("colors", product.getColors());
+                                map.put("colorsName", product.getColorsName());
+                                map.put("keywords", product.getKeywords());
+                                reference.child(PRODUCT).child(push).updateChildren(map);
+                                progressDialog.dismiss();
+                            }
+                        } else {
+                            Toast.makeText(requireContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+                    });
+                }).addOnProgressListener(snapshot -> {
+                    double p = 100.0 * snapshot.getBytesTransferred() / snapshot.getTotalByteCount();
+                    progressDialog.setMessage(p + " % Uploading...");
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(requireContext(), "Error : " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                });
             }
-        };
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(runnable);
-            }
-        }, 500, 500);
+        }
     }
 
+    public String getFileExtension(Uri uri) {
+        ContentResolver contentResolver = requireContext().getContentResolver();
+        MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
+        return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
+    }
 }

@@ -375,6 +375,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             pupMenu.setOnMenuItemClickListener {
                 if (it.itemId == R.id.delete_all) {
                     chatViewModelDatabase.deleteAll();
+                    chats.clear()
                     Toast.makeText(context, "Deleted", Toast.LENGTH_LONG).show()
                 }
                 true;
@@ -386,8 +387,8 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
 
     private fun sentMessage(text: String, type: String) {
         val map: HashMap<String, Any> = HashMap()
-        val id = reference.push().key.toString()
         val time = Date().time;
+        val id = reference.push().key.toString() + time;
         map["sender"] = myId
         map["message"] = text
         map["type"] = type
@@ -532,7 +533,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                             val url = path.result.toString()
                             val map: HashMap<String, Any> = HashMap()
                             val time = Date().time
-                            val id = reference.push().key.toString()
+                            val id = reference.push().key.toString() + time;
                             map["sender"] = myId
                             map["receiver"] = user!!.id.toString()
                             map["message"] = url
@@ -679,8 +680,8 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                     if (it.isSuccessful) {
                         val url = it.result.toString()
                         val map = HashMap<String, Any>()
-                        val id = reference.push().key.toString()
                         val time = Date().time;
+                        val id = reference.push().key.toString() + time
                         map["sender"] = myId
                         map["receiver"] = user!!.id
                         map["message"] = url

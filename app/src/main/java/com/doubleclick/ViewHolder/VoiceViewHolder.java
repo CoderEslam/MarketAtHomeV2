@@ -73,7 +73,7 @@ public class VoiceViewHolder extends BaseViewHolder {
         time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
         if (!chat.getMessage().equals("")) {
             if (chat.getReceiver().equals(myId)) {
-                seen.setVisibility(View.GONE);
+                seen.setVisibility(View.INVISIBLE);
             } else {
                 seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
             }

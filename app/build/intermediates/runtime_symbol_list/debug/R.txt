@@ -3415,6 +3415,7 @@ int id action_stepTwoFragment_to_stepThreeFragment 0x7f0a009a
 int id action_text 0x7f0a009b
 int id action_uploadFragment_to_childFragment 0x7f0a009c
 int id action_uploadFragment_to_uploadStep2Fragment 0x7f0a009d
+int id action_uploadStep2Fragment_to_richFragment 0x7f0a0470
 int id actions 0x7f0a009e
 int id activity_chooser_view_content 0x7f0a009f
 int id add 0x7f0a00a0
@@ -3428,6 +3429,7 @@ int id addToggalsScrollView 0x7f0a00a7
 int id addToggleButtonColor 0x7f0a00a8
 int id addVideo 0x7f0a00a9
 int id add_navigation 0x7f0a00aa
+int id addkeyword 0x7f0a0472
 int id address 0x7f0a00ab
 int id addressFragment 0x7f0a00ac
 int id adjust_height 0x7f0a00ad
@@ -3521,7 +3523,9 @@ int id caption 0x7f0a0104
 int id cardView 0x7f0a0105
 int id cardView10 0x7f0a0106
 int id cardView11 0x7f0a0107
+int id cardView12 0x7f0a046e
 int id cardView13 0x7f0a0108
+int id cardView14 0x7f0a046f
 int id cardView2 0x7f0a0109
 int id cardView3 0x7f0a010a
 int id cardView4 0x7f0a010b
@@ -3529,7 +3533,6 @@ int id cardView5 0x7f0a010c
 int id cardView6 0x7f0a010d
 int id cardView7 0x7f0a010e
 int id cardView8 0x7f0a010f
-int id cardView9 0x7f0a0110
 int id carryVelocity 0x7f0a0111
 int id cartRate 0x7f0a0112
 int id cartRecycler 0x7f0a0113
@@ -3586,6 +3589,7 @@ int id constraintLayout11 0x7f0a0145
 int id constraintLayout12 0x7f0a0146
 int id constraintLayout13 0x7f0a0147
 int id constraintLayout14 0x7f0a0148
+int id constraintLayout15 0x7f0a0474
 int id constraintLayout2 0x7f0a0149
 int id constraintLayout3 0x7f0a014a
 int id constraintLayout4 0x7f0a014b
@@ -4115,6 +4119,7 @@ int id requsts 0x7f0a0356
 int id restart 0x7f0a0357
 int id reverse 0x7f0a0358
 int id reverseSawtooth 0x7f0a0359
+int id richFragment 0x7f0a0471
 int id rich_nav 0x7f0a035a
 int id right 0x7f0a035b
 int id rightToLeft 0x7f0a035c
@@ -4276,6 +4281,7 @@ int id textView17 0x7f0a03f7
 int id textView18 0x7f0a03f8
 int id textView19 0x7f0a03f9
 int id textView2 0x7f0a03fa
+int id textView20 0x7f0a0473
 int id textView3 0x7f0a03fb
 int id textView4 0x7f0a03fc
 int id textView5 0x7f0a03fd

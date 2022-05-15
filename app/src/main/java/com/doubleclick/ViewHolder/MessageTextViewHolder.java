@@ -47,7 +47,7 @@ public class MessageTextViewHolder extends BaseViewHolder {
         textMessage.setText(chat.getMessage());
         textTime.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
         if (chat.getReceiver().equals(myId)) {
-            seen.setVisibility(View.GONE);
+            seen.setVisibility(View.INVISIBLE);
         } else {
             seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
         }

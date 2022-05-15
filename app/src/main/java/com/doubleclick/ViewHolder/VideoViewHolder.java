@@ -64,7 +64,7 @@ public class VideoViewHolder extends BaseViewHolder {
             video.requestFocus();
         } else if (!chat.getMessage().equals("")) {
             if (chat.getReceiver().equals(myId)) {
-                seen.setVisibility(View.GONE);
+                seen.setVisibility(View.INVISIBLE);
             } else {
                 seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
             }

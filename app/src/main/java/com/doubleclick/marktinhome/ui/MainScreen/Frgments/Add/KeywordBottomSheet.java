@@ -1,5 +1,6 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,11 +63,13 @@ public class KeywordBottomSheet extends BottomSheetDialogFragment implements Key
         return view;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onItemDelete(int pos) {
         try {
             texts.remove(pos);
             keywordAdapter.notifyItemRemoved(pos);
+            keywordAdapter.notifyDataSetChanged();
         } catch (IndexOutOfBoundsException ignored) {
 
         }

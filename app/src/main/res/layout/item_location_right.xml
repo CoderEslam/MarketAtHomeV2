@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardView12"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:elevation="10dp"
@@ -51,12 +52,11 @@
             android:id="@+id/seen"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/done"
+            tools:src="@drawable/done"
             app:layout_constraintBottom_toBottomOf="@+id/time"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/time"
+            app:layout_constraintEnd_toStartOf="@+id/time"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/time" />
 
         <TextView
@@ -67,7 +67,7 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="12:00" />
 

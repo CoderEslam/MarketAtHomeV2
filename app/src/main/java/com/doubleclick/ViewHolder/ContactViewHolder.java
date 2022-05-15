@@ -50,7 +50,7 @@ public class ContactViewHolder extends BaseViewHolder {
         this.massege = chat.getMessage();
         time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
         if (chat.getReceiver().equals(myId)) {
-            seen.setVisibility(View.GONE);
+            seen.setVisibility(View.INVISIBLE);
         } else {
             seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
         }

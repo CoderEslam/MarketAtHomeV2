@@ -116,7 +116,7 @@ public class BaseFragment extends Fragment {
 
 
     public String getFileExtension(Uri uri) {
-        ContentResolver contentResolver = getContext().getContentResolver();
+        ContentResolver contentResolver = requireContext().getContentResolver();
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }

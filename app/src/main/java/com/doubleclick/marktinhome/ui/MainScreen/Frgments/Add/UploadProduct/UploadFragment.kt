@@ -56,37 +56,20 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
     private lateinit var ratingSeller: RatingBar
     private var Sizes: ArrayList<String> = ArrayList()
     var rate: Float = 0f
-    lateinit var groupSize: SingleSelectToggleGroup
-    lateinit var addSizes: ImageView
+    private lateinit var groupSize: SingleSelectToggleGroup
+    private lateinit var addSizes: ImageView
+    private lateinit var addkeyword: ImageView
     private lateinit var builder: AlertDialog.Builder
     private var colorToggle: Int = 0
+    private lateinit var keyword: RecyclerView
     private lateinit var keywordAdapter: KeywordAdapter;
     private lateinit var groupColor: SingleSelectToggleGroup
     private lateinit var addColor: ImageView
     private var colors: ArrayList<Int> = ArrayList();
     private var colorsName: ArrayList<String> = ArrayList();
+    private var itemsKeys: ArrayList<String> = ArrayList()
     val parent_child by navArgs<UploadFragmentArgs>()
-    var begin = "<!DOCTYPE html>\n" +
-            "<html>\n" +
-            "\n" +
-            "<head>\n" +
-            "    <style>\n" +
-            "        table,\n" +
-            "        th,\n" +
-            "        td {\n" +
-            "            border: 2px solid black;\n" +
-            "            border-collapse: collapse;\n" +
-            "        }\n" +
-            "      table{\n" +
-            "        width: 100%\n" +
-            "      }\n" +
-            "    </style>\n" +
-            "</head>\n" +
-            "\n" +
-            "<body>";
-    var end = "</body>\n" +
-            "\n" +
-            "</html>";
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,6 +97,8 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         ratingSeller = view.findViewById(R.id.ratingSeller);
         groupSize = view.findViewById(R.id.groupSize);
         addSizes = view.findViewById(R.id.addSizes);
+        keyword = view.findViewById(R.id.keyword);
+        addkeyword = view.findViewById(R.id.addkeyword);
         tradmarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
         tradmarkViewModel.namesMark.observe(viewLifecycleOwner, Observer {
             trademark.onItemSelectedListener = object :
@@ -124,22 +109,22 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
                     position: Int,
                     id: Long
                 ) {
-                    marke = it.get(position)
+                    marke = it[position]
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
                     // write code to perform some action
-                    marke = it.get(0)
+                    marke = it[0]
 
                 }
             }
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, it)
-            trademark.setAdapter(adapter)
+            trademark.adapter = adapter
         })
 
-        ratingSeller.setOnRatingBarChangeListener({ ratingBar, rating, fromUser ->
+        ratingSeller.setOnRatingBarChangeListener { ratingBar, rating, fromUser ->
             rate = rating;
-        })
+        }
         Upload.setOnClickListener {
             if (productName.text.toString() == "") {
                 productName.error = "input name of product"
@@ -170,14 +155,14 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         }
 
 
-//        addKeywords.setOnClickListener {
-//            var keywordBottomSheet = KeywordBottomSheet(this);
-//            keywordBottomSheet.show(requireActivity().supportFragmentManager, "keywords")
-//        }
+        addkeyword.setOnClickListener {
+            val keywordBottomSheet = KeywordBottomSheet(this);
+            keywordBottomSheet.show(requireActivity().supportFragmentManager, "keywords")
+        }
 
         addSizes.setOnClickListener {
             builder = AlertDialog.Builder(requireContext())
-            var radio = CircularToggle(requireContext())
+            val radio = CircularToggle(requireContext())
             val view = LayoutInflater.from(context).inflate(R.layout.add_toggal, null, false)
             val editorder: TextInputEditText = view.findViewById(R.id.editname)
             val color_seek_bar: ColorSeekBar = view.findViewById(R.id.color_seek_bar);
@@ -199,7 +184,7 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         // todo add color
         addColor.setOnClickListener {
             builder = AlertDialog.Builder(requireContext())
-            var circuleToggle = CircularToggle(requireContext())
+            val circuleToggle = CircularToggle(requireContext())
             val view = LayoutInflater.from(context).inflate(R.layout.add_toggal, null, false)
             val cardView: CardView = view.findViewById(R.id.cardView);
             val editorder: TextInputEditText = view.findViewById(R.id.editname)
@@ -244,7 +229,7 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         var lastMoney = 0.0
         var money = 0.0
         if (price > LastPrice) {
-            var helper = LastPrice;
+            val helper = LastPrice;
             lastMoney = price
             money = helper;
         } else {
@@ -268,14 +253,13 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
             ChildId.toString(),
             0,
             discount,
-            "",
+            itemsKeys.toString(),
             "",
             Sizes.toString(),
             colors.toString(),
             colorsName.toString(),
             rate
         );
-        Log.e("sddddss", product.toString());
         findNavController().navigate(
             UploadFragmentDirections.actionUploadFragmentToUploadStep2Fragment(
                 product
@@ -284,12 +268,20 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onItemDelete(pos: Int) {
-
+        itemsKeys.removeAt(pos);
+        keywordAdapter.notifyItemRemoved(pos)
+        keywordAdapter.notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun ItemsKeyword(items: ArrayList<String>) {
-
+        itemsKeys.addAll(items);
+        keywordAdapter = KeywordAdapter(itemsKeys, this);
+        keyword.adapter = keywordAdapter
+        keywordAdapter.notifyItemRangeInserted(0, itemsKeys.size)
+        keywordAdapter.notifyDataSetChanged()
     }
 
 }

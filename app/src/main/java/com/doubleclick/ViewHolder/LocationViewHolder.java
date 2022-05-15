@@ -39,11 +39,11 @@ public class LocationViewHolder extends BaseViewHolder {
         time = itemView.findViewById(R.id.time);
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
     public void OpenLocation(Chat chat, int position) {
         time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
         if (chat.getReceiver().equals(myId)) {
-            seen.setVisibility(View.GONE);
+            seen.setVisibility(View.INVISIBLE);
         } else {
             seen.setImageDrawable(chat.isSeen() ? itemView.getContext().getResources().getDrawable(R.drawable.done_all) : itemView.getContext().getResources().getDrawable(R.drawable.done));
         }

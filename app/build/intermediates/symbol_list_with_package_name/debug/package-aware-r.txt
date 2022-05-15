@@ -3416,6 +3416,7 @@ id action_stepTwoFragment_to_stepThreeFragment
 id action_text
 id action_uploadFragment_to_childFragment
 id action_uploadFragment_to_uploadStep2Fragment
+id action_uploadStep2Fragment_to_richFragment
 id actions
 id activity_chooser_view_content
 id add
@@ -3429,6 +3430,7 @@ id addToggalsScrollView
 id addToggleButtonColor
 id addVideo
 id add_navigation
+id addkeyword
 id address
 id addressFragment
 id adjust_height
@@ -3522,7 +3524,9 @@ id caption
 id cardView
 id cardView10
 id cardView11
+id cardView12
 id cardView13
+id cardView14
 id cardView2
 id cardView3
 id cardView4
@@ -3530,7 +3534,6 @@ id cardView5
 id cardView6
 id cardView7
 id cardView8
-id cardView9
 id carryVelocity
 id cartRate
 id cartRecycler
@@ -3587,6 +3590,7 @@ id constraintLayout11
 id constraintLayout12
 id constraintLayout13
 id constraintLayout14
+id constraintLayout15
 id constraintLayout2
 id constraintLayout3
 id constraintLayout4
@@ -4116,6 +4120,7 @@ id requsts
 id restart
 id reverse
 id reverseSawtooth
+id richFragment
 id rich_nav
 id right
 id rightToLeft
@@ -4277,6 +4282,7 @@ id textView17
 id textView18
 id textView19
 id textView2
+id textView20
 id textView3
 id textView4
 id textView5

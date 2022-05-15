@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
@@ -22,6 +23,9 @@ public final class ItemLocationLeftBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final CardView cardView14;
+
+  @NonNull
   public final LottieAnimationView locationLotte;
 
   @NonNull
@@ -30,9 +34,10 @@ public final class ItemLocationLeftBinding implements ViewBinding {
   @NonNull
   public final TextView time;
 
-  private ItemLocationLeftBinding(@NonNull ConstraintLayout rootView,
+  private ItemLocationLeftBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView14,
       @NonNull LottieAnimationView locationLotte, @NonNull ImageView seen, @NonNull TextView time) {
     this.rootView = rootView;
+    this.cardView14 = cardView14;
     this.locationLotte = locationLotte;
     this.seen = seen;
     this.time = time;
@@ -65,6 +70,12 @@ public final class ItemLocationLeftBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.cardView14;
+      CardView cardView14 = ViewBindings.findChildViewById(rootView, id);
+      if (cardView14 == null) {
+        break missingId;
+      }
+
       id = R.id.location_lotte;
       LottieAnimationView locationLotte = ViewBindings.findChildViewById(rootView, id);
       if (locationLotte == null) {
@@ -83,7 +94,8 @@ public final class ItemLocationLeftBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemLocationLeftBinding((ConstraintLayout) rootView, locationLotte, seen, time);
+      return new ItemLocationLeftBinding((ConstraintLayout) rootView, cardView14, locationLotte,
+          seen, time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

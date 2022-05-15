@@ -118,6 +118,20 @@
             android:name="product"
             app:argType="com.doubleclick.marktinhome.Model.Product"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_uploadStep2Fragment_to_richFragment"
+            app:destination="@id/richFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/richFragment"
+        android:name="com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.RichFragment"
+        android:label="RichFragment"
+        tools:layout="@layout/fragment_rich">
+        <argument
+            android:name="product"
+            app:argType="com.doubleclick.marktinhome.Model.Product"
+            app:nullable="false" />
     </fragment>
 
 

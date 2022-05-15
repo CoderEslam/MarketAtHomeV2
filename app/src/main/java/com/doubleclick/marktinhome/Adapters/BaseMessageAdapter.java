@@ -129,14 +129,14 @@ public class BaseMessageAdapter extends RecyclerView.Adapter {
         try {
             if (chats.get(position).getType() != null) {
                 if (chats.get(position).getType().equals("voice")) {
-                    if (chats.get(position).getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                    if (chats.get(position).getSender().equals(myId)) {
                         return Constantes.VOICE_RIGHT;
                     } else {
                         return Constantes.VOICE_LEFT;
                     }
                 }
                 if (chats.get(position).getType().equals("image")) {
-                    if (chats.get(position).getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                    if (chats.get(position).getSender().equals(myId)) {
                         return Constantes.IMAGE_RIGHT;
                     } else {
                         return Constantes.IMAGE_LEFT;
@@ -144,35 +144,35 @@ public class BaseMessageAdapter extends RecyclerView.Adapter {
 
                 }
                 if (chats.get(position).getType().equals("text")) {
-                    if (chats.get(position).getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                    if (chats.get(position).getSender().equals(myId)) {
                         return Constantes.TEXT_RIGHT;
                     } else {
                         return Constantes.TEXT_LEFT;
                     }
                 }
                 if (chats.get(position).getType().equals("contact")) {
-                    if (chats.get(position).getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                    if (chats.get(position).getSender().equals(myId)) {
                         return Constantes.CONTACT_RIGHT;
                     } else {
                         return Constantes.CONTACT_LEFT;
                     }
                 }
                 if (chats.get(position).getType().equals("file")) {
-                    if (chats.get(position).getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                    if (chats.get(position).getSender().equals(myId)) {
                         return Constantes.FILE_RIGHT;
                     } else {
                         return Constantes.FILE_LEFT;
                     }
                 }
                 if (chats.get(position).getType().equals("location")) {
-                    if (chats.get(position).getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                    if (chats.get(position).getSender().equals(myId)) {
                         return Constantes.LOCATION_RIGHT;
                     } else {
                         return Constantes.LOCATION_LEFT;
                     }
                 }
                 if (chats.get(position).getType().equals("video")) {
-                    if (chats.get(position).getSender().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())) {
+                    if (chats.get(position).getSender().equals(myId)) {
                         return Constantes.VIDEO_RIGHT;
                     } else {
                         return Constantes.VIDEO_LEFT;
