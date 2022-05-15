@@ -3533,6 +3533,7 @@ int id cardView5 0x7f0a010c
 int id cardView6 0x7f0a010d
 int id cardView7 0x7f0a010e
 int id cardView8 0x7f0a010f
+int id cardView9 0x7f0a0110
 int id carryVelocity 0x7f0a0111
 int id cartRate 0x7f0a0112
 int id cartRecycler 0x7f0a0113
@@ -4516,6 +4517,7 @@ int layout activity_trademark 0x7f0d0036
 int layout activity_tradmark 0x7f0d0037
 int layout activity_view 0x7f0d0038
 int layout activity_view_more 0x7f0d0039
+int layout activity_view_post 0x7f0d011e
 int layout adapter_camera_item 0x7f0d003a
 int layout adapter_folder_list_item 0x7f0d003b
 int layout adapter_image_list_item 0x7f0d003c

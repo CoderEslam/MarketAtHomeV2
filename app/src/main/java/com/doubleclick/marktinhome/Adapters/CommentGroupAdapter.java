@@ -25,6 +25,7 @@ import com.doubleclick.marktinhome.Model.CommentsReply;
 import com.doubleclick.marktinhome.Model.CommentsReplyData;
 import com.doubleclick.marktinhome.Model.User;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 import com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogComment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -113,10 +114,11 @@ public class CommentGroupAdapter extends RecyclerView.Adapter<CommentGroupAdapte
 
     public class CommentsViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView imageUser;
-        private TextView userName, comment, time, like, replay;
+        private TextView userName, time, like, replay;
         private ImageView img_like;
         private ShimmerRecyclerView RecyclerReplay;
         private NestedScrollView nestedScroll;
+        private SocialTextView comment;
 
         public CommentsViewHolder(@NonNull View itemView) {
             super(itemView);

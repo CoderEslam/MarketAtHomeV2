@@ -3534,6 +3534,7 @@ id cardView5
 id cardView6
 id cardView7
 id cardView8
+id cardView9
 id carryVelocity
 id cartRate
 id cartRecycler
@@ -4517,6 +4518,7 @@ layout activity_trademark
 layout activity_tradmark
 layout activity_view
 layout activity_view_more
+layout activity_view_post
 layout adapter_camera_item
 layout adapter_folder_list_item
 layout adapter_image_list_item

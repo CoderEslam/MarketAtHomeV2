@@ -1,11 +1,12 @@
 package com.doubleclick.marktinhome.Model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * Created By Eslam Ghazy on 4/25/2022
  */
-public class PostsGroup implements Comparable<PostsGroup> {
+public class PostsGroup implements Comparable<PostsGroup> , Serializable {
 
     private String id;
     private String adminId;

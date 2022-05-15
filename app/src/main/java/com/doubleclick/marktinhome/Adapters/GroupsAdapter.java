@@ -143,15 +143,15 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
         holder.setLike(postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
         holder.caption.setText(postsData.get(holder.getAdapterPosition()).getPostsGroup().getText());
 
-        holder.comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), CommentGroupActivity.class);
-                intent.putExtra("postId", postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
-                intent.putExtra("groupId", postsData.get(holder.getAdapterPosition()).getPostsGroup().getGroupId());
-                holder.itemView.getContext().startActivity(intent);
-            }
-        });
+//        holder.comment.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(holder.itemView.getContext(), CommentGroupActivity.class);
+//                intent.putExtra("postId", postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
+//                intent.putExtra("groupId", postsData.get(holder.getAdapterPosition()).getPostsGroup().getGroupId());
+//                holder.itemView.getContext().startActivity(intent);
+//            }
+//        });
         holder.ConstraintLayoutimage_name.setOnClickListener(v -> {
             Intent intent = new Intent(holder.itemView.getContext(), ChatActivity.class);
             intent.putExtra("user", postsData.get(holder.getAdapterPosition()).getUser());
@@ -196,9 +196,12 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
             });
         }
 
-        holder.itemView.setOnClickListener(v -> {
+        holder.comment.setOnClickListener(v -> {
             Intent intent = new Intent(holder.itemView.getContext(), ViewPostActivity.class);
             intent.putExtra("post", postsData.get(holder.getAdapterPosition()));
+            intent.putExtra("postId", postsData.get(holder.getAdapterPosition()).getPostsGroup().getId());
+            intent.putExtra("groupId", postsData.get(holder.getAdapterPosition()).getPostsGroup().getGroupId());
+            intent.putExtra("myId", myId);
             holder.itemView.getContext().startActivity(intent);
         });
 
@@ -248,7 +251,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
 
         }
 
-        public void setLike(String PostKey) {
+        private void setLike(String PostKey) {
 
             reference.child(LIKES).addValueEventListener(new ValueEventListener() {
                 @Override
@@ -264,7 +267,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
                     } catch (ArrayIndexOutOfBoundsException e) {
 
                     }
-
                 }
 
                 @Override
@@ -273,7 +275,6 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
                 }
             });
         }
-
     }
 
 

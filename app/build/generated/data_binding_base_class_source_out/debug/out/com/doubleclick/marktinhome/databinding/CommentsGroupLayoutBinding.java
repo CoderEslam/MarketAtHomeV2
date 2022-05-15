@@ -14,6 +14,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 import com.todkars.shimmer.ShimmerRecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.NullPointerException;
@@ -31,7 +32,7 @@ public final class CommentsGroupLayoutBinding implements ViewBinding {
   public final CardView cardView8;
 
   @NonNull
-  public final TextView comment;
+  public final SocialTextView comment;
 
   @NonNull
   public final CircleImageView imageUser;
@@ -56,9 +57,9 @@ public final class CommentsGroupLayoutBinding implements ViewBinding {
 
   private CommentsGroupLayoutBinding(@NonNull ConstraintLayout rootView,
       @NonNull ShimmerRecyclerView RecyclerReplay, @NonNull CardView cardView8,
-      @NonNull TextView comment, @NonNull CircleImageView imageUser, @NonNull ImageView imgLike,
-      @NonNull TextView like, @NonNull NestedScrollView nestedScroll, @NonNull TextView replay,
-      @NonNull TextView time, @NonNull TextView userName) {
+      @NonNull SocialTextView comment, @NonNull CircleImageView imageUser,
+      @NonNull ImageView imgLike, @NonNull TextView like, @NonNull NestedScrollView nestedScroll,
+      @NonNull TextView replay, @NonNull TextView time, @NonNull TextView userName) {
     this.rootView = rootView;
     this.RecyclerReplay = RecyclerReplay;
     this.cardView8 = cardView8;
@@ -112,7 +113,7 @@ public final class CommentsGroupLayoutBinding implements ViewBinding {
       }
 
       id = R.id.comment;
-      TextView comment = ViewBindings.findChildViewById(rootView, id);
+      SocialTextView comment = ViewBindings.findChildViewById(rootView, id);
       if (comment == null) {
         break missingId;
       }

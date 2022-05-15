@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -25,7 +26,7 @@ public final class CommentReplyLayoutBinding implements ViewBinding {
   public final CardView cardView8;
 
   @NonNull
-  public final TextView commentReplay;
+  public final SocialTextView commentReplay;
 
   @NonNull
   public final CircleImageView imageUser;
@@ -37,8 +38,8 @@ public final class CommentReplyLayoutBinding implements ViewBinding {
   public final TextView userName;
 
   private CommentReplyLayoutBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView8,
-      @NonNull TextView commentReplay, @NonNull CircleImageView imageUser, @NonNull TextView time,
-      @NonNull TextView userName) {
+      @NonNull SocialTextView commentReplay, @NonNull CircleImageView imageUser,
+      @NonNull TextView time, @NonNull TextView userName) {
     this.rootView = rootView;
     this.cardView8 = cardView8;
     this.commentReplay = commentReplay;
@@ -81,7 +82,7 @@ public final class CommentReplyLayoutBinding implements ViewBinding {
       }
 
       id = R.id.commentReplay;
-      TextView commentReplay = ViewBindings.findChildViewById(rootView, id);
+      SocialTextView commentReplay = ViewBindings.findChildViewById(rootView, id);
       if (commentReplay == null) {
         break missingId;
       }

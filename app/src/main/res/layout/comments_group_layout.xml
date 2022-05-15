@@ -21,7 +21,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:src="@drawable/parson"
+            tools:src="@drawable/parson"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
-            android:text="@string/user_name"
+            tools:text="@string/user_name"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -40,7 +40,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView8"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="32dp"
@@ -50,7 +50,7 @@
             app:layout_constraintStart_toEndOf="@+id/imageUser"
             app:layout_constraintTop_toBottomOf="@+id/userName">
 
-            <TextView
+            <com.doubleclick.marktinhome.Views.socialtextview.SocialTextView
                 android:id="@+id/comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -58,7 +58,13 @@
                 android:padding="3dp"
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
-                android:text="@string/comment" />
+                app:emailColor="#1877F2"
+                app:hashtagColor="#1877F2"
+                app:linkModes="email|hashtag|mention|phone|url"
+                app:mentionColor="#1877F2"
+                app:phoneColor="#1877F2"
+                app:urlColor="#1877F2"
+                tools:text="comment" />
 
         </androidx.cardview.widget.CardView>
 
@@ -81,10 +87,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/like"
             android:textAllCaps="false"
             android:textColor="@color/blueDark"
-            app:layout_constraintEnd_toEndOf="@+id/cardView8"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/cardView8"
             app:layout_constraintTop_toBottomOf="@+id/cardView8" />

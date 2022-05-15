@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.doubleclick.marktinhome.Model.CommentsReply;
 import com.doubleclick.marktinhome.Model.CommentsReplyData;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ReplyViewHol
         holder.commentReplay.setText(commentsReplyData.get(position).getCommentsReply().getReplyComment());
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE, dd/MM/yyyy HH:mm aa");
         holder.time.setText(String.format("%s ", simpleDateFormat.format(commentsReplyData.get(holder.getAdapterPosition()).getCommentsReply().getTime())));
-        Log.e("commentsReplyDataAd",commentsReplyData.toString());
+        Log.e("commentsReplyDataAd", commentsReplyData.toString());
         Glide.with(holder.itemView.getContext()).load(commentsReplyData.get(holder.getAdapterPosition()).getUser().getImage()).into(holder.imageUser);
         holder.userName.setText(commentsReplyData.get(holder.getAdapterPosition()).getUser().getName());
     }
@@ -57,7 +58,8 @@ public class ReplyAdapter extends RecyclerView.Adapter<ReplyAdapter.ReplyViewHol
 
     public class ReplyViewHolder extends RecyclerView.ViewHolder {
         private CircleImageView imageUser;
-        private TextView userName, commentReplay, time;
+        private TextView userName, time;
+        private SocialTextView commentReplay;
 
         public ReplyViewHolder(@NonNull View itemView) {
             super(itemView);
