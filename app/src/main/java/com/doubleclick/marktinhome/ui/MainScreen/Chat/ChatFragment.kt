@@ -199,28 +199,34 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             sentMessage(et_text_message.text.toString().trim(), "text")
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
-            if (it.sender.equals(myId) && !it.isSeen) {
-                if (!chats.contains(it)) {
-                    chats.add(it)
-                    chatAdapter.notifyItemInserted(chats.size - 1)
-                    chatAdapter.notifyDataSetChanged()
-                    chatRecycler.scrollToPosition(chats.size - 1)
-                    chatRecycler.smoothScrollToPosition(chats.size - 1)
+            try {
+                if (it.sender.equals(myId) && !it.isSeen) {
+                    if (!chats.contains(it)) {
+                        chats.add(it)
+                        chatAdapter.notifyItemInserted(chats.size - 1)
+                        chatAdapter.notifyDataSetChanged()
+                        chatRecycler.scrollToPosition(chats.size - 1)
+                        chatRecycler.smoothScrollToPosition(chats.size - 1)
+                    }
                 }
+                /*
+                * if I'm receiver -> update that i see this message
+                * */
+                if (it.receiver.equals(myId)) {
+                    // TODO update status massage to been seen
+                    val map: HashMap<String, Any> = HashMap();
+                    map["StatusMessage"] = "beenSeen" //"beenSeen" , "Uploaded"
+                    map["seen"] = true
+                    reference.child(CHATS).child(myId).child(user!!.id).child(it.id)
+                        .updateChildren(map);
+                    reference.child(CHATS).child(user!!.id).child(myId).child(it.id)
+                        .updateChildren(map);
+                }
+            } catch (e: Exception) {
+
             }
-            /*
-            * if I'm receiver -> update that i see this message
-            * */
-            if (it.receiver.equals(myId)) {
-                // TODO update status massage to been seen
-                val map: HashMap<String, Any> = HashMap();
-                map["StatusMessage"] = "beenSeen" //"beenSeen" , "Uploaded"
-                map["seen"] = true
-                reference.child(CHATS).child(myId).child(user!!.id).child(it.id)
-                    .updateChildren(map);
-                reference.child(CHATS).child(user!!.id).child(myId).child(it.id)
-                    .updateChildren(map);
-            }
+
+
         };
 
 

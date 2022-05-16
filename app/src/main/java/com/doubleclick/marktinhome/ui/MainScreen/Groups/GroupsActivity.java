@@ -20,6 +20,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +33,7 @@ import com.doubleclick.marktinhome.Model.GroupData;
 import com.doubleclick.marktinhome.Model.PostData;
 import com.doubleclick.marktinhome.Model.PostsGroup;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.CircleImageView;
 import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 import com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -45,8 +47,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.Loadmore, GroupsAdapter.OptionPost {
 
@@ -208,4 +208,5 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

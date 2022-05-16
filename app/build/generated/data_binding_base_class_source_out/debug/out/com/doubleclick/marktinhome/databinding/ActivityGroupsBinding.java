@@ -16,11 +16,12 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.CircleImageView;
 import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.todkars.shimmer.ShimmerRecyclerView;
-import de.hdodenhof.circleimageview.CircleImageView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -30,7 +31,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
-  public final AppBarLayout appbar;
+  public final AppBarLayout appBar;
 
   @NonNull
   public final ImageView back;
@@ -99,15 +100,18 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final RelativeLayout scroll;
 
   @NonNull
-  public final CircleImageView selectImage;
+  public final de.hdodenhof.circleimageview.CircleImageView selectImage;
 
   @NonNull
   public final Toolbar toolbar;
 
   @NonNull
+  public final CollapsingToolbarLayout toolbarLayout;
+
+  @NonNull
   public final TextView username;
 
-  private ActivityGroupsBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appbar,
+  private ActivityGroupsBinding(@NonNull CoordinatorLayout rootView, @NonNull AppBarLayout appBar,
       @NonNull ImageView back, @NonNull ConstraintLayout constraintLayout, @NonNull ImageView cover,
       @NonNull LinearLayout createPost, @NonNull LinearLayout details,
       @NonNull SocialTextView discription, @NonNull TextView history,
@@ -117,9 +121,10 @@ public final class ActivityGroupsBinding implements ViewBinding {
       @NonNull TextView name, @NonNull TextView nothing, @NonNull LinearLayout numbers,
       @NonNull ImageView option, @NonNull ShimmerRecyclerView post, @NonNull TextView postsNum,
       @NonNull LinearProgressIndicator progressBar, @NonNull RelativeLayout scroll,
-      @NonNull CircleImageView selectImage, @NonNull Toolbar toolbar, @NonNull TextView username) {
+      @NonNull de.hdodenhof.circleimageview.CircleImageView selectImage, @NonNull Toolbar toolbar,
+      @NonNull CollapsingToolbarLayout toolbarLayout, @NonNull TextView username) {
     this.rootView = rootView;
-    this.appbar = appbar;
+    this.appBar = appBar;
     this.back = back;
     this.constraintLayout = constraintLayout;
     this.cover = cover;
@@ -144,6 +149,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
     this.scroll = scroll;
     this.selectImage = selectImage;
     this.toolbar = toolbar;
+    this.toolbarLayout = toolbarLayout;
     this.username = username;
   }
 
@@ -174,9 +180,9 @@ public final class ActivityGroupsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.appbar;
-      AppBarLayout appbar = ViewBindings.findChildViewById(rootView, id);
-      if (appbar == null) {
+      id = R.id.app_bar;
+      AppBarLayout appBar = ViewBindings.findChildViewById(rootView, id);
+      if (appBar == null) {
         break missingId;
       }
 
@@ -313,7 +319,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
       }
 
       id = R.id.selectImage;
-      CircleImageView selectImage = ViewBindings.findChildViewById(rootView, id);
+      de.hdodenhof.circleimageview.CircleImageView selectImage = ViewBindings.findChildViewById(rootView, id);
       if (selectImage == null) {
         break missingId;
       }
@@ -324,16 +330,22 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.toolbar_layout;
+      CollapsingToolbarLayout toolbarLayout = ViewBindings.findChildViewById(rootView, id);
+      if (toolbarLayout == null) {
+        break missingId;
+      }
+
       id = R.id.username;
       TextView username = ViewBindings.findChildViewById(rootView, id);
       if (username == null) {
         break missingId;
       }
 
-      return new ActivityGroupsBinding((CoordinatorLayout) rootView, appbar, back, constraintLayout,
+      return new ActivityGroupsBinding((CoordinatorLayout) rootView, appBar, back, constraintLayout,
           cover, createPost, details, discription, history, imageGroup, linearLayout3, link,
           linkLayout, locationLayout, main, members, name, nothing, numbers, option, post, postsNum,
-          progressBar, scroll, selectImage, toolbar, username);
+          progressBar, scroll, selectImage, toolbar, toolbarLayout, username);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -58,13 +58,17 @@ public class ChatReopsitory extends BaseRepository {
         reference.child(CHATS).child(myId).child(userId).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Chat chat = snapshot.getValue(Chat.class);
-                Log.e("onChildAdded", Objects.requireNonNull(snapshot.getValue(Chat.class)).toString());
-                assert chat != null;
-                Log.e("newInsert", chat.toString());
+                try {
+                    Chat chat = snapshot.getValue(Chat.class);
+                    Log.e("onChildAdded", Objects.requireNonNull(snapshot.getValue(Chat.class)).toString());
+                    assert chat != null;
+                    Log.e("newInsert", chat.toString());
 //                if (chat.getSender().equals(userId)){
-                chats.newInsertChat(chat);
+                    chats.newInsertChat(chat);
 //                }
+                } catch (Exception e) {
+
+                }
 
 
             }
