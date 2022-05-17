@@ -838,11 +838,23 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
 
     @SuppressLint("NotifyDataSetChanged")
     override fun deleteForMe(chat: Chat, pos: Int) {
-        chatViewModelDatabase.delete(chat)
-        chats.removeAt(pos)
-        reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).removeValue()
-        chatAdapter.notifyItemRemoved(pos)
-        chatAdapter.notifyDataSetChanged()
+        val map: HashMap<String, Any> = HashMap();
+        map["type"] = "text";
+        map["message"] = "${chat.message}  @$@this@message@deleted";
+        map["StatusMessage"] = chat.statusMessage;
+        map["date"] = chat.date;
+        map["seen"] = chat.isSeen;
+        map["id"] = chat.id;
+        map["sender"] = chat.sender;
+        map["receiver"] = chat.receiver;
+        reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).updateChildren(map)
+            .addOnCompleteListener {
+                chatViewModelDatabase.delete(chat)
+                chats.removeAt(pos)
+                chatAdapter.notifyItemRemoved(pos)
+                chatAdapter.notifyDataSetChanged()
+            }
+
     }
 
     /*
@@ -853,9 +865,20 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     @SuppressLint("NotifyDataSetChanged")
     override fun deleteForAll(chat: Chat, pos: Int) {
         try {
-            reference.child(CHATS).child(myId).child(user.id).child(chat.id).removeValue()
+            val map: HashMap<String, Any> = HashMap();
+            map["type"] = "text";
+            map["message"] = "${chat.message}  @$@this@message@deleted";
+            map["StatusMessage"] = chat.statusMessage;
+            map["date"] = chat.date;
+            map["seen"] = chat.isSeen;
+            map["id"] = chat.id;
+            map["sender"] = chat.sender;
+            map["receiver"] = chat.receiver;
+
+            reference.child(CHATS).child(myId).child(user.id).child(chat.id).updateChildren(map)
                 .addOnCompleteListener {
-                    reference.child(CHATS).child(user.id).child(myId).child(chat.id).removeValue()
+                    reference.child(CHATS).child(user.id).child(myId).child(chat.id)
+                        .updateChildren(map)
                         .addOnCompleteListener {
                             val c = chat;
                             c!!.message = "this message deleted";
@@ -871,6 +894,8 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                 }
         } catch (e: ArrayIndexOutOfBoundsException) {
             Log.e("ArrayIndexOutOfBound", e.message.toString())
+        } catch (e: Exception) {
+            Log.e("Exception", e.message.toString())
         }
     }
 

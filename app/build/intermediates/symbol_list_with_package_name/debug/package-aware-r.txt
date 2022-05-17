@@ -3219,6 +3219,7 @@ drawable path1306
 drawable pause
 drawable person
 drawable play
+drawable received_message
 drawable recv_basket_animated
 drawable recv_bg_mic
 drawable recv_ic_arrow
@@ -3236,6 +3237,7 @@ drawable selector_grid_camera_bg
 drawable selector_item_checked
 drawable selector_top_ok
 drawable send
+drawable sent_message
 drawable share
 drawable shopping_cart
 drawable small_arrow_left
@@ -3457,7 +3459,6 @@ id anticipate
 id appBarRL
 id appBarTitleTV
 id app_bar
-id appbar
 id arc
 id arro_imageview
 id arrow
@@ -3882,6 +3883,7 @@ id linear
 id linearLayout
 id linearLayout2
 id linearLayout3
+id linearLayout4
 id linearLayout5
 id linearLayout7
 id linear_layout
@@ -4162,6 +4164,7 @@ id search_plate
 id search_src_text
 id search_users
 id search_voice_btn
+id seekBar
 id seen
 id selectCover
 id selectImage
@@ -4319,6 +4322,7 @@ id toggleColors
 id toggleSizes
 id toolbar
 id toolbar_Collapsinglayout
+id toolbar_layout
 id top
 id topPanel
 id topParents

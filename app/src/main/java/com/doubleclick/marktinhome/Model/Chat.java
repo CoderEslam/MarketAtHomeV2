@@ -19,11 +19,16 @@ public class Chat implements Serializable {
     @PrimaryKey()
     @NonNull
     private String id;
+    @NonNull
     private String message;
+    @NonNull
     private String type;
+    @NonNull
     private String sender;
+    @NonNull
     private String receiver;
     private long date;
+    @NonNull
     private String StatusMessage;
     private boolean seen;
     @NonNull
@@ -32,6 +37,13 @@ public class Chat implements Serializable {
     public Chat() {
         uri = "";
         id = "";
+        message = "";
+        type = "";
+        sender = "";
+        seen = false;
+        receiver = "";
+        date = 0;
+        StatusMessage = "";
     }
 
     public Chat(String message, String uri, String type, String sender, String receiver, long date, String id, String statusMessage, boolean seen) {

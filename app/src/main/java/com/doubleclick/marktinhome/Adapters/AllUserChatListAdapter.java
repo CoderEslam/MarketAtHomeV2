@@ -87,16 +87,21 @@ public class AllUserChatListAdapter extends RecyclerView.Adapter<AllUserChatList
                 @SuppressLint({"DefaultLocale", "UseCompatLoadingForDrawables"})
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    int i = 0;
-                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                        Chat chat = snapshot.getValue(Chat.class);
-                        assert chat != null;
-                        if (chat.getStatusMessage().equals("Uploaded") && !chat.getSender().equals(myId) && !chat.isSeen()) {
-                            i++;
-                            countMessage.setText(String.format("%d", i));
-                            countMessage.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.bg_green));
+                    try {
+                        int i = 0;
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            Chat chat = snapshot.getValue(Chat.class);
+                            assert chat != null;
+                            if (chat.getStatusMessage().equals("Uploaded") && !chat.getSender().equals(myId) && !chat.isSeen()) {
+                                i++;
+                                countMessage.setText(String.format("%d", i));
+                                countMessage.setBackground(itemView.getContext().getResources().getDrawable(R.drawable.bg_green));
+                            }
                         }
+                    } catch (Exception e) {
+
                     }
+
                 }
 
                 @Override

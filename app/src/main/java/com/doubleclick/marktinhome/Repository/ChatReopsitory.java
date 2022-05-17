@@ -66,7 +66,7 @@ public class ChatReopsitory extends BaseRepository {
 //                if (chat.getSender().equals(userId)){
                     chats.newInsertChat(chat);
 //                }
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
 
@@ -75,19 +75,29 @@ public class ChatReopsitory extends BaseRepository {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Chat chat = snapshot.getValue(Chat.class);
-                assert chat != null;
-                if (chat.getStatusMessage().equals("beenSeen") && chat.getReceiver().equals(myId) && chat.isSeen()) {
-                    statusChat.BeenSeenForFriend(chat);
+                try {
+                    Chat chat = snapshot.getValue(Chat.class);
+                    assert chat != null;
+                    if (!chat.getMessage().contains("@$@this@message@deleted")) {
+                        if (chat.getStatusMessage().equals("beenSeen") && chat.getReceiver().equals(myId) && chat.isSeen()) {
+                            statusChat.BeenSeenForFriend(chat);
+                        }
+                        if (chat.getStatusMessage().equals("beenSeen") && chat.getSender().equals(myId) && chat.isSeen()) {
+                            statusChat.BeenSeenForMe(chat);
+                        }
+                    }
+                    if (chat.getMessage().contains("@$@this@message@deleted")) {
+                        statusChat.deleteForAll(snapshot.getValue(Chat.class));
+                    }
+                } catch (Exception ignored) {
+
                 }
-                if (chat.getStatusMessage().equals("beenSeen") && chat.getSender().equals(myId) && chat.isSeen()) {
-                    statusChat.BeenSeenForMe(chat);
-                }
+
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                statusChat.deleteForAll(snapshot.getValue(Chat.class));
+
             }
 
             @Override

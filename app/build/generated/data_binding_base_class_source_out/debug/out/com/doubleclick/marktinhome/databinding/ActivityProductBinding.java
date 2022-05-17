@@ -100,6 +100,9 @@ public final class ActivityProductBinding implements ViewBinding {
   public final TextView lastPrice;
 
   @NonNull
+  public final LinearLayout linearLayout4;
+
+  @NonNull
   public final LinearLayout linearLayout5;
 
   @NonNull
@@ -235,16 +238,16 @@ public final class ActivityProductBinding implements ViewBinding {
       @NonNull ConstraintLayout constraintLayout8, @NonNull FloatingActionButton fab,
       @NonNull ImageView imageView3, @NonNull ImageView imageView4, @NonNull ImageView imageView5,
       @NonNull ImageView imageView6, @NonNull ImageView imageView7, @NonNull ImageView imageView8,
-      @NonNull TextView lastPrice, @NonNull LinearLayout linearLayout5,
-      @NonNull ConstraintLayout linearLayout7, @NonNull LinearLayout lldescription,
-      @NonNull ImageView mins, @NonNull NestedScrollView nestedScrollColor,
-      @NonNull NestedScrollView nestedScrollSize, @NonNull PieChartView pieChartView,
-      @NonNull ImageView plus, @NonNull TextView price, @NonNull TextView productName,
-      @NonNull ProgressBar progressBar1, @NonNull ProgressBar progressBar2,
-      @NonNull ProgressBar progressBar3, @NonNull ProgressBar progressBar4,
-      @NonNull ProgressBar progressBar5, @NonNull TextView quantity,
-      @NonNull LinearLayout rateNowContainer, @NonNull TextView ratingSeller,
-      @NonNull ScrollView scrollView2, @NonNull ImageView share,
+      @NonNull TextView lastPrice, @NonNull LinearLayout linearLayout4,
+      @NonNull LinearLayout linearLayout5, @NonNull ConstraintLayout linearLayout7,
+      @NonNull LinearLayout lldescription, @NonNull ImageView mins,
+      @NonNull NestedScrollView nestedScrollColor, @NonNull NestedScrollView nestedScrollSize,
+      @NonNull PieChartView pieChartView, @NonNull ImageView plus, @NonNull TextView price,
+      @NonNull TextView productName, @NonNull ProgressBar progressBar1,
+      @NonNull ProgressBar progressBar2, @NonNull ProgressBar progressBar3,
+      @NonNull ProgressBar progressBar4, @NonNull ProgressBar progressBar5,
+      @NonNull TextView quantity, @NonNull LinearLayout rateNowContainer,
+      @NonNull TextView ratingSeller, @NonNull ScrollView scrollView2, @NonNull ImageView share,
       @NonNull AwesomeSpeedometer speedView, @NonNull TextView textView12,
       @NonNull TextView textView13, @NonNull TextView textView14, @NonNull TextView textView15,
       @NonNull TextView textView16, @NonNull TextView textView4, @NonNull TextView textView5,
@@ -276,6 +279,7 @@ public final class ActivityProductBinding implements ViewBinding {
     this.imageView7 = imageView7;
     this.imageView8 = imageView8;
     this.lastPrice = lastPrice;
+    this.linearLayout4 = linearLayout4;
     this.linearLayout5 = linearLayout5;
     this.linearLayout7 = linearLayout7;
     this.lldescription = lldescription;
@@ -476,6 +480,12 @@ public final class ActivityProductBinding implements ViewBinding {
       id = R.id.lastPrice;
       TextView lastPrice = ViewBindings.findChildViewById(rootView, id);
       if (lastPrice == null) {
+        break missingId;
+      }
+
+      id = R.id.linearLayout4;
+      LinearLayout linearLayout4 = ViewBindings.findChildViewById(rootView, id);
+      if (linearLayout4 == null) {
         break missingId;
       }
 
@@ -735,13 +745,13 @@ public final class ActivityProductBinding implements ViewBinding {
           addToggalsScrollView, animationView, bannerSlierViewPager, cardView, cardView11, comments,
           constraintLayout, constraintLayout11, constraintLayout2, constraintLayout3,
           constraintLayout4, constraintLayout7, constraintLayout8, fab, imageView3, imageView4,
-          imageView5, imageView6, imageView7, imageView8, lastPrice, linearLayout5, linearLayout7,
-          lldescription, mins, nestedScrollColor, nestedScrollSize, pieChartView, plus, price,
-          productName, progressBar1, progressBar2, progressBar3, progressBar4, progressBar5,
-          quantity, rateNowContainer, ratingSeller, scrollView2, share, speedView, textView12,
-          textView13, textView14, textView15, textView16, textView4, textView5, textView6,
-          textView60, textView7, toggleColors, toggleSizes, trarmark, tvRate1, tvRate2, tvRate3,
-          tvRate4, tvRate5, tvYourRatins, webView, yourRate);
+          imageView5, imageView6, imageView7, imageView8, lastPrice, linearLayout4, linearLayout5,
+          linearLayout7, lldescription, mins, nestedScrollColor, nestedScrollSize, pieChartView,
+          plus, price, productName, progressBar1, progressBar2, progressBar3, progressBar4,
+          progressBar5, quantity, rateNowContainer, ratingSeller, scrollView2, share, speedView,
+          textView12, textView13, textView14, textView15, textView16, textView4, textView5,
+          textView6, textView60, textView7, toggleColors, toggleSizes, trarmark, tvRate1, tvRate2,
+          tvRate3, tvRate4, tvRate5, tvYourRatins, webView, yourRate);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

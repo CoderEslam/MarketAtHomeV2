@@ -11,7 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="75dp"
         android:layout_marginEnd="100dp"
-        android:background="@drawable/bg_ripple"
+        android:background="@drawable/received_message"
+        android:backgroundTint="@color/white"
         android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +34,8 @@
             android:id="@+id/cardView6"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:outlineAmbientShadowColor="@color/black"
             android:outlineSpotShadowColor="@color/black"
             app:cardCornerRadius="10dp"
@@ -44,6 +47,7 @@
 
 
             <VideoView
+                android:backgroundTint="@color/white"
                 android:id="@+id/video"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -63,7 +67,6 @@
                     android:id="@+id/file"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:elevation="6dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -74,10 +77,18 @@
                     app:lottie_loop="true"
                     app:lottie_rawRes="@raw/voice_recognition" />
 
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:max="100" />
+
                 <ImageView
                     android:id="@+id/downloadVoice"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:background="@drawable/bg_text_chat"
                     android:elevation="6dp"
@@ -86,12 +97,13 @@
 
                 <ImageView
                     android:id="@+id/playVoice"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:background="@drawable/bg_text_chat"
                     android:elevation="6dp"
                     android:src="@drawable/play" />
+
 
             </LinearLayout>
 
@@ -103,18 +115,19 @@
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:layout_marginEnd="8dp"
-            tools:src="@drawable/done"
             app:layout_constraintBottom_toBottomOf="@+id/time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/time"
-            app:layout_constraintTop_toTopOf="@+id/time" />
+            app:layout_constraintTop_toTopOf="@+id/time"
+            tools:src="@drawable/done" />
 
 
         <TextView
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

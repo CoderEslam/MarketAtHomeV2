@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -52,6 +53,8 @@ public class VoiceViewHolder extends BaseViewHolder {
     private ImageView seen;
     private ProgressBar progressBar;
     private TextView time;
+    private SeekBar seekBar;
+    private int duration = 0, current = 0;
 
     public VoiceViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
@@ -64,6 +67,7 @@ public class VoiceViewHolder extends BaseViewHolder {
         seen = itemView.findViewById(R.id.seen);
         progressBar = itemView.findViewById(R.id.progressBar);
         time = itemView.findViewById(R.id.time);
+        seekBar = itemView.findViewById(R.id.seekBar);
 
     }
 
@@ -88,11 +92,49 @@ public class VoiceViewHolder extends BaseViewHolder {
 //            downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.download));
 //        }
         voice.setOnCompletionListener(mp -> playVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play)));
+        voice.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+            @Override
+            public void onPrepared(MediaPlayer mp) {
+                new Thread(new Runnable() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void run() {
+                        duration = mp.getDuration();
+                        do {
+                            try {
+                                current = voice.getCurrentPosition();
+                                seekBar.setProgress((int) ((current * 100) / duration),true);
+                            } catch (Exception e) {
+
+                            }
+                        } while (seekBar.getProgress() <= 100);
+                    }
+                }).start();
+            }
+        });
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         MediaController mediaController = new MediaController(itemView.getContext());
         mediaController.setMediaPlayer(voice);
         mediaController.findFocus();
         mediaController.show(0);
-        mediaController.setAnchorView(voice);
+//        mediaController.setAnchorView(voice);
         mediaController.setEnabled(true);
         voice.setMediaController(mediaController);
         voice.requestFocus();
@@ -103,12 +145,12 @@ public class VoiceViewHolder extends BaseViewHolder {
         playVoice.setOnClickListener(v -> {
             if (!chat.getMessage().equals("")) {
                 if (isPlay) {
-                    downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));
+                    playVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.play));
                     voice.pause();
                     voice.stopPlayback();
                     isPlay = false;
                 } else {
-                    downloadVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.pause));
+                    playVoice.setImageDrawable(itemView.getResources().getDrawable(R.drawable.pause));
                     voice.setVideoURI(Uri.parse(chat.getMessage()));
                     voice.start();
                     isPlay = true;
