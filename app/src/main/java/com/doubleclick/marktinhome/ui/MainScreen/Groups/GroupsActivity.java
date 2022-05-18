@@ -149,6 +149,14 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
 
                         return true;
                     }
+                    if (ItemId == R.id.share) {
+
+                        return true;
+                    }
+                    if (ItemId == R.id.editDetils) {
+                        openBottomSheet(id /*group id */,"details");
+                        return true;
+                    }
                     if (ItemId == R.id.editCover) {
                         openImage("cover");
                         return true;
@@ -158,7 +166,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
                         return true;
                     }
                     if (ItemId == R.id.editName) {
-                        openBottomSheet(id /*group id */);
+                        openBottomSheet(id /*group id */,"name");
                         return true;
                     }
                     return false;
@@ -175,8 +183,8 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         startActivityForResult(intent, IMAGE_REQUEST);
     }
 
-    private void openBottomSheet(String id) {
-        BottomSheetEditor bottomSheetFragmentUsernameAndBioUpdate = new BottomSheetEditor(id);
+    private void openBottomSheet(String id,String type) {
+        BottomSheetEditor bottomSheetFragmentUsernameAndBioUpdate = new BottomSheetEditor(id,type, reference);
         assert getFragmentManager() != null;
         bottomSheetFragmentUsernameAndBioUpdate.show(getSupportFragmentManager(), "edit");
     }

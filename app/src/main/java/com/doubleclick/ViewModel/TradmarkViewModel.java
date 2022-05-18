@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * Created By Eslam Ghazy on 3/8/2022
  */
-public class TradmarkViewModel extends ViewModel implements Tradmarkinterface {
+public class TradmarkViewModel  implements Tradmarkinterface {
 
 
     private MutableLiveData<ArrayList<Trademark>> mutableLiveData = new MutableLiveData<>();

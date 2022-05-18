@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created By Eslam Ghazy on 3/2/2022
  */
-public class ProductViewModel extends ViewModel implements Products {
+public class ProductViewModel  implements Products {
 
 
     private MutableLiveData<ArrayList<ArrayList<ArrayList<Product>>>> mutableLiveData = new MutableLiveData<>();

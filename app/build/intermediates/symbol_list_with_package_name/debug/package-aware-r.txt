@@ -3704,6 +3704,7 @@ id east
 id edit
 id editAddress
 id editCover
+id editDetils
 id editFragment
 id editName
 id editOption
@@ -5175,6 +5176,7 @@ string search_here
 string search_menu_title
 string select_complete
 string select_limit
+string share
 string sign_in
 string sign_up
 string statistices

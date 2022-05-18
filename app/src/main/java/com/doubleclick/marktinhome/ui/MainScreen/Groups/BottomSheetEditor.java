@@ -1,5 +1,7 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Groups;
 
+import static com.doubleclick.marktinhome.Model.Constantes.GROUPS;
+
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Bundle;
@@ -9,13 +11,19 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.doubleclick.marktinhome.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.firebase.database.DatabaseReference;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -26,10 +34,14 @@ public class BottomSheetEditor extends BottomSheetDialogFragment {
     private EditText et_user_input_bottom_sheet_fragment;
     private TextView btn_save_bottom_sheet, btn_cancel_bottom_sheet;
     private String id;
+    private DatabaseReference reference;
+    private String type;
 
 
-    public BottomSheetEditor(String id) {
+    public BottomSheetEditor(String id, String type, DatabaseReference databaseReference) {
         this.id = id;
+        this.type = type;
+        this.reference = databaseReference;
     }
 
 
@@ -59,7 +71,15 @@ public class BottomSheetEditor extends BottomSheetDialogFragment {
     }
 
     private void updateUsernameAndBio() {
-
+        HashMap<String, Object> map = new HashMap<>();
+        map.put(type, et_user_input_bottom_sheet_fragment.getText().toString().trim());
+        reference.child(GROUPS).child(id/* group id*/).updateChildren(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getContext(), "Done", Toast.LENGTH_LONG).show();
+                et_user_input_bottom_sheet_fragment.setText("");
+            }
+        });
 
     }
 }

@@ -91,7 +91,7 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_Cart, R.id.menu_group, R.id.homeFragment, R.id.menu_profile).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         setupSmoothBottomMenu();
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        productViewModel = new ProductViewModel();
         productViewModel.getClassificationPC().observe(this, classificationPCS -> {
             NavAdapter catecoriesAdapter = new NavAdapter(classificationPCS, this);
             menu_recycler_view.setAdapter(catecoriesAdapter);

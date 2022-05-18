@@ -52,7 +52,7 @@ public class menu_storeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu_store, container, false);
-        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
+        productViewModel = new ProductViewModel();
 
         productViewModel.getArranged().observe(getViewLifecycleOwner(), new Observer<ArrayList<ArrayList<ArrayList<Product>>>>() {
             @Override
@@ -66,7 +66,7 @@ public class menu_storeFragment extends BaseFragment {
         productViewModel.getChildren().observe(getViewLifecycleOwner(), childCategories -> {
             Log.e("Children", childCategories.toString());
         });
-        FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         fragmentManager.beginTransaction().setCustomAnimations(android.R.animator.fade_in, android.R.animator.fade_out).replace(R.id.frameLayout, new HomeFragment()).commit();
 
         return view;

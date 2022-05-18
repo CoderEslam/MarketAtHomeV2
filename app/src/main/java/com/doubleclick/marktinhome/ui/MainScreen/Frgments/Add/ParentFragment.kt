@@ -54,7 +54,7 @@ class ParentFragment : BaseFragment(), OnItem {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_parent, container, false)
-        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        productViewModel = ProductViewModel()
         ParentRecyceler = view.findViewById(R.id.ParentRecyceler);
         addParent = view.findViewById(R.id.addParent);
         productViewModel.parent.observe(viewLifecycleOwner, Observer {

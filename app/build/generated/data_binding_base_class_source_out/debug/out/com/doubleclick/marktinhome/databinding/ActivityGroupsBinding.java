@@ -27,6 +27,9 @@ public final class ActivityGroupsBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final ImageView QRCode;
+
+  @NonNull
   public final ImageView back;
 
   @NonNull
@@ -98,8 +101,8 @@ public final class ActivityGroupsBinding implements ViewBinding {
   @NonNull
   public final TextView username;
 
-  private ActivityGroupsBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView back,
-      @NonNull ConstraintLayout constraintLayout, @NonNull ImageView cover,
+  private ActivityGroupsBinding(@NonNull ConstraintLayout rootView, @NonNull ImageView QRCode,
+      @NonNull ImageView back, @NonNull ConstraintLayout constraintLayout, @NonNull ImageView cover,
       @NonNull LinearLayout createPost, @NonNull LinearLayout details,
       @NonNull SocialTextView discription, @NonNull TextView history,
       @NonNull CircleImageView imageGroup, @NonNull LinearLayout linearLayout3,
@@ -111,6 +114,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
       @NonNull de.hdodenhof.circleimageview.CircleImageView selectImage, @NonNull Toolbar toolbar,
       @NonNull TextView username) {
     this.rootView = rootView;
+    this.QRCode = QRCode;
     this.back = back;
     this.constraintLayout = constraintLayout;
     this.cover = cover;
@@ -164,6 +168,12 @@ public final class ActivityGroupsBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.QRCode;
+      ImageView QRCode = ViewBindings.findChildViewById(rootView, id);
+      if (QRCode == null) {
+        break missingId;
+      }
+
       id = R.id.back;
       ImageView back = ViewBindings.findChildViewById(rootView, id);
       if (back == null) {
@@ -308,9 +318,9 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityGroupsBinding((ConstraintLayout) rootView, back, constraintLayout, cover,
-          createPost, details, discription, history, imageGroup, linearLayout3, link, linkLayout,
-          locationLayout, main, members, name, nothing, numbers, option, post, postsNum,
+      return new ActivityGroupsBinding((ConstraintLayout) rootView, QRCode, back, constraintLayout,
+          cover, createPost, details, discription, history, imageGroup, linearLayout3, link,
+          linkLayout, locationLayout, main, members, name, nothing, numbers, option, post, postsNum,
           progressBar, selectImage, toolbar, username);
     }
     String missingId = rootView.getResources().getResourceName(id);

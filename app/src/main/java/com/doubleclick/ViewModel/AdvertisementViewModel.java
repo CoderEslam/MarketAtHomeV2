@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created By Eslam Ghazy on 3/8/2022
  */
-public class AdvertisementViewModel extends ViewModel implements AdvInterface {
+public class AdvertisementViewModel  implements AdvInterface {
 
     MutableLiveData<ArrayList<Advertisement>> mutableLiveData = new MutableLiveData<>();
 

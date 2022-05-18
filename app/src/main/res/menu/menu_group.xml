@@ -18,6 +18,11 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/share"
+        android:title="@string/share"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/editCover"
         android:icon="@drawable/camera"
         android:title="@string/edit_cover"
@@ -33,6 +38,12 @@
         android:id="@+id/editName"
         android:icon="@drawable/edit"
         android:title="@string/edit_name"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/editDetils"
+        android:icon="@drawable/edit"
+        android:title="Edit Detils"
         app:showAsAction="never" />
 
 </menu>

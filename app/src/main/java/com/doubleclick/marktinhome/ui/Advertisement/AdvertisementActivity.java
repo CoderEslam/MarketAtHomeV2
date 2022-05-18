@@ -77,8 +77,8 @@ public class AdvertisementActivity extends AppCompatActivity implements AdvInter
         imageAdv = findViewById(R.id.imageAdv);
         description = findViewById(R.id.description);
         upload = findViewById(R.id.upload);
-        advertisementViewModel = new ViewModelProvider(this).get(AdvertisementViewModel.class);
-        storageReference = storageReference = FirebaseStorage.getInstance().getReference(ADVERTISEMENT);
+        advertisementViewModel = new AdvertisementViewModel();
+        storageReference  = FirebaseStorage.getInstance().getReference(ADVERTISEMENT);
         reference = FirebaseDatabase.getInstance("https://marketinhome-99d25-default-rtdb.firebaseio.com").getReference();
         advertisementViewModel.getAllAdv().observe(this, new Observer<ArrayList<Advertisement>>() {
             @Override

@@ -99,7 +99,7 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         addSizes = view.findViewById(R.id.addSizes);
         keyword = view.findViewById(R.id.keyword);
         addkeyword = view.findViewById(R.id.addkeyword);
-        tradmarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
+        tradmarkViewModel = TradmarkViewModel()
         tradmarkViewModel.namesMark.observe(viewLifecycleOwner, Observer {
             trademark.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {

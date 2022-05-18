@@ -25,7 +25,7 @@ class FilterActivity : AppCompatActivity(), OnProduct {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
         FilterRecycler = findViewById(R.id.FilterRecycler)
-        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        productViewModel = ProductViewModel()
         id = intent.getStringExtra("id")!!.toString();
         type = intent.getStringExtra("type")!!.toString()
 
@@ -56,7 +56,7 @@ class FilterActivity : AppCompatActivity(), OnProduct {
 
     override fun onItemProduct(p: Product?) {
         var intent = Intent(this@FilterActivity, productActivity::class.java)
-        intent.putExtra("product",p)
+        intent.putExtra("product", p)
         startActivity(intent)
     }
 }

@@ -108,7 +108,6 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         refresh.setOnRefreshListener {
             homeModels.clear()
             loadHomePage()
-            refresh.isRefreshing = false;
         }
         loadHomePage();
 //        ReloadData();
@@ -162,7 +161,7 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     }
 
     private fun Loadproduct() {
-        val productViewModel = ViewModelProvider(this).get(ProductViewModel::class.java)
+        val productViewModel = ProductViewModel();
         productViewModel.parent.observe(viewLifecycleOwner, Observer {
             if (it.size != 0) {
                 homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
@@ -191,7 +190,7 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     }
 
     private fun Loadtrademark() {
-        val trademarkViewModel = ViewModelProvider(this)[TradmarkViewModel::class.java]
+        val trademarkViewModel = TradmarkViewModel()
         trademarkViewModel.allMark.observe(viewLifecycleOwner, Observer {
             if (it.size != 0) {
                 homeModels.add(HomeModel(it, HomeModel.Trademarks, this))
@@ -201,7 +200,7 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
     }
 
     private fun Loadadvertisement() {
-        val advertisementViewModel = ViewModelProvider(this)[AdvertisementViewModel::class.java];
+        val advertisementViewModel = AdvertisementViewModel();
         advertisementViewModel.allAdv.observe(viewLifecycleOwner, Observer {
             homeModels.add(1, HomeModel(it, HomeModel.Advertisement))
             timer.cancel()

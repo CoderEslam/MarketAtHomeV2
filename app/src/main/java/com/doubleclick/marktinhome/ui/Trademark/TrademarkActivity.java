@@ -82,7 +82,7 @@ public class TrademarkActivity extends AppCompatActivity implements Tradmarkinte
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         reference = FirebaseDatabase.getInstance("https://marketinhome-99d25-default-rtdb.firebaseio.com").getReference();
-        tradmarkViewModel = new ViewModelProvider(this).get(TradmarkViewModel.class);
+        tradmarkViewModel = new TradmarkViewModel();
         tradmarkViewModel.getAllMark().observe(this, new Observer<ArrayList<Trademark>>() {
             @Override
             public void onChanged(ArrayList<Trademark> trademarks) {

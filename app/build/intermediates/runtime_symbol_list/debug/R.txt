@@ -3703,6 +3703,7 @@ int id east 0x7f0a01a2
 int id edit 0x7f0a01a3
 int id editAddress 0x7f0a01a4
 int id editCover 0x7f0a01a5
+int id editDetils 0x7f0a048e
 int id editFragment 0x7f0a01a6
 int id editName 0x7f0a01a7
 int id editOption 0x7f0a01a8
@@ -5174,6 +5175,7 @@ int string search_here 0x7f130143
 int string search_menu_title 0x7f130144
 int string select_complete 0x7f130145
 int string select_limit 0x7f130146
+int string share 0x7f130163
 int string sign_in 0x7f130147
 int string sign_up 0x7f130148
 int string statistices 0x7f130149

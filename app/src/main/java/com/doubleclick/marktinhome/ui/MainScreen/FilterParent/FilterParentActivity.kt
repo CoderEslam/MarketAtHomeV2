@@ -27,7 +27,7 @@ class FilterParentActivity : AppCompatActivity(), OnProduct {
         setContentView(R.layout.activity_filter_parent)
         FilterParent = findViewById(R.id.FilterParent);
         parentCategory = intent.getSerializableExtra("parentCategory") as ParentCategory;
-        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        productViewModel = ProductViewModel()
         productViewModel.FilterByParent(parentCategory.pushId)
         productViewModel.FilterByParentLiveDate().observe(this, Observer {
             val productAdapter = ProductAdapter(it, this)
