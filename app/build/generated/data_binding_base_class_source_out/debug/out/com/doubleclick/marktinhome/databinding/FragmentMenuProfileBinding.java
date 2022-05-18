@@ -32,6 +32,12 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
   public final ConstraintLayout AddTradmark;
 
   @NonNull
+  public final ConstraintLayout QRCode;
+
+  @NonNull
+  public final ConstraintLayout ReadQRCode;
+
+  @NonNull
   public final TextView address;
 
   @NonNull
@@ -66,6 +72,12 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
 
   @NonNull
   public final ImageView imageView12;
+
+  @NonNull
+  public final ImageView imageView15;
+
+  @NonNull
+  public final ImageView imageView16;
 
   @NonNull
   public final ImageView imageView3;
@@ -117,13 +129,15 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
 
   private FragmentMenuProfileBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout AddAdv, @NonNull ConstraintLayout AddProduct,
-      @NonNull ConstraintLayout AddTradmark, @NonNull TextView address,
+      @NonNull ConstraintLayout AddTradmark, @NonNull ConstraintLayout QRCode,
+      @NonNull ConstraintLayout ReadQRCode, @NonNull TextView address,
       @NonNull ConstraintLayout chat, @NonNull ConstraintLayout constraintLayout3,
       @NonNull ConstraintLayout constraintLayout4, @NonNull ConstraintLayout constraintLayout5,
       @NonNull ConstraintLayout constraintLayout6, @NonNull ImageView editAddress,
       @NonNull ImageView editPhone, @NonNull ImageView editname, @NonNull TextView email,
       @NonNull FloatingActionButton fab, @NonNull ImageView imageView12,
-      @NonNull ImageView imageView3, @NonNull ImageView imageView30, @NonNull ImageView imageView32,
+      @NonNull ImageView imageView15, @NonNull ImageView imageView16, @NonNull ImageView imageView3,
+      @NonNull ImageView imageView30, @NonNull ImageView imageView32,
       @NonNull ImageView imageView55, @NonNull ImageView imageView555,
       @NonNull ImageView imageView556, @NonNull ImageView imageView56,
       @NonNull ImageView imageView564, @NonNull ImageView imageView566,
@@ -134,6 +148,8 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
     this.AddAdv = AddAdv;
     this.AddProduct = AddProduct;
     this.AddTradmark = AddTradmark;
+    this.QRCode = QRCode;
+    this.ReadQRCode = ReadQRCode;
     this.address = address;
     this.chat = chat;
     this.constraintLayout3 = constraintLayout3;
@@ -146,6 +162,8 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
     this.email = email;
     this.fab = fab;
     this.imageView12 = imageView12;
+    this.imageView15 = imageView15;
+    this.imageView16 = imageView16;
     this.imageView3 = imageView3;
     this.imageView30 = imageView30;
     this.imageView32 = imageView32;
@@ -206,6 +224,18 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
       id = R.id.AddTradmark;
       ConstraintLayout AddTradmark = ViewBindings.findChildViewById(rootView, id);
       if (AddTradmark == null) {
+        break missingId;
+      }
+
+      id = R.id.QRCode;
+      ConstraintLayout QRCode = ViewBindings.findChildViewById(rootView, id);
+      if (QRCode == null) {
+        break missingId;
+      }
+
+      id = R.id.ReadQRCode;
+      ConstraintLayout ReadQRCode = ViewBindings.findChildViewById(rootView, id);
+      if (ReadQRCode == null) {
         break missingId;
       }
 
@@ -278,6 +308,18 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
       id = R.id.imageView12;
       ImageView imageView12 = ViewBindings.findChildViewById(rootView, id);
       if (imageView12 == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView15;
+      ImageView imageView15 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView15 == null) {
+        break missingId;
+      }
+
+      id = R.id.imageView16;
+      ImageView imageView16 = ViewBindings.findChildViewById(rootView, id);
+      if (imageView16 == null) {
         break missingId;
       }
 
@@ -378,11 +420,11 @@ public final class FragmentMenuProfileBinding implements ViewBinding {
       }
 
       return new FragmentMenuProfileBinding((ConstraintLayout) rootView, AddAdv, AddProduct,
-          AddTradmark, address, chat, constraintLayout3, constraintLayout4, constraintLayout5,
-          constraintLayout6, editAddress, editPhone, editname, email, fab, imageView12, imageView3,
-          imageView30, imageView32, imageView55, imageView555, imageView556, imageView56,
-          imageView564, imageView566, logout, person, phone, recentOrder, statistices, textView3,
-          username);
+          AddTradmark, QRCode, ReadQRCode, address, chat, constraintLayout3, constraintLayout4,
+          constraintLayout5, constraintLayout6, editAddress, editPhone, editname, email, fab,
+          imageView12, imageView15, imageView16, imageView3, imageView30, imageView32, imageView55,
+          imageView555, imageView556, imageView56, imageView564, imageView566, logout, person,
+          phone, recentOrder, statistices, textView3, username);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -22,7 +22,10 @@ import android.provider.ContactsContract
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.ViewGroup
 import android.webkit.MimeTypeMap
 import android.widget.*
 import androidx.annotation.RequiresApi
@@ -62,7 +65,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.StorageTask
 import com.google.firebase.storage.UploadTask
-import com.paypal.android.sdk.u
 import com.vanniktech.emoji.EmojiPopup
 import de.hdodenhof.circleimageview.CircleImageView
 import retrofit2.Call
@@ -71,7 +73,6 @@ import retrofit2.Response
 import java.io.File
 import java.io.IOException
 import java.util.*
-import kotlin.collections.HashMap
 
 
 class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReopsitory.StatusChat {
@@ -114,7 +115,8 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     private var chats: ArrayList<Chat> = ArrayList();
     var audioPath: String? = null
     private var cklicked = true
-    private lateinit var user: User
+    private var user: User? = null
+    private var userId: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,11 +126,11 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                 sharePost = it.getString("sharePost").toString()
             }
             if (!it.isEmpty) {
-                user = it.getSerializable("user") as User
+                userId = it.getString("userId").toString()
             }
             if (it.isEmpty) {
                 val User by navArgs<ChatFragmentArgs>()
-                user = User.user;
+                userId = User.user.id;
             }
         }
     }
@@ -161,6 +163,14 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         username = view.findViewById(R.id.username)
         status = view.findViewById(R.id.status)
         toolbar = view.findViewById(R.id.toolbar)
+        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
+        userViewModel.getUserById(userId)
+        userViewModel.userInfo.observe(viewLifecycleOwner) {
+            user = it
+            Glide.with(requireContext()).load(user!!.image).into(profile_image)
+            username.text = user!!.name;
+            status.text = user!!.status;
+        }
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
         setHasOptionsMenu(true);
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService::class.java)
@@ -170,22 +180,13 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
-        userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         // TODO get All chat from database and put it in arrayList
-        chats.addAll(chatViewModelDatabase.getListData(myId, user!!.id));
+        chats.addAll(chatViewModelDatabase.getListData(myId, userId));
         chatAdapter = BaseMessageAdapter(chats, this, myId);
         chatRecycler.adapter = chatAdapter
         chatAdapter.notifyDataSetChanged()
-
         chatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]
-        chatViewModel.ChatById(user!!.id, this)
-        userViewModel.getUserById(user.id)
-        userViewModel.userInfo.observe(viewLifecycleOwner) {
-            Glide.with(requireContext()).load(it!!.image).into(profile_image)
-            username.text = it!!.name;
-            status.text = it!!.status;
-        }
-
+        chatViewModel.ChatById(userId, this)
         if (sharePost != "null") {
             et_text_message.setText(sharePost)
             sendRecord.visibility = View.GONE
@@ -217,9 +218,9 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                     val map: HashMap<String, Any> = HashMap();
                     map["StatusMessage"] = "beenSeen" //"beenSeen" , "Uploaded"
                     map["seen"] = true
-                    reference.child(CHATS).child(myId).child(user!!.id).child(it.id)
+                    reference.child(CHATS).child(myId).child(userId).child(it.id)
                         .updateChildren(map);
-                    reference.child(CHATS).child(user!!.id).child(myId).child(it.id)
+                    reference.child(CHATS).child(userId).child(myId).child(it.id)
                         .updateChildren(map);
                 }
             } catch (e: Exception) {
@@ -398,11 +399,11 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         map["sender"] = myId
         map["message"] = text
         map["type"] = type
-        map["receiver"] = user!!.id // Id of Admin
+        map["receiver"] = userId // Id of Friend
         map["date"] = time
         map["id"] = id
         map["StatusMessage"] = "Uploaded"
-        val chat = Chat(text, "", type, myId, user!!.id, time, id, "Uploaded", false);
+        val chat = Chat(text, "", type, myId, userId, time, id, "Uploaded", false);
         chatViewModelDatabase.insert(chat);
         upload(id, map);
         et_text_message.setText("")
@@ -413,21 +414,21 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     }
 
     private fun upload(id: String, map: HashMap<String, Any>) {
-        reference.child(CHATS).child(myId).child(user!!.id.toString())
+        reference.child(CHATS).child(myId).child(userId.toString())
             .child(id).updateChildren(map);
-        reference.child(CHATS).child(user!!.id.toString()).child(myId)
+        reference.child(CHATS).child(userId.toString()).child(myId)
             .child(id).updateChildren(map);
     }
 
     private fun makeChatList() {
         val map1: HashMap<String, Any> = HashMap();
-        map1["id"] = user!!.id
+        map1["id"] = userId
         map1["time"] = -1 * Date().time;
-        reference.child(Constantes.CHAT_LIST).child(myId).child(user!!.id).updateChildren(map1)
+        reference.child(Constantes.CHAT_LIST).child(myId).child(userId).updateChildren(map1)
         val map2: HashMap<String, Any> = HashMap();
         map2["id"] = myId
         map2["time"] = -1 * Date().time;
-        reference.child(Constantes.CHAT_LIST).child(user!!.id).child(myId).updateChildren(map2)
+        reference.child(Constantes.CHAT_LIST).child(userId).child(myId).updateChildren(map2)
 
     }
 
@@ -504,7 +505,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     override fun onResume() {
         super.onResume()
         status("online")
-        currentUser(user!!.id!!)
+        currentUser(userId)
     }
 
     override fun onPause() {
@@ -527,7 +528,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         progressDialog.show()
         if (audioPath != null) {
             val storageReference = FirebaseStorage.getInstance()
-                .getReference("/Media/Recording/" + myId + ":" + user!!.id.toString() + System.currentTimeMillis())
+                .getReference("/Media/Recording/" + myId + ":" + userId.toString() + System.currentTimeMillis())
             Log.e("audio path", audioPath)
             val audioFile = Uri.fromFile(File(audioPath))
             Log.e("audioFile = ", audioFile.toString())
@@ -541,7 +542,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                             val time = Date().time
                             val id = reference.push().key.toString() + time;
                             map["sender"] = myId
-                            map["receiver"] = user!!.id.toString()
+                            map["receiver"] = userId.toString()
                             map["message"] = url
                             map["type"] = "voice"
                             map["id"] = id
@@ -552,7 +553,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                                 audioPath,
                                 "voice",
                                 myId,
-                                user!!.id,
+                                userId,
                                 time,
                                 id,
                                 "Uploaded",
@@ -689,7 +690,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                         val time = Date().time;
                         val id = reference.push().key.toString() + time
                         map["sender"] = myId
-                        map["receiver"] = user!!.id
+                        map["receiver"] = userId
                         map["message"] = url
                         map["type"] = fileType.toString()
                         map["id"] = id
@@ -701,7 +702,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                                 uri.toString(),
                                 fileType.toString(),
                                 myId,
-                                user!!.id,
+                                userId,
                                 time,
                                 id,
                                 "Uploaded",
@@ -737,7 +738,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             R.mipmap.ic_launcher,
             "${user!!.name.toString()}: $message",
             "New Message",
-            user!!.id.toString()
+            userId.toString()
         )
         val sender = Sender(data, user!!.token.toString())
         apiService.sendNotification(sender)
@@ -847,7 +848,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         map["id"] = chat.id;
         map["sender"] = chat.sender;
         map["receiver"] = chat.receiver;
-        reference.child(CHATS).child(myId).child(user!!.id).child(chat.id).updateChildren(map)
+        reference.child(CHATS).child(myId).child(userId).child(chat.id).updateChildren(map)
             .addOnCompleteListener {
                 chatViewModelDatabase.delete(chat)
                 chats.removeAt(pos)
@@ -875,9 +876,9 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             map["sender"] = chat.sender;
             map["receiver"] = chat.receiver;
 
-            reference.child(CHATS).child(myId).child(user.id).child(chat.id).updateChildren(map)
+            reference.child(CHATS).child(myId).child(userId).child(chat.id).updateChildren(map)
                 .addOnCompleteListener {
-                    reference.child(CHATS).child(user.id).child(myId).child(chat.id)
+                    reference.child(CHATS).child(userId).child(myId).child(chat.id)
                         .updateChildren(map)
                         .addOnCompleteListener {
                             val c = chat;

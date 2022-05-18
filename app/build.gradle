@@ -146,4 +146,10 @@ dependencies {
     // Picker Color
     implementation 'com.github.duanhong169:colorpicker:1.1.6'
 
+    // for qr genearator
+    implementation 'com.google.zxing:core:3.4.1'
+    implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.4'
+
+
+
 }

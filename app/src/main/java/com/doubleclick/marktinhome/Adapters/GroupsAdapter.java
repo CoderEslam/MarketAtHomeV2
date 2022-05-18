@@ -154,7 +154,7 @@ public class GroupsAdapter extends RecyclerView.Adapter<GroupsAdapter.GroupViewH
 //        });
         holder.ConstraintLayoutimage_name.setOnClickListener(v -> {
             Intent intent = new Intent(holder.itemView.getContext(), ChatActivity.class);
-            intent.putExtra("user", postsData.get(holder.getAdapterPosition()).getUser());
+            intent.putExtra("userId", postsData.get(holder.getAdapterPosition()).getUser().getId());
             holder.itemView.getContext().startActivity(intent);
         });
         holder.playVideo.setOnClickListener(v -> {

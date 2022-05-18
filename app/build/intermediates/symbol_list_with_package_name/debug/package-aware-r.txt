@@ -1526,6 +1526,16 @@ attr yearSelectedStyle
 attr yearStyle
 attr yearTodayStyle
 attr zOrderOnTop
+attr zxing_framing_rect_height
+attr zxing_framing_rect_width
+attr zxing_possible_result_points
+attr zxing_preview_scaling_strategy
+attr zxing_result_view
+attr zxing_scanner_layout
+attr zxing_use_texture_view
+attr zxing_viewfinder_laser
+attr zxing_viewfinder_laser_visibility
+attr zxing_viewfinder_mask
 bool abc_action_bar_embed_tabs
 bool abc_config_actionMenuItemAllCaps
 bool m3_sys_typescale_body_large_text_all_caps
@@ -2200,6 +2210,16 @@ color transparent_black_percent_60
 color white
 color yellow
 color yellowgreen
+color zxing_custom_possible_result_points
+color zxing_custom_result_view
+color zxing_custom_viewfinder_laser
+color zxing_custom_viewfinder_mask
+color zxing_possible_result_points
+color zxing_result_view
+color zxing_status_text
+color zxing_transparent
+color zxing_viewfinder_laser
+color zxing_viewfinder_mask
 dimen abc_action_bar_content_inset_material
 dimen abc_action_bar_content_inset_with_nav
 dimen abc_action_bar_default_height_material
@@ -3219,6 +3239,8 @@ drawable path1306
 drawable pause
 drawable person
 drawable play
+drawable qr_code
+drawable qr_code_scanner
 drawable received_message
 drawable recv_basket_animated
 drawable recv_bg_mic
@@ -3315,9 +3337,11 @@ id NormalSmallIndicator
 id ParentRecyceler
 id PriceOrder
 id ProductRecycler
+id QRCode
 id QuarterLineIndicator
 id RIGHT
 id ROUND
+id ReadQRCode
 id RecyclerReplay
 id RichFragment
 id SHIFT
@@ -3542,6 +3566,7 @@ id cartRecycler
 id cb_check
 id cb_origin
 id center
+id centerCrop
 id center_horizontal
 id center_vertical
 id chain
@@ -3721,7 +3746,9 @@ id fill
 id fill_horizontal
 id fill_vertical
 id filled
+id fitCenter
 id fitToContents
+id fitXY
 id fixed
 id fl_action
 id fl_container
@@ -3790,6 +3817,8 @@ id imageTrademark
 id imageUser
 id imageView
 id imageView12
+id imageView15
+id imageView16
 id imageView2
 id imageView3
 id imageView30
@@ -4005,6 +4034,7 @@ id myImage
 id myLocation
 id myName
 id myRecentOrder
+id my_awesome_toolbar
 id name
 id nameContact
 id nameMark
@@ -4104,6 +4134,7 @@ id progressBar5
 id progress_circular
 id progress_horizontal
 id putRate
+id qr_image
 id quantity
 id quantityOrder
 id radial
@@ -4322,7 +4353,6 @@ id toggleColors
 id toggleSizes
 id toolbar
 id toolbar_Collapsinglayout
-id toolbar_layout
 id top
 id topPanel
 id topParents
@@ -4405,6 +4435,19 @@ id x_right
 id yourRate
 id yourRateText
 id zero_corner_chip
+id zxing_back_button
+id zxing_barcode_scanner
+id zxing_barcode_surface
+id zxing_camera_closed
+id zxing_camera_error
+id zxing_decode
+id zxing_decode_failed
+id zxing_decode_succeeded
+id zxing_possible_result_points
+id zxing_preview_failed
+id zxing_prewiew_size_ready
+id zxing_status_view
+id zxing_viewfinder_view
 integer abc_config_activityDefaultDur
 integer abc_config_activityShortDur
 integer app_bar_elevation_anim_duration
@@ -4515,6 +4558,7 @@ layout activity_main_rich_editor
 layout activity_main_screen
 layout activity_parent
 layout activity_product
+layout activity_read_qrcode
 layout activity_recent_order
 layout activity_seller
 layout activity_start
@@ -4686,6 +4730,7 @@ layout mtrl_picker_header_title_text
 layout mtrl_picker_header_toggle
 layout mtrl_picker_text_input_date
 layout mtrl_picker_text_input_date_range
+layout my_qr_code
 layout nav_header_main
 layout notification_action
 layout notification_action_tombstone
@@ -4751,6 +4796,8 @@ layout view_color_palette
 layout view_label_button
 layout view_marker_button
 layout widget_navigation_drawer
+layout zxing_barcode_scanner
+layout zxing_capture
 menu delete_all_chat
 menu menu_bottom
 menu menu_chat_image_video
@@ -4800,6 +4847,7 @@ raw video
 raw voice_icon_animation
 raw voice_recognition
 raw waves
+raw zxing_beep
 string Continue
 string Ok
 string _1000
@@ -4863,6 +4911,7 @@ string chat_us
 string chip_text
 string clear_text_end_icon_content_description
 string client_id
+string code
 string cols
 string comment
 string comments
@@ -4898,6 +4947,7 @@ string customer_phone
 string custommer_address
 string default_web_client_id
 string define_emoji
+string define_zxingandroidembedded
 string delete
 string delete_all
 string delete_for_everyone
@@ -4975,6 +5025,15 @@ string library_emoji_licenseId
 string library_emoji_owner
 string library_emoji_repositoryLink
 string library_emoji_year
+string library_zxingandroidembedded_author
+string library_zxingandroidembedded_authorWebsite
+string library_zxingandroidembedded_isOpenSource
+string library_zxingandroidembedded_libraryDescription
+string library_zxingandroidembedded_libraryName
+string library_zxingandroidembedded_libraryVersion
+string library_zxingandroidembedded_libraryWebsite
+string library_zxingandroidembedded_licenseId
+string library_zxingandroidembedded_repositoryLink
 string like
 string load_end
 string load_failed
@@ -5110,6 +5169,7 @@ string replay
 string requsts
 string rows
 string save
+string scanne
 string search
 string search_here
 string search_menu_title
@@ -5139,6 +5199,10 @@ string write
 string your_address_clearly
 string your_name
 string your_number_phone
+string zxing_app_name
+string zxing_button_ok
+string zxing_msg_camera_framework_bug
+string zxing_msg_default_status
 style ActionImageView
 style ActivityTranslucent
 style AlertDialog_AppCompat
@@ -6183,6 +6247,7 @@ style Widget_SocialView
 style Widget_Support_CoordinatorLayout
 style emoji_fade_animation_style
 style popupwindow_anim_style
+style zxing_CaptureTheme
 styleable ActionBar background backgroundSplit backgroundStacked contentInsetEnd contentInsetEndWithActions contentInsetLeft contentInsetRight contentInsetStart contentInsetStartWithNavigation customNavigationLayout displayOptions divider elevation height hideOnContentScroll homeAsUpIndicator homeLayout icon indeterminateProgressStyle itemPadding logo navigationMode popupTheme progressBarPadding progressBarStyle subtitle subtitleTextStyle title titleTextStyle
 styleable ActionBarLayout android_layout_gravity
 styleable ActionImageView actionType
@@ -6394,6 +6459,9 @@ styleable ViewStubCompat android_id android_layout android_inflatedId
 styleable ViewTransition android_id SharedValue SharedValueId clearsTag duration ifTagNotSet ifTagSet motionInterpolator motionTarget onStateTransition pathMotionArc setsTag transitionDisable upDuration viewTransitionMode
 styleable include constraintSet
 styleable roundView BackgroundColor
+styleable zxing_camera_preview zxing_framing_rect_height zxing_framing_rect_width zxing_preview_scaling_strategy zxing_use_texture_view
+styleable zxing_finder zxing_possible_result_points zxing_result_view zxing_viewfinder_laser zxing_viewfinder_laser_visibility zxing_viewfinder_mask
+styleable zxing_view zxing_scanner_layout
 xml provider_paths
 xml standalone_badge
 xml standalone_badge_gravity_bottom_end

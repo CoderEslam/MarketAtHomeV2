@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.core:core:1.9.0-alpha03@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/234126f986c0113fc726846ae22cead0/transformed/core-1.9.0-alpha03/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7c79ab6f3b34b228c01f70ebee10449d/transformed/core-1.9.0-alpha03/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/234126f986c0113fc726846ae22cead0/transformed/core-1.9.0-alpha03/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/234126f986c0113fc726846ae22cead0/transformed/core-1.9.0-alpha03/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/234126f986c0113fc726846ae22cead0/transformed/core-1.9.0-alpha03/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7c79ab6f3b34b228c01f70ebee10449d/transformed/core-1.9.0-alpha03/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7c79ab6f3b34b228c01f70ebee10449d/transformed/core-1.9.0-alpha03/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7c79ab6f3b34b228c01f70ebee10449d/transformed/core-1.9.0-alpha03/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.doubleclick.marktinhome.Adapters.ImagesGroupAdapter;
 import com.doubleclick.marktinhome.Model.PostData;
 import com.doubleclick.marktinhome.R;
 import com.doubleclick.marktinhome.Views.carouselrecyclerviewReflaction.CarouselRecyclerview;
@@ -21,6 +23,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Arrays;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -66,7 +70,10 @@ public class ViewPostActivity extends AppCompatActivity {
         like_text = findViewById(R.id.like_text);
         video = findViewById(R.id.video);
         playVideo = findViewById(R.id.playVideo);
-
+        namePublisher.setText(postData.getUser().getName());
+        Glide.with(this).load(postData.getUser().getImage()).into(imagePublisher);
+        caption.setText(postData.getPostsGroup().getText());
+        Comments.setAdapter(new ImagesGroupAdapter(Arrays.asList(postData.getPostsGroup().getMeme().replace("[","").replace("]","").replace(" ","").split(","))));
 
     }
 

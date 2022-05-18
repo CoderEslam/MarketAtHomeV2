@@ -4,7 +4,12 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        jcenter()
         maven { url 'https://jitpack.io' }
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.3"
@@ -18,6 +23,9 @@ buildscript {
         def nav_version = "2.4.1"
         classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
+        // for QR Generator
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.5'
+        classpath "com.github.dcendents:android-maven-gradle-plugin:2.1"
         // TODO butterknife
 //        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
 

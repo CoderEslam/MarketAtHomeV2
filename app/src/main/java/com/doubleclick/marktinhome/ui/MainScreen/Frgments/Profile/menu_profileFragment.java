@@ -1,23 +1,39 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments.Profile;
 
+import static android.content.Context.WINDOW_SERVICE;
 import static com.doubleclick.marktinhome.Model.Constantes.USER;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.doubleclick.DashBoard.DashBoardActivity;
@@ -26,10 +42,17 @@ import com.doubleclick.ViewModel.UserViewModel;
 import com.doubleclick.marktinhome.BaseFragment;
 import com.doubleclick.marktinhome.MainActivity;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.Views.ReadQRCode.google.zxing.client.android.Intents;
+import com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.ScanContract;
+import com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.ScanOptions;
+import com.doubleclick.marktinhome.Views.qrgenearator.QRGEncoder;
 import com.doubleclick.marktinhome.ui.Add.AddActivity;
 import com.doubleclick.marktinhome.ui.Advertisement.AdvertisementActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Chat.ChatActivity;
+import com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogComment;
+import com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogQRCode;
 import com.doubleclick.marktinhome.ui.MainScreen.RecentOrderActivity;
+import com.doubleclick.marktinhome.ui.ReadQRCodeActivity;
 import com.doubleclick.marktinhome.ui.Trademark.TrademarkActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -37,6 +60,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.util.HashMap;
 import java.util.Objects;
 
+import androidmads.library.qrgenearator.QRGContents;
+import androidmads.library.qrgenearator.QRGSaver;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
@@ -49,13 +74,35 @@ public class menu_profileFragment extends BaseFragment {
     private ImageView editAddress, editPhone, editname;
     private AlertDialog.Builder builder;
     private FloatingActionButton fab;
-    private ConstraintLayout AddProduct, AddAdv, AddTradmark, recentOrder, chat, statistices;
+    private ConstraintLayout AddProduct, AddAdv, AddTradmark, recentOrder, chat, statistices, QRCode, ReadQRCode;
     private ConstraintLayout logout;
+
 
     public menu_profileFragment() {
         // Required empty public constructor
     }
 
+
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+            result -> {
+                if (result.getContents() == null) {
+                    Intent originalIntent = result.getOriginalIntent();
+                    if (originalIntent == null) {
+                        Log.d("MainActivity", "Cancelled scan");
+                        Toast.makeText(requireContext(), "Cancelled", Toast.LENGTH_LONG).show();
+                    } else if (originalIntent.hasExtra(Intents.Scan.MISSING_CAMERA_PERMISSION)) {
+                        Log.d("MainActivity", "Cancelled scan due to missing camera permission");
+                        Toast.makeText(requireContext(), "Cancelled due to missing camera permission", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Log.d("MainActivity", "Scanned");
+                    // todo send my code
+                    Intent intent = new Intent(requireContext(), ChatActivity.class);
+                    intent.putExtra("userId", result.getContents());
+                    startActivity(intent);
+//                    Toast.makeText(requireContext(), "Scanned Resulte = : " + result.getContents(), Toast.LENGTH_LONG).show();
+                }
+            });
 
     public static menu_profileFragment newInstance(String param1, String param2) {
         menu_profileFragment fragment = new menu_profileFragment();
@@ -89,7 +136,10 @@ public class menu_profileFragment extends BaseFragment {
         AddTradmark = view.findViewById(R.id.AddTradmark);
         recentOrder = view.findViewById(R.id.recentOrder);
         statistices = view.findViewById(R.id.statistices);
+        QRCode = view.findViewById(R.id.QRCode);
+        ReadQRCode = view.findViewById(R.id.ReadQRCode);
         chat = view.findViewById(R.id.chat);
+
 
         userViewModel.getUser().observe(getViewLifecycleOwner(), user -> {
             if (user != null) {
@@ -140,6 +190,15 @@ public class menu_profileFragment extends BaseFragment {
 
         recentOrder.setOnClickListener(v -> {
             startActivity(new Intent(requireContext(), RecentOrderActivity.class));
+        });
+
+        QRCode.setOnClickListener(v -> {
+            BottomDialogQRCode bottomDialogQRCode = new BottomDialogQRCode(myId);
+            bottomDialogQRCode.show(requireActivity().getSupportFragmentManager(), "QR Code");
+        });
+        ReadQRCode.setOnClickListener(v -> {
+            ScanOptions options = new ScanOptions().setCaptureActivity(ReadQRCodeActivity.class);
+            barcodeLauncher.launch(options);
         });
         return view;
     }

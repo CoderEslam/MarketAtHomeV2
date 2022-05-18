@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.VideoView;
 import androidx.annotation.NonNull;
@@ -43,6 +44,9 @@ public final class PlayVoiceRightBinding implements ViewBinding {
   public final ProgressBar progress;
 
   @NonNull
+  public final SeekBar seekBar;
+
+  @NonNull
   public final ImageView seen;
 
   @NonNull
@@ -54,8 +58,8 @@ public final class PlayVoiceRightBinding implements ViewBinding {
   private PlayVoiceRightBinding(@NonNull ConstraintLayout rootView,
       @NonNull ConstraintLayout ContinerVoice, @NonNull CardView cardView5,
       @NonNull ImageView downloadVoice, @NonNull LottieAnimationView file,
-      @NonNull ImageView playVoice, @NonNull ProgressBar progress, @NonNull ImageView seen,
-      @NonNull TextView time, @NonNull VideoView video) {
+      @NonNull ImageView playVoice, @NonNull ProgressBar progress, @NonNull SeekBar seekBar,
+      @NonNull ImageView seen, @NonNull TextView time, @NonNull VideoView video) {
     this.rootView = rootView;
     this.ContinerVoice = ContinerVoice;
     this.cardView5 = cardView5;
@@ -63,6 +67,7 @@ public final class PlayVoiceRightBinding implements ViewBinding {
     this.file = file;
     this.playVoice = playVoice;
     this.progress = progress;
+    this.seekBar = seekBar;
     this.seen = seen;
     this.time = time;
     this.video = video;
@@ -127,6 +132,12 @@ public final class PlayVoiceRightBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.seekBar;
+      SeekBar seekBar = ViewBindings.findChildViewById(rootView, id);
+      if (seekBar == null) {
+        break missingId;
+      }
+
       id = R.id.seen;
       ImageView seen = ViewBindings.findChildViewById(rootView, id);
       if (seen == null) {
@@ -146,7 +157,7 @@ public final class PlayVoiceRightBinding implements ViewBinding {
       }
 
       return new PlayVoiceRightBinding((ConstraintLayout) rootView, ContinerVoice, cardView5,
-          downloadVoice, file, playVoice, progress, seen, time, video);
+          downloadVoice, file, playVoice, progress, seekBar, seen, time, video);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
