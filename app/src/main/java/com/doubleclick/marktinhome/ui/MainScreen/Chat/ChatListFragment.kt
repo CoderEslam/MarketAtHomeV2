@@ -29,7 +29,7 @@ class ChatListFragment : BaseFragment(), UserInter {
     lateinit var allUser: ShimmerRecyclerView;
     lateinit var chatListViewModel: ChatListViewModel
     lateinit var chatUser: FloatingActionButton
-    private var sharePost: String = ""
+    private var sharePost: String = "null"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,20 +70,19 @@ class ChatListFragment : BaseFragment(), UserInter {
     override fun AllUser(user: ArrayList<User>?) {}
 
     override fun OnUserLisitner(user: User) {
-
         try {
-            if (sharePost != "") {
-                var chatFragment = ChatFragment();
+            if (sharePost != "null") {
+                val chatFragment = ChatFragment();
                 val bundle = Bundle();
                 bundle.putString("sharePost", sharePost);
-                bundle.putSerializable("user", user);
+                bundle.putString("userId", user.id);
                 chatFragment.arguments = bundle
                 requireActivity().supportFragmentManager.beginTransaction()
                     .replace(R.id.main_fragment_Chat, chatFragment).commit()
             } else {
                 findNavController().navigate(
                     ChatListFragmentDirections.actionChatListFragmentToChatFragment(
-                        user
+                        user.id
                     )
                 )
             }

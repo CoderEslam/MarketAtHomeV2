@@ -116,7 +116,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
     var audioPath: String? = null
     private var cklicked = true
     private var user: User? = null
-    private var userId: String = ""
+    private var userId: String = "null"
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -130,7 +130,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             }
             if (it.isEmpty) {
                 val User by navArgs<ChatFragmentArgs>()
-                userId = User.user.id;
+                userId = User.userId.toString();
             }
         }
     }

@@ -11,8 +11,8 @@ import com.doubleclick.marktinhome.R
 class ChatActivity : AppCompatActivity() {
 
 
-    private lateinit var userId: String
-    private var sharePost: String = ""
+    private var userId: String = "null"
+    private var sharePost: String = "null"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,14 +22,14 @@ class ChatActivity : AppCompatActivity() {
             // todo recive userId from GroupAdapter and menu_profileFragment
             userId = intent.getStringExtra("userId").toString()
             sharePost = intent.getStringExtra("sharePost").toString()
-            if (userId != "") {
+            if (userId != "null") {
                 val chatFragment = ChatFragment()
                 val bundle = Bundle();
                 bundle.putString("userId", userId)
                 chatFragment.arguments = bundle
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.main_fragment_Chat, chatFragment).commit()
-            } else if (sharePost != "") {
+            } else if (sharePost != "null") {
                 val chatListFragment = ChatListFragment();
                 val bundle = Bundle();
                 bundle.putString("sharePost", sharePost);

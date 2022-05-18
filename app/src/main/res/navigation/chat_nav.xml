@@ -45,8 +45,9 @@
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat">
         <argument
-            android:name="user"
-            app:argType="com.doubleclick.marktinhome.Model.User" />
+            android:name="userId"
+            app:argType="string"
+            app:nullable="false" />
     </fragment>
 
 
