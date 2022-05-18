@@ -1,12 +1,9 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Chat;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.navigation.NavArgs;
-import com.doubleclick.marktinhome.Model.User;
-import java.io.Serializable;
 import java.lang.IllegalArgumentException;
 import java.lang.Object;
 import java.lang.Override;
@@ -30,19 +27,15 @@ public class ChatFragmentArgs implements NavArgs {
   public static ChatFragmentArgs fromBundle(@NonNull Bundle bundle) {
     ChatFragmentArgs __result = new ChatFragmentArgs();
     bundle.setClassLoader(ChatFragmentArgs.class.getClassLoader());
-    if (bundle.containsKey("user")) {
-      User user;
-      if (Parcelable.class.isAssignableFrom(User.class) || Serializable.class.isAssignableFrom(User.class)) {
-        user = (User) bundle.get("user");
-      } else {
-        throw new UnsupportedOperationException(User.class.getName() + " must implement Parcelable or Serializable or must be an Enum.");
+    if (bundle.containsKey("userId")) {
+      String userId;
+      userId = bundle.getString("userId");
+      if (userId == null) {
+        throw new IllegalArgumentException("Argument \"userId\" is marked as non-null but was passed a null value.");
       }
-      if (user == null) {
-        throw new IllegalArgumentException("Argument \"user\" is marked as non-null but was passed a null value.");
-      }
-      __result.arguments.put("user", user);
+      __result.arguments.put("userId", userId);
     } else {
-      throw new IllegalArgumentException("Required argument \"user\" is missing and does not have an android:defaultValue");
+      throw new IllegalArgumentException("Required argument \"userId\" is missing and does not have an android:defaultValue");
     }
     return __result;
   }
@@ -51,38 +44,32 @@ public class ChatFragmentArgs implements NavArgs {
   @SuppressWarnings("unchecked")
   public static ChatFragmentArgs fromSavedStateHandle(@NonNull SavedStateHandle savedStateHandle) {
     ChatFragmentArgs __result = new ChatFragmentArgs();
-    if (savedStateHandle.contains("user")) {
-      User user;
-      user = savedStateHandle.get("user");
-      if (user == null) {
-        throw new IllegalArgumentException("Argument \"user\" is marked as non-null but was passed a null value.");
+    if (savedStateHandle.contains("userId")) {
+      String userId;
+      userId = savedStateHandle.get("userId");
+      if (userId == null) {
+        throw new IllegalArgumentException("Argument \"userId\" is marked as non-null but was passed a null value.");
       }
-      __result.arguments.put("user", user);
+      __result.arguments.put("userId", userId);
     } else {
-      throw new IllegalArgumentException("Required argument \"user\" is missing and does not have an android:defaultValue");
+      throw new IllegalArgumentException("Required argument \"userId\" is missing and does not have an android:defaultValue");
     }
     return __result;
   }
 
   @SuppressWarnings("unchecked")
   @NonNull
-  public User getUser() {
-    return (User) arguments.get("user");
+  public String getUserId() {
+    return (String) arguments.get("userId");
   }
 
   @SuppressWarnings("unchecked")
   @NonNull
   public Bundle toBundle() {
     Bundle __result = new Bundle();
-    if (arguments.containsKey("user")) {
-      User user = (User) arguments.get("user");
-      if (Parcelable.class.isAssignableFrom(User.class) || user == null) {
-        __result.putParcelable("user", Parcelable.class.cast(user));
-      } else if (Serializable.class.isAssignableFrom(User.class)) {
-        __result.putSerializable("user", Serializable.class.cast(user));
-      } else {
-        throw new UnsupportedOperationException(User.class.getName() + " must implement Parcelable or Serializable or must be an Enum.");
-      }
+    if (arguments.containsKey("userId")) {
+      String userId = (String) arguments.get("userId");
+      __result.putString("userId", userId);
     }
     return __result;
   }
@@ -91,15 +78,9 @@ public class ChatFragmentArgs implements NavArgs {
   @NonNull
   public SavedStateHandle toSavedStateHandle() {
     SavedStateHandle __result = new SavedStateHandle();
-    if (arguments.containsKey("user")) {
-      User user = (User) arguments.get("user");
-      if (Parcelable.class.isAssignableFrom(User.class) || user == null) {
-        __result.set("user", Parcelable.class.cast(user));
-      } else if (Serializable.class.isAssignableFrom(User.class)) {
-        __result.set("user", Serializable.class.cast(user));
-      } else {
-        throw new UnsupportedOperationException(User.class.getName() + " must implement Parcelable or Serializable or must be an Enum.");
-      }
+    if (arguments.containsKey("userId")) {
+      String userId = (String) arguments.get("userId");
+      __result.set("userId", userId);
     }
     return __result;
   }
@@ -113,10 +94,10 @@ public class ChatFragmentArgs implements NavArgs {
         return false;
     }
     ChatFragmentArgs that = (ChatFragmentArgs) object;
-    if (arguments.containsKey("user") != that.arguments.containsKey("user")) {
+    if (arguments.containsKey("userId") != that.arguments.containsKey("userId")) {
       return false;
     }
-    if (getUser() != null ? !getUser().equals(that.getUser()) : that.getUser() != null) {
+    if (getUserId() != null ? !getUserId().equals(that.getUserId()) : that.getUserId() != null) {
       return false;
     }
     return true;
@@ -125,14 +106,14 @@ public class ChatFragmentArgs implements NavArgs {
   @Override
   public int hashCode() {
     int result = 1;
-    result = 31 * result + (getUser() != null ? getUser().hashCode() : 0);
+    result = 31 * result + (getUserId() != null ? getUserId().hashCode() : 0);
     return result;
   }
 
   @Override
   public String toString() {
     return "ChatFragmentArgs{"
-        + "user=" + getUser()
+        + "userId=" + getUserId()
         + "}";
   }
 
@@ -145,11 +126,11 @@ public class ChatFragmentArgs implements NavArgs {
     }
 
     @SuppressWarnings("unchecked")
-    public Builder(@NonNull User user) {
-      if (user == null) {
-        throw new IllegalArgumentException("Argument \"user\" is marked as non-null but was passed a null value.");
+    public Builder(@NonNull String userId) {
+      if (userId == null) {
+        throw new IllegalArgumentException("Argument \"userId\" is marked as non-null but was passed a null value.");
       }
-      this.arguments.put("user", user);
+      this.arguments.put("userId", userId);
     }
 
     @NonNull
@@ -160,18 +141,18 @@ public class ChatFragmentArgs implements NavArgs {
 
     @NonNull
     @SuppressWarnings("unchecked")
-    public Builder setUser(@NonNull User user) {
-      if (user == null) {
-        throw new IllegalArgumentException("Argument \"user\" is marked as non-null but was passed a null value.");
+    public Builder setUserId(@NonNull String userId) {
+      if (userId == null) {
+        throw new IllegalArgumentException("Argument \"userId\" is marked as non-null but was passed a null value.");
       }
-      this.arguments.put("user", user);
+      this.arguments.put("userId", userId);
       return this;
     }
 
     @SuppressWarnings({"unchecked","GetterOnBuilder"})
     @NonNull
-    public User getUser() {
-      return (User) arguments.get("user");
+    public String getUserId() {
+      return (String) arguments.get("userId");
     }
   }
 }

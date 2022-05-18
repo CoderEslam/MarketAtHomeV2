@@ -7,7 +7,7 @@ public final class ChatListFragment extends com.doubleclick.marktinhome.BaseFrag
     public com.todkars.shimmer.ShimmerRecyclerView allUser;
     public com.doubleclick.ViewModel.ChatListViewModel chatListViewModel;
     public com.google.android.material.floatingactionbutton.FloatingActionButton chatUser;
-    private java.lang.String sharePost = "";
+    private java.lang.String sharePost = "null";
     private java.util.HashMap _$_findViewCache;
     
     public ChatListFragment() {
