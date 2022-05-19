@@ -6,9 +6,11 @@ import static com.doubleclick.marktinhome.Model.Constantes.CART;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import com.doubleclick.CartInter;
+import com.doubleclick.OnCartLisnter;
 import com.doubleclick.marktinhome.Model.Cart;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -21,28 +23,23 @@ import java.util.Objects;
  */
 public class CartRepository extends BaseRepository {
 
-    ArrayList<Cart> carts = new ArrayList<>();
-    CartInter cartinter;
+    private OnCartLisnter onCartLisnter;
 
-    public CartRepository(CartInter cartinter) {
-        this.cartinter = cartinter;
+    public CartRepository(OnCartLisnter onCartLisnter) {
+        this.onCartLisnter = onCartLisnter;
     }
 
     // for User Orders
     public void getCart() {
-        reference.child(CART).addValueEventListener(new ValueEventListener() {
+        reference.child(CART).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                carts.clear();
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 try {
                     if (isNetworkConnected()) {
                         if (snapshot.exists()) {
-                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                Cart cart = dataSnapshot.getValue(Cart.class);
-                                if (Objects.requireNonNull(cart).getBuyerId().equals(myId)) {
-                                    carts.add(cart);
-                                    cartinter.getCart(carts);
-                                }
+                            Cart cart = snapshot.getValue(Cart.class);
+                            if (Objects.requireNonNull(cart).getBuyerId().equals(myId)) {
+                                onCartLisnter.getCart(cart);
                             }
                         }
                     } else {
@@ -51,6 +48,28 @@ public class CartRepository extends BaseRepository {
                 } catch (Exception e) {
                     Log.e("ExceptionCart", e.getMessage());
                 }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Cart cart = snapshot.getValue(Cart.class);
+                if (Objects.requireNonNull(cart).getBuyerId().equals(myId)) {
+                    onCartLisnter.OnAddItemOrder(cart, 0);
+                    onCartLisnter.OnMinsItemOrder(cart, 0);
+                }
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                Cart cart = snapshot.getValue(Cart.class);
+                if (Objects.requireNonNull(cart).getBuyerId().equals(myId)) {
+                    onCartLisnter.OnDeleteItemOrder(cart, 0);
+                }
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override

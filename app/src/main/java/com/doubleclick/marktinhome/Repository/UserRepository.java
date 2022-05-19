@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -61,28 +62,33 @@ public class UserRepository extends BaseRepository {
     }
 
     public void getInfoUserById(String id) {
-        reference.child(USER).child(id).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                try {
-                    if (isNetworkConnected()) {
-                        if (snapshot.exists()) {
-                            User user = snapshot.getValue(User.class);
-                            userInter.ItemUserInfoById(user);
+        try {
+            reference.child(USER).child(id).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    try {
+                        if (isNetworkConnected()) {
+                            if (snapshot.exists()) {
+                                User user = snapshot.getValue(User.class);
+                                userInter.ItemUserInfoById(user);
+                            }
+                        } else {
+                            ShowToast("No Internet Connection");
                         }
-                    } else {
-                        ShowToast("No Internet Connection");
+                    } catch (Exception e) {
+                        Log.e("Exception", e.getMessage());
                     }
-                } catch (Exception e) {
-                    Log.e("Exception", e.getMessage());
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
+                }
+            });
+        } catch (DatabaseException e) {
+
+        }
+
     }
 
     public void getAllUser(String s) {

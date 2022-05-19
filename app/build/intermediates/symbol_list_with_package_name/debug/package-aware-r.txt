@@ -3405,7 +3405,6 @@ id action_LinkFragment_to_RichFragment
 id action_RichFragment_to_LinkFragment
 id action_RichFragment_to_TableFragment
 id action_TableFragment_to_RichFragment
-id action_addressFragment_to_homeFragment
 id action_allUsersFragment_to_chatFragment
 id action_bar
 id action_bar_activity_content
@@ -3424,12 +3423,10 @@ id action_context_bar
 id action_divider
 id action_homeFragment_to_menu_Cart
 id action_image
-id action_menu_Cart_to_addressFragment
 id action_menu_Cart_to_menu_profile
 id action_menu_divider
 id action_menu_presenter
 id action_menu_profile_to_groupFragment
-id action_menu_store_to_menu_Cart
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
@@ -3458,7 +3455,6 @@ id addVideo
 id add_navigation
 id addkeyword
 id address
-id addressFragment
 id adjust_height
 id adjust_width
 id admins
@@ -3759,7 +3755,6 @@ id footer_bar
 id foreColor
 id forever
 id fragment_container_view_tag
-id frameLayout
 id frost
 id ghost_view
 id ghost_view_holder
@@ -3994,7 +3989,6 @@ id menu_Cart
 id menu_group
 id menu_profile
 id menu_recycler_view
-id menu_store
 id message
 id middle
 id mini
@@ -4177,6 +4171,7 @@ id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
 id scale
+id scanne
 id screen
 id scroll
 id scrollIndicatorDown
@@ -4402,6 +4397,7 @@ id uploadFragment
 id uploadStep2Fragment
 id url
 id useLogo
+id used
 id userName
 id user_profile_image
 id user_profile_name
@@ -4609,7 +4605,6 @@ layout emoji_view
 layout emoji_view_category
 layout empty_view
 layout flag_bubble_colorpickerview_skydoves
-layout fragment_address
 layout fragment_all_users
 layout fragment_cart
 layout fragment_chat
@@ -4627,10 +4622,8 @@ layout fragment_log_in
 layout fragment_main
 layout fragment_main_login
 layout fragment_maps
-layout fragment_menu__cart
 layout fragment_menu_list
 layout fragment_menu_profile
-layout fragment_menu_store
 layout fragment_month
 layout fragment_pager
 layout fragment_parent

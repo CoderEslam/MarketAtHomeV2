@@ -47,10 +47,12 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
 
 
     lateinit var marke: String
+    lateinit var usedOrnew: String
     private lateinit var productName: EditText;
     private lateinit var productPrice: EditText;
     private lateinit var productLastPrice: EditText;
     private lateinit var trademark: AppCompatSpinner;
+    private lateinit var used: AppCompatSpinner
     private lateinit var Upload: Button;
     private lateinit var tradmarkViewModel: TradmarkViewModel
     private lateinit var ratingSeller: RatingBar
@@ -94,6 +96,7 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         addColor = view.findViewById(R.id.addColor);
         trademark = view.findViewById(R.id.trademark);
         Upload = view.findViewById(R.id.Upload);
+        used = view.findViewById(R.id.used);
         ratingSeller = view.findViewById(R.id.ratingSeller);
         groupSize = view.findViewById(R.id.groupSize);
         addSizes = view.findViewById(R.id.addSizes);
@@ -212,6 +215,7 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
             builder.setView(view)
             builder.show()
         }
+        Used()
         return view;
     }
 
@@ -282,6 +286,32 @@ class UploadFragment : BaseFragment(), KeywordAdapter.OnDelete, KeywordBottomShe
         keyword.adapter = keywordAdapter
         keywordAdapter.notifyItemRangeInserted(0, itemsKeys.size)
         keywordAdapter.notifyDataSetChanged()
+    }
+
+    private fun Used() {
+        var used_new: ArrayList<String> = ArrayList()
+        used_new.add("used")
+        used_new.add("new")
+        used.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                usedOrnew = used_new[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // write code to perform some action
+                usedOrnew = used_new[0]
+
+            }
+        }
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, used_new)
+        used.adapter = adapter
+
     }
 
 }

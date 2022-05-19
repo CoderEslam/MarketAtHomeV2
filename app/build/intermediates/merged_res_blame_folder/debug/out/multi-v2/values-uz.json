@@ -4,23 +4,6 @@
             "outputFile": "C:\\Users\\eslam\\AndroidStudioProjects\\Eslam\\MarketAtHomeforSeller\\MarktInHome\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-uz\\values-uz.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\7c79ab6f3b34b228c01f70ebee10449d\\transformed\\core-1.9.0-alpha03\\res\\values-uz\\values-uz.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "109",
-                        "startColumns": "4",
-                        "startOffsets": "9947",
-                        "endColumns": "100",
-                        "endOffsets": "10043"
-                    }
-                },
-                {
                     "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\7369cfe66a7cc72b8b6c47a7d4dc09ae\\transformed\\jetified-play-services-base-18.0.1\\res\\values-uz\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -69,6 +52,23 @@
                         "startOffsets": "5756",
                         "endColumns": "75",
                         "endOffsets": "5827"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\eslam\\.gradle\\caches\\transforms-3\\3a2823c7827142b98a17238cf75f6aff\\transformed\\core-1.9.0-alpha04\\res\\values-uz\\values-uz.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "109",
+                        "startColumns": "4",
+                        "startOffsets": "9947",
+                        "endColumns": "100",
+                        "endOffsets": "10043"
                     }
                 },
                 {

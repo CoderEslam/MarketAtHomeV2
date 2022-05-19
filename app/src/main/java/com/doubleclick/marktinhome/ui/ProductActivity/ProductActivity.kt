@@ -214,17 +214,17 @@ class productActivity : AppCompatActivity() {
             if (qNumber != 0 && !ToggleItem.equals("")) {
                 val id = myId + ":" + product.productId
                 val map: HashMap<String, Any> = HashMap();
-                map["ProductId"] = product.productId;
-                map["BuyerId"] = myId;
-                map["SellerId"] = product.adminId;
-                map["TotalPrice"] = (qNumber.toDouble() * product.price.toDouble()).toLong();
-                map["Quantity"] = qNumber.toLong();
+                map["productId"] = product.productId;
+                map["buyerId"] = myId;
+                map["sellerId"] = product.adminId;
+                map["totalPrice"] = (qNumber.toDouble() * product.price.toDouble()).toLong();
+                map["quantity"] = qNumber.toLong();
                 map["price"] = product.price.toLong();
                 map["images"] = product.images;
                 map["productName"] = product.productName;
                 map["lastPrice"] = product.lastPrice
                 map["id"] = id;
-                map["ToggleItem"] = ToggleItem!!
+                map["toggleItem"] = ToggleItem!!
                 reference.child(Constantes.CART).child(id).setValue(map);
             } else {
                 ShowToast("you can't order less than one!");

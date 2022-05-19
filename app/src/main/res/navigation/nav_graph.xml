@@ -16,27 +16,9 @@
             app:exitAnim="@anim/righttoleft"
             app:popEnterAnim="@anim/lefttoright"
             app:popExitAnim="@anim/righttoleft" />
-        <action
-            android:id="@+id/action_menu_Cart_to_addressFragment"
-            app:destination="@id/addressFragment"
-            app:enterAnim="@anim/lefttoright"
-            app:exitAnim="@anim/righttoleft"
-            app:popEnterAnim="@anim/lefttoright"
-            app:popExitAnim="@anim/righttoleft" />
-    </fragment>
-    <fragment
-        android:id="@+id/menu_store"
-        android:name="com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_storeFragment"
-        tools:layout="@layout/fragment_menu_store">
 
-        <action
-            android:id="@+id/action_menu_store_to_menu_Cart"
-            app:destination="@id/menu_Cart"
-            app:enterAnim="@anim/lefttoright"
-            app:exitAnim="@anim/righttoleft"
-            app:popEnterAnim="@anim/lefttoright"
-            app:popExitAnim="@anim/righttoleft" />
     </fragment>
+
     <fragment
         android:id="@+id/menu_profile"
         android:name="com.doubleclick.marktinhome.ui.MainScreen.Frgments.Profile.menu_profileFragment"
@@ -58,20 +40,6 @@
             app:popEnterAnim="@anim/lefttoright"
             app:popExitAnim="@anim/righttoleft" />
 
-    </fragment>
-
-
-    <fragment
-        android:id="@+id/addressFragment"
-        android:name="com.doubleclick.marktinhome.ui.MainScreen.Address.AddressFragment"
-        tools:layout="@layout/fragment_address">
-        <action
-            android:id="@+id/action_addressFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/lefttoright"
-            app:exitAnim="@anim/righttoleft"
-            app:popEnterAnim="@anim/lefttoright"
-            app:popExitAnim="@anim/righttoleft" />
     </fragment>
 
 

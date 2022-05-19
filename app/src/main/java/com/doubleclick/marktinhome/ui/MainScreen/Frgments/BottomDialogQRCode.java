@@ -31,10 +31,10 @@ public class BottomDialogQRCode extends BottomSheetDialogFragment {
     private ImageView qr_image;
     private Bitmap bitmap;
     private QRGEncoder qrgEncoder;
-    private String myId;
+    private String code;
 
-    public BottomDialogQRCode(String myId) {
-        this.myId = myId;
+    public BottomDialogQRCode(String code) {
+        this.code = code;
     }
 
     @Nullable
@@ -43,7 +43,7 @@ public class BottomDialogQRCode extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.my_qr_code, container, false);
         qr_image = view.findViewById(R.id.qr_image);
 
-        if (TextUtils.isEmpty(myId)) {
+        if (TextUtils.isEmpty(code)) {
             // if the edittext inputs are empty then execute
             // this method showing a toast message.
             Toast.makeText(requireContext(), "Enter some text to generate QR Code", Toast.LENGTH_SHORT).show();
@@ -73,7 +73,7 @@ public class BottomDialogQRCode extends BottomSheetDialogFragment {
 
             // setting this dimensions inside our qr code
             // encoder to generate our qr code.
-            qrgEncoder = new QRGEncoder(myId, null, QRGContents.Type.TEXT, dimen);
+            qrgEncoder = new QRGEncoder(code, null, QRGContents.Type.TEXT, dimen);
             // getting our qrcode in the form of bitmap.
             bitmap = qrgEncoder.getBitmap();
             // the bitmap is set inside our image

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.doubleclick.OnCartLisnter;
 import com.doubleclick.marktinhome.Model.Cart;
 import com.doubleclick.marktinhome.R;
+import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
@@ -27,13 +28,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     private ArrayList<Cart> carts = new ArrayList<>();
     private OnCartLisnter onCartLisnter;
+    private DatabaseReference reference;
 
     public CartAdapter(ArrayList<Cart> carts) {
         this.carts = carts;
     }
 
-    public CartAdapter(ArrayList<Cart> carts, OnCartLisnter onCartLisnter) {
+    public CartAdapter(ArrayList<Cart> carts, DatabaseReference reference, OnCartLisnter onCartLisnter) {
         this.carts = carts;
+        this.reference = reference;
         this.onCartLisnter = onCartLisnter;
     }
 
@@ -53,18 +56,17 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             Glide.with(holder.itemView.getContext()).load(carts.get(position).getImages()).into(holder.imageCart);
 
             holder.add.setOnClickListener(v -> {
-                onCartLisnter.OnAddItemOrder(carts.get(position));
+                onCartLisnter.OnAddItemOrder(carts.get(position),position);
             });
             holder.mins.setOnClickListener(v -> {
-                onCartLisnter.OnMinsItemOrder(carts.get(position));
+                onCartLisnter.OnMinsItemOrder(carts.get(position),position);
             });
 
             holder.delete.setOnClickListener(v -> {
                 try {
-                    onCartLisnter.OnDeleteItemOrder(carts.get(position));
+                    onCartLisnter.OnDeleteItemOrder(carts.get(position),position);
                     holder.itemView.setVisibility(View.GONE);
                     notifyItemRemoved(holder.getAdapterPosition());
-                    Toast.makeText(holder.itemView.getContext(), "Deleted swipe to refresh", Toast.LENGTH_SHORT).show();
                 } catch (IndexOutOfBoundsException e) {
                     Log.e("CartAdapterException", e.getMessage());
                 }

@@ -11,6 +11,7 @@ import com.doubleclick.marktinhome.Model.Chat;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -55,61 +56,68 @@ public class ChatReopsitory extends BaseRepository {
 //                }
 //            }
 //        });
-        reference.child(CHATS).child(myId).child(userId).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                try {
-                    Chat chat = snapshot.getValue(Chat.class);
-                    Log.e("onChildAdded", Objects.requireNonNull(snapshot.getValue(Chat.class)).toString());
-                    assert chat != null;
-                    Log.e("newInsert", chat.toString());
-//                if (chat.getSender().equals(userId)){
-                    chats.newInsertChat(chat);
-//                }
-                } catch (Exception ignored) {
+        try {
+            reference.child(CHATS).child(myId).child(userId).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    try {
+                        Chat chat = snapshot.getValue(Chat.class);
+                        Log.e("onChildAdded", Objects.requireNonNull(snapshot.getValue(Chat.class)).toString());
+                        assert chat != null;
+                        Log.e("newInsert", chat.toString());
+                        if (!chat.getMessage().contains("@$@this@message@deleted")) {
+                            chats.newInsertChat(chat);
+                        }
+                    } catch (Exception ignored) {
+
+                    }
+
 
                 }
 
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                try {
-                    Chat chat = snapshot.getValue(Chat.class);
-                    assert chat != null;
-                    if (!chat.getMessage().contains("@$@this@message@deleted")) {
-                        if (chat.getStatusMessage().equals("beenSeen") && chat.getReceiver().equals(myId) && chat.isSeen()) {
-                            statusChat.BeenSeenForFriend(chat);
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    try {
+                        Chat chat = snapshot.getValue(Chat.class);
+                        assert chat != null;
+                        if (!chat.getMessage().contains("@$@this@message@deleted")) {
+                            if (chat.getStatusMessage().equals("beenSeen") && chat.getReceiver().equals(myId) && chat.isSeen()) {
+                                statusChat.BeenSeenForFriend(chat);
+                            }
+                            if (chat.getStatusMessage().equals("beenSeen") && chat.getSender().equals(myId) && chat.isSeen()) {
+                                statusChat.BeenSeenForMe(chat);
+                            }
                         }
-                        if (chat.getStatusMessage().equals("beenSeen") && chat.getSender().equals(myId) && chat.isSeen()) {
-                            statusChat.BeenSeenForMe(chat);
+                        if (chat.getMessage().contains("@$@this@message@deleted")) {
+                            statusChat.deleteForAll(snapshot.getValue(Chat.class));
                         }
+                    } catch (Exception ignored) {
+
                     }
-                    if (chat.getMessage().contains("@$@this@message@deleted")) {
-                        statusChat.deleteForAll(snapshot.getValue(Chat.class));
-                    }
-                } catch (Exception ignored) {
 
                 }
 
-            }
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                }
 
-            }
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                }
 
-            }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+        } catch (DatabaseException e) {
+            ShowToast("it's not exist");
+        } catch (Exception e) {
+            ShowToast("it's not exist");
+        }
 
-            }
-        });
 
     }
 

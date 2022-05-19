@@ -84,6 +84,9 @@ public final class FragmentUploadBinding implements ViewBinding {
   @NonNull
   public final AppCompatSpinner trademark;
 
+  @NonNull
+  public final AppCompatSpinner used;
+
   private FragmentUploadBinding(@NonNull ConstraintLayout rootView, @NonNull Button Upload,
       @NonNull ImageView addColor, @NonNull ImageView addSizes,
       @NonNull NestedScrollView addToggleButtonColor, @NonNull ImageView addkeyword,
@@ -93,7 +96,7 @@ public final class FragmentUploadBinding implements ViewBinding {
       @NonNull EditText productLastPrice, @NonNull EditText productName,
       @NonNull EditText productPrice, @NonNull RatingBar ratingSeller, @NonNull TextView textView18,
       @NonNull TextView textView19, @NonNull TextView textView20,
-      @NonNull AppCompatSpinner trademark) {
+      @NonNull AppCompatSpinner trademark, @NonNull AppCompatSpinner used) {
     this.rootView = rootView;
     this.Upload = Upload;
     this.addColor = addColor;
@@ -114,6 +117,7 @@ public final class FragmentUploadBinding implements ViewBinding {
     this.textView19 = textView19;
     this.textView20 = textView20;
     this.trademark = trademark;
+    this.used = used;
   }
 
   @Override
@@ -257,10 +261,16 @@ public final class FragmentUploadBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.used;
+      AppCompatSpinner used = ViewBindings.findChildViewById(rootView, id);
+      if (used == null) {
+        break missingId;
+      }
+
       return new FragmentUploadBinding((ConstraintLayout) rootView, Upload, addColor, addSizes,
           addToggleButtonColor, addkeyword, constraintLayout, constraintLayout2, constraintLayout3,
           groupColor, groupSize, keyword, productLastPrice, productName, productPrice, ratingSeller,
-          textView18, textView19, textView20, trademark);
+          textView18, textView19, textView20, trademark, used);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

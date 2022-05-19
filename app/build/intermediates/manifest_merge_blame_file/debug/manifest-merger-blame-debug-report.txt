@@ -109,15 +109,15 @@
 57    </queries>
 58
 59    <permission
-59-->[androidx.core:core:1.9.0-alpha03] C:\Users\eslam\.gradle\caches\transforms-3\7c79ab6f3b34b228c01f70ebee10449d\transformed\core-1.9.0-alpha03\AndroidManifest.xml:24:5-26:47
+59-->[androidx.core:core:1.9.0-alpha04] C:\Users\eslam\.gradle\caches\transforms-3\3a2823c7827142b98a17238cf75f6aff\transformed\core-1.9.0-alpha04\AndroidManifest.xml:23:5-25:47
 60        android:name="com.doubleclick.marktinhome.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
-60-->[androidx.core:core:1.9.0-alpha03] C:\Users\eslam\.gradle\caches\transforms-3\7c79ab6f3b34b228c01f70ebee10449d\transformed\core-1.9.0-alpha03\AndroidManifest.xml:25:9-81
+60-->[androidx.core:core:1.9.0-alpha04] C:\Users\eslam\.gradle\caches\transforms-3\3a2823c7827142b98a17238cf75f6aff\transformed\core-1.9.0-alpha04\AndroidManifest.xml:24:9-81
 61        android:protectionLevel="signature" />
-61-->[androidx.core:core:1.9.0-alpha03] C:\Users\eslam\.gradle\caches\transforms-3\7c79ab6f3b34b228c01f70ebee10449d\transformed\core-1.9.0-alpha03\AndroidManifest.xml:26:9-44
+61-->[androidx.core:core:1.9.0-alpha04] C:\Users\eslam\.gradle\caches\transforms-3\3a2823c7827142b98a17238cf75f6aff\transformed\core-1.9.0-alpha04\AndroidManifest.xml:25:9-44
 62
 63    <uses-permission android:name="com.doubleclick.marktinhome.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
-63-->[androidx.core:core:1.9.0-alpha03] C:\Users\eslam\.gradle\caches\transforms-3\7c79ab6f3b34b228c01f70ebee10449d\transformed\core-1.9.0-alpha03\AndroidManifest.xml:28:5-97
-63-->[androidx.core:core:1.9.0-alpha03] C:\Users\eslam\.gradle\caches\transforms-3\7c79ab6f3b34b228c01f70ebee10449d\transformed\core-1.9.0-alpha03\AndroidManifest.xml:28:22-94
+63-->[androidx.core:core:1.9.0-alpha04] C:\Users\eslam\.gradle\caches\transforms-3\3a2823c7827142b98a17238cf75f6aff\transformed\core-1.9.0-alpha04\AndroidManifest.xml:27:5-97
+63-->[androidx.core:core:1.9.0-alpha04] C:\Users\eslam\.gradle\caches\transforms-3\3a2823c7827142b98a17238cf75f6aff\transformed\core-1.9.0-alpha04\AndroidManifest.xml:27:22-94
 64    <uses-permission android:name="android.permission.VIBRATE" />
 64-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:10:5-66
 64-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:10:22-63
@@ -129,7 +129,7 @@
 68        android:allowBackup="true"
 68-->C:\Users\eslam\AndroidStudioProjects\Eslam\MarketAtHomeforSeller\MarktInHome\app\src\main\AndroidManifest.xml:40:9-35
 69        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-69-->[androidx.core:core:1.9.0-alpha03] C:\Users\eslam\.gradle\caches\transforms-3\7c79ab6f3b34b228c01f70ebee10449d\transformed\core-1.9.0-alpha03\AndroidManifest.xml:30:18-86
+69-->[androidx.core:core:1.9.0-alpha04] C:\Users\eslam\.gradle\caches\transforms-3\3a2823c7827142b98a17238cf75f6aff\transformed\core-1.9.0-alpha04\AndroidManifest.xml:29:18-86
 70        android:debuggable="true"
 71        android:icon="@mipmap/ic_launcher"
 71-->C:\Users\eslam\AndroidStudioProjects\Eslam\MarketAtHomeforSeller\MarktInHome\app\src\main\AndroidManifest.xml:41:9-43
@@ -751,115 +751,114 @@
 403            android:value="@integer/google_play_services_version" />
 403-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\eslam\.gradle\caches\transforms-3\683aa123d7a53606c7337968fddceab0\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
 404
-405        <uses-library
-405-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
-406            android:name="androidx.window.extensions"
-406-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
-407            android:required="false" />
-407-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
-408        <uses-library
-408-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
-409            android:name="androidx.window.sidecar"
-409-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
-410            android:required="false" />
-410-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
-411
-412        <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
-412-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:13:9-84
-412-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:13:19-81
-413        <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
-413-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:14:9-90
-413-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:14:19-87
-414        <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
-414-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:15:9-91
-414-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:15:19-88
-415        <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
-415-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:16:9-82
-415-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:16:19-79
-416        <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
-416-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:17:9-96
-416-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:17:19-93
-417        <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
-417-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:18:9-97
-417-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:18:19-94
-418        <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
-418-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:19:9-94
-418-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:19:19-91
-419        <activity android:name="com.paypal.android.sdk.payments.PayPalProfileSharingActivity" />
-419-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:20:9-97
-419-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:20:19-94
-420        <activity android:name="com.paypal.android.sdk.payments.ProfileSharingConsentActivity" />
-420-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:21:9-98
-420-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:21:19-95
-421
-422        <service
-422-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:23:9-25:40
-423            android:name="com.paypal.android.sdk.payments.PayPalService"
-423-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:24:13-73
-424            android:exported="false" />
-424-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:25:13-37
-425
-426        <provider
-426-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
-427            android:name="androidx.startup.InitializationProvider"
-427-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
-428            android:authorities="com.doubleclick.marktinhome.androidx-startup"
-428-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
-429            android:exported="false" >
-429-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
-430            <meta-data
-430-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
-431                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-431-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
-432                android:value="androidx.startup" />
-432-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
-433            <meta-data
-433-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\eslam\.gradle\caches\transforms-3\44b1cf4b1233cf795677993d7204189f\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
-434                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-434-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\eslam\.gradle\caches\transforms-3\44b1cf4b1233cf795677993d7204189f\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
-435                android:value="androidx.startup" />
-435-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\eslam\.gradle\caches\transforms-3\44b1cf4b1233cf795677993d7204189f\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
-436        </provider>
-437
-438        <service
-438-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:29:9-35:19
-439            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
-439-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:30:13-103
-440            android:exported="false" >
-440-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:31:13-37
-441            <meta-data
-441-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:32:13-34:39
-442                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
-442-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:33:17-94
-443                android:value="cct" />
-443-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:34:17-36
-444        </service>
-445        <service
-445-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:26:9-30:19
-446            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
-446-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:27:13-117
-447            android:exported="false"
-447-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:28:13-37
-448            android:permission="android.permission.BIND_JOB_SERVICE" >
-448-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:29:13-69
-449        </service>
-450
-451        <receiver
-451-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:32:9-34:40
-452            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
-452-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:33:13-132
-453            android:exported="false" />
-453-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:34:13-37
-454
-455        <activity
-455-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:20:9-22:66
-456            android:name="io.card.payment.CardIOActivity"
-456-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:21:13-58
-457            android:configChanges="keyboardHidden|orientation" />
-457-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:22:13-63
-458        <activity android:name="io.card.payment.DataEntryActivity" />
-458-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:23:9-70
-458-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:23:19-67
-459    </application>
-460
-461</manifest>
+405        <provider
+405-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
+406            android:name="androidx.startup.InitializationProvider"
+406-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
+407            android:authorities="com.doubleclick.marktinhome.androidx-startup"
+407-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
+408            android:exported="false" >
+408-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
+409            <meta-data
+409-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:31:13-33:52
+410                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+410-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:32:17-75
+411                android:value="androidx.startup" />
+411-->[androidx.emoji2:emoji2:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\6781ab09c7bec5fd5524f6938e3e7a42\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:33:17-49
+412            <meta-data
+412-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\eslam\.gradle\caches\transforms-3\44b1cf4b1233cf795677993d7204189f\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:31:13-33:52
+413                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+413-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\eslam\.gradle\caches\transforms-3\44b1cf4b1233cf795677993d7204189f\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:32:17-78
+414                android:value="androidx.startup" />
+414-->[androidx.lifecycle:lifecycle-process:2.4.0] C:\Users\eslam\.gradle\caches\transforms-3\44b1cf4b1233cf795677993d7204189f\transformed\jetified-lifecycle-process-2.4.0\AndroidManifest.xml:33:17-49
+415        </provider>
+416
+417        <uses-library
+417-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:25:9-27:40
+418            android:name="androidx.window.extensions"
+418-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:26:13-54
+419            android:required="false" />
+419-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:27:13-37
+420        <uses-library
+420-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:28:9-30:40
+421            android:name="androidx.window.sidecar"
+421-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:29:13-51
+422            android:required="false" />
+422-->[androidx.window:window:1.0.0] C:\Users\eslam\.gradle\caches\transforms-3\9a16f6444aeba984cb9433db1ed84715\transformed\jetified-window-1.0.0\AndroidManifest.xml:30:13-37
+423
+424        <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
+424-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:13:9-84
+424-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:13:19-81
+425        <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
+425-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:14:9-90
+425-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:14:19-87
+426        <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
+426-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:15:9-91
+426-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:15:19-88
+427        <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
+427-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:16:9-82
+427-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:16:19-79
+428        <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
+428-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:17:9-96
+428-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:17:19-93
+429        <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
+429-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:18:9-97
+429-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:18:19-94
+430        <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
+430-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:19:9-94
+430-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:19:19-91
+431        <activity android:name="com.paypal.android.sdk.payments.PayPalProfileSharingActivity" />
+431-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:20:9-97
+431-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:20:19-94
+432        <activity android:name="com.paypal.android.sdk.payments.ProfileSharingConsentActivity" />
+432-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:21:9-98
+432-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:21:19-95
+433
+434        <service
+434-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:23:9-25:40
+435            android:name="com.paypal.android.sdk.payments.PayPalService"
+435-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:24:13-73
+436            android:exported="false" />
+436-->[com.paypal.sdk:paypal-android-sdk:2.16.0] C:\Users\eslam\.gradle\caches\transforms-3\7d6701d6e27e8710ef4b23a41f5e9aea\transformed\jetified-paypal-android-sdk-2.16.0\AndroidManifest.xml:25:13-37
+437        <service
+437-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:29:9-35:19
+438            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+438-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:30:13-103
+439            android:exported="false" >
+439-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:31:13-37
+440            <meta-data
+440-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:32:13-34:39
+441                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+441-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:33:17-94
+442                android:value="cct" />
+442-->[com.google.android.datatransport:transport-backend-cct:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\b823225547b6bc306d8e5520ef16561c\transformed\jetified-transport-backend-cct-3.0.0\AndroidManifest.xml:34:17-36
+443        </service>
+444        <service
+444-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:26:9-30:19
+445            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+445-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:27:13-117
+446            android:exported="false"
+446-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:28:13-37
+447            android:permission="android.permission.BIND_JOB_SERVICE" >
+447-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:29:13-69
+448        </service>
+449
+450        <receiver
+450-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:32:9-34:40
+451            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+451-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:33:13-132
+452            android:exported="false" />
+452-->[com.google.android.datatransport:transport-runtime:3.0.0] C:\Users\eslam\.gradle\caches\transforms-3\ff082d80a6f43098e6e1e333bee83046\transformed\jetified-transport-runtime-3.0.0\AndroidManifest.xml:34:13-37
+453
+454        <activity
+454-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:20:9-22:66
+455            android:name="io.card.payment.CardIOActivity"
+455-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:21:13-58
+456            android:configChanges="keyboardHidden|orientation" />
+456-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:22:13-63
+457        <activity android:name="io.card.payment.DataEntryActivity" />
+457-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:23:9-70
+457-->[io.card:android-sdk:5.5.1] C:\Users\eslam\.gradle\caches\transforms-3\86535082a6bcb64fe5b1b9dac068c7a9\transformed\jetified-android-sdk-5.5.1\AndroidManifest.xml:23:19-67
+458    </application>
+459
+460</manifest>

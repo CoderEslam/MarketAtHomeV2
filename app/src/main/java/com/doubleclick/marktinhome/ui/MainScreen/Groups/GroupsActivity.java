@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,8 +35,14 @@ import com.doubleclick.marktinhome.Model.PostData;
 import com.doubleclick.marktinhome.Model.PostsGroup;
 import com.doubleclick.marktinhome.R;
 import com.doubleclick.marktinhome.Views.CircleImageView;
+import com.doubleclick.marktinhome.Views.ReadQRCode.google.zxing.client.android.Intents;
+import com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.ScanContract;
+import com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.ScanOptions;
 import com.doubleclick.marktinhome.Views.socialtextview.SocialTextView;
+import com.doubleclick.marktinhome.ui.MainScreen.Chat.ChatActivity;
+import com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogQRCode;
 import com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity;
+import com.doubleclick.marktinhome.ui.ReadQRCodeActivity;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.progressindicator.LinearProgressIndicator;
@@ -52,8 +59,8 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
 
 
     private static final int IMAGE_REQUEST = 100;
-    private String id;
-    private ImageView back, cover;
+    private String id; /* Group id */
+    private ImageView back, cover, QRCode;
     private CircleImageView imageGroup;
     private LinearProgressIndicator progressIndicator;
     private TextView name, postsNum, username, history, nothing;
@@ -88,6 +95,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         discription = findViewById(R.id.discription);
         link = findViewById(R.id.link);
         post = findViewById(R.id.post);
+        QRCode = findViewById(R.id.QRCode);
         create_post = findViewById(R.id.create_post);
         groupViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
         postsViewModel = new ViewModelProvider(this).get(PostsViewModel.class);
@@ -130,6 +138,10 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
             startActivity(new Intent(GroupsActivity.this, MainScreenActivity.class));
             finish();
         });
+        QRCode.setOnClickListener(v -> {
+            BottomDialogQRCode bottomDialogQRCode = new BottomDialogQRCode(id);
+            bottomDialogQRCode.show(GroupsActivity.this.getSupportFragmentManager(), "QR Code");
+        });
         option.setOnClickListener(v -> {
             PopupMenu popupMenu = new PopupMenu(this, v);
             popupMenu.getMenuInflater().inflate(R.menu.menu_group, popupMenu.getMenu());
@@ -153,8 +165,13 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
 
                         return true;
                     }
+                    if (ItemId == R.id.scanne) {
+                        ScanOptions options = new ScanOptions().setCaptureActivity(ReadQRCodeActivity.class);
+                        barcodeLauncher.launch(options);
+                        return true;
+                    }
                     if (ItemId == R.id.editDetils) {
-                        openBottomSheet(id /*group id */,"details");
+                        openBottomSheet(id /*group id */, "details");
                         return true;
                     }
                     if (ItemId == R.id.editCover) {
@@ -166,7 +183,7 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
                         return true;
                     }
                     if (ItemId == R.id.editName) {
-                        openBottomSheet(id /*group id */,"name");
+                        openBottomSheet(id /*group id */, "name");
                         return true;
                     }
                     return false;
@@ -183,8 +200,8 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         startActivityForResult(intent, IMAGE_REQUEST);
     }
 
-    private void openBottomSheet(String id,String type) {
-        BottomSheetEditor bottomSheetFragmentUsernameAndBioUpdate = new BottomSheetEditor(id,type, reference);
+    private void openBottomSheet(String id, String type) {
+        BottomSheetEditor bottomSheetFragmentUsernameAndBioUpdate = new BottomSheetEditor(id, type, reference);
         assert getFragmentManager() != null;
         bottomSheetFragmentUsernameAndBioUpdate.show(getSupportFragmentManager(), "edit");
     }
@@ -217,4 +234,24 @@ public class GroupsActivity extends AppCompatActivity implements GroupsAdapter.L
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    private final ActivityResultLauncher<ScanOptions> barcodeLauncher = registerForActivityResult(new ScanContract(),
+            result -> {
+                if (result.getContents() == null) {
+                    Intent originalIntent = result.getOriginalIntent();
+                    if (originalIntent == null) {
+                        Log.d("MainActivity", "Cancelled scan");
+                        Toast.makeText(GroupsActivity.this, "Cancelled", Toast.LENGTH_LONG).show();
+                    } else if (originalIntent.hasExtra(Intents.Scan.MISSING_CAMERA_PERMISSION)) {
+                        Log.d("MainActivity", "Cancelled scan due to missing camera permission");
+                        Toast.makeText(GroupsActivity.this, "Cancelled due to missing camera permission", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Log.d("MainActivity", "Scanned");
+                    // todo send my code
+//                    Intent intent = new Intent(GroupsActivity.this, ChatActivity.class);
+//                    intent.putExtra("userId", result.getContents());
+//                    startActivity(intent);
+                    Toast.makeText(GroupsActivity.this, "Scanned Resulte = : " + result.getContents(), Toast.LENGTH_LONG).show();
+                }
+            });
 }

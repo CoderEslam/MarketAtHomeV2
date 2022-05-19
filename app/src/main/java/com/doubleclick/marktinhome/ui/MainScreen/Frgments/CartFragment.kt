@@ -1,28 +1,26 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.doubleclick.Address.AddressActivity
 import com.doubleclick.OnCartLisnter
 import com.doubleclick.ViewModel.CartViewModel
 import com.doubleclick.marktinhome.Adapters.CartAdapter
-import com.doubleclick.marktinhome.Adapters.CartAdapter.CartViewHolder
 import com.doubleclick.marktinhome.BaseFragment
 import com.doubleclick.marktinhome.Model.Cart
 import com.doubleclick.marktinhome.Model.Constantes.CART
 import com.doubleclick.marktinhome.R
 import com.doubleclick.marktinhome.Seller.SellerActivity
-import com.firebase.ui.database.FirebaseRecyclerAdapter
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import de.hdodenhof.circleimageview.CircleImageView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -44,6 +42,7 @@ class CartFragment : BaseFragment(), OnCartLisnter {
     private lateinit var totalPrice: TextView
     private var total = 0.0
     lateinit var myOrder: TextView
+    private var carts: ArrayList<Cart> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +51,7 @@ class CartFragment : BaseFragment(), OnCartLisnter {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -63,19 +63,20 @@ class CartFragment : BaseFragment(), OnCartLisnter {
         Continue = view.findViewById(R.id.Continue)
         totalPrice = view.findViewById(R.id.totalPrice)
         myOrder = view.findViewById(R.id.MyOrder);
+        cartAdapter = CartAdapter(carts, reference, this)
+        cartRecycler.adapter = cartAdapter
 
         cartViewModel.CartLiveData().observe(viewLifecycleOwner) {
-            if (it.size != 0) {
-                total = 0.0
-                cartAdapter = CartAdapter(it, this)
-                cartRecycler.adapter = cartAdapter
-                for (i in it.indices) {
-                    total += it[i].price.toDouble() * it[i].quantity.toDouble()
-                    totalPrice.text = myOrder.toString()
-                }
+            if (!it.id.equals("")) {
+                carts.add(it)
+                cartAdapter.notifyItemInserted(carts.size - 1);
+                cartAdapter.notifyDataSetChanged()
+                total += it.price.toDouble() * it.quantity.toDouble()
+                totalPrice.text = total.toString()
+
                 Continue.setOnClickListener {
                     try {
-                        findNavController().navigate(CartFragmentDirections.actionMenuCartToAddressFragment())
+                        startActivity(Intent(requireContext(), AddressActivity::class.java))
                     } catch (e: Exception) {
 
                     }
@@ -86,13 +87,31 @@ class CartFragment : BaseFragment(), OnCartLisnter {
             }
         }
 
-
-
-
         myOrder.setOnClickListener {
             startActivity(Intent(context, SellerActivity::class.java))
         }
 
+        cartViewModel.CartAddLiveData().observe(viewLifecycleOwner) {
+            carts[carts.indexOf(it)] = it
+            cartAdapter.notifyItemChanged(carts.indexOf(it))
+            cartAdapter.notifyDataSetChanged()
+            total += it.price
+            totalPrice.text = total.toString()
+        }
+        cartViewModel.CartMinsLiveData().observe(viewLifecycleOwner) {
+            carts[carts.indexOf(it)] = it
+            cartAdapter.notifyItemChanged(carts.indexOf(it))
+            cartAdapter.notifyDataSetChanged()
+            total -= it.price
+            totalPrice.text = total.toString()
+        }
+        cartViewModel.CartDeleteLiveData().observe(viewLifecycleOwner) {
+            carts.remove(it)
+            cartAdapter.notifyItemRemoved(carts.indexOf(it))
+            cartAdapter.notifyDataSetChanged()
+            total -= it.totalPrice
+            totalPrice.text = total.toString()
+        }
         return view
     }
 
@@ -102,26 +121,32 @@ class CartFragment : BaseFragment(), OnCartLisnter {
         total = 0.0
     }
 
-    override fun OnAddItemOrder(cart: Cart?) {
-        var quantity: Int = cart!!.quantity.toInt()
-        quantity++;
+    override fun getCart(cart: Cart) {}
+
+    @SuppressLint("NotifyDataSetChanged")
+    override fun OnAddItemOrder(cart: Cart, pos: Int) {
+        var quantity: Int = cart.quantity.toInt()
         val map: HashMap<String, Any> = HashMap();
-        map["Quantity"] = quantity
-        map["TotalPrice"] = (cart.price.toInt() * quantity).toLong()
-        reference.child(CART).child(cart.buyerId + ":" + cart.productId).updateChildren(map)
+        map["quantity"] = ++quantity
+        map["totalPrice"] = (cart.price.toInt() * quantity).toLong()
+        reference.child(CART).child(cart.id).updateChildren(map);
     }
 
-    override fun OnMinsItemOrder(cart: Cart?) {
-        var quantity: Int = cart!!.quantity.toInt()
-        quantity--;
+    @SuppressLint("NotifyDataSetChanged")
+    override fun OnMinsItemOrder(cart: Cart, pos: Int) {
+        var quantity: Int = cart.quantity.toInt();
         val map: HashMap<String, Any> = HashMap();
-        map["Quantity"] = quantity
-        map["TotalPrice"] = (cart.price.toInt() * quantity).toLong()
-        reference.child(CART).child(cart.buyerId + ":" + cart.productId).updateChildren(map)
+        map["quantity"] = --quantity
+        map["totalPrice"] = (cart.price.toInt() * quantity).toLong()
+        reference.child(CART).child(cart.id).updateChildren(map);
     }
 
-    override fun OnDeleteItemOrder(cart: Cart?) {
-        reference.child(CART).child(cart!!.buyerId + ":" + cart.productId).removeValue()
+    @SuppressLint("NotifyDataSetChanged")
+    override fun OnDeleteItemOrder(cart: Cart, pos: Int) {
+        reference.child(CART).child(cart.id).removeValue()
+        carts.removeAt(pos)
+        cartAdapter.notifyItemRemoved(pos)
+        cartAdapter.notifyDataSetChanged()
     }
 
 }

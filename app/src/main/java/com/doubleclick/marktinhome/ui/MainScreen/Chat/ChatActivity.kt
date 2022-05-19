@@ -21,6 +21,7 @@ class ChatActivity : AppCompatActivity() {
         try {
             // todo recive userId from GroupAdapter and menu_profileFragment
             userId = intent.getStringExtra("userId").toString()
+//            Toast.makeText(this, userId, Toast.LENGTH_LONG).show()
             sharePost = intent.getStringExtra("sharePost").toString()
             if (userId != "null") {
                 val chatFragment = ChatFragment()

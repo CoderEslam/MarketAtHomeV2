@@ -56,6 +56,7 @@ import com.doubleclick.marktinhome.ui.ReadQRCodeActivity;
 import com.doubleclick.marktinhome.ui.Trademark.TrademarkActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseException;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -97,10 +98,14 @@ public class menu_profileFragment extends BaseFragment {
                 } else {
                     Log.d("MainActivity", "Scanned");
                     // todo send my code
-                    Intent intent = new Intent(requireContext(), ChatActivity.class);
-                    intent.putExtra("userId", result.getContents());
-                    startActivity(intent);
+                    try {
+                        Intent intent = new Intent(requireContext(), ChatActivity.class);
+                        intent.putExtra("userId", result.getContents());
+                        startActivity(intent);
 //                    Toast.makeText(requireContext(), "Scanned Resulte = : " + result.getContents(), Toast.LENGTH_LONG).show();
+                    } catch (DatabaseException e) {
+                        Toast.makeText(requireContext(), "it's not exist", Toast.LENGTH_LONG).show();
+                    }
                 }
             });
 

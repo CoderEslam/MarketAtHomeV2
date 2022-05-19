@@ -8,31 +8,31 @@ import java.util.List;
  */
 public class RecentOrder {
 
-    private String ProductId;
+    private String productId;
     private double price;
-    private int Quantity;
+    private int quantity;
     private String productName;
     private String images;
     private String id;
-    private String BuyerId;
-    private String SellerId;
-    private double TotalPrice;
+    private String buyerId;
+    private String sellerId;
+    private double totalPrice;
     private long date;
     private String address;
     private String phone;
     private String anotherPhone;
     private String locationUri;
-    private String ToggleItem;
+    private String toggleItem;
 
     public RecentOrder() {
     }
 
     public String getProductId() {
-        return ProductId;
+        return productId;
     }
 
     public void setProductId(String productId) {
-        ProductId = productId;
+        this.productId = productId;
     }
 
 
@@ -54,32 +54,32 @@ public class RecentOrder {
     }
 
     public String getBuyerId() {
-        return BuyerId;
+        return buyerId;
     }
 
     public void setBuyerId(String buyerId) {
-        BuyerId = buyerId;
+        this.buyerId = buyerId;
     }
 
     public String getSellerId() {
-        return SellerId;
+        return sellerId;
     }
 
     public void setSellerId(String sellerId) {
-        SellerId = sellerId;
+        this.sellerId = sellerId;
     }
 
     public long getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
 
     public double getTotalPrice() {
-        return TotalPrice;
+        return totalPrice;
     }
 
     public void setTotalPrice(double totalPrice) {
-        TotalPrice = totalPrice;
+        this.totalPrice = totalPrice;
     }
 
     public double getPrice() {
@@ -144,36 +144,36 @@ public class RecentOrder {
     }
 
     public String getToggleItem() {
-        return ToggleItem;
+        return toggleItem;
     }
 
     public void setToggleItem(String toggleItem) {
-        ToggleItem = toggleItem;
+        this.toggleItem = toggleItem;
     }
 
 
     public void setQuantity(int quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
         return "RecentOrder{" +
-                "ProductId='" + ProductId + '\'' +
+                "ProductId='" + productId + '\'' +
                 ", price=" + price +
-                ", Quantity=" + Quantity +
+                ", Quantity=" + quantity +
                 ", productName='" + productName + '\'' +
                 ", images='" + images + '\'' +
                 ", id='" + id + '\'' +
-                ", BuyerId='" + BuyerId + '\'' +
-                ", SellerId='" + SellerId + '\'' +
-                ", TotalPrice=" + TotalPrice +
+                ", BuyerId='" + buyerId + '\'' +
+                ", SellerId='" + sellerId + '\'' +
+                ", TotalPrice=" + totalPrice +
                 ", date=" + date +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", anotherPhone='" + anotherPhone + '\'' +
                 ", locationUri='" + locationUri + '\'' +
-                ", ToggleItem='" + ToggleItem + '\'' +
+                ", ToggleItem='" + toggleItem + '\'' +
                 '}';
     }
 }

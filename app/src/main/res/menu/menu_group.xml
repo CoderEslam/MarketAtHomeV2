@@ -23,6 +23,11 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/scanne"
+        android:icon="@drawable/qr_code_scanner"
+        android:title="@string/scanne"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/editCover"
         android:icon="@drawable/camera"
         android:title="@string/edit_cover"

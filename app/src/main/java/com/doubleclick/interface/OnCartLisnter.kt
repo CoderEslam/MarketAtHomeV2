@@ -7,8 +7,9 @@ import com.doubleclick.marktinhome.Model.Cart
  */
 interface OnCartLisnter {
 
-    fun OnAddItemOrder(cart: Cart?)
-    fun OnMinsItemOrder(cart: Cart?)
-    fun OnDeleteItemOrder(cart: Cart?)
+    fun getCart(cart: Cart)
+    fun OnAddItemOrder(cart: Cart, pos: Int)
+    fun OnMinsItemOrder(cart: Cart, pos: Int)
+    fun OnDeleteItemOrder(cart: Cart, pos: Int)
 
 }

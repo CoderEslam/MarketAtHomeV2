@@ -201,7 +201,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
             try {
-                if (it.sender.equals(myId) && !it.isSeen) {
+                if (it.sender.equals(myId) && !it.isSeen && !it.message.contains("@$@this@message@deleted")) {
                     if (!chats.contains(it)) {
                         chats.add(it)
                         chatAdapter.notifyItemInserted(chats.size - 1)

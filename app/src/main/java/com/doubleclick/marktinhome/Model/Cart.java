@@ -3,6 +3,9 @@ package com.doubleclick.marktinhome.Model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,38 +14,45 @@ import java.util.List;
  */
 public class Cart implements Parcelable {
 
-    private String ProductId;
+    @NonNull
+    private String productId;
     private double price;
-    private double Quantity;
+    private double quantity;
     private double lastPrice;
+    @NonNull
     private String productName;
+    @NonNull
     private String images;
+    @NonNull
     private String id;
-    private String BuyerId;
-    private String SellerId;
-    private double TotalPrice;
+    @NonNull
+    private String buyerId;
+    @NonNull
+    private String sellerId;
+    private double totalPrice;
+    @NonNull
+    private String toggleItem;
 
     public String getToggleItem() {
-        return ToggleItem;
+        return toggleItem;
     }
 
     public void setToggleItem(String toggleItem) {
-        ToggleItem = toggleItem;
+        this.toggleItem = toggleItem;
     }
 
-    private String ToggleItem;
 
     protected Cart(Parcel in) {
-        ProductId = in.readString();
+        productId = in.readString();
         price = in.readLong();
-        Quantity = in.readLong();
+        quantity = in.readLong();
         lastPrice = in.readDouble();
         productName = in.readString();
         images = in.readString();
         id = in.readString();
-        BuyerId = in.readString();
-        SellerId = in.readString();
-        TotalPrice = in.readLong();
+        buyerId = in.readString();
+        sellerId = in.readString();
+        totalPrice = in.readLong();
     }
 
     public static final Creator<Cart> CREATOR = new Creator<Cart>() {
@@ -58,34 +68,40 @@ public class Cart implements Parcelable {
     };
 
     public Cart() {
+        productId = "";
+        productName = "";
+        images = "";
+        id = "";
+        buyerId = "";
+        sellerId = "";
+        toggleItem = "";
     }
 
     public String getSellerId() {
-        return SellerId;
+        return sellerId;
     }
 
     public void setSellerId(String sellerId) {
-        SellerId = sellerId;
+        this.sellerId = sellerId;
     }
 
 
     public String getBuyerId() {
-        return BuyerId;
+        return buyerId;
     }
 
     public void setBuyerId(String buyerId) {
-        BuyerId = buyerId;
+        this.buyerId = buyerId;
     }
 
 
     public String getProductId() {
-        return ProductId;
+        return productId;
     }
 
     public void setProductId(String productId) {
-        ProductId = productId;
+        this.productId = productId;
     }
-
 
 
     public String getProductName() {
@@ -105,7 +121,6 @@ public class Cart implements Parcelable {
     }
 
 
-
     @Override
     public int describeContents() {
         return 0;
@@ -113,31 +128,31 @@ public class Cart implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(ProductId);
+        dest.writeString(productId);
         dest.writeDouble(price);
-        dest.writeDouble(Quantity);
+        dest.writeDouble(quantity);
         dest.writeDouble(lastPrice);
         dest.writeString(productName);
         dest.writeString(images);
         dest.writeString(id);
-        dest.writeString(BuyerId);
-        dest.writeString(SellerId);
-        dest.writeDouble(TotalPrice);
+        dest.writeString(buyerId);
+        dest.writeString(sellerId);
+        dest.writeDouble(totalPrice);
     }
 
     @Override
     public String toString() {
         return "Cart{" +
-                "ProductId='" + ProductId + '\'' +
+                "ProductId='" + productId + '\'' +
                 ", price='" + price + '\'' +
-                ", Quantity='" + Quantity + '\'' +
+                ", Quantity='" + quantity + '\'' +
                 ", lastPrice='" + lastPrice + '\'' +
                 ", productName='" + productName + '\'' +
                 ", images='" + images + '\'' +
                 ", id='" + id + '\'' +
-                ", BuyerId='" + BuyerId + '\'' +
-                ", SellerId='" + SellerId + '\'' +
-                ", TotalPrice='" + TotalPrice + '\'' +
+                ", BuyerId='" + buyerId + '\'' +
+                ", SellerId='" + sellerId + '\'' +
+                ", TotalPrice='" + totalPrice + '\'' +
                 '}';
     }
 
@@ -150,11 +165,11 @@ public class Cart implements Parcelable {
     }
 
     public double getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(double quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public double getLastPrice() {
@@ -166,18 +181,18 @@ public class Cart implements Parcelable {
     }
 
     public double getTotalPrice() {
-        return TotalPrice;
+        return totalPrice;
     }
 
     public void setTotalPrice(double totalPrice) {
-        TotalPrice = totalPrice;
+        this.totalPrice = totalPrice;
     }
 
     public String getImages() {
         return images;
     }
 
-    public String getOnlyImage(){
+    public String getOnlyImage() {
         List<String> image = Arrays.asList(images.replace("[", "").replace("]", "").replace(" ", "").trim().split(","));
         return image.get(0);
     }
@@ -186,5 +201,12 @@ public class Cart implements Parcelable {
         this.images = images;
     }
 
-
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof Cart)) return false;
+        Cart cart = (Cart) obj;
+        return cart.getId().equals(this.getId());
+    }
 }

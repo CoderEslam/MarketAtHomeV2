@@ -35,10 +35,8 @@ com/doubleclick/marktinhome/ui/MainScreen/Frgments/Add/RichFragment.java
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.RichFragment$MRichEditorCallback
 com/doubleclick/marktinhome/Database/ChatDao.java
  com.doubleclick.marktinhome.Database.ChatDao
-com/doubleclick/marktinhome/Adapters/KeywordAdapter.java
- com.doubleclick.marktinhome.Adapters.KeywordAdapter
- com.doubleclick.marktinhome.Adapters.KeywordAdapter$KeyViewHolder
- com.doubleclick.marktinhome.Adapters.KeywordAdapter$OnDelete
+com/doubleclick/marktinhome/ui/MainScreen/Frgments/Profile/menu_profileFragment.java
+ com.doubleclick.marktinhome.ui.MainScreen.Frgments.Profile.menu_profileFragment
 com/doubleclick/marktinhome/Views/myCarousellayoutmanager/ItemTransformation.java
  com.doubleclick.marktinhome.Views.myCarousellayoutmanager.ItemTransformation
 com/doubleclick/RichEditor/sample/fragment/EditTableFragmentDirections.java
@@ -116,8 +114,6 @@ com/doubleclick/marktinhome/Model/ChatList.java
  com.doubleclick.marktinhome.Model.ChatList
 com/doubleclick/marktinhome/Views/ReadQRCode/journeyapps/barcodescanner/ScanIntentResult.java
  com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.ScanIntentResult
-com/doubleclick/marktinhome/databinding/FragmentMenuCartBinding.java
- com.doubleclick.marktinhome.databinding.FragmentMenuCartBinding
 com/doubleclick/RichEditor/mricheditor/ui/ActionImageView.java
  com.doubleclick.RichEditor.mricheditor.ui.ActionImageView
  com.doubleclick.RichEditor.mricheditor.ui.ActionImageView$1
@@ -235,8 +231,6 @@ com/doubleclick/ViewHolder/RecentResearchViewHolder.java
  com.doubleclick.ViewHolder.RecentResearchViewHolder
 com/doubleclick/marktinhome/Views/PhotoView/OnPhotoTapListener.java
  com.doubleclick.marktinhome.Views.PhotoView.OnPhotoTapListener
-com/doubleclick/marktinhome/databinding/FragmentMenuStoreBinding.java
- com.doubleclick.marktinhome.databinding.FragmentMenuStoreBinding
 com/doubleclick/marktinhome/Model/ParentCategory.java
  com.doubleclick.marktinhome.Model.ParentCategory
 com/doubleclick/marktinhome/Model/PostsGroup.java
@@ -429,8 +423,6 @@ com/doubleclick/marktinhome/databinding/SlidsAdBannerBinding.java
  com.doubleclick.marktinhome.databinding.SlidsAdBannerBinding
 androidx/databinding/DataBindingComponent.java
  androidx.databinding.DataBindingComponent
-com/doubleclick/marktinhome/ui/MainScreen/Frgments/menu_storeFragmentDirections.java
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_storeFragmentDirections
 com/doubleclick/marktinhome/Adapters/AllUserChatListAdapter.java
  com.doubleclick.marktinhome.Adapters.AllUserChatListAdapter
  com.doubleclick.marktinhome.Adapters.AllUserChatListAdapter$AllUserViewHolder
@@ -564,8 +556,8 @@ com/doubleclick/marktinhome/databinding/ActivityViewPostBinding.java
  com.doubleclick.marktinhome.databinding.ActivityViewPostBinding
 com/doubleclick/marktinhome/Adapters/BaseMessageAdapter.java
  com.doubleclick.marktinhome.Adapters.BaseMessageAdapter
-com/doubleclick/marktinhome/databinding/ActivityAddBinding.java
- com.doubleclick.marktinhome.databinding.ActivityAddBinding
+com/doubleclick/marktinhome/ui/MainScreen/Frgments/BottomDialogQRCode.java
+ com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogQRCode
 com/doubleclick/marktinhome/Repository/PostsRepository.java
  com.doubleclick.marktinhome.Repository.PostsRepository
  com.doubleclick.marktinhome.Repository.PostsRepository$1
@@ -782,8 +774,6 @@ com/doubleclick/ViewModel/ChatViewModel.java
 com/doubleclick/marktinhome/Views/ReadQRCode/journeyapps/barcodescanner/RotationListener.java
  com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.RotationListener
  com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.RotationListener$1
-com/doubleclick/marktinhome/databinding/FragmentAddressBinding.java
- com.doubleclick.marktinhome.databinding.FragmentAddressBinding
 com/doubleclick/marktinhome/ui/ReadQRCodeActivity.java
  com.doubleclick.marktinhome.ui.ReadQRCodeActivity
 com/doubleclick/marktinhome/Model/Sender.java
@@ -870,8 +860,6 @@ com/doubleclick/marktinhome/Views/ReadQRCode/journeyapps/barcodescanner/camera/C
  com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.camera.CameraSurface
 com/doubleclick/marktinhome/Views/ReadQRCode/journeyapps/barcodescanner/camera/CameraParametersCallback.java
  com.doubleclick.marktinhome.Views.ReadQRCode.journeyapps.barcodescanner.camera.CameraParametersCallback
-com/doubleclick/Address/AddressActivity.java
- com.doubleclick.Address.AddressActivity
 com/doubleclick/marktinhome/Model/Cart.java
  com.doubleclick.marktinhome.Model.Cart
  com.doubleclick.marktinhome.Model.Cart$1
@@ -1177,10 +1165,6 @@ com/doubleclick/marktinhome/Views/ReadQRCode/journeyapps/barcodescanner/camera/C
 com/doubleclick/marktinhome/ui/MainScreen/Frgments/BottomDialogComment.java
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogComment
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogComment$1
-com/doubleclick/marktinhome/ui/MainScreen/Address/AddressFragmentDirections.java
- com.doubleclick.marktinhome.ui.MainScreen.Address.AddressFragmentDirections
-com/doubleclick/marktinhome/ui/MainScreen/Frgments/menu_CartFragment.java
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_CartFragment
 com/doubleclick/marktinhome/databinding/FragmentForgetBinding.java
  com.doubleclick.marktinhome.databinding.FragmentForgetBinding
 com/doubleclick/marktinhome/Adapters/ReplyAdapter.java
@@ -1237,8 +1221,6 @@ com/doubleclick/marktinhome/Views/PhotoView/PhotoViewAttacher.java
 com/doubleclick/marktinhome/Views/colorpickerview/sliders/AlphaTileDrawable.java
  com.doubleclick.marktinhome.Views.colorpickerview.sliders.AlphaTileDrawable
  com.doubleclick.marktinhome.Views.colorpickerview.sliders.AlphaTileDrawable$Builder
-com/doubleclick/marktinhome/Views/qrgenearator/QRGSaver.java
- com.doubleclick.marktinhome.Views.qrgenearator.QRGSaver
 com/doubleclick/marktinhome/ui/MainScreen/Frgments/Add/ChildFragmentDirections.java
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.ChildFragmentDirections
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.ChildFragmentDirections$1
@@ -1283,10 +1265,11 @@ com/doubleclick/marktinhome/Adapters/ParentAdapter.java
  com.doubleclick.marktinhome.Adapters.ParentAdapter
  com.doubleclick.marktinhome.Adapters.ParentAdapter$1
  com.doubleclick.marktinhome.Adapters.ParentAdapter$ParentViewHolder
-com/doubleclick/marktinhome/ui/MainScreen/Frgments/menu_storeFragment.java
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_storeFragment
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_storeFragment$1
-com/doubleclick/marktinhome/ui/MainScreen/Frgments/BottomDialogQRCode.java
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogQRCode
-com/doubleclick/marktinhome/ui/MainScreen/Frgments/Profile/menu_profileFragment.java
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.Profile.menu_profileFragment
+com/doubleclick/marktinhome/Adapters/KeywordAdapter.java
+ com.doubleclick.marktinhome.Adapters.KeywordAdapter
+ com.doubleclick.marktinhome.Adapters.KeywordAdapter$KeyViewHolder
+ com.doubleclick.marktinhome.Adapters.KeywordAdapter$OnDelete
+com/doubleclick/marktinhome/databinding/ActivityAddBinding.java
+ com.doubleclick.marktinhome.databinding.ActivityAddBinding
+com/doubleclick/marktinhome/Views/qrgenearator/QRGSaver.java
+ com.doubleclick.marktinhome.Views.qrgenearator.QRGSaver
