@@ -83,50 +83,6 @@
                 tools:ignore="Autofill,HardcodedText" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/btn_round"
-            tools:ignore="UnusedAttribute">
-
-            <EditText
-                android:id="@+id/username"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@null"
-                android:gravity="center_vertical"
-                android:hint="Username"
-                android:inputType="text"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:textColorHint="#8B8D93"
-                android:textSize="20sp"
-                tools:ignore="Autofill,HardcodedText" />
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/btn_round"
-            tools:ignore="UnusedAttribute">
-
-            <EditText
-                android:id="@+id/link"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@null"
-                android:gravity="center_vertical"
-                android:hint="Link"
-                android:inputType="text"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:textColorHint="#8B8D93"
-                android:textSize="20sp"
-                tools:ignore="Autofill,HardcodedText,TextFields" />
-        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"

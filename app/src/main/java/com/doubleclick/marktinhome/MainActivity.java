@@ -13,9 +13,12 @@ import android.widget.Toast;
 import com.doubleclick.marktinhome.Adapters.ViewPagerAdapter;
 import com.doubleclick.marktinhome.Views.liquid_swipe.LiquidPager;
 import com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.util.FileUtil;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPagerAdapter viewPager;
     public FirebaseAuth mAuth;
     public FirebaseAuth.AuthStateListener firebaseAuthListener;
-    String ProductId = "NoUrl";
+    String ShareUrl = "NoUrl";
 
     public MainActivity() {
         super();
@@ -59,10 +62,14 @@ public class MainActivity extends AppCompatActivity {
         Uri uri = getIntent().getData();
         if (uri != null) {
             List<String> parms = uri.getPathSegments();
-            ProductId = parms.get(parms.size() - 1);
+            /*
+             *to get last part of url
+             */
+            ShareUrl = parms.get(parms.size() - 1);
             Intent intent = new Intent(this, MainScreenActivity.class);
-            if (!ProductId.equals("NoUrl")) {
-                intent.putExtra("ProductId", ProductId);
+            if (!ShareUrl.equals("NoUrl")) {
+                intent.putExtra("ShareUrl", ShareUrl);
+                intent.putExtra("type", parms.get(parms.size() - 2));
             }
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             finish();

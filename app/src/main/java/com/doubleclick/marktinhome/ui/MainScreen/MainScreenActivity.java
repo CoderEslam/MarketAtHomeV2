@@ -40,6 +40,7 @@ import com.doubleclick.marktinhome.Views.SmoothButtom.OnItemSelectedListener;
 import com.doubleclick.marktinhome.Views.SmoothButtom.SmoothBottomBar;
 import com.doubleclick.marktinhome.ui.Filter.FilterActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Frgments.HomeFragment;
+import com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Parents.ParentActivity;
 import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
@@ -61,14 +62,16 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
     private CircleImageView myImage;
     private View main_fragment;
     //    private RecentSearchViewModel recentSearchViewModel;
-    private String ProductId;
+    private String ShareUrl;
+    private String type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 //        recentSearchViewModel = new ViewModelProvider(this).get(RecentSearchViewModel.class);
-        ProductId = getIntent().getStringExtra("ProductId");
+        ShareUrl = getIntent().getStringExtra("ShareUrl");
+        type = getIntent().getStringExtra("type");
         main_fragment = findViewById(R.id.main_fragment);
         navController = Navigation.findNavController(this, main_fragment.getId());
         menu_recycler_view = findViewById(R.id.menu_recycler_view);
@@ -104,12 +107,12 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (query.contains("https://com.doubleclick.marktinhome/")) {
-                    String[] url = query.split("com.doubleclick.marktinhome/");
+                if (query.contains("https://www.market.doublethink.com/product/")) {
+                    String[] url = query.split("com.doubleclick.marktinhome/product/");
                     String idProduct = url[1];
                     Intent intent = new Intent(MainScreenActivity.this, FilterActivity.class);
                     intent.putExtra("id", idProduct);
-                    intent.putExtra("type", "ProductId");
+                    intent.putExtra("type", "ShareUrl");
                     startActivity(intent);
                 } else {
 //                    Sending.Check(query, MainScreenActivity.this, MainScreenActivity.this);
@@ -129,15 +132,21 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
 
 
         //  https://developer.android.com/training/sharing/receive#java
-        Share(ProductId);
+        Share(ShareUrl, type);
     }
 
-    private void Share(String idProduct) {
+    private void Share(String ShareUrl, String type) {
         try {
-            if (!ProductId.equals("")) {
+            if (!ShareUrl.equals("") && type.equals("group")) {
+                Intent intent = new Intent(MainScreenActivity.this, GroupsActivity.class);
+                intent.putExtra("id", ShareUrl);
+                intent.putExtra("type", "ShareUrl");
+                startActivity(intent);
+            }
+            if (!ShareUrl.equals("") && type.equals("product")) {
                 Intent intent = new Intent(MainScreenActivity.this, FilterActivity.class);
-                intent.putExtra("id", idProduct);
-                intent.putExtra("type", "ProductId");
+                intent.putExtra("id", ShareUrl);
+                intent.putExtra("type", "ShareUrl");
                 startActivity(intent);
             }
         } catch (NullPointerException e) {

@@ -53,7 +53,7 @@ class productActivity : AppCompatActivity() {
     lateinit var plus: ImageView
     lateinit var mins: ImageView
     lateinit var quantity: TextView
-    var qNumber: Int = 0
+    var qNumber: Int = 1
     lateinit var share: ImageView
     lateinit var pieChartView: PieChartView
     lateinit var ratingSeller: TextView
@@ -250,17 +250,17 @@ class productActivity : AppCompatActivity() {
         }
 
         plus.setOnClickListener {
-            qNumber++
+            qNumber += 1
             quantity.text = qNumber.toString()
         }
 
         mins.setOnClickListener {
-            if (quantity.text.toString() == "0") {
+            if (qNumber <= 1) {
                 quantity.text = qNumber.toString()
                 ShowToast("you can't order less than one!");
                 return@setOnClickListener
             } else {
-                qNumber--
+                qNumber -= 1
                 quantity.text = qNumber.toString()
             }
 
@@ -292,7 +292,7 @@ class productActivity : AppCompatActivity() {
             action = Intent.ACTION_SEND
             putExtra(
                 Intent.EXTRA_TEXT,
-                "https://www.market.doublethink.com/" + product.productId
+                "https://www.market.doublethink.com/product/" + product.productId
             )
             type = "text/plain"
         }

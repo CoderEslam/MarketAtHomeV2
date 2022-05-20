@@ -44,7 +44,7 @@ class FilterActivity : AppCompatActivity(), OnProduct {
                 FilterRecycler.adapter = productAdapter
             })
         }
-        if (type.equals("ProductId")) {
+        if (type.equals("ShareUrl")) {
             productViewModel.getSearchByIdProduct(id)
             productViewModel.searchByIdProductLiveData.observe(this, Observer {
                 var productAdapter = ProductAdapter(it, this);

@@ -110,7 +110,7 @@ class Step3Fragment : BaseFragment() {
 
     private fun uploadImage(image_uri: Uri) {
         val fileReference =
-            FirebaseStorage.getInstance().reference.child("GroupsImages").child("GroupCovers")
+            FirebaseStorage.getInstance().reference.child("GroupsImages")
                 .child("" + System.currentTimeMillis() + "." + getFileExtension(image_uri))
         val uploadTask: StorageTask<*>
 

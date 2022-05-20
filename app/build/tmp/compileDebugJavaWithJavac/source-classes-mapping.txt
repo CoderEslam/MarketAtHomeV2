@@ -220,6 +220,8 @@ com/doubleclick/marktinhome/ui/MainScreen/Groups/GroupsActivity.java
  com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$1
  com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$2
  com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$3
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$4
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$5
 com/doubleclick/marktinhome/databinding/ActivityMainBinding.java
  com.doubleclick.marktinhome.databinding.ActivityMainBinding
 com/doubleclick/DashBoard/DashBoardActivity.java
@@ -649,8 +651,8 @@ com/doubleclick/marktinhome/ui/MainScreen/Frgments/menu_listFragment.java
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_listFragment
 com/doubleclick/marktinhome/databinding/ZxingCaptureBinding.java
  com.doubleclick.marktinhome.databinding.ZxingCaptureBinding
-com/doubleclick/marktinhome/Notifications/MyFirebaseMessaging.java
- com.doubleclick.marktinhome.Notifications.MyFirebaseMessaging
+com/doubleclick/marktinhome/Views/qrgenearator/QRGSaver.java
+ com.doubleclick.marktinhome.Views.qrgenearator.QRGSaver
 com/doubleclick/marktinhome/databinding/LayoutItemGroupShimmerBinding.java
  com.doubleclick.marktinhome.databinding.LayoutItemGroupShimmerBinding
 com/doubleclick/marktinhome/Repository/RecentSearchRepository.java
@@ -1199,6 +1201,11 @@ com/doubleclick/marktinhome/Views/colorpickerview/ColorHsvPalette.java
 com/doubleclick/marktinhome/ui/MainScreen/Groups/ViewPostActivity.java
  com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity
  com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$1
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$2
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$3
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$4
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$5
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$6
 com/doubleclick/marktinhome/databinding/LayoutRecentOrderBinding.java
  com.doubleclick.marktinhome.databinding.LayoutRecentOrderBinding
 com/doubleclick/marktinhome/databinding/FragmentMainBinding.java
@@ -1271,5 +1278,5 @@ com/doubleclick/marktinhome/Adapters/KeywordAdapter.java
  com.doubleclick.marktinhome.Adapters.KeywordAdapter$OnDelete
 com/doubleclick/marktinhome/databinding/ActivityAddBinding.java
  com.doubleclick.marktinhome.databinding.ActivityAddBinding
-com/doubleclick/marktinhome/Views/qrgenearator/QRGSaver.java
- com.doubleclick.marktinhome.Views.qrgenearator.QRGSaver
+com/doubleclick/marktinhome/Notifications/MyFirebaseMessaging.java
+ com.doubleclick.marktinhome.Notifications.MyFirebaseMessaging

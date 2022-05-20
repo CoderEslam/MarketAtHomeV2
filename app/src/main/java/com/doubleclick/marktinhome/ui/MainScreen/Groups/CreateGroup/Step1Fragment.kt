@@ -36,9 +36,7 @@ class Step1Fragment : BaseFragment() {
     private var param1: String? = null
     private var param2: String? = null
     private lateinit var name: EditText
-    private lateinit var username: EditText
     private lateinit var details: EditText
-    private lateinit var link: EditText
     private lateinit var next: Button
     private lateinit var progressIndicator: CircularProgressIndicator
     private lateinit var back: ImageView
@@ -57,13 +55,11 @@ class Step1Fragment : BaseFragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_step_1, container, false)
         name = view.findViewById(R.id.name)
-        username = view.findViewById(R.id.username)
         details = view.findViewById(R.id.details)
-        link = view.findViewById(R.id.link)
         next = view.findViewById(R.id.next)
         progressIndicator = view.findViewById(R.id.progressBar)
         back = view.findViewById(R.id.back)
-        back.setOnClickListener { v: View? ->
+        back.setOnClickListener {
             startActivity(
                 Intent(
                     context,
@@ -73,23 +69,19 @@ class Step1Fragment : BaseFragment() {
         }
 
         next.setOnClickListener { v: View? ->
-            if (name.text.toString() != "" && username.text
-                    .toString() != "" && details.text.toString() != ""
-            ) {
+            if (name.text.toString() != "" && details.text.toString() != "") {
                 progressIndicator.visibility = View.VISIBLE
                 val time = Date().time
-                val pushId: String = myId + ":" + time
+                val pushId = "$myId:$time"
                 val map: MutableMap<String, Any> =
                     HashMap()
                 map["name"] = name.text.toString()
-                map["userName"] = username.text.toString()
-                map["link"] = link.text.toString()
                 map["details"] = details.text.toString()
                 map["time"] = time
                 map["id"] = pushId
                 map["createdBy"] = myId
                 reference.child(Constantes.GROUPS).child(pushId).updateChildren(map)
-                    .addOnCompleteListener(OnCompleteListener<Void?> { task ->
+                    .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             progressIndicator.visibility = View.GONE
                             findNavController().navigate(
@@ -101,12 +93,10 @@ class Step1Fragment : BaseFragment() {
                             Snackbar.make(v!!, "Check your internet", Snackbar.LENGTH_LONG)
                                 .show()
                         }
-                    })
+                    }
             } else if (name.text.toString() == "") {
                 name.error = "required"
-            } else if (username.text.toString() == "") {
-                username.error = "required"
-            } else if (details.text.toString() == "") {
+            }  else if (details.text.toString() == "") {
                 details.error = "required"
             }
         }

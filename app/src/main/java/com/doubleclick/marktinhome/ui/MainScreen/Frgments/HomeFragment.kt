@@ -1,7 +1,5 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -9,7 +7,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.NonNull
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -27,6 +24,7 @@ import com.doubleclick.marktinhome.Adapters.HomeAdapter
 import com.doubleclick.marktinhome.BaseApplication.isNetworkConnected
 import com.doubleclick.marktinhome.BaseFragment
 import com.doubleclick.marktinhome.Model.Constantes.PRODUCT
+import com.doubleclick.marktinhome.Model.Constantes.USER
 import com.doubleclick.marktinhome.Model.HomeModel
 import com.doubleclick.marktinhome.Model.ParentCategory
 import com.doubleclick.marktinhome.Model.Product
@@ -34,14 +32,14 @@ import com.doubleclick.marktinhome.Model.Trademark
 import com.doubleclick.marktinhome.R
 import com.doubleclick.marktinhome.Views.Animatoo
 import com.doubleclick.marktinhome.ui.MainScreen.FilterParent.FilterParentActivity
-import com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity
-import com.doubleclick.marktinhome.ui.Trademark.FilterTradmarkActivity
 import com.doubleclick.marktinhome.ui.ProductActivity.productActivity
+import com.doubleclick.marktinhome.ui.Trademark.FilterTradmarkActivity
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.messaging.FirebaseMessaging
 import java.util.*
-import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 
 class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewMore {
@@ -111,6 +109,14 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         }
         loadHomePage();
 //        ReloadData();
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val map: HashMap<String, Any> = HashMap();
+                map["token"] = it.result.toString();
+                reference.child(USER).child(myId).updateChildren(map);
+            }
+        }
         return view;
     }
 

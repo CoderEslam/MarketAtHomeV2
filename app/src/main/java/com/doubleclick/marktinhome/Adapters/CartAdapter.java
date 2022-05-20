@@ -1,5 +1,7 @@
 package com.doubleclick.marktinhome.Adapters;
 
+import static com.doubleclick.marktinhome.BaseApplication.ShowToast;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,15 +58,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             Glide.with(holder.itemView.getContext()).load(carts.get(position).getImages()).into(holder.imageCart);
 
             holder.add.setOnClickListener(v -> {
-                onCartLisnter.OnAddItemOrder(carts.get(position),position);
+                onCartLisnter.OnAddItemOrder(carts.get(position), position);
             });
             holder.mins.setOnClickListener(v -> {
-                onCartLisnter.OnMinsItemOrder(carts.get(position),position);
+                if (carts.get(position).getQuantity() <= 1) {
+                    ShowToast("you can't order less than one!");
+                    return;
+                } else {
+                    onCartLisnter.OnMinsItemOrder(carts.get(position), position);
+                }
             });
 
             holder.delete.setOnClickListener(v -> {
                 try {
-                    onCartLisnter.OnDeleteItemOrder(carts.get(position),position);
+                    onCartLisnter.OnDeleteItemOrder(carts.get(position), position);
                     holder.itemView.setVisibility(View.GONE);
                     notifyItemRemoved(holder.getAdapterPosition());
                 } catch (IndexOutOfBoundsException e) {

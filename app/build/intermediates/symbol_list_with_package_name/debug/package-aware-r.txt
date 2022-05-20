@@ -3457,7 +3457,6 @@ id addkeyword
 id address
 id adjust_height
 id adjust_width
-id admins
 id alertTitle
 id align
 id aligned
@@ -3913,7 +3912,6 @@ id linearLayout5
 id linearLayout7
 id linear_layout
 id link
-id link_layout
 id listMode
 id listTitle
 id listView
@@ -3979,7 +3977,6 @@ id material_timepicker_ok_button
 id material_timepicker_view
 id material_value_index
 id media_actions
-id members
 id meme
 id mention
 id menuIV
@@ -4064,7 +4061,6 @@ id notification_background
 id notification_main_column
 id notification_main_column_container
 id numberContact
-id numbers
 id off
 id ok
 id on
@@ -4111,7 +4107,6 @@ id post
 id postLayout
 id postText
 id postbtn
-id postsNum
 id price
 id productImages
 id productLastPrice
@@ -4147,7 +4142,6 @@ id recycler
 id refresh
 id relativeLayout
 id replay
-id requsts
 id restart
 id reverse
 id reverseSawtooth
@@ -4171,7 +4165,6 @@ id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
 id scale
-id scanne
 id screen
 id scroll
 id scrollIndicatorDown
@@ -4951,6 +4944,7 @@ string download
 string easy_to_hundel
 string edit
 string edit_cover
+string edit_detils
 string edit_hyperlink
 string edit_name
 string edit_on_order

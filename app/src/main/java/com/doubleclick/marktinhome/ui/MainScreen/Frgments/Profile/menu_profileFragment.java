@@ -51,6 +51,7 @@ import com.doubleclick.marktinhome.ui.Advertisement.AdvertisementActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Chat.ChatActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogComment;
 import com.doubleclick.marktinhome.ui.MainScreen.Frgments.BottomDialogQRCode;
+import com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.RecentOrderActivity;
 import com.doubleclick.marktinhome.ui.ReadQRCodeActivity;
 import com.doubleclick.marktinhome.ui.Trademark.TrademarkActivity;
@@ -99,9 +100,16 @@ public class menu_profileFragment extends BaseFragment {
                     Log.d("MainActivity", "Scanned");
                     // todo send my code
                     try {
-                        Intent intent = new Intent(requireContext(), ChatActivity.class);
-                        intent.putExtra("userId", result.getContents());
-                        startActivity(intent);
+                        if (result.getContents().contains("/chat")) {
+                            Intent intent = new Intent(requireContext(), ChatActivity.class);
+                            intent.putExtra("userId", result.getContents().replace("/chat", ""));
+                            startActivity(intent);
+                        }
+                        if (result.getContents().contains("/group")) {
+                            Intent intent = new Intent(requireContext(), GroupsActivity.class);
+                            intent.putExtra("id", result.getContents().replace("/group", ""));
+                            startActivity(intent);
+                        }
 //                    Toast.makeText(requireContext(), "Scanned Resulte = : " + result.getContents(), Toast.LENGTH_LONG).show();
                     } catch (DatabaseException e) {
                         Toast.makeText(requireContext(), "it's not exist", Toast.LENGTH_LONG).show();
@@ -198,7 +206,7 @@ public class menu_profileFragment extends BaseFragment {
         });
 
         QRCode.setOnClickListener(v -> {
-            BottomDialogQRCode bottomDialogQRCode = new BottomDialogQRCode(myId);
+            BottomDialogQRCode bottomDialogQRCode = new BottomDialogQRCode(myId + "/chat");
             bottomDialogQRCode.show(requireActivity().getSupportFragmentManager(), "QR Code");
         });
         ReadQRCode.setOnClickListener(v -> {

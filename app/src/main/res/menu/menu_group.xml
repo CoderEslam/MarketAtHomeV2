@@ -3,30 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/members"
-        android:title="@string/members"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/admins"
-        android:title="@string/admins"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/requsts"
-        android:title="@string/requsts"
-        app:showAsAction="never" />
-
-    <item
         android:id="@+id/share"
+        android:icon="@drawable/share"
         android:title="@string/share"
         app:showAsAction="never" />
 
-    <item
-        android:id="@+id/scanne"
-        android:icon="@drawable/qr_code_scanner"
-        android:title="@string/scanne"
-        app:showAsAction="never" />
     <item
         android:id="@+id/editCover"
         android:icon="@drawable/camera"
@@ -48,7 +29,7 @@
     <item
         android:id="@+id/editDetils"
         android:icon="@drawable/edit"
-        android:title="Edit Detils"
+        android:title="@string/edit_detils"
         app:showAsAction="never" />
 
 </menu>

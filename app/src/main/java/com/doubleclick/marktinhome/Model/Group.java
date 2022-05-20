@@ -10,10 +10,8 @@ public class Group {
     private String details;
     private String id;
     private String image;
-    private String link;
     private String name;
     private long time;
-    private String userName;
 
 
     public String getCover() {
@@ -56,14 +54,6 @@ public class Group {
         this.image = image;
     }
 
-    public String getLink() {
-        return link;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
     public String getName() {
         return name;
     }
@@ -80,13 +70,6 @@ public class Group {
         this.time = time;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 
     @Override
     public String toString() {
@@ -96,10 +79,8 @@ public class Group {
                 ", details='" + details + '\'' +
                 ", id='" + id + '\'' +
                 ", image='" + image + '\'' +
-                ", link='" + link + '\'' +
                 ", name='" + name + '\'' +
                 ", time=" + time +
-                ", userName='" + userName + '\'' +
                 '}';
     }
 

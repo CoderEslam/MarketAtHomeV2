@@ -73,14 +73,12 @@ class CartFragment : BaseFragment(), OnCartLisnter {
                 cartAdapter.notifyDataSetChanged()
                 total += it.price.toDouble() * it.quantity.toDouble()
                 totalPrice.text = total.toString()
-
                 Continue.setOnClickListener {
                     try {
                         startActivity(Intent(requireContext(), AddressActivity::class.java))
                     } catch (e: Exception) {
 
                     }
-
                 }
             } else {
                 ShowToast("you don't have orders")
@@ -95,30 +93,36 @@ class CartFragment : BaseFragment(), OnCartLisnter {
             carts[carts.indexOf(it)] = it
             cartAdapter.notifyItemChanged(carts.indexOf(it))
             cartAdapter.notifyDataSetChanged()
-            total += it.price
-            totalPrice.text = total.toString()
+            calculatePrice()
         }
         cartViewModel.CartMinsLiveData().observe(viewLifecycleOwner) {
             carts[carts.indexOf(it)] = it
             cartAdapter.notifyItemChanged(carts.indexOf(it))
             cartAdapter.notifyDataSetChanged()
-            total -= it.price
-            totalPrice.text = total.toString()
+            calculatePrice()
         }
         cartViewModel.CartDeleteLiveData().observe(viewLifecycleOwner) {
             carts.remove(it)
             cartAdapter.notifyItemRemoved(carts.indexOf(it))
             cartAdapter.notifyDataSetChanged()
-            total -= it.totalPrice
-            totalPrice.text = total.toString()
+            calculatePrice()
         }
         return view
     }
 
+    fun calculatePrice() {
+        total = 0.0
+        for (c in carts) {
+            total += c.price * c.quantity
+            totalPrice.text = total.toString()
+        }
+    }
 
     override fun onPause() {
         super.onPause()
         total = 0.0
+        totalPrice.text = total.toString()
+
     }
 
     override fun getCart(cart: Cart) {}
