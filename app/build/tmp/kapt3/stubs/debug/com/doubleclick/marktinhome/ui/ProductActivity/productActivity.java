@@ -16,7 +16,7 @@ public final class productActivity extends androidx.appcompat.app.AppCompatActiv
     public android.widget.ImageView plus;
     public android.widget.ImageView mins;
     public android.widget.TextView quantity;
-    private int qNumber = 0;
+    private int qNumber = 1;
     public android.widget.ImageView share;
     public lecho.lib.hellocharts.view.PieChartView pieChartView;
     public android.widget.TextView ratingSeller;

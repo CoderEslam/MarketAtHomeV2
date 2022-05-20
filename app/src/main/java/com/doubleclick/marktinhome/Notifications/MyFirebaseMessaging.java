@@ -29,6 +29,7 @@ import com.bumptech.glide.Glide;
 import com.doubleclick.Servies.NotificationReceiver;
 import com.doubleclick.marktinhome.Model.Token;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.ui.MainScreen.Chat.ChatActivity;
 import com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,6 +39,7 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class MyFirebaseMessaging extends FirebaseMessagingService {
 
@@ -98,11 +100,11 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
 
         RemoteMessage.Notification notification = remoteMessage.getNotification();
         int requestCode = Integer.parseInt(user.replaceAll("[\\D]", ""));
-        Intent intent = new Intent(this, MainScreenActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("userid", user);
-        bundle.putBoolean("noFromMain", true);
-        intent.putExtras(bundle);
+        Intent intent = new Intent(this, ChatActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("userId", user);
+//        intent.putExtras(bundle);
+        intent.putExtra("userId", user);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, requestCode, intent, PendingIntent.FLAG_ONE_SHOT);
         Uri defaultSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -126,11 +128,11 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         String body = remoteMessage.getData().get("body");
         RemoteMessage.Notification notification = remoteMessage.getNotification();
         int j = Integer.parseInt(user.replaceAll("[\\D]", ""));
-        Intent intent = new Intent(this, MainScreenActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("userid", user);
-        bundle.putBoolean("noFromMain", true);
-        intent.putExtras(bundle);
+        Intent intent = new Intent(this, ChatActivity.class);
+//        Bundle bundle = new Bundle();
+//        bundle.putString("userId", user);
+//        intent.putExtras(bundle);
+        intent.putExtra("userId", user);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, j, intent, PendingIntent.FLAG_ONE_SHOT);
 
@@ -153,11 +155,10 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
     }
 
     private void updateToken(String refreshToken) {
-        String myId = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+        String myId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().toString();
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child(USER).child(myId);
         HashMap<String, Object> map = new HashMap<>();
         map.put("token", refreshToken);
-//        Token token = new Token(refreshToken);
         reference.updateChildren(map);
     }
 

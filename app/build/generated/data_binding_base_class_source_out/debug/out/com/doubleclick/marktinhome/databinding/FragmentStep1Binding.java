@@ -34,9 +34,6 @@ public final class FragmentStep1Binding implements ViewBinding {
   public final LinearLayout linearLayout2;
 
   @NonNull
-  public final EditText link;
-
-  @NonNull
   public final EditText name;
 
   @NonNull
@@ -48,23 +45,18 @@ public final class FragmentStep1Binding implements ViewBinding {
   @NonNull
   public final TextView textView;
 
-  @NonNull
-  public final EditText username;
-
   private FragmentStep1Binding(@NonNull ConstraintLayout rootView, @NonNull ImageView back,
-      @NonNull EditText details, @NonNull LinearLayout linearLayout2, @NonNull EditText link,
-      @NonNull EditText name, @NonNull Button next, @NonNull CircularProgressIndicator progressBar,
-      @NonNull TextView textView, @NonNull EditText username) {
+      @NonNull EditText details, @NonNull LinearLayout linearLayout2, @NonNull EditText name,
+      @NonNull Button next, @NonNull CircularProgressIndicator progressBar,
+      @NonNull TextView textView) {
     this.rootView = rootView;
     this.back = back;
     this.details = details;
     this.linearLayout2 = linearLayout2;
-    this.link = link;
     this.name = name;
     this.next = next;
     this.progressBar = progressBar;
     this.textView = textView;
-    this.username = username;
   }
 
   @Override
@@ -112,12 +104,6 @@ public final class FragmentStep1Binding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.link;
-      EditText link = ViewBindings.findChildViewById(rootView, id);
-      if (link == null) {
-        break missingId;
-      }
-
       id = R.id.name;
       EditText name = ViewBindings.findChildViewById(rootView, id);
       if (name == null) {
@@ -142,14 +128,8 @@ public final class FragmentStep1Binding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.username;
-      EditText username = ViewBindings.findChildViewById(rootView, id);
-      if (username == null) {
-        break missingId;
-      }
-
       return new FragmentStep1Binding((ConstraintLayout) rootView, back, details, linearLayout2,
-          link, name, next, progressBar, textView, username);
+          name, next, progressBar, textView);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

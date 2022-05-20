@@ -54,22 +54,10 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final CircleImageView imageGroup;
 
   @NonNull
-  public final LinearLayout linearLayout3;
-
-  @NonNull
-  public final SocialTextView link;
-
-  @NonNull
-  public final LinearLayout linkLayout;
-
-  @NonNull
   public final LinearLayout locationLayout;
 
   @NonNull
   public final LinearLayout main;
-
-  @NonNull
-  public final TextView members;
 
   @NonNull
   public final TextView name;
@@ -78,22 +66,16 @@ public final class ActivityGroupsBinding implements ViewBinding {
   public final TextView nothing;
 
   @NonNull
-  public final LinearLayout numbers;
-
-  @NonNull
   public final ImageView option;
 
   @NonNull
   public final ShimmerRecyclerView post;
 
   @NonNull
-  public final TextView postsNum;
-
-  @NonNull
   public final LinearProgressIndicator progressBar;
 
   @NonNull
-  public final de.hdodenhof.circleimageview.CircleImageView selectImage;
+  public final CircleImageView selectImage;
 
   @NonNull
   public final Toolbar toolbar;
@@ -105,14 +87,11 @@ public final class ActivityGroupsBinding implements ViewBinding {
       @NonNull ImageView back, @NonNull ConstraintLayout constraintLayout, @NonNull ImageView cover,
       @NonNull LinearLayout createPost, @NonNull LinearLayout details,
       @NonNull SocialTextView discription, @NonNull TextView history,
-      @NonNull CircleImageView imageGroup, @NonNull LinearLayout linearLayout3,
-      @NonNull SocialTextView link, @NonNull LinearLayout linkLayout,
-      @NonNull LinearLayout locationLayout, @NonNull LinearLayout main, @NonNull TextView members,
-      @NonNull TextView name, @NonNull TextView nothing, @NonNull LinearLayout numbers,
-      @NonNull ImageView option, @NonNull ShimmerRecyclerView post, @NonNull TextView postsNum,
-      @NonNull LinearProgressIndicator progressBar,
-      @NonNull de.hdodenhof.circleimageview.CircleImageView selectImage, @NonNull Toolbar toolbar,
-      @NonNull TextView username) {
+      @NonNull CircleImageView imageGroup, @NonNull LinearLayout locationLayout,
+      @NonNull LinearLayout main, @NonNull TextView name, @NonNull TextView nothing,
+      @NonNull ImageView option, @NonNull ShimmerRecyclerView post,
+      @NonNull LinearProgressIndicator progressBar, @NonNull CircleImageView selectImage,
+      @NonNull Toolbar toolbar, @NonNull TextView username) {
     this.rootView = rootView;
     this.QRCode = QRCode;
     this.back = back;
@@ -123,18 +102,12 @@ public final class ActivityGroupsBinding implements ViewBinding {
     this.discription = discription;
     this.history = history;
     this.imageGroup = imageGroup;
-    this.linearLayout3 = linearLayout3;
-    this.link = link;
-    this.linkLayout = linkLayout;
     this.locationLayout = locationLayout;
     this.main = main;
-    this.members = members;
     this.name = name;
     this.nothing = nothing;
-    this.numbers = numbers;
     this.option = option;
     this.post = post;
-    this.postsNum = postsNum;
     this.progressBar = progressBar;
     this.selectImage = selectImage;
     this.toolbar = toolbar;
@@ -222,24 +195,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.linearLayout3;
-      LinearLayout linearLayout3 = ViewBindings.findChildViewById(rootView, id);
-      if (linearLayout3 == null) {
-        break missingId;
-      }
-
-      id = R.id.link;
-      SocialTextView link = ViewBindings.findChildViewById(rootView, id);
-      if (link == null) {
-        break missingId;
-      }
-
-      id = R.id.link_layout;
-      LinearLayout linkLayout = ViewBindings.findChildViewById(rootView, id);
-      if (linkLayout == null) {
-        break missingId;
-      }
-
       id = R.id.location_layout;
       LinearLayout locationLayout = ViewBindings.findChildViewById(rootView, id);
       if (locationLayout == null) {
@@ -249,12 +204,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
       id = R.id.main;
       LinearLayout main = ViewBindings.findChildViewById(rootView, id);
       if (main == null) {
-        break missingId;
-      }
-
-      id = R.id.members;
-      TextView members = ViewBindings.findChildViewById(rootView, id);
-      if (members == null) {
         break missingId;
       }
 
@@ -270,12 +219,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.numbers;
-      LinearLayout numbers = ViewBindings.findChildViewById(rootView, id);
-      if (numbers == null) {
-        break missingId;
-      }
-
       id = R.id.option;
       ImageView option = ViewBindings.findChildViewById(rootView, id);
       if (option == null) {
@@ -288,12 +231,6 @@ public final class ActivityGroupsBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.postsNum;
-      TextView postsNum = ViewBindings.findChildViewById(rootView, id);
-      if (postsNum == null) {
-        break missingId;
-      }
-
       id = R.id.progressBar;
       LinearProgressIndicator progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -301,7 +238,7 @@ public final class ActivityGroupsBinding implements ViewBinding {
       }
 
       id = R.id.selectImage;
-      de.hdodenhof.circleimageview.CircleImageView selectImage = ViewBindings.findChildViewById(rootView, id);
+      CircleImageView selectImage = ViewBindings.findChildViewById(rootView, id);
       if (selectImage == null) {
         break missingId;
       }
@@ -319,9 +256,8 @@ public final class ActivityGroupsBinding implements ViewBinding {
       }
 
       return new ActivityGroupsBinding((ConstraintLayout) rootView, QRCode, back, constraintLayout,
-          cover, createPost, details, discription, history, imageGroup, linearLayout3, link,
-          linkLayout, locationLayout, main, members, name, nothing, numbers, option, post, postsNum,
-          progressBar, selectImage, toolbar, username);
+          cover, createPost, details, discription, history, imageGroup, locationLayout, main, name,
+          nothing, option, post, progressBar, selectImage, toolbar, username);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
