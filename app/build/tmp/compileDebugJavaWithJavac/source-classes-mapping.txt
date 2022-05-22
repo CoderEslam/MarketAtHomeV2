@@ -213,23 +213,23 @@ com/doubleclick/marktinhome/ui/Advertisement/EditAdvertisementActivity.java
 com/doubleclick/RichEditor/sample/fragment/EditTableFragment.java
  com.doubleclick.RichEditor.sample.fragment.EditTableFragment
  com.doubleclick.RichEditor.sample.fragment.EditTableFragment$OnTableListener
-com/doubleclick/marktinhome/ui/MainScreen/Frgments/Profile/menu_profileFragment.java
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.Profile.menu_profileFragment
+com/doubleclick/marktinhome/ui/MainScreen/MainScreenActivity.java
+ com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity
+ com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$1
+ com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$2
+ com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$3
 com/doubleclick/marktinhome/databinding/ActivityMainBinding.java
  com.doubleclick.marktinhome.databinding.ActivityMainBinding
 com/doubleclick/DashBoard/DashBoardActivity.java
  com.doubleclick.DashBoard.DashBoardActivity
  com.doubleclick.DashBoard.DashBoardActivity$1
-com/doubleclick/marktinhome/Adapters/GroupsAdapter.java
- com.doubleclick.marktinhome.Adapters.GroupsAdapter
- com.doubleclick.marktinhome.Adapters.GroupsAdapter$1
- com.doubleclick.marktinhome.Adapters.GroupsAdapter$2
- com.doubleclick.marktinhome.Adapters.GroupsAdapter$2$1
- com.doubleclick.marktinhome.Adapters.GroupsAdapter$3
- com.doubleclick.marktinhome.Adapters.GroupsAdapter$GroupViewHolder
- com.doubleclick.marktinhome.Adapters.GroupsAdapter$GroupViewHolder$1
- com.doubleclick.marktinhome.Adapters.GroupsAdapter$Loadmore
- com.doubleclick.marktinhome.Adapters.GroupsAdapter$OptionPost
+com/doubleclick/marktinhome/ui/MainScreen/Groups/GroupsActivity.java
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$1
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$2
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$3
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$4
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$5
 com/doubleclick/ViewHolder/RecentResearchViewHolder.java
  com.doubleclick.ViewHolder.RecentResearchViewHolder
 com/doubleclick/marktinhome/Views/PhotoView/OnPhotoTapListener.java
@@ -1048,14 +1048,8 @@ com/doubleclick/marktinhome/databinding/LayoutImagesBinding.java
  com.doubleclick.marktinhome.databinding.LayoutImagesBinding
 com/doubleclick/marktinhome/databinding/ItemVideoRightBinding.java
  com.doubleclick.marktinhome.databinding.ItemVideoRightBinding
-com/doubleclick/marktinhome/ui/MainScreen/Groups/ViewPostActivity.java
- com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity
- com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$1
- com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$2
- com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$3
- com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$4
- com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$5
- com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$6
+com/doubleclick/marktinhome/ui/MainScreen/Frgments/menu_listFragment.java
+ com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_listFragment
 com/doubleclick/marktinhome/Views/colorpickerview/ColorHsvPalette.java
  com.doubleclick.marktinhome.Views.colorpickerview.ColorHsvPalette
 com/doubleclick/marktinhome/Views/PhotoView/OnViewDragListener.java
@@ -1217,8 +1211,9 @@ com/doubleclick/marktinhome/ui/MainScreen/Frgments/Add/RichFragment.java
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.RichFragment$CustomWebChromeClient
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.RichFragment$MOnActionPerformListener
  com.doubleclick.marktinhome.ui.MainScreen.Frgments.Add.RichFragment$MRichEditorCallback
-com/doubleclick/marktinhome/Notifications/MyFirebaseMessaging.java
- com.doubleclick.marktinhome.Notifications.MyFirebaseMessaging
+com/doubleclick/marktinhome/ui/Login/LoginFragment.java
+ com.doubleclick.marktinhome.ui.Login.LoginFragment
+ com.doubleclick.marktinhome.ui.Login.LoginFragment$1
 com/doubleclick/marktinhome/Repository/ViewMoreRepository.java
  com.doubleclick.marktinhome.Repository.ViewMoreRepository
  com.doubleclick.marktinhome.Repository.ViewMoreRepository$1
@@ -1252,23 +1247,26 @@ com/doubleclick/marktinhome/ui/Login/RegisterFragment.java
  com.doubleclick.marktinhome.ui.Login.RegisterFragment$1
  com.doubleclick.marktinhome.ui.Login.RegisterFragment$1$1
  com.doubleclick.marktinhome.ui.Login.RegisterFragment$2
-com/doubleclick/marktinhome/ui/Login/LoginFragment.java
- com.doubleclick.marktinhome.ui.Login.LoginFragment
- com.doubleclick.marktinhome.ui.Login.LoginFragment$1
-com/doubleclick/marktinhome/ui/MainScreen/Groups/GroupsActivity.java
- com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity
- com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$1
- com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$2
- com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$3
- com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$4
- com.doubleclick.marktinhome.ui.MainScreen.Groups.GroupsActivity$5
-com/doubleclick/marktinhome/ui/MainScreen/MainScreenActivity.java
- com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity
- com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$1
- com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$2
- com.doubleclick.marktinhome.ui.MainScreen.MainScreenActivity$3
-com/doubleclick/marktinhome/ui/MainScreen/Frgments/menu_listFragment.java
- com.doubleclick.marktinhome.ui.MainScreen.Frgments.menu_listFragment
+com/doubleclick/marktinhome/Adapters/GroupsAdapter.java
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter$1
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter$2
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter$2$1
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter$3
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter$GroupViewHolder
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter$GroupViewHolder$1
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter$Loadmore
+ com.doubleclick.marktinhome.Adapters.GroupsAdapter$OptionPost
+com/doubleclick/marktinhome/ui/MainScreen/Frgments/Profile/menu_profileFragment.java
+ com.doubleclick.marktinhome.ui.MainScreen.Frgments.Profile.menu_profileFragment
+com/doubleclick/marktinhome/ui/MainScreen/Groups/ViewPostActivity.java
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$1
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$2
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$3
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$4
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$5
+ com.doubleclick.marktinhome.ui.MainScreen.Groups.ViewPostActivity$6
 com/doubleclick/marktinhome/Repository/ProductRepository.java
  com.doubleclick.marktinhome.Repository.ProductRepository
  com.doubleclick.marktinhome.Repository.ProductRepository$1
@@ -1283,3 +1281,5 @@ com/doubleclick/marktinhome/Repository/ProductRepository.java
  com.doubleclick.marktinhome.Repository.ProductRepository$9
 com/doubleclick/ViewModel/ProductViewModel.java
  com.doubleclick.ViewModel.ProductViewModel
+com/doubleclick/marktinhome/Notifications/MyFirebaseMessaging.java
+ com.doubleclick.marktinhome.Notifications.MyFirebaseMessaging

@@ -259,10 +259,11 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 sendRecord.isListenForRecord = true
                 layout_text.visibility = View.VISIBLE
+                KeyboardUtil.getInstance(requireActivity()).closeKeyboard();
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().trim { it <= ' ' }.length == 0) {
+                if (s.toString().trim().isEmpty()) {
                     status("online")
                     sendRecord.visibility = View.VISIBLE
                     sendText.visibility = View.GONE
