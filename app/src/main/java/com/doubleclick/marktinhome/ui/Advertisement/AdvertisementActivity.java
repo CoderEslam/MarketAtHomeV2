@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -51,6 +52,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 import id.zelory.compressor.Compressor;
 
@@ -64,10 +66,11 @@ public class AdvertisementActivity extends AppCompatActivity implements AdvInter
     private DatabaseReference reference;
     private StorageReference storageReference;
     private static Uri imageUri;
-    private StorageTask uploadTask;
+    private StorageTask<UploadTask.TaskSnapshot> uploadTask;
     private Button upload;
     private AdvertisementViewModel advertisementViewModel;
-    private File file = new File("");
+    private ArrayList<Advertisement> advertisements = new ArrayList<>();
+    private AdvAdapter advAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +81,15 @@ public class AdvertisementActivity extends AppCompatActivity implements AdvInter
         description = findViewById(R.id.description);
         upload = findViewById(R.id.upload);
         advertisementViewModel = new AdvertisementViewModel();
-        storageReference  = FirebaseStorage.getInstance().getReference(ADVERTISEMENT);
+        storageReference = FirebaseStorage.getInstance().getReference(ADVERTISEMENT);
         reference = FirebaseDatabase.getInstance("https://marketinhome-99d25-default-rtdb.firebaseio.com").getReference();
-        advertisementViewModel.getAllAdv().observe(this, new Observer<ArrayList<Advertisement>>() {
+        advertisementViewModel.getAdvAdd().observe(this, new Observer<ArrayList<Advertisement>>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onChanged(ArrayList<Advertisement> advertisements) {
-                AdvAdapter advAdapter = new AdvAdapter(advertisements, AdvertisementActivity.this);
+                advAdapter = new AdvAdapter(advertisements, AdvertisementActivity.this);
                 myAdv.setAdapter(advAdapter);
+                advAdapter.notifyDataSetChanged();
             }
         });
         upload.setOnClickListener(new View.OnClickListener() {
@@ -142,9 +147,9 @@ public class AdvertisementActivity extends AppCompatActivity implements AdvInter
                     Log.e("uuuuuuuuuuu", u.toString());
                 }
             });*/
-            uploadTask.continueWithTask((Continuation<UploadTask.TaskSnapshot, Task<Uri>>) task -> {
+            uploadTask.continueWithTask(task -> {
                 if (!task.isSuccessful()) {
-                    throw task.getException();
+                    throw Objects.requireNonNull(task.getException());
                 }
                 return fileReference.getDownloadUrl();
             }).addOnCompleteListener((OnCompleteListener<Uri>) task -> {
@@ -180,10 +185,6 @@ public class AdvertisementActivity extends AppCompatActivity implements AdvInter
         }
     }
 
-    @Override
-    public void AllAdvertisement(@Nullable ArrayList<Advertisement> advertisement) {
-
-    }
 
     @Override
     public void OnEditAdvertisement(@NonNull Advertisement advertisement) {
@@ -195,5 +196,10 @@ public class AdvertisementActivity extends AppCompatActivity implements AdvInter
     @Override
     public void OnDeleteAdvertisement(@NonNull Advertisement advertisement) {
         reference.child(ADVERTISEMENT).child(advertisement.getId()).removeValue();
+    }
+
+    @Override
+    public void AllAdvertisement(@NonNull ArrayList<Advertisement> advertisement) {
+
     }
 }

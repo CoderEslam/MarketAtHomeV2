@@ -7,7 +7,7 @@ import com.doubleclick.marktinhome.Model.Advertisement
  */
 interface AdvInterface {
 
-    fun AllAdvertisement(advertisement: ArrayList<Advertisement?>?)
+    fun AllAdvertisement(advertisement: ArrayList<Advertisement>)
     fun OnEditAdvertisement(advertisement: Advertisement)
     fun OnDeleteAdvertisement(advertisement: Advertisement)
 

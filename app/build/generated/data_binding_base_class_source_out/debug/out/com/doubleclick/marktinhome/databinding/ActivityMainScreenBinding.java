@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.doubleclick.marktinhome.R;
@@ -25,11 +26,16 @@ public final class ActivityMainScreenBinding implements ViewBinding {
   @NonNull
   public final RecyclerView menuRecyclerView;
 
+  @NonNull
+  public final SwipeRefreshLayout refreshCategorical;
+
   private ActivityMainScreenBinding(@NonNull FlowingDrawer rootView,
-      @NonNull FlowingDrawer drawerLayout, @NonNull RecyclerView menuRecyclerView) {
+      @NonNull FlowingDrawer drawerLayout, @NonNull RecyclerView menuRecyclerView,
+      @NonNull SwipeRefreshLayout refreshCategorical) {
     this.rootView = rootView;
     this.drawerLayout = drawerLayout;
     this.menuRecyclerView = menuRecyclerView;
+    this.refreshCategorical = refreshCategorical;
   }
 
   @Override
@@ -67,8 +73,14 @@ public final class ActivityMainScreenBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainScreenBinding((FlowingDrawer) rootView, drawerLayout,
-          menuRecyclerView);
+      id = R.id.refreshCategorical;
+      SwipeRefreshLayout refreshCategorical = ViewBindings.findChildViewById(rootView, id);
+      if (refreshCategorical == null) {
+        break missingId;
+      }
+
+      return new ActivityMainScreenBinding((FlowingDrawer) rootView, drawerLayout, menuRecyclerView,
+          refreshCategorical);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

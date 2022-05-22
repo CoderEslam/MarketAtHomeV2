@@ -16,7 +16,7 @@ import kotlinx.android.parcel.Parcelize;
  * Created By Eslam Ghazy on 3/1/2022
  */
 @Parcelize
-public class Product implements Comparable, Parcelable {
+public class Product implements Parcelable {
 
     private String productId;
     private double price;
@@ -133,12 +133,6 @@ public class Product implements Comparable, Parcelable {
     public Product() {
     }
 
-
-    @Override
-    public int compareTo(Object o) {
-        int rate = ((Product) o).getTotalRating();
-        return (this.totalRating - rate);
-    }
 
     @Override
     public int describeContents() {

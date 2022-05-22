@@ -16,10 +16,13 @@ import java.util.List;
 /**
  * Created By Eslam Ghazy on 3/8/2022
  */
-public class TradmarkViewModel  implements Tradmarkinterface {
+public class TradmarkViewModel implements Tradmarkinterface {
 
 
-    private MutableLiveData<ArrayList<Trademark>> mutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<Trademark>> mutableLiveDataAdd = new MutableLiveData<>();
+    private MutableLiveData<Trademark> mutableLiveDataEdit = new MutableLiveData<>();
+    private MutableLiveData<Trademark> mutableLiveDataDelete = new MutableLiveData<>();
+
     private MutableLiveData<List<String>> mutableLiveDataNames = new MutableLiveData<>();
     TradmarkRepository tradmarkRepository = new TradmarkRepository(this);
 
@@ -29,18 +32,21 @@ public class TradmarkViewModel  implements Tradmarkinterface {
     }
 
     public LiveData<ArrayList<Trademark>> getAllMark() {
-        return mutableLiveData;
+        return mutableLiveDataAdd;
+    }
+
+    public LiveData<Trademark> MarkEdit() {
+        return mutableLiveDataEdit;
+    }
+
+    public LiveData<Trademark> MarkDelete() {
+        return mutableLiveDataDelete;
     }
 
     public LiveData<List<String>> getNamesMark() {
         return mutableLiveDataNames;
     }
 
-
-    @Override
-    public void AllTradmark(@Nullable ArrayList<Trademark> tradmark) {
-        mutableLiveData.setValue(tradmark);
-    }
 
     @Override
     public void AllNameTradmark(@Nullable List<String> names) {
@@ -54,11 +60,16 @@ public class TradmarkViewModel  implements Tradmarkinterface {
 
     @Override
     public void onEditTradmark(@NonNull Trademark tradmark) {
-
+        mutableLiveDataEdit.setValue(tradmark);
     }
 
     @Override
     public void onDeleteTradmark(@NonNull Trademark tradmark) {
+        mutableLiveDataDelete.setValue(tradmark);
+    }
 
+    @Override
+    public void AllTradmark(@NonNull ArrayList<Trademark> tradmark) {
+        mutableLiveDataAdd.setValue(tradmark);
     }
 }

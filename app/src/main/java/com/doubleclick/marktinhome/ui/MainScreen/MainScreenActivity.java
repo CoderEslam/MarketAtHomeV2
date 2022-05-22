@@ -14,6 +14,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -21,6 +22,7 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -49,7 +51,7 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MainScreenActivity extends AppCompatActivity implements NavAdapter.onClickChild {
+public class MainScreenActivity extends AppCompatActivity implements NavAdapter.onClickChild, SwipeRefreshLayout.OnRefreshListener {
 
     private SmoothBottomBar bottomBar;
     private NavController navController;
@@ -64,6 +66,8 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
     //    private RecentSearchViewModel recentSearchViewModel;
     private String ShareUrl;
     private String type;
+    private SwipeRefreshLayout refreshCategorical;
+    private NavAdapter catecoriesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +81,8 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
         menu_recycler_view = findViewById(R.id.menu_recycler_view);
         search = findViewById(R.id.search);
         bottomBar = findViewById(R.id.bottomBar);
+        refreshCategorical = findViewById(R.id.refreshCategorical);
+        refreshCategorical.setOnRefreshListener(this);
         Toolbar toolbar = findViewById(R.id.toolbar);
         openDrawer = findViewById(R.id.openDrawer);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -94,12 +100,7 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_Cart, R.id.menu_group, R.id.homeFragment, R.id.menu_profile).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         setupSmoothBottomMenu();
-        productViewModel = new ProductViewModel();
-        productViewModel.getClassificationPC().observe(this, classificationPCS -> {
-            NavAdapter catecoriesAdapter = new NavAdapter(classificationPCS, this);
-            menu_recycler_view.setAdapter(catecoriesAdapter);
-        });
-
+        loadCategorical();
         openDrawer.setOnClickListener(v -> {
             drawerLayout.openMenu(true);
         });
@@ -130,6 +131,7 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
             }
         });
 
+        refreshCategorical.setColorScheme(R.color.blue, R.color.ripplecoloreffect, R.color.green, R.color.orange);
 
         //  https://developer.android.com/training/sharing/receive#java
         Share(ShareUrl, type);
@@ -156,6 +158,15 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
     }
 
 
+    private void loadCategorical() {
+        productViewModel = new ProductViewModel();
+        productViewModel.getClassification();
+        productViewModel.getClassificationPC().observe(this, classificationPCS -> {
+            catecoriesAdapter = new NavAdapter(classificationPCS, this);
+            menu_recycler_view.setAdapter(catecoriesAdapter);
+        });
+    }
+
     private void setupSmoothBottomMenu() {
         PopupMenu popupMenu = new PopupMenu(this, null);
         popupMenu.inflate(R.menu.menu_bottom);
@@ -178,4 +189,14 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
         startActivity(intent);
     }
 
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                loadCategorical();
+                refreshCategorical.setRefreshing(false);
+            }
+        }, 2000);
+    }
 }

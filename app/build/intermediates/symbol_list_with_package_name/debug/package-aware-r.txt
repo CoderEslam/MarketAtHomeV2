@@ -4140,6 +4140,7 @@ id rectangle
 id rectangles
 id recycler
 id refresh
+id refreshCategorical
 id relativeLayout
 id replay
 id restart

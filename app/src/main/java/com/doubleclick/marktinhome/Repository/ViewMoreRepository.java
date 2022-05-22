@@ -23,7 +23,6 @@ public class ViewMoreRepository extends BaseRepository {
     }
 
     public void LoadMore() {
-
         reference.child(PRODUCT).orderByChild("discount").limitToLast(1000).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -52,8 +51,6 @@ public class ViewMoreRepository extends BaseRepository {
 
             }
         });
-        reference.keepSynced(false);
-
     }
 
 }

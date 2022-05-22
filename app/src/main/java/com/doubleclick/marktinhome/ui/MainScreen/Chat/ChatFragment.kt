@@ -42,6 +42,7 @@ import com.devlomi.record_view.RecordButton
 import com.devlomi.record_view.RecordView
 import com.doubleclick.Api.APIService
 import com.doubleclick.OnMessageClick
+import com.doubleclick.Util.KeyboardUtil
 import com.doubleclick.ViewModel.ChatViewModel
 import com.doubleclick.ViewModel.UserViewModel
 import com.doubleclick.marktinhome.Adapters.BaseMessageAdapter
@@ -249,6 +250,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         attach_file.setOnClickListener {
             if (continer_attacht.visibility == View.GONE) {
                 showLayout()
+                KeyboardUtil.getInstance(requireActivity()).closeKeyboard();
             } else {
                 hideLayout()
             }

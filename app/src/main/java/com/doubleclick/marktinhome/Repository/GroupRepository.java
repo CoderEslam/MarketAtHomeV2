@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -79,7 +80,31 @@ public class GroupRepository extends BaseRepository {
     }*/
 
     public void AllGroup() {
-        reference.child(GROUPS).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        reference.child(GROUPS).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                try {
+                    if (isNetworkConnected()) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Group group = dataSnapshot.getValue(Group.class);
+                            assert group != null;
+                            allGroups.add(group);
+                        }
+                        groupInterface.allGroups(allGroups);
+                    } else {
+                        ShowToast("No Internet Connection");
+                    }
+                } catch (Exception e) {
+                    Log.e("Exception", e.getMessage());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        /*reference.child(GROUPS).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 try {
@@ -98,7 +123,7 @@ public class GroupRepository extends BaseRepository {
                     Log.e("Exception", e.getMessage());
                 }
             }
-        });
+        });*/
     }
 
     public void getGroupDataById(String id) {

@@ -1,5 +1,6 @@
 package com.doubleclick.marktinhome.ui.MainScreen.Frgments
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -7,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
@@ -23,13 +25,11 @@ import com.doubleclick.ViewMore
 import com.doubleclick.marktinhome.Adapters.HomeAdapter
 import com.doubleclick.marktinhome.BaseApplication.isNetworkConnected
 import com.doubleclick.marktinhome.BaseFragment
+import com.doubleclick.marktinhome.Model.*
 import com.doubleclick.marktinhome.Model.Constantes.PRODUCT
 import com.doubleclick.marktinhome.Model.Constantes.USER
-import com.doubleclick.marktinhome.Model.HomeModel
-import com.doubleclick.marktinhome.Model.ParentCategory
-import com.doubleclick.marktinhome.Model.Product
-import com.doubleclick.marktinhome.Model.Trademark
 import com.doubleclick.marktinhome.R
+import com.doubleclick.marktinhome.Repository.BaseRepository.reference
 import com.doubleclick.marktinhome.Views.Animatoo
 import com.doubleclick.marktinhome.ui.MainScreen.FilterParent.FilterParentActivity
 import com.doubleclick.marktinhome.ui.ProductActivity.productActivity
@@ -38,11 +38,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.messaging.FirebaseMessaging
+import kotlinx.android.synthetic.main.fragment_pager.*
 import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
 
 
-class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewMore {
+class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewMore,
+    SwipeRefreshLayout.OnRefreshListener {
 
 
     lateinit var MainRecyceler: RecyclerView
@@ -70,7 +73,10 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         MainRecyceler = view.findViewById(R.id.MainRecyceler)
         animationView = view.findViewById(R.id.animationView);
         refresh = view.findViewById(R.id.refresh);
+        refresh.setOnRefreshListener(this)
         homeModels = ArrayList()
+        homeAdapter = HomeAdapter(homeModels);
+        MainRecyceler.adapter = homeAdapter
         if (idProduct != "") {
             reference.child(PRODUCT).child(idProduct)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -88,7 +94,6 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
                                 ShowToast("No Internet Connection")
                             }
                         } catch (e: Exception) {
-
                         }
                     }
 
@@ -103,23 +108,13 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
             R.color.green,
             R.color.orange
         )
-        refresh.setOnRefreshListener {
-            homeModels.clear()
-            loadHomePage()
-        }
         loadHomePage();
+        updateToken();
 //        ReloadData();
-
-        FirebaseMessaging.getInstance().token.addOnCompleteListener {
-            if (it.isSuccessful) {
-                val map: HashMap<String, Any> = HashMap();
-                map["token"] = it.result.toString();
-                reference.child(USER).child(myId).updateChildren(map);
-            }
-        }
         return view;
     }
 
+    // filter by parentCategory
     override fun onItem(parentCategory: ParentCategory?) {
         val intent = Intent(requireContext(), FilterParentActivity::class.java)
         intent.putExtra("parentCategory", parentCategory);
@@ -134,11 +129,16 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         startActivity(intent)
     }
 
-    override fun AllTradmark(tradmark: ArrayList<Trademark?>?) {}
+    override fun AllTradmark(tradmark: ArrayList<Trademark>) {
 
-    override fun AllNameTradmark(names: List<String?>?) {}
+    }
 
-    override fun OnItemTradmark(tradmark: Trademark?) {
+    override fun AllNameTradmark(names: List<String>) {
+
+    }
+
+
+    override fun OnItemTradmark(tradmark: Trademark) {
         val intent = Intent(requireContext(), FilterTradmarkActivity::class.java)
         intent.putExtra("tradmark", tradmark);
         startActivity(intent)
@@ -166,52 +166,78 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         Loadadvertisement()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun Loadproduct() {
         val productViewModel = ProductViewModel();
-        productViewModel.parent.observe(viewLifecycleOwner, Observer {
-            if (it.size != 0) {
-                homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
-                homeAdapter = HomeAdapter(homeModels);
-                MainRecyceler.adapter = homeAdapter
-                animationView.visibility = View.GONE
-                timer.cancel()
-            } else {
-                animationView.visibility = View.VISIBLE
-            }
-        });
-        productViewModel.topDealsLiveData.observe(viewLifecycleOwner, Observer {
+//        productViewModel.parent.observe(viewLifecycleOwner) {
+//            if (it.size != 0) {
+////                homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
+////                homeAdapter.notifyDataSetChanged()
+////                homeAdapter.notifyItemInserted(0)
+//                animationView.visibility = View.GONE
+////                timer.cancel()
+//            } else {
+//                animationView.visibility = View.VISIBLE
+//            }
+//        };
+        productViewModel.topDealsLiveData.observe(viewLifecycleOwner) { // get max as 50 items
             if (it.size != 0) {
                 homeModels.add(HomeModel(it, HomeModel.TopDeal, this, this));
-                timer.cancel()
+                homeAdapter.notifyDataSetChanged()
+
+//                timer.cancel()
             }
-        })
-        productViewModel.product.observe(
-            viewLifecycleOwner,
-            Observer { products: ArrayList<Product?>? ->
-                if (products!!.size != 0) {
-                    homeModels.add(HomeModel(products, HomeModel.Products, this))
-                    timer.cancel()
-                }
-            });
+        };
+        productViewModel.product.observe(viewLifecycleOwner) { // get max as 1000 items
+            if (it!!.size != 0) {
+                Log.e("iiiiiiittt",it.toString());
+                homeModels.add(HomeModel(it, HomeModel.Products, this))
+                homeAdapter.notifyDataSetChanged()
+
+//                    timer.cancel()
+            }
+        };
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun Loadtrademark() {
         val trademarkViewModel = TradmarkViewModel()
-        trademarkViewModel.allMark.observe(viewLifecycleOwner, Observer {
-            if (it.size != 0) {
-                homeModels.add(HomeModel(it, HomeModel.Trademarks, this))
-                timer.cancel()
-            }
-        });
+        trademarkViewModel.allMark.observe(viewLifecycleOwner) {
+            homeModels.add(HomeModel(it, HomeModel.Trademarks, this))
+            homeAdapter.notifyDataSetChanged();
+//            timer.cancel()
+
+        };
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun Loadadvertisement() {
         val advertisementViewModel = AdvertisementViewModel();
-        advertisementViewModel.allAdv.observe(viewLifecycleOwner, Observer {
-            homeModels.add(1, HomeModel(it, HomeModel.Advertisement))
-            timer.cancel()
+        advertisementViewModel.advAdd.observe(viewLifecycleOwner) {
+            homeModels.add(0, HomeModel(it, HomeModel.Advertisement))
+            homeAdapter.notifyItemInserted(0)
+            homeAdapter.notifyItemInserted(0)
+            homeAdapter.notifyDataSetChanged();
+        };
+    }
 
-        });
+
+    override fun onRefresh() {
+        Handler().postDelayed(Runnable {
+            homeModels.clear()
+            loadHomePage()
+            refresh.isRefreshing = false;
+        }, 2000)
+    }
+
+    private fun updateToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener {
+            if (it.isSuccessful) {
+                val map: HashMap<String, Any> = HashMap();
+                map["token"] = it.result.toString();
+                reference.child(USER).child(myId).updateChildren(map);
+            }
+        }
     }
 
     private fun LoadrecentSearch() {
@@ -240,6 +266,5 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
             }
         }, 2000, 2000)
     }
-
 }
 

@@ -31,7 +31,7 @@ class ViewMoreActivity : AppCompatActivity(), OnProduct {
         loadMoreViewModel = ViewModelProvider(this)[LoadMoreViewModel::class.java]
         var productAdapterSmall = ProductAdapterSmall(products, this)
         viewMoreRecyclerView.adapter = productAdapterSmall
-        loadMoreViewModel.LoadMoreLive().observe(this) {
+        loadMoreViewModel.LoadMoreLive().observe(this) { // load as max 1000
             if (it != null) {
                 products.add(it)
                 productAdapterSmall.notifyItemInserted(products.size - 1)

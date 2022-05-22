@@ -79,8 +79,7 @@ public class MyFirebaseMessaging extends FirebaseMessagingService {
         ImageView imageView = view.findViewById(R.id.image_view_expanded);
 
         Intent clickIntent = new Intent(this, NotificationReceiver.class);
-        PendingIntent clickPendingIntent = PendingIntent.getBroadcast(this,
-                0, clickIntent, 0);
+        PendingIntent clickPendingIntent = PendingIntent.getBroadcast(this, 0, clickIntent, 0);
 
         collapsedView.setTextViewText(R.id.text_view_collapsed_1, body);
         Log.e("Icon", icon);

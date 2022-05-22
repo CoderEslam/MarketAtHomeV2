@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created By Eslam Ghazy on 3/2/2022
  */
-public class ProductViewModel  implements Products {
+public class ProductViewModel implements Products {
 
 
     private MutableLiveData<ArrayList<ArrayList<ArrayList<Product>>>> mutableLiveData = new MutableLiveData<>();
@@ -49,6 +49,11 @@ public class ProductViewModel  implements Products {
         }
     }
 
+    public void getClassification() {
+//        productRepository.getParents();
+//        productRepository.getChild();
+    }
+
     public void getChildren(String child) {
         if (isNetworkConnected()) {
             productRepository.getChildren(child);
@@ -60,7 +65,6 @@ public class ProductViewModel  implements Products {
             productRepository.getQuery(search);
         }
     }
-
 
 
     public void getSearchByChild(String ChildId) {
@@ -130,7 +134,6 @@ public class ProductViewModel  implements Products {
     public LiveData<ArrayList<Product>> ProductWithTrademarkLiveDate() {
         return ProductWithTrademark;
     }
-
 
 
     @Override

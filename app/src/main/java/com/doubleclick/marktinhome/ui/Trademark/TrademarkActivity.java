@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -81,13 +82,16 @@ public class TrademarkActivity extends AppCompatActivity implements Tradmarkinte
         storageReference = FirebaseStorage.getInstance().getReference(TRADEMARK);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
+
         reference = FirebaseDatabase.getInstance("https://marketinhome-99d25-default-rtdb.firebaseio.com").getReference();
         tradmarkViewModel = new TradmarkViewModel();
         tradmarkViewModel.getAllMark().observe(this, new Observer<ArrayList<Trademark>>() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onChanged(ArrayList<Trademark> trademarks) {
                 trademarkAdapter = new TrademarkAdapter(trademarks, TrademarkActivity.this);
                 MyTrademark.setAdapter(trademarkAdapter);
+                trademarkAdapter.notifyDataSetChanged();
             }
         });
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -191,10 +195,6 @@ public class TrademarkActivity extends AppCompatActivity implements Tradmarkinte
         }
     }
 
-    @Override
-    public void AllTradmark(@Nullable ArrayList<Trademark> tradmark) {
-
-    }
 
     @Override
     public void AllNameTradmark(@Nullable List<String> names) {
@@ -216,5 +216,11 @@ public class TrademarkActivity extends AppCompatActivity implements Tradmarkinte
     @Override
     public void onDeleteTradmark(@NonNull Trademark tradmark) {
         FirebaseDatabase.getInstance().getReference().child(TRADEMARK).child(tradmark.getId()).removeValue();
+    }
+
+
+    @Override
+    public void AllTradmark(@NonNull ArrayList<Trademark> tradmark) {
+
     }
 }

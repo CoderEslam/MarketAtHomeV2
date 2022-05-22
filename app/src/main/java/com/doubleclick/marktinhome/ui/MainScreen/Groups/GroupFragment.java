@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,11 +63,25 @@ public class GroupFragment extends Fragment {
         allGroupsRecycler = view.findViewById(R.id.allGroupsRecycler);
 
         groupViewModel = new ViewModelProvider(this).get(GroupViewModel.class);
-        groupViewModel.AllGroups().observe(getViewLifecycleOwner(), new Observer<ArrayList<Group>>() {
+        groupViewModel.AllGroups().observe(getViewLifecycleOwner(), groups -> {
+            ItemGroupsAdapter itemGroupsAdapter = new ItemGroupsAdapter(groups);
+            allGroupsRecycler.setAdapter(itemGroupsAdapter);
+        });
+
+        search.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onChanged(ArrayList<Group> groups) {
-                ItemGroupsAdapter itemGroupsAdapter = new ItemGroupsAdapter(groups);
-                allGroupsRecycler.setAdapter(itemGroupsAdapter);
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
         addGroup.setOnClickListener(v -> {

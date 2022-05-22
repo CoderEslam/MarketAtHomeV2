@@ -15,9 +15,11 @@ import java.util.ArrayList;
 /**
  * Created By Eslam Ghazy on 3/8/2022
  */
-public class AdvertisementViewModel  implements AdvInterface {
+public class AdvertisementViewModel implements AdvInterface {
 
-    MutableLiveData<ArrayList<Advertisement>> mutableLiveData = new MutableLiveData<>();
+    MutableLiveData<ArrayList<Advertisement>> mutableLiveDataAdd = new MutableLiveData<>();
+    MutableLiveData<Advertisement> mutableLiveDataDelete = new MutableLiveData<>();
+    MutableLiveData<Advertisement> mutableLiveDataEdit = new MutableLiveData<>();
 
     AdvertisementRepository repository = new AdvertisementRepository(this);
 
@@ -25,22 +27,32 @@ public class AdvertisementViewModel  implements AdvInterface {
         repository.getAdvertisement();
     }
 
-    public LiveData<ArrayList<Advertisement>> getAllAdv() {
-        return mutableLiveData;
+    public LiveData<ArrayList<Advertisement>> getAdvAdd() {
+        return mutableLiveDataAdd;
     }
 
-    @Override
-    public void AllAdvertisement(@Nullable ArrayList<Advertisement> advertisement) {
-        mutableLiveData.setValue(advertisement);
+    public LiveData<Advertisement> getAdvEdit() {
+        return mutableLiveDataEdit;
     }
+
+    public LiveData<Advertisement> getAdvDelete() {
+        return mutableLiveDataDelete;
+    }
+
 
     @Override
     public void OnEditAdvertisement(@NonNull Advertisement advertisement) {
-
+        mutableLiveDataEdit.setValue(advertisement);
     }
 
     @Override
     public void OnDeleteAdvertisement(@NonNull Advertisement advertisement) {
+        mutableLiveDataDelete.setValue(advertisement);
+    }
 
+
+    @Override
+    public void AllAdvertisement(@NonNull ArrayList<Advertisement> advertisement) {
+        mutableLiveDataAdd.setValue(advertisement);
     }
 }
