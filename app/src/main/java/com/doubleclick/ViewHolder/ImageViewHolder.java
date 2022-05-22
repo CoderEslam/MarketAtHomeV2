@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -16,6 +17,7 @@ import androidx.appcompat.widget.PopupMenu;
 
 import com.bumptech.glide.Glide;
 import com.doubleclick.OnMessageClick;
+import com.doubleclick.marktinhome.BaseApplication;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 import com.doubleclick.marktinhome.Views.PhotoView.PhotoView;
@@ -66,7 +68,11 @@ public class ImageViewHolder extends BaseViewHolder {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         if (R.id.deleteforeveryone == item.getItemId()) {
-                            onMessageClick.deleteForAll(chat, position);
+                            if (BaseApplication.isNetworkConnected()) {
+                                onMessageClick.deleteForAll(chat, position);
+                            } else {
+                                Toast.makeText(itemView.getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                            }
                         }
                         if (R.id.deleteForme == item.getItemId()) {
                             onMessageClick.deleteForMe(chat, position);

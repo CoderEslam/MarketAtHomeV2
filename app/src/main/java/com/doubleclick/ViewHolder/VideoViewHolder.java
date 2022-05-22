@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.doubleclick.OnMessageClick;
+import com.doubleclick.marktinhome.BaseApplication;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -88,7 +90,11 @@ public class VideoViewHolder extends BaseViewHolder {
                 public boolean onMenuItemClick(MenuItem item) {
                     int id = item.getItemId();
                     if (R.id.deleteforeveryone == id) {
-                        onMessageClick.deleteForAll(chat, position);
+                        if (BaseApplication.isNetworkConnected()) {
+                            onMessageClick.deleteForAll(chat, position);
+                        } else {
+                            Toast.makeText(itemView.getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                        }
                     }
                     if (R.id.deleteForme == id) {
                         onMessageClick.deleteForMe(chat, position);

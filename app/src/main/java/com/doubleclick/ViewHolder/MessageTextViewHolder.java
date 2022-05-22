@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.doubleclick.OnMessageClick;
+import com.doubleclick.marktinhome.BaseApplication;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -62,7 +63,11 @@ public class MessageTextViewHolder extends BaseViewHolder {
                         onMessageClick.deleteForMe(chat, postion);
                         return true;
                     } else if (item.getItemId() == R.id.deleteforeveryone) {
-                        onMessageClick.deleteForAll(chat, postion);
+                        if (BaseApplication.isNetworkConnected()) {
+                            onMessageClick.deleteForAll(chat, postion);
+                        } else {
+                            Toast.makeText(itemView.getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                        }
                         return true;
                     } else if (item.getItemId() == R.id.copy) {
                         ClipboardManager clipboardManager = (ClipboardManager) itemView.getContext().getSystemService(Context.CLIPBOARD_SERVICE);

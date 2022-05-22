@@ -8,13 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.doubleclick.OnMessageClick;
+import com.doubleclick.marktinhome.BaseApplication;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
 
@@ -58,7 +59,11 @@ public class LocationViewHolder extends BaseViewHolder {
                         onMessageClick.deleteForMe(chat, position);
                         return true;
                     } else if (item.getItemId() == R.id.deleteforeveryone) {
-                        onMessageClick.deleteForAll(chat, position);
+                        if (BaseApplication.isNetworkConnected()) {
+                            onMessageClick.deleteForAll(chat, position);
+                        } else {
+                            Toast.makeText(itemView.getContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+                        }
                         return true;
                     } else if (item.getItemId() == R.id.open) {
                         Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(chat.getMessage()));

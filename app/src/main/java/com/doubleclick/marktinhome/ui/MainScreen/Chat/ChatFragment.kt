@@ -202,6 +202,27 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         }
         chatViewModel.newInsertChat().observe(viewLifecycleOwner) {
             try {
+                /*
+                * work when i closed connection and open again
+                * it's see what message is deleted and updated it in database and in ArrayList
+                * and if message sent and deleted before stored in database -> exception
+                * */
+                if (it.receiver.equals(myId) && it.message.contains("@$@this@message@deleted")) {
+                    Log.e("deleted",it.toString())
+                    try {
+                        chats[chats.indexOf(it)] = it;
+                        chatAdapter.notifyItemChanged(chats.indexOf(it))
+                        chatAdapter.notifyDataSetChanged()
+                        chatViewModelDatabase.update(it);
+                    } catch (e: IOException) {
+                        Log.e("DatabaseExption216", e.message.toString());
+                    } catch (e: IndexOutOfBoundsException) {
+                        Log.e("ArrayListExp218", e.message.toString());
+                    } catch (e: Exception) {
+                        Log.e("Exception220", e.message.toString());
+                    }
+
+                }
                 if (it.sender.equals(myId) && !it.isSeen && !it.message.contains("@$@this@message@deleted")) {
                     if (!chats.contains(it)) {
                         chats.add(it)
@@ -259,7 +280,6 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
                 sendRecord.isListenForRecord = true
                 layout_text.visibility = View.VISIBLE
-                KeyboardUtil.getInstance(requireActivity()).closeKeyboard();
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
