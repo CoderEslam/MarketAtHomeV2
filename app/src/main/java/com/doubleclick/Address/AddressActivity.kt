@@ -121,7 +121,7 @@ class AddressActivity : AppCompatActivity(), OnMapReadyCallback {
             map["date"] = time
             map["toggleItem"] = carts[i].toggleItem
             if (myLocation.isChecked) {
-                if (!uri.toString().equals("")) {
+                if (uri.toString() != "") {
                     map["locationUri"] = uri!!
                     sendNotifiaction(this, carts[i].sellerId, carts[i].productName);
                     reference.child(Constantes.ORDERS).child(id).updateChildren(map)
