@@ -25,7 +25,7 @@ class FilterActivity : AppCompatActivity(), OnProduct {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
         FilterRecycler = findViewById(R.id.FilterRecycler)
-        productViewModel = ProductViewModel()
+        productViewModel =ViewModelProvider(this)[ProductViewModel::class.java]
         id = intent.getStringExtra("id")!!.toString();
         type = intent.getStringExtra("type")!!.toString()
 

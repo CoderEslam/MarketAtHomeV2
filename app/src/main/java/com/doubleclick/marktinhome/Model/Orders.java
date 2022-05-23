@@ -8,22 +8,22 @@ import java.util.List;
  */
 public class Orders {
 
-    private String ProductId;
+    private String productId;
     private double price;
-    private long Quantity;
+    private long quantity;
     private double lastPrice;
     private String productName;
     private String images;
     private String id;
-    private String BuyerId;
-    private String SellerId;
+    private String buyerId;
+    private String sellerId;
     private double TotalPrice;
     private String phone;
     private String anotherPhone;
     private String address;
     private String name;
     private long date;
-    private String ToggleItem;
+    private String toggleItem;
 
     public String getLocationUri() {
         return locationUri;
@@ -39,11 +39,11 @@ public class Orders {
     }
 
     public String getProductId() {
-        return ProductId;
+        return productId;
     }
 
     public void setProductId(String productId) {
-        ProductId = productId;
+        this.productId = productId;
     }
 
 
@@ -65,19 +65,19 @@ public class Orders {
     }
 
     public String getBuyerId() {
-        return BuyerId;
+        return buyerId;
     }
 
     public void setBuyerId(String buyerId) {
-        BuyerId = buyerId;
+        this.buyerId = buyerId;
     }
 
     public String getSellerId() {
-        return SellerId;
+        return sellerId;
     }
 
     public void setSellerId(String sellerId) {
-        SellerId = sellerId;
+        this.sellerId = sellerId;
     }
 
 
@@ -122,11 +122,11 @@ public class Orders {
     }
 
     public long getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(long quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public double getLastPrice() {
@@ -167,11 +167,11 @@ public class Orders {
     }
 
     public String getToggleItem() {
-        return ToggleItem;
+        return toggleItem;
     }
 
     public void setToggleItem(String toggleItem) {
-        ToggleItem = toggleItem;
+        this.toggleItem = toggleItem;
     }
 
 }

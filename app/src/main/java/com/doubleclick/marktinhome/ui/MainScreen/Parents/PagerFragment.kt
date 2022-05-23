@@ -47,7 +47,7 @@ class PagerFragment : Fragment, OnProduct {
     ): View? {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_pager, container, false)
-        productViewModel = ProductViewModel()
+        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         productsRecyclerView = view.findViewById(R.id.products)
         productViewModel.getSearchByChild(id)
         productViewModel.FilterByChildLiveDate().observe(viewLifecycleOwner, Observer {

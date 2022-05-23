@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Created By Eslam Ghazy on 3/2/2022
  */
-public class ProductViewModel implements Products {
+public class ProductViewModel extends ViewModel implements Products {
 
 
     private MutableLiveData<ArrayList<ArrayList<ArrayList<Product>>>> mutableLiveData = new MutableLiveData<>();
@@ -46,13 +46,10 @@ public class ProductViewModel implements Products {
             productRepository.getChild();
             productRepository.getProduct();
             productRepository.TopDeals();
+//            productRepository.Classification();
         }
     }
 
-    public void getClassification() {
-//        productRepository.getParents();
-//        productRepository.getChild();
-    }
 
     public void getChildren(String child) {
         if (isNetworkConnected()) {

@@ -3,6 +3,8 @@ package com.doubleclick.marktinhome.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,7 +49,10 @@ public class NavAdapter extends RecyclerView.Adapter<NavAdapter.NavViewHolder> i
         holder.nestedRecyclerView.setVisibility(isExpandable ? View.VISIBLE : View.GONE);
         if (isExpandable) {
             holder.mArrowImage.setImageResource(R.drawable.arrow_up);
+//            holder.mArrowImage.setRotation(90);
+//            Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(),)
         } else {
+//            holder.mArrowImage.setRotation(300);
             holder.mArrowImage.setImageResource(R.drawable.arrow_down);
         }
         holder.itemView.setOnClickListener(v -> {

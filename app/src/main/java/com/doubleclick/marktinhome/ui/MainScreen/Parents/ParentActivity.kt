@@ -41,7 +41,7 @@ class ParentActivity : AppCompatActivity(), OnProduct {
         setContentView(binding.root)
         classificationPC = intent.getSerializableExtra("classificationPC") as ClassificationPC
         binding.toolbarCollapsinglayout.title = (classificationPC.name)
-        productViewModel = ProductViewModel()
+        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         var image = classificationPC.image
         setupPagerFragment()
         // if you want array of image

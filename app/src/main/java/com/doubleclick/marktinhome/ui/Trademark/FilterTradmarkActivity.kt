@@ -23,7 +23,7 @@ class FilterTradmarkActivity : AppCompatActivity(), OnProduct {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tradmark)
-        productViewModel = ProductViewModel()
+        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         trademark = intent.getSerializableExtra("tradmark") as Trademark
         productViewModel.ProductWithTrademark(trademark.name)
         trademarkRecycler = findViewById(R.id.trademarkRecycler);

@@ -5,6 +5,7 @@ import static com.doubleclick.marktinhome.Model.Constantes.CHILDREN;
 import static com.doubleclick.marktinhome.Model.Constantes.PARENTS;
 import static com.doubleclick.marktinhome.Model.Constantes.PRODUCT;
 
+import android.os.Handler;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -181,7 +182,7 @@ public class ProductRepository extends BaseRepository {
                                 childCategories.add(childCategory);
                             }
                             product.Childproduct(childCategories);
-                            Classification();
+                            new Handler().postDelayed(() -> Classification(), 3000);
                         }
                     } else {
                         ShowToast("No Internet Connection");

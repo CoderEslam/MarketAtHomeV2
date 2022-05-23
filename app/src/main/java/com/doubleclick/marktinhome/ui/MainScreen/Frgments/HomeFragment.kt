@@ -168,7 +168,7 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
 
     @SuppressLint("NotifyDataSetChanged")
     private fun Loadproduct() {
-        val productViewModel = ProductViewModel();
+        val productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
 //        productViewModel.parent.observe(viewLifecycleOwner) {
 //            if (it.size != 0) {
 ////                homeModels.add(0, HomeModel(it, HomeModel.TopCategory, this))
@@ -190,7 +190,7 @@ class HomeFragment : BaseFragment(), OnItem, OnProduct, Tradmarkinterface, ViewM
         };
         productViewModel.product.observe(viewLifecycleOwner) { // get max as 1000 items
             if (it!!.size != 0) {
-                Log.e("iiiiiiittt",it.toString());
+                Log.e("iiiiiiittt", it.toString());
                 homeModels.add(HomeModel(it, HomeModel.Products, this))
                 homeAdapter.notifyDataSetChanged()
 

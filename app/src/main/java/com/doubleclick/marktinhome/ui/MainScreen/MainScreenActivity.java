@@ -16,6 +16,7 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -48,6 +49,8 @@ import com.mxn.soul.flowingdrawer_core.ElasticDrawer;
 import com.mxn.soul.flowingdrawer_core.FlowingDrawer;
 
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -89,6 +92,8 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
         myImage = findViewById(R.id.myImage);
         drawerLayout.setTouchMode(ElasticDrawer.TOUCH_MODE_BEZEL);
         userViewModel = new ViewModelProvider(this).get(UserViewModel.class);
+        setupSmoothBottomMenu();
+        loadCategorical();
         userViewModel.getUser().observe(this, new Observer<User>() {
             @Override
             public void onChanged(User user) {
@@ -99,8 +104,6 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
         Objects.requireNonNull(getSupportActionBar()).setTitle("");
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.menu_Cart, R.id.menu_group, R.id.homeFragment, R.id.menu_profile).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        setupSmoothBottomMenu();
-        loadCategorical();
         openDrawer.setOnClickListener(v -> {
             drawerLayout.openMenu(true);
         });
@@ -158,12 +161,14 @@ public class MainScreenActivity extends AppCompatActivity implements NavAdapter.
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     private void loadCategorical() {
-        productViewModel = new ProductViewModel();
-        productViewModel.getClassification();
+        productViewModel = new ViewModelProvider(this).get(ProductViewModel.class);
         productViewModel.getClassificationPC().observe(this, classificationPCS -> {
             catecoriesAdapter = new NavAdapter(classificationPCS, this);
             menu_recycler_view.setAdapter(catecoriesAdapter);
+            catecoriesAdapter.notifyDataSetChanged();
+
         });
     }
 

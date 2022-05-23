@@ -45,11 +45,11 @@ class SellerActivity : AppCompatActivity(), OnOrder {
         var time = Date().time;
         val pushId = myId + ":" + orders!!.productId + ":" + time
         val map: HashMap<String, Any> = HashMap();
-        map["ProductId"] = orders.productId;
-        map["BuyerId"] = orders.buyerId;
-        map["SellerId"] = myId;
-        map["TotalPrice"] = orders.totalPrice;
-        map["Quantity"] = orders.quantity;
+        map["productId"] = orders.productId;
+        map["buyerId"] = orders.buyerId;
+        map["sellerId"] = myId;
+        map["totalPrice"] = orders.totalPrice;
+        map["quantity"] = orders.quantity;
         map["price"] = orders.price;
         map["images"] = orders.images;
         map["productName"] = orders.productName;
@@ -57,7 +57,7 @@ class SellerActivity : AppCompatActivity(), OnOrder {
         map["date"] = time;
         map["address"] = orders.address;
         map["phone"] = orders.phone;
-        map["ToggleItem"] = orders.toggleItem;
+        map["toggleItem"] = orders.toggleItem;
         map["anotherPhone"] = orders.anotherPhone;
         try {
             if (!TextUtils.isEmpty(orders.locationUri)) {

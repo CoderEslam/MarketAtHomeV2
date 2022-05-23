@@ -49,7 +49,7 @@ class ChildFragment : BaseFragment(), ChildAdapter.OnChild {
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_child, container, false)
         setHasOptionsMenu(true);
-        productViewModel = ProductViewModel()
+        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
         productViewModel.getChildren(parentCategory.parent!!.pushId)
         ChildRecycler = view.findViewById(R.id.ChildRecycler);
         addChild = view.findViewById(R.id.addChild)
