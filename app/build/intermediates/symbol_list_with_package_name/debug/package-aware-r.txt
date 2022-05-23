@@ -4615,7 +4615,6 @@ layout fragment_home
 layout fragment_log_in
 layout fragment_main
 layout fragment_main_login
-layout fragment_map_chat
 layout fragment_maps
 layout fragment_menu_list
 layout fragment_menu_profile

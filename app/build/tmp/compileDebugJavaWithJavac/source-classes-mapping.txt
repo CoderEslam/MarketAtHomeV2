@@ -176,9 +176,6 @@ com/doubleclick/marktinhome/Model/GroupData.java
 com/doubleclick/ViewHolder/LocationViewHolder.java
  com.doubleclick.ViewHolder.LocationViewHolder
  com.doubleclick.ViewHolder.LocationViewHolder$1
-com/doubleclick/marktinhome/ui/MainScreen/Chat/MapChatFragment.java
- com.doubleclick.marktinhome.ui.MainScreen.Chat.MapChatFragment
- com.doubleclick.marktinhome.ui.MainScreen.Chat.MapChatFragment$1
 com/doubleclick/marktinhome/MainFragment.java
  com.doubleclick.marktinhome.MainFragment
 com/doubleclick/marktinhome/databinding/ItemVideoLeftBinding.java
@@ -791,8 +788,6 @@ com/doubleclick/marktinhome/Notifications/MyFirebaseIdService.java
  com.doubleclick.marktinhome.Notifications.MyFirebaseIdService
 com/doubleclick/marktinhome/Adapters/ChatAdapter.java
  com.doubleclick.marktinhome.Adapters.ChatAdapter
-com/doubleclick/marktinhome/databinding/FragmentMapChatBinding.java
- com.doubleclick.marktinhome.databinding.FragmentMapChatBinding
 com/doubleclick/Servies/FileUtil.java
  com.doubleclick.Servies.FileUtil
 com/doubleclick/marktinhome/ui/Trademark/EditTradmarkActivity.java
