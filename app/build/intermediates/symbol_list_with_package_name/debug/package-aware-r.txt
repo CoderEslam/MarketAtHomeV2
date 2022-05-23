@@ -3761,6 +3761,7 @@ id glide_custom_view_target_tag
 id glowing_mic
 id gone
 id google
+id google_map
 id graph
 id graph_wrap
 id gridview
@@ -3938,7 +3939,6 @@ id loadmore
 id locale
 id location
 id location_layout
-id location_lotte
 id login
 id logout
 id lottie_layer_name
@@ -4615,6 +4615,7 @@ layout fragment_home
 layout fragment_log_in
 layout fragment_main
 layout fragment_main_login
+layout fragment_map_chat
 layout fragment_maps
 layout fragment_menu_list
 layout fragment_menu_profile

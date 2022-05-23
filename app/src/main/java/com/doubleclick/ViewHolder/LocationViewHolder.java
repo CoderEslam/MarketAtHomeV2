@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,37 +13,58 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.fragment.app.FragmentActivity;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.doubleclick.OnMessageClick;
 import com.doubleclick.marktinhome.BaseApplication;
 import com.doubleclick.marktinhome.Model.Chat;
 import com.doubleclick.marktinhome.R;
+import com.doubleclick.marktinhome.ui.MainScreen.Chat.MapChatFragment;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created By Eslam Ghazy on 2/7/2022
  */
 public class LocationViewHolder extends BaseViewHolder {
-    private LottieAnimationView location_lotte;
+    //    private LottieAnimationView location_lotte;
     private ImageView seen;
     private OnMessageClick onMessageClick;
     private String myId;
     private TextView time;
+    private SupportMapFragment supportMapFragment;
 
     public LocationViewHolder(@NonNull View itemView, OnMessageClick onMessageClick, String myId) {
         super(itemView);
         this.onMessageClick = onMessageClick;
         this.myId = myId;
-        location_lotte = itemView.findViewById(R.id.location_lotte);
+//        location_lotte = itemView.findViewById(R.id.location_lotte);
         seen = itemView.findViewById(R.id.seen);
         time = itemView.findViewById(R.id.time);
+//        supportMapFragment = (SupportMapFragment) ((FragmentActivity) itemView.getContext()).getSupportFragmentManager().findFragmentById(R.id.google_map);
     }
 
     @SuppressLint({"UseCompatLoadingForDrawables", "SimpleDateFormat"})
     public void OpenLocation(Chat chat, int position) {
         time.setText(new SimpleDateFormat("M/d/yy, h:mm a").format(chat.getDate()).toString());
+        List<String> list = Arrays.asList(chat.getMessage().replace("[", "").replace("]", "").replace(" ", "").split(","));
+        LatLng latLng = new LatLng(Double.parseDouble(list.get(0)), Double.parseDouble(list.get(1)));
+        MapChatFragment mapChatFragment = new MapChatFragment(latLng);
+        ((FragmentActivity) itemView.getContext()).getSupportFragmentManager().beginTransaction().replace(R.id.google_map, mapChatFragment).commit();
+       /* OnMapReadyCallback callback = googleMap -> {
+            googleMap.addMarker(new MarkerOptions().position(latLng).title("location of you friend"));
+            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 9));
+        };
+        supportMapFragment.getMapAsync(callback);*/
         if (chat.getReceiver().equals(myId)) {
             seen.setVisibility(View.INVISIBLE);
         } else {
@@ -66,10 +88,13 @@ public class LocationViewHolder extends BaseViewHolder {
                         }
                         return true;
                     } else if (item.getItemId() == R.id.open) {
-                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(chat.getMessage()));
-                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        i.setPackage("com.android.chrome");
+                        Intent i = new Intent();
                         try {
+                            String link = "https://www.google.com/maps/?q=" + list.get(0) + "," + list.get(1);
+                            i.setAction(Intent.ACTION_VIEW);
+                            i.setData(Uri.parse(link));
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            i.setPackage("com.android.chrome");
                             itemView.getContext().startActivity(i);
                         } catch (ActivityNotFoundException e) {
                             // Chrome is probably not installed

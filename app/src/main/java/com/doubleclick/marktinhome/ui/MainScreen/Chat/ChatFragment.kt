@@ -177,7 +177,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService::class.java)
         supportMapFragment =
             requireActivity().supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
-        client = LocationServices.getFusedLocationProviderClient(requireContext())
+        client = LocationServices.getFusedLocationProviderClient(requireActivity())
         locationManager =
             requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
         chatViewModelDatabase = ViewModelProvider(this)[ChatViewModelDatabase::class.java]
@@ -208,7 +208,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                 * and if message sent and deleted before stored in database -> exception
                 * */
                 if (it.receiver.equals(myId) && it.message.contains("@$@this@message@deleted")) {
-                    Log.e("deleted",it.toString())
+                    Log.e("deleted", it.toString())
                     try {
                         chats[chats.indexOf(it)] = it;
                         chatAdapter.notifyItemChanged(chats.indexOf(it))
@@ -455,8 +455,32 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
 
     }
 
-
     private fun getMyLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            val task = client!!.lastLocation
+            task.addOnSuccessListener { location ->
+                if (location != null) {
+//                    supportMapFragment!!.getMapAsync {
+                    val latLng = LatLng(location.latitude, location.longitude)
+                    val uri = "[" + location.latitude + "," + location.longitude + "]"
+                    sentMessage(uri, "location")
+//                    }
+                } else {
+                    Toast.makeText(requireContext(), "Open your location", Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        }
+    }
+
+   /* private fun getMyLocation() {
         if (ActivityCompat.checkSelfPermission(
                 requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -473,8 +497,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                             location.latitude,
                             location.longitude
                         )
-                        val uri =
-                            "https://www.google.com/maps/?q=" + location.latitude + "," + location.longitude
+                        val uri = "https://www.google.com/maps/?q=" + location.latitude + "," + location.longitude
                         Log.e("uri", uri)
                         sentMessage(uri, "location")
                     }
@@ -484,7 +507,7 @@ class ChatFragment : BaseFragment(), OnMapReadyCallback, OnMessageClick, ChatReo
                 }
             }
         }
-    }
+    }*/
 
     private fun getFilePath(): String {
         val contextWrapper = ContextWrapper(requireContext())

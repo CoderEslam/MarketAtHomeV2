@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.doubleclick.Api.APIService
 import com.doubleclick.ViewModel.CartViewModel
 import com.doubleclick.marktinhome.Model.*
+import com.doubleclick.marktinhome.Model.Constantes.CART
+import com.doubleclick.marktinhome.Model.Constantes.ORDERS
 import com.doubleclick.marktinhome.Notifications.Client
 import com.doubleclick.marktinhome.R
 import com.doubleclick.marktinhome.Repository.BaseRepository.myId
@@ -74,8 +76,7 @@ class AddressActivity : AppCompatActivity(), OnMapReadyCallback {
             FirebaseDatabase.getInstance("https://marketinhome-99d25-default-rtdb.firebaseio.com/").reference
 
         client = LocationServices.getFusedLocationProviderClient(this)
-        supportMapFragment =
-            supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        supportMapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         confirmFinalOrderBtn.setOnClickListener {
             confirmOrder(
                 name.text.toString(),
@@ -85,9 +86,9 @@ class AddressActivity : AppCompatActivity(), OnMapReadyCallback {
             )
         }
 
-        cartViewModel.CartLiveData().observe(this) { cart: Cart ->
-            if (!cart.id.equals("")) {
-                carts.add(cart)
+        cartViewModel.CartLiveData().observe(this) {
+            if (!it.id.equals("")) {
+                carts.add(it)
                 confirmFinalOrderBtn.isEnabled = true
             }
         }
@@ -124,16 +125,15 @@ class AddressActivity : AppCompatActivity(), OnMapReadyCallback {
                 if (uri.toString() != "") {
                     map["locationUri"] = uri!!
                     sendNotifiaction(this, carts[i].sellerId, carts[i].productName);
-                    reference.child(Constantes.ORDERS).child(id).updateChildren(map)
-                    reference.child(Constantes.CART).child(carts[i].id).removeValue()
+                    reference.child(ORDERS).child(id).updateChildren(map)
+                    reference.child(CART).child(carts[i].id).removeValue()
                 } else {
-                    Toast.makeText(this, "Open your location", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, "Open your location", Toast.LENGTH_SHORT).show()
                 }
             } else {
                 sendNotifiaction(this, carts[i].sellerId, carts[i].productName);
-                reference.child(Constantes.ORDERS).child(id).updateChildren(map)
-                reference.child(Constantes.CART).child(carts[i].id).removeValue()
+                reference.child(ORDERS).child(id).updateChildren(map)
+                reference.child(CART).child(carts[i].id).removeValue()
             }
 
 
@@ -157,8 +157,7 @@ class AddressActivity : AppCompatActivity(), OnMapReadyCallback {
                     uri = "[" + location.latitude + "," + location.longitude + "]"
 //                    }
                 } else {
-                    Toast.makeText(this, "Open your location", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(this, "Open your location", Toast.LENGTH_SHORT).show()
                 }
             }
         }

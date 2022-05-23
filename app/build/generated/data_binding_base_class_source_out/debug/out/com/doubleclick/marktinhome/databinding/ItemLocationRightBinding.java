@@ -10,9 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentContainerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
-import com.airbnb.lottie.LottieAnimationView;
 import com.doubleclick.marktinhome.R;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -26,7 +26,7 @@ public final class ItemLocationRightBinding implements ViewBinding {
   public final CardView cardView12;
 
   @NonNull
-  public final LottieAnimationView locationLotte;
+  public final FragmentContainerView googleMap;
 
   @NonNull
   public final ImageView seen;
@@ -35,10 +35,10 @@ public final class ItemLocationRightBinding implements ViewBinding {
   public final TextView time;
 
   private ItemLocationRightBinding(@NonNull ConstraintLayout rootView, @NonNull CardView cardView12,
-      @NonNull LottieAnimationView locationLotte, @NonNull ImageView seen, @NonNull TextView time) {
+      @NonNull FragmentContainerView googleMap, @NonNull ImageView seen, @NonNull TextView time) {
     this.rootView = rootView;
     this.cardView12 = cardView12;
-    this.locationLotte = locationLotte;
+    this.googleMap = googleMap;
     this.seen = seen;
     this.time = time;
   }
@@ -76,9 +76,9 @@ public final class ItemLocationRightBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.location_lotte;
-      LottieAnimationView locationLotte = ViewBindings.findChildViewById(rootView, id);
-      if (locationLotte == null) {
+      id = R.id.google_map;
+      FragmentContainerView googleMap = ViewBindings.findChildViewById(rootView, id);
+      if (googleMap == null) {
         break missingId;
       }
 
@@ -94,8 +94,8 @@ public final class ItemLocationRightBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ItemLocationRightBinding((ConstraintLayout) rootView, cardView12, locationLotte,
-          seen, time);
+      return new ItemLocationRightBinding((ConstraintLayout) rootView, cardView12, googleMap, seen,
+          time);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));
